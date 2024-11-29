@@ -1,4 +1,3 @@
-import StoreProvider from '@/app/store-provider';
 import { geistSans } from '@/shared/fonts/geist';
 import { cn } from '@/shared/lib/utils';
 import type { Metadata } from 'next';
@@ -24,12 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <StoreProvider>
-      <html lang='en'>
-        <body className={cn('antialiased')} style={geistSans.style}>
-          {children}
-        </body>
-      </html>
-    </StoreProvider>
+    <html lang='en'>
+      <body className={cn('antialiased')} style={geistSans.style}>
+        {children}
+      </body>
+    </html>
   );
 }
