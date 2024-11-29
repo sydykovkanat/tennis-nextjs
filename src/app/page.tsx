@@ -1,11 +1,10 @@
 import { Container } from '@/shared/components/shared';
-import { Button } from '@/shared/components/ui';
+import { Partners } from '@/shared/components/shared/partners/partners';
 
 export default async function Page() {
   return (
     <Container>
-      <Button>Hello World!</Button>
-      Home page
+      <Partners />
     </Container>
   );
 }
