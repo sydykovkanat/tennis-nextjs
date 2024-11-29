@@ -1,0 +1,7 @@
+.mainTextInBlockCarousel {
+    @apply text-[20px] font-bold uppercase mb-[25px] md:text-[64px] md:mb-[16px]
+}
+
+.underTextInBlockCarousel {
+    @apply hidden text-[#808080] md:block text-[36px] font-medium pb-[56px]
+}
