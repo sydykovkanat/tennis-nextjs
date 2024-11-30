@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 
+
 const config: Config = {
   darkMode: ['class'],
   content: [
@@ -9,6 +10,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '480px',
+        sm: '640px',
+        md: '768px',
+        lmd: '890px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+        '3xl': '2000px',
+      },
       colors: {
         'tn-secondary': '#808080',
         'tn-default-black': '#232A2A',

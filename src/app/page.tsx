@@ -1,5 +1,6 @@
-import { Container, Partners } from '@/shared/components/shared';
+import { Container, NewsMain, Partners } from '@/shared/components/shared';
 import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
+import Link from 'next/link';
 
 export default async function Page() {
   return (
@@ -8,6 +9,12 @@ export default async function Page() {
         <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
       </Container>
       <Partners />
+      <Container>
+        <section>
+          <NewsMain />
+        </section>
+      </Container>
+      <Link href={'/news'}>News</Link>
     </>
   );
 }
