@@ -9,3 +9,4 @@ export { CustomPagination } from './custom-pagination/customPagination';
 export { NewsCard } from './news/news-card/news-card';
 export { DatePicker } from './news/datepicker/datepicker';
 export { useDatePicker } from './news/hooks/useDatePicker';
+export { ImageModal } from './news/image-modal/image-modal';

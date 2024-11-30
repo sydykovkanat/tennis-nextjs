@@ -23,3 +23,4 @@ export {
 } from './select';
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './popover';
 export { Calendar } from './calendar';
+export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './carousel';
