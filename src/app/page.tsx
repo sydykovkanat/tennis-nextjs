@@ -5,7 +5,7 @@ export default async function Page() {
   return (
     <>
       <Container>
-        <MainTitles />
+        <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
       </Container>
       <Partners />
     </>
