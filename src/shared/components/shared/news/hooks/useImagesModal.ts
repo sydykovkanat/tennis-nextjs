@@ -1,3 +1,5 @@
+'use client';
+
 import { CarouselApi } from '@/shared/components/ui';
 
 import { useEffect, useRef, useState } from 'react';

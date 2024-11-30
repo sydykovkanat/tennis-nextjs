@@ -1,25 +1,13 @@
 'use client';
 
-import {
-  Button,
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-} from '@/shared/components/ui';
-import { usePagination } from '@/shared/lib/hooks/usePagination';
+import { Button, Pagination, PaginationContent, PaginationItem, PaginationLink, Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/shared/components/ui';
+import { usePagination } from '@/shared/lib';
 import { cn } from '@/shared/lib/utils';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/16/solid';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-
 import React from 'react';
-
 import styles from './pagination.module.css';
+
 
 interface Props {
   page: number;
