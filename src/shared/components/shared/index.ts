@@ -2,3 +2,6 @@ export { Container } from './container/container';
 export { Loader } from './loader/loader';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
+export { BlockCarousel } from './carousel/block-carousel';
+export { CarouselItems } from './carousel/carousel-item';
+export { Carousel } from './carousel/carousel';

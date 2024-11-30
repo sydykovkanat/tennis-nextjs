@@ -1,6 +1,6 @@
 export interface CarouselTypes {
   _id: string;
-  image: string | null;
+  image?: string | null;
   video?: string | null;
   createdAt: string;
 }
