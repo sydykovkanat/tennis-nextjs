@@ -1,5 +1,6 @@
-import { Container, NewsMain, Partners } from '@/shared/components/shared';
-import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
+import { Carousel, Container, MainPageRating, MainTitles, NewsMain, Partners } from '@/shared/components/shared';
+
+import React from 'react';
 
 export default async function Page() {
   return (
@@ -7,9 +8,13 @@ export default async function Page() {
       <Container>
         <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
       </Container>
+      <Carousel />
       <Partners />
       <Container>
-        <section className='mt-10'>
+        <section>
+          <MainPageRating className='mb-24 mt-8 lg:mt-28' />
+        </section>
+        <section>
           <NewsMain />
         </section>
       </Container>

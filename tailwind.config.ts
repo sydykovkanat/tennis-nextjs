@@ -1,6 +1,5 @@
 import type { Config } from 'tailwindcss';
 
-
 const config: Config = {
   darkMode: ['class'],
   content: [
@@ -22,6 +21,9 @@ const config: Config = {
       },
       colors: {
         'tn-default-black': '#232A2A',
+        'tn-dark-green': '#3F6A11',
+        'tn-green': '#64B32C',
+        'tn-green-secondary': '#64B32C63',
         'tn-secondary': '#808080',
         'cr-white': '#fff',
         'cr-black': '#000',
