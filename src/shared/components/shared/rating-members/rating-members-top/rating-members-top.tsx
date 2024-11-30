@@ -1,4 +1,4 @@
-import { RatingMemberCard } from '@/shared/components/shared/rating-members/rating-member-card/rating-member-card';
+import { RatingMemberCard } from '@/shared/components/shared';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
 import React from 'react';
@@ -13,7 +13,7 @@ interface Props {
   ratingType: 'top3' | 'top8';
 }
 
-export const RatingMembers: React.FC<Props> = ({ ratingMembers, title, subtitle, category, ratingType }) => {
+export const RatingMembersTop: React.FC<Props> = ({ ratingMembers, title, subtitle, category, ratingType }) => {
   let content: React.ReactNode = <p className={styles.noContentText}>Данные рейтинга отсутствуют</p>;
 
   if (ratingMembers.length > 0) {

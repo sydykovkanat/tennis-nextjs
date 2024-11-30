@@ -1,6 +1,4 @@
-import { Container, Partners } from '@/shared/components/shared';
-import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
-import { MainPageRating } from '@/shared/components/shared/rating-members/main-page-rating/main-page-rating';
+import { Container, MainPageRating, MainTitles, Partners } from '@/shared/components/shared';
 
 export default async function Page() {
   return (
@@ -9,7 +7,9 @@ export default async function Page() {
         <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
       </Container>
       <Partners />
-      <MainPageRating className='mb-24' />
+      <Container>
+        <MainPageRating className='mb-24 mt-8 lg:mt-28' />
+      </Container>
     </>
   );
 }

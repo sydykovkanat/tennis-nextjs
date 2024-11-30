@@ -1,5 +1,5 @@
 import { getRatingMembers } from '@/actions/rating-members';
-import { RatingMembers } from '@/shared/components/shared/rating-members/rating-members-top/rating-members-top';
+import { RatingMembersTop } from '@/shared/components/shared';
 import { cn } from '@/shared/lib/utils';
 
 import React from 'react';
@@ -23,7 +23,7 @@ export const MainPageRating: React.FC<Props> = async ({ className }) => {
   return (
     <div className={cn(className)}>
       <div className={styles.manTop8}>
-        <RatingMembers
+        <RatingMembersTop
           ratingMembers={ratingMenMembersTop8}
           category={ratingMembers[0]?.mensRatingCategoryTop8 || 'Мужская категория'}
           title='Мужской'
@@ -31,7 +31,7 @@ export const MainPageRating: React.FC<Props> = async ({ className }) => {
         />
       </div>
       <div className={styles.manTop3}>
-        <RatingMembers
+        <RatingMembersTop
           ratingMembers={ratingMenMembersTop3}
           category={ratingMembers[0]?.mensRatingCategoryTop3 || 'Мужская категория'}
           subtitle='участника'
@@ -39,7 +39,7 @@ export const MainPageRating: React.FC<Props> = async ({ className }) => {
         />
       </div>
       <div>
-        <RatingMembers
+        <RatingMembersTop
           ratingMembers={ratingWomenMembers}
           category={ratingMembers[0]?.womensRatingCategoryTop3 || 'Женская категория'}
           title='Женский'
