@@ -1,0 +1,8 @@
+.card {
+  @apply w-[170px] mx-4 h-[96px] rounded-2xl bg-white relative p-2 overflow-hidden block;
+  box-shadow: 0 30px 100px 0 #00000014;
+
+  & > img {
+    @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2;
+  }
+}

@@ -1,11 +1,13 @@
-import { Container } from '@/shared/components/shared';
-import { Button } from '@/shared/components/ui';
+import { Container, Partners } from '@/shared/components/shared';
+import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
 
 export default async function Page() {
   return (
-    <Container>
-      <Button>Hello World!</Button>
-      Home page
-    </Container>
+    <>
+      <Container>
+        <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
+      </Container>
+      <Partners />
+    </>
   );
 }
