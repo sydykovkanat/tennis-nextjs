@@ -1,0 +1,7 @@
+.manTop8 {
+  @apply mb-12 sm:mb-16 md:mb-16 lg:mb-20;
+}
+
+.manTop3 {
+  @apply mb-24 sm:mb-32 md:mb-36 lg:mb-40;
+}
