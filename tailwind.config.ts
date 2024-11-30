@@ -10,6 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        'tn-secondary': '#808080',
+        'tn-default-black': '#232A2A',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
