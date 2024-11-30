@@ -1,6 +1,7 @@
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib/utils';
 import { Partner } from '@/shared/types/partner.types';
+import Image from 'next/image';
 
 import React from 'react';
 
@@ -13,9 +14,9 @@ interface Props {
 
 export const PartnerCard: React.FC<Props> = ({ className, partner }) => {
   return (
-    <div className={cn(styles.card, className)}>
-      <img src={`${API_URL}/${partner.image}`} alt={partner.name} />
+    <a href={partner.url} className={cn(styles.card, className)}>
+      <Image width={120} height={100} src={`${API_URL}/${partner.image}`} alt={partner.name} />
       <span className={'sr-only'}>{partner.name} partner logo</span>
-    </div>
+    </a>
   );
 };
