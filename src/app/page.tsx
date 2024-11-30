@@ -1,4 +1,5 @@
 import { Container, Partners } from '@/shared/components/shared';
+import ServerCarousel from '@/shared/components/shared/carousel/server-carousel';
 import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
 
 export default async function Page() {
@@ -7,6 +8,7 @@ export default async function Page() {
       <Container>
         <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
       </Container>
+      <ServerCarousel />
       <Partners />
     </>
   );
