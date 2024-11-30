@@ -21,29 +21,26 @@ export const BlockCarousel: React.FC<Props> = async ({ className, files }) => {
     <Carousel
       plugins={[
         Autoplay({
-          delay: 4000,
+          delay: 6000,
           stopOnInteraction: false,
         }),
       ]}
-      className='px-4 lg:px-[50px] mb-5 overflow-hidden'
+      className={cn(styles.carouselContainer, className)}
     >
-      <CarouselContent className='rounded-lg'>
+      <CarouselContent className={cn(styles.carouselContent, className)}>
         {files.map((file) => (
-          <CarouselItem key={file._id} className='overflow-hidden rounded-lg'>
+          <CarouselItem key={file._id} className={cn(styles.carouselItem, className)}>
             {file.image ? (
               <Image
                 src={API_URL + '/' + file.image}
                 alt={file._id}
-                width={800}
-                height={450}
-                className='w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] object-cover rounded-lg'
+                width={1340}
+                height={662}
+                className={cn(styles.carouselFile, className)}
+                unoptimized
               />
             ) : file.video ? (
-              <video
-                controls
-                src={API_URL + '/' + file.video}
-                className='w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] object-cover rounded-lg'
-              />
+              <video controls src={API_URL + '/' + file.video} className={cn(styles.carouselFile, className)} />
             ) : null}
           </CarouselItem>
         ))}

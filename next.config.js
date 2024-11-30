@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
+const nextConfig = {
   images: {
-    domains: ['localhost'], // Разрешаем изображения с localhost
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8000',
+        pathname: '/fixtures/carousel/**',
+      },
+    ],
   },
 };
+
+module.exports = nextConfig;

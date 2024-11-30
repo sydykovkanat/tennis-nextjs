@@ -1,0 +1,23 @@
+.mainTextInBlockCarousel {
+    @apply text-[20px] font-bold uppercase mb-[25px] md:text-[64px] md:mb-[16px]
+}
+
+.underTextInBlockCarousel {
+    @apply hidden text-[#808080] md:block text-[36px] font-medium pb-[56px]
+}
+
+.carouselContainer {
+    @apply px-4 lg:px-[50px] mb-5 overflow-hidden
+}
+
+.carouselContent {
+   @apply rounded-lg
+}
+
+.carouselItem {
+    @apply overflow-hidden rounded-lg
+}
+
+.carouselFile {
+    @apply w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] object-cover rounded-lg
+}
