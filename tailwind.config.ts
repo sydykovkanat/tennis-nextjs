@@ -8,10 +8,23 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      xs: '480px',
+      sm: '640px',
+      md: '768px',
+      lmd: '890px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      '3xl': '2000px',
+    },
     extend: {
       colors: {
         'tn-secondary': '#808080',
         'tn-default-black': '#232A2A',
+        'tn-dark-green': '#3F6A11',
+        'tn-green': '#64B32C',
+        'tn-green-secondary': '#64B32C63',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

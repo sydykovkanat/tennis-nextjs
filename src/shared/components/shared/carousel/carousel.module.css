@@ -1,0 +1,15 @@
+.carouselContainer {
+    @apply px-4 mb-[80px] lg:mb-[120px] lg:px-[50px] overflow-hidden
+}
+
+.carouselContent {
+   @apply rounded-lg
+}
+
+.carouselItem {
+    @apply overflow-hidden rounded-lg
+}
+
+.carouselFile {
+    @apply w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] xl:h-[900px] object-cover rounded-lg
+}

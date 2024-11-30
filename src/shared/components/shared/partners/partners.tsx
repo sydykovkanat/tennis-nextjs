@@ -5,6 +5,8 @@ import { cn } from '@/shared/lib/utils';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 
+import styles from './partners.module.css';
+
 interface Props {
   className?: string;
 }
@@ -13,7 +15,7 @@ export const Partners: React.FC<Props> = async ({ className }) => {
   const partners = await getPartners();
 
   return (
-    <section className={'overflow-x-clip'}>
+    <section className={styles.container}>
       <Marquee
         pauseOnHover={true}
         speed={40}
