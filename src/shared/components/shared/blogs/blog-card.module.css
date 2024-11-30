@@ -1,0 +1,23 @@
+.card {
+  @apply w-80 h-96;
+
+  & > img {
+    @apply object-cover w-[320px] h-[300px] mb-6 rounded-md;
+  }
+
+  & > h3 {
+    @apply font-semibold;
+  }
+}
+
+.header {
+  @apply flex justify-between gap-2;
+
+  & > h4 {
+    @apply line-clamp-1;
+  }
+
+  & > span {
+    @apply text-tn-green;
+  }
+}

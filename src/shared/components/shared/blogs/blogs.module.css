@@ -1,0 +1,3 @@
+.blogs {
+  @apply grid grid-cols-4 gap-x-5 gap-y-[60px];
+}
