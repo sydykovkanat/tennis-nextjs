@@ -2,3 +2,8 @@ export { Container } from './container/container';
 export { Loader } from './loader/loader';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
+export { TournamentCard } from './tournaments/tournament-card/tournament-card';
+export { TournamentCardInfo } from './tournaments/tournament-card/tournament-card-info';
+export { CardInfoRow } from './tournaments/tournament-card/card-info-row';
+export { TournamentActions } from './tournaments/tournament-card/tournament-card-action';
+export { TournamentRegistration } from './tournaments/tournament-card/tournament-card-registration';
