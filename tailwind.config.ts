@@ -12,7 +12,9 @@ const config: Config = {
       colors: {
         'tn-secondary': '#808080',
         'tn-default-black': '#232A2A',
-        'tn-green': '#3F6A11',
+        'tn-dark-green': '#3F6A11',
+        'tn-green': '#64B32C',
+        'tn-green-secondary': '#64B32C63',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

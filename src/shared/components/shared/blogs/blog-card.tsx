@@ -15,7 +15,7 @@ interface Props {
 
 export const BlogCard: React.FC<Props> = ({ className, blog }) => {
   return (
-    <Link href={blog._id} className={cn(styles.card, className)}>
+    <Link href={`/blog/${blog._id}`} className={cn(styles.card, className)}>
       <Image width={300} height={320} src={`${API_URL}/${blog.newsCover}`} alt={blog.title} priority unoptimized />
 
       <div className={styles.header}>
