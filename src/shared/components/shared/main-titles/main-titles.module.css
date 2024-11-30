@@ -1,11 +1,11 @@
 .container {
-  @apply text-center mb-20;
+  @apply text-center mb-6 sm:mb-12 md:mb-16 lg:mb-20;
 }
 
 .title {
-  @apply text-6xl text-tn-default-black font-bold uppercase leading-[78px];
+  @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-tn-default-black font-bold uppercase leading-[36px];
 }
 
 .subtitle {
-  @apply text-4xl text-tn-secondary font-medium leading-[43px];
+  @apply text-lg sm:text-2xl text-tn-secondary font-medium;
 }

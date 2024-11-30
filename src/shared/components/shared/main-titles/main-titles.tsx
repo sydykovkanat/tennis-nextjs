@@ -15,7 +15,7 @@ export const MainTitles: React.FC<Props> = ({ className, title, subtitle }) => {
     <div className={cn(styles.container, className)}>
       <h1
         className={cn(styles.title, {
-          'mb-10': subtitle,
+          'mb-2': subtitle,
         })}
       >
         {title}

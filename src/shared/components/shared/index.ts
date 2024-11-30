@@ -5,3 +5,7 @@ export { PartnerCard } from './partners/partner-card';
 export { BlockCarousel } from './carousel/block-carousel';
 export { CarouselItems } from './carousel/carousel-item';
 export { Carousel } from './carousel/carousel';
+export { Blogs } from './blogs/blogs';
+export { MainTitles } from './main-titles/main-titles';
+export { BlogPagination } from './blogs/blog-pagination';
+export { BlogCard } from './blogs/blog-card';
