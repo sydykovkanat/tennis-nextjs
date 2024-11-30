@@ -1,6 +1,4 @@
-import { Carousel, Container, Partners } from '@/shared/components/shared';
-import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
-import { Container, MainPageRating, MainTitles, Partners } from '@/shared/components/shared';
+import { Carousel, Container, MainPageRating, MainTitles, Partners } from '@/shared/components/shared';
 
 import React from 'react';
 
