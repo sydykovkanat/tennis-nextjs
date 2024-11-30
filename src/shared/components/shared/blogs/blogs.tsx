@@ -1,4 +1,4 @@
-import { BlogCard } from '@/shared/components/shared/blogs/blog-card';
+import { BlogCard } from '@/shared/components/shared';
 import { cn } from '@/shared/lib/utils';
 import { Blogs as BlogsTypes } from '@/shared/types/blog.types';
 

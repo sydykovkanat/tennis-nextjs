@@ -1,18 +1,18 @@
 import { getBlogs } from '@/actions/blog';
-import { Blogs, Container } from '@/shared/components/shared';
-import { BlogPagination } from '@/shared/components/shared/blogs/blog-pagination';
-import { MainTitles } from '@/shared/components/shared/main-titles/main-titles';
+import { BlogPagination, Blogs, Container, MainTitles } from '@/shared/components/shared';
+
+import styles from './page.module.css';
 
 export default async function Page({ searchParams }: { searchParams: { [key: string]: string | null } }) {
-  const blogs = await getBlogs(searchParams.page);
+  const blogs = await getBlogs(searchParams.page || '1');
 
   return (
     <Container>
       <MainTitles title={'Свежие новости'} subtitle={'НАШ БЛОГ'} />
 
-      <Blogs className={'mb-14'} blogs={blogs} />
+      <Blogs className={styles.blogs} blogs={blogs} />
 
-      <BlogPagination className={'mb-20'} page={searchParams.page} totalPages={blogs.pages} />
+      <BlogPagination className={styles.pagination} page={searchParams.page} totalPages={blogs.pages} />
     </Container>
   );
 }

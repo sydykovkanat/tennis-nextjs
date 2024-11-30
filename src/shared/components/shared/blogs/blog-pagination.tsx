@@ -18,17 +18,19 @@ interface Props {
 }
 
 export const BlogPagination: React.FC<Props> = ({ className, page, totalPages }) => {
-  if (!page || totalPages <= 1) {
-    return null;
-  }
-  const currentPage = parseInt(page, 10);
+  const currentPage = parseInt(page || '1', 10);
   const pages = generatePages(currentPage, totalPages);
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === totalPages;
 
   return (
     <Pagination>
       <PaginationContent className={cn(className)}>
         <PaginationItem>
-          <PaginationPrevious href={`?page=${Math.max(currentPage - 1, 1)}`} />
+          <PaginationPrevious
+            className={`${isFirstPage && 'opacity-50 pointer-events-none'}`}
+            href={`?page=${Math.max(currentPage - 1, 1)}`}
+          />
         </PaginationItem>
 
         {pages.map((item, index) => (
@@ -48,7 +50,10 @@ export const BlogPagination: React.FC<Props> = ({ className, page, totalPages })
         ))}
 
         <PaginationItem>
-          <PaginationNext href={`?page=${Math.min(currentPage + 1, totalPages)}`} />
+          <PaginationNext
+            className={`${isLastPage && 'opacity-50 pointer-events-none'}`}
+            href={`?page=${Math.min(currentPage + 1, totalPages)}`}
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
