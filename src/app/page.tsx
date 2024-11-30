@@ -10,7 +10,7 @@ export default async function Page() {
       </Container>
       <Partners />
       <Container>
-        <section>
+        <section className='mt-10'>
           <NewsMain />
         </section>
       </Container>
