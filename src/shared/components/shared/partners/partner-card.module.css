@@ -1,5 +1,5 @@
 .card {
-  @apply w-[170px] mx-4 h-[96px] rounded-2xl bg-white relative p-2 overflow-hidden;
+  @apply w-[170px] mx-4 h-[96px] rounded-2xl bg-white relative p-2 overflow-hidden block;
   box-shadow: 0px 30px 100px 0px #00000014;
 
   & > img {
