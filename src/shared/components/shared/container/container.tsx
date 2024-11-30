@@ -1,5 +1,7 @@
-import React, { type PropsWithChildren } from 'react';
 import { cn } from '@/shared/lib/utils';
+
+import React, { type PropsWithChildren } from 'react';
+
 import styles from './container.module.css';
 
 interface Props extends PropsWithChildren {

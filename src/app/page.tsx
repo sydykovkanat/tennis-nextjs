@@ -1,10 +1,9 @@
-import { Container } from '@/shared/components/shared';
-import { Partners } from '@/shared/components/shared/partners/partners';
+import { Partners } from '@/shared/components/shared';
 
 export default async function Page() {
   return (
-    <Container>
+    <>
       <Partners />
-    </Container>
+    </>
   );
 }
