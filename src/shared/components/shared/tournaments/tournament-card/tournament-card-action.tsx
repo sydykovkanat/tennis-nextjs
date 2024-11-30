@@ -1,6 +1,8 @@
 import { API_URL } from '@/shared/constants';
 import { Tournament } from '@/shared/types/tournament.types';
 
+import styles from './tournament-card.module.css';
+
 export const TournamentActions = ({ tournament }: { tournament: Tournament }) => {
   const renderActionItem = (text: string, link?: string | null) => {
     if (!link) {
@@ -12,7 +14,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
         href={link}
         target='_blank'
         rel='noopener noreferrer'
-        className='hover:text-[#4d4d4d] dark:hover:text-black mt-1 text-[#8c8c8c] dark:text-[#4d4d4d] underline underline-offset-2'
+        className={styles.cardActionLink}
         data-testid='tournament-actions-link'
       >
         {text}
@@ -21,7 +23,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
   };
 
   return (
-    <div className='flex flex-col text-[13px] mt-3 sm:mt-0'>
+    <div className={styles.cardActionsWrapper}>
       {renderActionItem(
         'Результаты Турнира',
         tournament.resultsLink && tournament.resultsLink !== '' ? tournament.resultsLink : null,

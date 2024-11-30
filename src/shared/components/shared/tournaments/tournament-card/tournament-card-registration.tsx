@@ -1,9 +1,11 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
-import { isTournamentUpcoming } from '@/shared/lib/tournament-utils';
+import { isTournamentUpcoming } from '@/shared/lib';
 import { Tournament } from '@/shared/types/tournament.types';
 import { ArrowRightIcon } from 'lucide-react';
 
 import React from 'react';
+
+import styles from './tournament-card.module.css';
 
 interface Props {
   tournament: Tournament;
@@ -14,14 +16,9 @@ export const TournamentRegistration: React.FC<Props> = ({ tournament }) => {
 
   if (tournamentStatus === 'upcoming') {
     return (
-      <a
-        href={tournament.registrationLink}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='flex items-center gap-2 hover:underline hover:underline-offset-2 text-sm'
-      >
+      <a href={tournament.registrationLink} target='_blank' rel='noopener noreferrer' className={styles.registerLink}>
         <span>Принять участие</span>
-        <ArrowRightIcon className='w-4 h-4' />
+        <ArrowRightIcon className={styles.registerIcon} />
       </a>
     );
   }
@@ -30,15 +27,15 @@ export const TournamentRegistration: React.FC<Props> = ({ tournament }) => {
     return (
       <Popover>
         <PopoverTrigger>
-          <span className='flex items-center gap-2 text-sm'>
+          <span className={styles.registerPopoverText}>
             Принять участие
-            <ArrowRightIcon className='w-4 h-4' />
+            <ArrowRightIcon className={styles.registerIcon} />
           </span>
         </PopoverTrigger>
-        <PopoverContent className='bg-gray-100 text-xs'>Запись на турнир завершена</PopoverContent>
+        <PopoverContent className={styles.tournamentOver}>Запись на турнир завершена</PopoverContent>
       </Popover>
     );
   }
 
-  return <span className='text-gray-400 italic text-sm dark:text-gray-600'>Турнир завершен</span>;
+  return <span className={styles.tournamentOverText}>Турнир завершен</span>;
 };

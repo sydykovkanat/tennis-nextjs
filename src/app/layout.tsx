@@ -7,8 +7,11 @@ import React from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'KSLT',
-  description: 'Кыргызское сообщество любителей тенниса!',
+  title: {
+    template: '%s | KSLT',
+    default: 'KSLT',
+  },
+  description: 'Кыргызстанское сообщество любителей тенниса!',
   icons: [
     {
       rel: 'icon',
