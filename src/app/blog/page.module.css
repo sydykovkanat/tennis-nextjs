@@ -1,0 +1,7 @@
+.blogs {
+  @apply mb-14;
+}
+
+.pagination {
+  @apply mb-20;
+}

@@ -1,0 +1,23 @@
+.card {
+  @apply w-full xl:max-w-80 xl:max-h-96 mx-auto;
+
+  & > img {
+    @apply object-cover mb-6 rounded-lg w-full h-[300px];
+  }
+
+  & > h3 {
+    @apply font-semibold;
+  }
+}
+
+.header {
+  @apply flex justify-between gap-2;
+
+  & > h4 {
+    @apply line-clamp-1;
+  }
+
+  & > span {
+    @apply text-tn-green;
+  }
+}
