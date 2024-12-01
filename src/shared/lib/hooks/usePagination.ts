@@ -1,15 +1,15 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 interface Props {
-  page: number;
-  setPage: (page: number) => void;
   total: number;
   maxVisiblePages?: number;
 }
 
-export const usePagination = ({ page, total, maxVisiblePages = 3, setPage }: Props) => {
+export const usePagination = ({ total, maxVisiblePages = 3 }: Props) => {
+  const [page, setPage] = useState(1);
+
   const pageNumbers = useMemo(() => {
     let startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
     const endPage = Math.min(total, startPage + maxVisiblePages - 1);
@@ -28,6 +28,8 @@ export const usePagination = ({ page, total, maxVisiblePages = 3, setPage }: Pro
   return {
     pageNumbers,
     disableButton,
+    page,
+    setPage,
     setPageToFirst: () => setPage(1),
     setPageToLast: () => setPage(total),
     setPageToPrevious: () => setPage(Math.max(1, page - 1)),

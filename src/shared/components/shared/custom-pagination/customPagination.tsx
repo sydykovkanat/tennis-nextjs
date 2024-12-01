@@ -1,24 +1,29 @@
 'use client';
 
+import React from 'react';
 import { Button, Pagination, PaginationContent, PaginationItem, PaginationLink, Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/shared/components/ui';
 import { usePagination } from '@/shared/lib';
 import { cn } from '@/shared/lib/utils';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/16/solid';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import React from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './pagination.module.css';
 
-
 interface Props {
-  page: number;
-  setPage: (page: number) => void;
   total: number;
 }
 
-export const CustomPagination: React.FC<Props> = ({ page, total, setPage }) => {
-  const { pageNumbers, disableButton, setPageToFirst, setPageToLast, setPageToPrevious, setPageToNext } = usePagination(
-    { page, total, setPage },
-  );
+export const CustomPagination: React.FC<Props> = ({ total }) => {
+  const router = useRouter();
+
+  const { page, pageNumbers, disableButton, setPageToFirst, setPageToLast, setPageToPrevious, setPageToNext, setPage } =
+    usePagination({ total });
+
+  const updatePageInUrl = (pageNumber: number) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', pageNumber.toString());
+    router.push(url.toString());
+  };
 
   return (
     <Pagination className='py-6'>
@@ -29,7 +34,10 @@ export const CustomPagination: React.FC<Props> = ({ page, total, setPage }) => {
             size='icon'
             className='hover:bg-[#64B32C63]'
             style={disableButton(1)}
-            onClick={setPageToFirst}
+            onClick={() => {
+              setPageToFirst();
+              updatePageInUrl(1);
+            }}
           >
             <ChevronDoubleLeftIcon />
           </Button>
@@ -40,7 +48,10 @@ export const CustomPagination: React.FC<Props> = ({ page, total, setPage }) => {
             size='icon'
             className='hover:bg-[#64B32C63]'
             style={disableButton(1)}
-            onClick={setPageToPrevious}
+            onClick={() => {
+              setPageToPrevious();
+              updatePageInUrl(page - 1);
+            }}
           >
             <ChevronLeftIcon />
           </Button>
@@ -54,7 +65,10 @@ export const CustomPagination: React.FC<Props> = ({ page, total, setPage }) => {
             <PaginationLink
               isActive={page === pageNumber}
               className={'cursor-pointer hover:bg-[#64B32C63] ' + (page === pageNumber ? 'bg-[#64B32C63]' : '')}
-              onClick={() => setPage(pageNumber)}
+              onClick={() => {
+                setPage(pageNumber);
+                updatePageInUrl(pageNumber);
+              }}
             >
               {pageNumber}
             </PaginationLink>
@@ -67,7 +81,10 @@ export const CustomPagination: React.FC<Props> = ({ page, total, setPage }) => {
             size='icon'
             className='hover:bg-[#64B32C63]'
             style={disableButton(total)}
-            onClick={setPageToNext}
+            onClick={() => {
+              setPageToNext();
+              updatePageInUrl(page + 1);
+            }}
           >
             <ChevronRightIcon />
           </Button>
@@ -78,13 +95,21 @@ export const CustomPagination: React.FC<Props> = ({ page, total, setPage }) => {
             size='icon'
             className='hover:bg-[#64B32C63]'
             style={disableButton(total)}
-            onClick={setPageToLast}
+            onClick={() => {
+              setPageToLast();
+              updatePageInUrl(total);
+            }}
           >
             <ChevronDoubleRightIcon />
           </Button>
         </PaginationItem>
 
-        <Select onValueChange={(value) => setPage(Number(value))}>
+        <Select
+          onValueChange={(value) => {
+            setPage(Number(value));
+            updatePageInUrl(parseInt(value));
+          }}
+        >
           <SelectTrigger className={cn(styles.selectTrigger)} />
           <SelectContent>
             <SelectGroup>

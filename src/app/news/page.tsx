@@ -1,36 +1,50 @@
-'use client';
-
-import { useNews } from '@/app/news/hooks/useNews';
+import { fetchNews } from '@/actions/news';
 import { Container, CustomPagination, DatePicker, NewsTitle } from '@/shared/components/shared';
 import { NewsCard } from '@/shared/components/shared/news/news-card/news-card';
+import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { cn } from '@/shared/lib/utils';
-
-import React from 'react';
 
 import styles from './news.module.css';
 
-export default function Page() {
-  const { news, totalPages, page, setPage, handleDateChange } = useNews();
+interface Props {
+  searchParams: { [key: string]: string | null };
+}
 
-  const renderNewsContent = () =>
-    news.length === 0 ? (
-      <h2 className='text-center'>На данный момент новостей нету!</h2>
-    ) : (
+const Page = async ({ searchParams }: Props) => {
+  const queryObj = {
+    page: searchParams.page || 1,
+    startDate: searchParams.startDate || '',
+    endDate: searchParams.endDate || '',
+  };
+
+  const validateQuery = deleteEmptyQueryStrings(queryObj);
+  const data = { query: validateQuery };
+  const newsResponse = await fetchNews({ data });
+  const news = newsResponse.data;
+
+  const renderNewsContent = () => {
+    if (news.length === 0) {
+      return <h2 className='text-center'>На данный момент новостей нету!</h2>;
+    }
+
+    return (
       <>
         <div className={cn(styles.newsContainer)}>
           {news.map((newsItem) => (
             <NewsCard key={newsItem._id} news={newsItem} />
           ))}
         </div>
-        <CustomPagination page={page} total={totalPages} setPage={(page) => setPage(page)} />
-      </>
+        <CustomPagination total={newsResponse.pages} /></>
     );
+  };
 
   return (
     <Container>
       <NewsTitle />
-      <DatePicker onDateChange={handleDateChange} />
+      <DatePicker />
       {renderNewsContent()}
     </Container>
   );
-}
+};
+
+export default Page;
