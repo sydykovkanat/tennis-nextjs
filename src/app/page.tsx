@@ -1,4 +1,4 @@
-import { Carousel, Container, MainPageRating, MainTitles, Partners } from '@/shared/components/shared';
+import { Carousel, Container, MainPageRating, MainTitles, NewsMain, Partners } from '@/shared/components/shared';
 
 import React from 'react';
 
@@ -11,7 +11,12 @@ export default async function Page() {
       <Carousel />
       <Partners />
       <Container>
-        <MainPageRating className='mb-24 mt-8 lg:mt-28' />
+        <section>
+          <MainPageRating className='mb-24 mt-8 lg:mt-28' />
+        </section>
+        <section>
+          <NewsMain />
+        </section>
       </Container>
     </>
   );

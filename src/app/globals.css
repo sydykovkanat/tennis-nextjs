@@ -39,6 +39,13 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --cr-gray-300: 0 0% 0% / 0.63;
+    --cr-gray-100: 0 0% 0% / 0.74;
+    --cr-shark: 202 14% 16% / 1;
+    --cr-outer-space: 180 9% 15% / 1;
+    --cr-green-900: 89 72% 24% / 1;
+    --cr-green-700: 95 61% 44% / 1;
+    --cr-green-300: 89 48% 85% / 1;
   }
   .dark {
     --background: 240 10% 3.9%;

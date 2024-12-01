@@ -1,0 +1,36 @@
+.embla {
+    height: auto;
+    --slideSpacing: 1rem;
+    margin-bottom: 50px;
+}
+
+.emblaViewport {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.emblaContainer {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slideSpacing) * -1);
+}
+
+.emblaSlide {
+    transform: translate3d(0, 0, 0);
+    flex: 0 0 80%;
+    min-width: 0;
+    padding-left: var(--slideSpacing);
+}
+
+.emblaSlideImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 230px;
+}
+
+@media (min-width: 600px) {
+    .emblaSlide {
+        flex: 0 0 420px;
+    }
+}

@@ -1,0 +1,11 @@
+.rdp-tbody > tr > td .rdp-button {
+    @apply rounded-2xl border-none bg-transparent font-medium text-black dark:text-white;
+}
+
+.rdp-tbody > tr > td .rdp-button:hover {
+    @apply bg-[#64B32C] text-white;
+}
+
+.rdp-tbody > tr > td .rdp-button:focus {
+    @apply bg-[#64B32C] text-white;
+}
