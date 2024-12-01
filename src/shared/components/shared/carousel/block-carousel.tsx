@@ -2,6 +2,7 @@
 
 import { CarouselItems } from '@/shared/components/shared/carousel/carousel-item';
 import { Carousel, CarouselContent } from '@/shared/components/ui/carousel';
+import { Skeleton } from '@/shared/components/ui/skeleton';
 import { cn } from '@/shared/lib/utils';
 import { CarouselTypes } from '@/shared/types/carousel.types';
 import Autoplay from 'embla-carousel-autoplay';
@@ -16,6 +17,16 @@ interface Props extends PropsWithChildren {
 }
 
 export const BlockCarousel: React.FC<Props> = ({ className, files }) => {
+  if (!files || files.length === 0) {
+    return (
+      <div className={cn(styles.carouselContainer, className)}>
+        {[...Array(3)].map((_, index) => (
+          <Skeleton key={index} className={cn(styles.carouselSkeleton, 'h-64 w-full rounded-md')} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <Carousel
       plugins={[

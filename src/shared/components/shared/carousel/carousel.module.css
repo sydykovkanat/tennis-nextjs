@@ -11,5 +11,5 @@
 }
 
 .carouselFile {
-    @apply w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] xl:h-[900px] object-cover rounded-lg
+    @apply w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] object-cover rounded-lg
 }
