@@ -1,6 +1,9 @@
+import { cn } from '@/shared/lib';
 import { GradientCirclesTypes } from '@/shared/types/gradient-circles';
 
 import React from 'react';
+
+import styles from './gradient-circles.module.css';
 
 interface Props {
   width: string;
@@ -15,7 +18,13 @@ interface Props {
 export const GradientCircle: React.FC<Props> = ({ width, height, top, right, left, bottom, visible }) => {
   return (
     <div
-      className={`hidden lmd:${visible === 'block' ? 'block' : 'hidden'} xl:block 3xl:hidden absolute z-[-9999] opacity-[18%] rounded-full blur-[40px] bg-gradient-to-r from-[rgba(79,173,13,0.34)] via-[#64b32c] to-[rgba(100,179,44,0.26)]`}
+      className={cn(styles.circle, {
+        [styles.hidden]: visible !== 'block',
+        [styles.visible]: visible === 'block',
+        [styles.responsiveHidden]: visible === 'block',
+        [styles.xlVisible]: true,
+        [styles.threeXlHidden]: true,
+      })}
       style={{
         width,
         height,
