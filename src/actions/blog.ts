@@ -1,4 +1,4 @@
-import { axiosApi } from '@/shared/lib/axios-api';
+import { axiosApi } from '@/shared/lib/helpers/axios-api';
 import { Blogs } from '@/shared/types/blog.types';
 
 export const getBlogs = async (page: string | null) => {

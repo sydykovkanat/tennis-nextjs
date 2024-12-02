@@ -1,5 +1,5 @@
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
 import React from 'react';

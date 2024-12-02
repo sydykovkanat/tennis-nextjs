@@ -1,5 +1,5 @@
 import { ButtonProps, buttonVariants } from '@/shared/components/ui/button';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 

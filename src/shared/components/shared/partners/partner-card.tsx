@@ -1,5 +1,5 @@
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import { Partner } from '@/shared/types/partner.types';
 import Image from 'next/image';
 

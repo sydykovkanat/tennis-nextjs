@@ -1,10 +1,10 @@
 import { Loader } from '@/shared/components/shared';
-import type { LucideIcon } from 'lucide-react';
-import * as React from 'react';
+import { cn } from '@/shared/lib/helpers/utils';
 import { Slot } from '@radix-ui/react-slot';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { type VariantProps, cva } from 'class-variance-authority';
+import type { LucideIcon } from 'lucide-react';
 
-import { cn } from '@/shared/lib/utils';
+import * as React from 'react';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
@@ -39,6 +39,7 @@ export interface ButtonProps
   loading?: boolean;
   loaderTheme?: 'light' | 'dark';
   icon?: LucideIcon;
+  iconClassName?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -52,6 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       loaderTheme = 'light',
       icon: Icon,
+      iconClassName,
       ...props
     },
     ref,
@@ -60,7 +62,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
         {children}
-        {loading ? <Loader theme={loaderTheme} /> : Icon && <Icon />}
+        {loading ? <Loader theme={loaderTheme} /> : Icon && <Icon className={iconClassName} />}
       </Comp>
     );
   },
