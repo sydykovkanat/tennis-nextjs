@@ -1,5 +1,5 @@
 import { CardInfoRow } from '@/shared/components/shared/tournaments/tournament-card/card-info-row';
-import { translateRank } from '@/shared/lib';
+import { translateRank } from '@/shared/lib/helpers/tournament-utils';
 import { Tournament } from '@/shared/types/tournament.types';
 
 import styles from './tournament-card.module.css';

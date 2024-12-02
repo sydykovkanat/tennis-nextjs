@@ -1,5 +1,5 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
-import { isTournamentUpcoming } from '@/shared/lib';
+import { isTournamentUpcoming } from '@/shared/lib/helpers/tournament-utils';
 import { Tournament } from '@/shared/types/tournament.types';
 import { ArrowRightIcon } from 'lucide-react';
 
