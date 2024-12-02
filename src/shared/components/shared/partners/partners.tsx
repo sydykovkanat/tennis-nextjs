@@ -1,6 +1,6 @@
 import { getPartners } from '@/actions/partners';
-import { PartnerCard, Title } from '@/shared/components/shared';
-import { cn } from '@/shared/lib/utils';
+import { PartnerCard, Title} from '@/shared/components/shared';
+import { cn } from '@/shared/lib/helpers/utils';
 
 import React from 'react';
 import Marquee from 'react-fast-marquee';

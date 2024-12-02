@@ -1,4 +1,4 @@
-import { axiosApi } from '@/shared/lib/axios-api';
+import { axiosApi } from '@/shared/lib/helpers/axios-api';
 import { CarouselTypes } from '@/shared/types/carousel.types';
 
 export const getCarousel = async () => {

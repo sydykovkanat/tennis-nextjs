@@ -1,5 +1,5 @@
 import { geistSans } from '@/shared/fonts/geist';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import type { Metadata } from 'next';
 
 import React from 'react';

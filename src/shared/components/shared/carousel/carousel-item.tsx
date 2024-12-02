@@ -3,7 +3,7 @@
 import styles from '@/shared/components/shared/carousel/carousel.module.css';
 import { CarouselItem } from '@/shared/components/ui/carousel';
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import Image from 'next/image';
 
 import React from 'react';

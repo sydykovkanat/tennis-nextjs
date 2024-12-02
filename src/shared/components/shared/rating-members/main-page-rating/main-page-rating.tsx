@@ -1,6 +1,6 @@
 import { getRatingMembers } from '@/actions/rating-members';
 import { RatingMembersTop } from '@/shared/components/shared';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 
 import React from 'react';
 
