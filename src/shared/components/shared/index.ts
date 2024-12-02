@@ -20,3 +20,5 @@ export { TournamentCardsList } from './tournaments/tournament-cards-list/tournam
 export { TournamentAccordion } from './tournaments/tournament-accordion/tournament-accordion';
 export { TournamentCalendar } from './tournaments/tournament-calendar/tournament-calendar';
 export { RankFilter } from './tournaments/rank-filter/rank-filter';
+export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
+export { Title } from './title/title';
