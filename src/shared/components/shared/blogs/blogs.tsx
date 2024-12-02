@@ -1,5 +1,5 @@
 import { BlogCard } from '@/shared/components/shared';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import { Blogs as BlogsTypes } from '@/shared/types/blog.types';
 
 import React from 'react';

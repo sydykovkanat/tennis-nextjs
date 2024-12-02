@@ -19,5 +19,5 @@
 }
 
 .contentWrapper {
-  @apply flex flex-wrap justify-center gap-x-7 gap-y-7 xs:gap-x-12 md:gap-x-16 xs:gap-y-9 mt-[34px] sm:mt-10 lg:mt-16
+  @apply flex flex-wrap justify-center gap-x-7 gap-y-7 xs:gap-x-12 md:gap-x-16 xs:gap-y-9 mt-[34px] sm:mt-10 lg:mt-16;
 }

@@ -1,5 +1,5 @@
 // Пример
-import { axiosApi } from '@/shared/lib/axios-api';
+import { axiosApi } from '@/shared/lib/helpers/axios-api';
 
 export const getUsers = async () => {
   const { data: users } = await axiosApi.get('/users');
