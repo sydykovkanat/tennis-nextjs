@@ -1,4 +1,4 @@
-import { axiosApi } from '@/shared/lib/axios-api';
+import { axiosApi } from '@/shared/lib/helpers/axios-api';
 import { Partner } from '@/shared/types/partner.types';
 
 export const getPartners = async () => {

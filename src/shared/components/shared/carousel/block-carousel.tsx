@@ -2,7 +2,7 @@
 
 import { CarouselItems } from '@/shared/components/shared/carousel/carousel-item';
 import { Carousel, CarouselContent } from '@/shared/components/ui/carousel';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import { CarouselTypes } from '@/shared/types/carousel.types';
 import Autoplay from 'embla-carousel-autoplay';
 
