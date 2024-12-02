@@ -12,3 +12,5 @@ export { MainPageRating } from './rating-members/main-page-rating/main-page-rati
 export { MainTitles } from './main-titles/main-titles';
 export { BlogPagination } from './blogs/blog-pagination';
 export { BlogCard } from './blogs/blog-card';
+export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
+export { Title } from './title/title';

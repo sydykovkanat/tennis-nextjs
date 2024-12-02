@@ -1,5 +1,5 @@
 import { getPartners } from '@/actions/partners';
-import { PartnerCard } from '@/shared/components/shared';
+import { PartnerCard, Title } from '@/shared/components/shared';
 import { cn } from '@/shared/lib/utils';
 
 import React from 'react';
@@ -15,20 +15,25 @@ export const Partners: React.FC<Props> = async ({ className }) => {
   const partners = await getPartners();
 
   return (
-    <section className={styles.container}>
-      <Marquee
-        pauseOnHover={true}
-        speed={40}
-        className={cn(className)}
-        style={{
-          overflowX: 'unset',
-        }}
-        autoFill={true}
-      >
-        {partners.map((partner) => (
-          <PartnerCard key={partner._id} partner={partner} />
-        ))}
-      </Marquee>
-    </section>
+    <>
+      <Title variant={'h1'} className={cn(styles.mainTitle)}>
+        Наши Партнеры
+      </Title>
+      <section className={styles.container}>
+        <Marquee
+          pauseOnHover={true}
+          speed={40}
+          className={cn(className)}
+          style={{
+            overflowX: 'unset',
+          }}
+          autoFill={true}
+        >
+          {partners.map((partner) => (
+            <PartnerCard key={partner._id} partner={partner} />
+          ))}
+        </Marquee>
+      </section>
+    </>
   );
 };
