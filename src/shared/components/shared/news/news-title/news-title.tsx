@@ -1,6 +1,12 @@
 import React from 'react';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib';
+import type { Metadata } from 'next';
 import styles from './news-title.module.css';
+
+export const metadata: Metadata = {
+  title: 'Свежие новости',
+  description: 'Блог Кыргызстанского сообщества любителей тенниса',
+};
 
 export const NewsTitle: React.FC = () => {
   return (

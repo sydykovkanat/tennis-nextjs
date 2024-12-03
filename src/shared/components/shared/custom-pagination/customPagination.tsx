@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { Button, Pagination, PaginationContent, PaginationItem, PaginationLink, Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/shared/components/ui';
-import { usePagination } from '@/shared/lib';
-import { cn } from '@/shared/lib/utils';
+import { cn, usePagination } from '@/shared/lib';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/16/solid';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import { useRouter } from 'next/navigation';

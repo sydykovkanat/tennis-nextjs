@@ -1,5 +1,5 @@
 .newsCard {
-    @apply h-full w-full xs:max-w-[320px] flex flex-col;
+    @apply h-full w-full flex flex-col;
 }
 
 .newsLink {

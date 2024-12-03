@@ -1,6 +1,5 @@
-import { toQueryParams } from '@/shared/lib';
-import { axiosApi } from '@/shared/lib/axios-api';
-import { News, NewsMutation, NewsResponse } from '@/shared/types/news.types';
+import { axiosApi, toQueryParams } from '@/shared/lib';
+import { News, NewsResponse } from '@/shared/types/news.types';
 
 interface Filters {
   query: { [p: string]: string | number };

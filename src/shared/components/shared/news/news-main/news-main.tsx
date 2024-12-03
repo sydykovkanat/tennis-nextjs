@@ -1,6 +1,6 @@
 import { fetchNewsByLimit } from '@/actions/news';
 import { NewsCardMain, NewsTitle } from '@/shared/components/shared';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib';
 
 import React from 'react';
 
