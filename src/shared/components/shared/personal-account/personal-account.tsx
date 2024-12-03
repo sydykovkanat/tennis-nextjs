@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@/shared/components/shared';
+import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectCurrentUser, selectUser } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
@@ -26,16 +27,11 @@ const PersonalAccount: React.FC = () => {
     currentUser && (
       <>
         <Container className={'w-full'}>
-          <div
-            className='bg-white p-[25px] sm:p-[35px] rounded-lg'
-            style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
-          >
-            <header className={'flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5'}>
+          <div className={styles.accountWrapper} style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}>
+            <header className={styles.accountHeader}>
               <div>
-                <h1 className={'text-2xl font-medium dark:text-black leading-none'}>Личный кабинет</h1>
-                <small className={'text-muted-foreground text-base'}>
-                  Ваша персональная информация и управление данными
-                </small>
+                <h1>Личный кабинет</h1>
+                <small>Ваша персональная информация и управление данными</small>
               </div>
 
               <Button>Редактировать</Button>

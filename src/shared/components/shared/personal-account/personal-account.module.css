@@ -1,0 +1,28 @@
+
+.accountWrapper {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 2px 0 89px 0 rgba(0, 0, 0, 0.1);
+}
+
+.accountHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accountHeader h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.accountHeader small {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.5;
+}
