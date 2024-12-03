@@ -9,7 +9,7 @@ export { NewsTitle } from '@/shared/components/shared/news/news-title/news-title
 export { CustomPagination } from './custom-pagination/customPagination';
 export { NewsCard } from './news/news-card/news-card';
 export { DatePicker } from './news/datepicker/datepicker';
-export { useDatePicker } from './news/hooks/useDatePicker';
+export { useDatePicker } from './news/hooks/use-date-picker';
 export { ImageModal } from './news/image-modal/image-modal';
 export { BlockCarousel } from './carousel/block-carousel';
 export { CarouselItems } from './carousel/carousel-item';

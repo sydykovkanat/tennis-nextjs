@@ -1,8 +1,8 @@
 import { fetchNews } from '@/actions/news';
 import { Container, CustomPagination, DatePicker, NewsTitle } from '@/shared/components/shared';
 import { NewsCard } from '@/shared/components/shared/news/news-card/news-card';
-import { deleteEmptyQueryStrings } from '@/shared/lib';
-import { cn } from '@/shared/lib/utils';
+import { cn, deleteEmptyQueryStrings } from '@/shared/lib';
+import { NewsResponse } from '@/shared/types/news.types';
 
 import styles from './news.module.css';
 
@@ -19,7 +19,7 @@ const Page = async ({ searchParams }: Props) => {
 
   const validateQuery = deleteEmptyQueryStrings(queryObj);
   const data = { query: validateQuery };
-  const newsResponse = await fetchNews({ data });
+  const newsResponse: NewsResponse = await fetchNews({ data });
   const news = newsResponse.data;
 
   const renderNewsContent = () => {
@@ -34,7 +34,8 @@ const Page = async ({ searchParams }: Props) => {
             <NewsCard key={newsItem._id} news={newsItem} />
           ))}
         </div>
-        <CustomPagination total={newsResponse.pages} /></>
+        <CustomPagination total={newsResponse.pages} />
+      </>
     );
   };
 

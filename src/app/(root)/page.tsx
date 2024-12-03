@@ -1,17 +1,16 @@
-import { Carousel, Container, MainPageRating, MainTitles, NewsMain, Partners } from '@/shared/components/shared';
 import {
-  Carousel,
   Container,
   GradientCircle,
   MainPageRating,
   MainTitles,
+  NewsMain,
   Partners,
   gradientCircles,
+  Carousel,
 } from '@/shared/components/shared';
-
 import React from 'react';
 
-export default async function Page() {
+export default async function HomePage() {
   return (
     <>
       {gradientCircles.map((circle, id) => (
@@ -19,8 +18,8 @@ export default async function Page() {
       ))}
       <Container>
         <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
+        <Carousel />
       </Container>
-      <Carousel />
       <Partners />
       <Container>
         <section>

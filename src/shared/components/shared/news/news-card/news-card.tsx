@@ -1,13 +1,13 @@
 import { Card } from '@/shared/components/ui';
 import { CardContent, CardHeader } from '@/shared/components/ui/card';
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib/utils';
 import { News } from '@/shared/types/news.types';
 import Link from 'next/link';
 
 import React, { memo } from 'react';
 
 import styles from './news-card.module.css';
+import { cn } from '@/shared/lib';
 
 interface Props {
   news: News;
@@ -41,7 +41,7 @@ export const NewsCard: React.FC<Props> = React.memo(({ news }) => {
 
   return (
     <Card className={cn(styles.newsCard)}>
-      <Link href={`/news/${_id}`} className={cn(styles.newsLink)}>
+      <Link href={`/src/app/(root)/news/${_id}`} className={cn(styles.newsLink)}>
         <CardHeader className='p-0'>
           <CardImage src={`${API_URL}/${newsCover}`} alt={title} />
         </CardHeader>
