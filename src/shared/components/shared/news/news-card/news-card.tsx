@@ -41,7 +41,7 @@ export const NewsCard: React.FC<Props> = React.memo(({ news }) => {
 
   return (
     <Card className={cn(styles.newsCard)}>
-      <Link href={`/src/app/(root)/news/${_id}`} className={cn(styles.newsLink)}>
+      <Link href={`/news/${_id}`} className={cn(styles.newsLink)}>
         <CardHeader className='p-0'>
           <CardImage src={`${API_URL}/${newsCover}`} alt={title} />
         </CardHeader>
