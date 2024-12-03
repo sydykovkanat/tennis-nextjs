@@ -1,4 +1,4 @@
-import { axiosApi } from '@/shared/lib/axios-api';
+import { axiosApi } from '@/shared/lib/helpers/axios-api';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
 export const getRatingMembers = async () => {

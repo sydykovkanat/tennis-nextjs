@@ -24,3 +24,9 @@ export {
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './popover';
 export { Calendar } from './calendar';
 export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './carousel';
+export { Input } from './input';
+export { Label } from './label';
+export { Toaster } from './sonner';
+export { Popover, PopoverTrigger, PopoverContent } from './popover';
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';

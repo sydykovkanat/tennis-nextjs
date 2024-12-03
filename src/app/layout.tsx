@@ -1,5 +1,7 @@
+import StoreProvider from '@/app/store-provider';
+import { Toaster } from '@/shared/components/ui';
 import { geistSans } from '@/shared/fonts/geist';
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/helpers/utils';
 import type { Metadata } from 'next';
 
 import React from 'react';
@@ -7,8 +9,11 @@ import React from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'KSLT',
-  description: 'Кыргызское сообщество любителей тенниса!',
+  title: {
+    template: '%s | KSLT',
+    default: 'KSLT',
+  },
+  description: 'Кыргызстанское сообщество любителей тенниса!',
   icons: [
     {
       rel: 'icon',
@@ -25,7 +30,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={cn('antialiased')} style={geistSans.style}>
-        {children}
+        <StoreProvider>
+          {children}
+          <Toaster />
+        </StoreProvider>
       </body>
     </html>
   );
