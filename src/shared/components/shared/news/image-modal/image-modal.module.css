@@ -1,0 +1,19 @@
+.modal {
+    @apply fixed inset-0 z-40 flex w-full items-center justify-center bg-black bg-opacity-50;
+}
+
+.closeButton {
+    @apply absolute z-30 rounded-xl top-3 right-3 bg-transparent border-rose-600 text-rose-600 hover:text-white hover:bg-rose-600 transition duration-300;
+}
+
+.carouselItem {
+    @apply flex justify-center items-center;
+}
+
+.image {
+    @apply object-cover min-h-[50svh] sm:min-h-[70svh] xl:min-h-[90svh];
+}
+
+.actionButton {
+    @apply absolute top-1/2  h-12 w-12 bg-transparent text-white z-10 hover:bg-[#64B32C] hover:text-white hover:border-transparent;
+}
