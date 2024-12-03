@@ -17,7 +17,6 @@ const config: Config = {
         lg: '1024px',
         xl: '1280px',
         '2xl': '1536px',
-        '3xl': '2000px',
       },
       colors: {
         'tn-default-black': '#232A2A',

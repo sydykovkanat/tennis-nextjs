@@ -10,13 +10,13 @@ import {
   CarouselPrevious,
 } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 
 import React from 'react';
 
 import styles from './image-modal.module.css';
-import { cn } from '@/shared/lib';
 
 interface Props {
   images: string[];

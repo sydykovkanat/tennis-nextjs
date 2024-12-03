@@ -1,4 +1,6 @@
 import { axiosApi } from '@/shared/lib';
+import { unsetUser } from '@/shared/lib/features/users/users-slice';
+import { RootState } from '@/shared/lib/store';
 import { LoginMutation } from '@/shared/types/auth.types';
 import { GlobalError, User } from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -18,5 +20,14 @@ export const login = createAsyncThunk<User, LoginMutation, { rejectValue: Global
 
       throw error;
     }
+  },
+);
+
+export const logout = createAsyncThunk<void, void, { state: RootState }>(
+  'users/logout',
+  async (_arg, { getState, dispatch }) => {
+    const token = getState().users.user?.token;
+    await axiosApi.delete('/users/sessions', { headers: { Authorization: `Bearer ${token}` } });
+    dispatch(unsetUser());
   },
 );

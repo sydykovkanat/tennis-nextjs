@@ -1,0 +1,169 @@
+.underlineAccent {
+  @apply relative;
+}
+
+.underlineAccent::before {
+  content: '';
+  @apply absolute -bottom-0.5 block h-0.5 w-5 rounded-[2px] bg-[#64B32C];
+}
+
+.header {
+  @apply py-[20px] md:py-[27px] bg-cr-shark dark:bg-gray-900;
+}
+
+.container {
+  @apply max-w-[1335px] px-[16px] mx-auto;
+}
+
+.headerInner {
+  @apply flex justify-between items-center;
+}
+
+.logoWrapper {
+  @apply w-[76px] h-[28px] md:w-[98px] md:h-[36px];
+}
+
+.logo {
+  @apply block w-full h-full;
+}
+
+.navBarMobile {
+  @apply md:hidden;
+}
+
+.headerMainNavInner {
+  @apply hidden md:block;
+}
+
+.headerMainNav {
+  @apply flex items-center md:gap-[25px] lmd:gap-[55px];
+}
+
+.mainNavLink {
+  @apply block text-white;
+}
+
+.mainNavLinkActive {
+  @apply block text-[#64B32C];
+}
+
+.navigationMenuContent {
+  @apply w-[300px];
+}
+
+.navigationMenuList {
+  @apply hover:bg-gray-50 cursor-pointer transition-colors duration-200 dark:bg-gray-900;
+}
+
+.navigationMenuLink {
+  @apply block p-[25px];
+}
+
+.navigationMenu {
+  @apply hidden md:flex items-center gap-10;
+}
+
+.navigationMenuDropDown {
+  @apply flex items-center gap-1.5;
+  cursor: pointer !important;
+}
+
+.userCircleIconNavBar {
+  @apply w-[24px] text-[#64B32C] h-[24px];
+}
+
+.iconMenuDropDown {
+  @apply w-[15px] h-[15px];
+}
+
+.mobileMenuIconBurger {
+  @apply w-[24px] md:hidden text-white h-[25px];
+}
+
+.mobileMenuTitle {
+  @apply hidden;
+}
+
+.mobileMenuDescription {
+  @apply hidden;
+}
+
+.mobileMenuIconCloseTrigger {
+  @apply absolute top-[12px] right-[12px] text-white;
+}
+
+.mobileMenuIconClone {
+  @apply w-6 h-6;
+}
+
+.mobileMenuLogoWrapper {
+  @apply w-[76px] block h-[28px] ms-[8px] mb-[20px];
+}
+
+.mobileMenuLogo {
+  @apply block w-full h-full;
+}
+
+.mobileMenuUl {
+  @apply font-bold;
+}
+
+.mobileMenuLi {
+  @apply mb-[8px];
+}
+
+.mobileMenuLink {
+  @apply bg-transparent w-[100%] block text-white py-[8px] px-[10px];
+}
+
+.mobileMenuLinkActive {
+  @apply bg-white w-[100%] block text-[#64B32C] rounded-[8px] py-[8px] px-[10px];
+}
+
+.mobileMenuPosition {
+  @apply pb-[15px] mb-[15px] border-b border-[#2f373d];
+}
+
+.mobileMenuPositionActive {
+  @apply flex items-center cursor-pointer gap-1 font-bold text-white py-[8px] px-[10px];
+}
+
+.mobileMenuPositionIcon {
+  @apply w-4 h-4 transition-all ease-in-out duration-300;
+}
+
+.mobileMenuPositionIconActive {
+  @apply rotate-180;
+}
+
+.mobileMenuPositionIconDisable {
+  @apply rotate-0;
+}
+
+.mobileMenuPositionUl {
+  @apply overflow-hidden transition-all ease-in-out duration-500;
+}
+
+.mobileMenuPositionUlActive {
+  @apply max-h-screen px-[10px];
+}
+
+.mobileMenuPositionUlDisable {
+  @apply max-h-0 px-[10px];
+}
+
+.mobileMenuPositionULink {
+  @apply font-bold px-2 py-3 text-[13px] text-white block;
+}
+
+.mobileMenuLiActions {
+  @apply mb-[5px];
+}
+
+.mobileMenuLiActionsText {
+  @apply font-bold;
+}
+
+.mobileMenuExit {
+  @apply cursor-pointer py-[8px] block px-[10px];
+}
