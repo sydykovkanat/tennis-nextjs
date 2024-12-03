@@ -20,3 +20,8 @@ export const login = createAsyncThunk<User, LoginMutation, { rejectValue: Global
     }
   },
 );
+
+export const fetchOneUser = createAsyncThunk<User, string>('users/fetchOneUser', async (id) => {
+  const { data: user } = await axiosApi.get<User>(`/users/${id}`);
+  return user;
+});
