@@ -18,7 +18,7 @@ export const NewsCardMain: React.FC<Props> = ({ news, classname }) => {
   const { _id, title, subtitle, newsCover } = news;
 
   return (
-    <Link href={`/src/app/(root)/news/${_id}`} className={cn(styles.newsLink, classname)}>
+    <Link href={`/news/${_id}`} className={cn(styles.newsLink, classname)}>
       <Card className={cn(styles.newsCardMain)} style={{ backgroundImage: `url(${API_URL}/${newsCover})` }}>
         <CardContent className='flex flex-col h-full'>
           <div className='mt-auto'>
