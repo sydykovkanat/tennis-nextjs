@@ -13,3 +13,11 @@
 .carouselFile {
   @apply w-full h-[244px] sm:h-[400px] md:h-[450px] lg:h-[662px] object-cover rounded-lg;
 }
+
+.errorContainer {
+  @apply px-4 mb-[80px] lg:mb-[120px] lg:px-[50px];
+}
+
+.errorBlock {
+  @apply text-red-500 text-center py-[122px] sm:py-[200px]  md:py-[225px] lg:py-[331px] rounded-lg  bg-primary/10
+}

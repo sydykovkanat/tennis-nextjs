@@ -14,9 +14,18 @@ import styles from './carousel.module.css';
 interface Props extends PropsWithChildren {
   className?: string;
   files: CarouselTypes[];
+  error?: string;
 }
 
-export const BlockCarousel: React.FC<Props> = ({ className, files }) => {
+export const BlockCarousel: React.FC<Props> = ({ className, files, error }) => {
+  if (error) {
+    return (
+      <div className={cn(styles.errorContainer, className)}>
+        <p className={cn(styles.errorBlock, className)}>Ошибка при загрузке данных: {error}</p>
+      </div>
+    );
+  }
+
   if (!files || files.length === 0) {
     return (
       <div className={cn(styles.carouselContainer, className)}>
