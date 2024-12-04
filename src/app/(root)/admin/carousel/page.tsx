@@ -45,6 +45,7 @@ export default function CarouselPage() {
             <DialogTrigger asChild>
               <Button className={'w-full xs:w-max'} onClick={() => setAddModalOpen(true)}>
                 Добавить файл
+                <SquaresPlusIcon />
               </Button>
             </DialogTrigger>
             <DialogContent>
