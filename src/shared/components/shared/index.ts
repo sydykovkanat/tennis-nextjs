@@ -11,9 +11,16 @@ export { NewsCard } from './news/news-card/news-card';
 export { DatePicker } from './news/datepicker/datepicker';
 export { useDatePicker } from './news/hooks/use-date-picker';
 export { ImageModal } from './news/image-modal/image-modal';
+
 export { BlockCarousel } from './carousel/block-carousel';
 export { CarouselItems } from './carousel/carousel-item';
 export { Carousel } from './carousel/carousel';
+export { HeaderCarouselForAdmin } from './carousel/admin/header-carousel-for-admin/header-carousel-for-admin';
+export { AdminCarouselPage } from './carousel/admin/adminCarousel';
+export { DialogInHeaderForAdminCarousel } from './carousel/admin/header-carousel-for-admin/dialog-in-header-for-admin-carousel/dialog-in-header-for-admin-carousel';
+export { DialogInCarouselItemForChangeFile } from './carousel/admin/carousel-item-for-admin/dialog-in-carousel-item-for-change-file/dialog-in-carousel-item-for-change-file';
+export { CarouselItemForAdmin } from './carousel/admin/carousel-item-for-admin/carousel-item-for-admin';
+
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
