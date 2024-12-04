@@ -1,3 +1,5 @@
+'use client';
+
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { login } from '@/shared/lib/features/users/users-thunks';

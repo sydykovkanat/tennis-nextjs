@@ -9,6 +9,8 @@ import Link from 'next/link';
 
 import React from 'react';
 
+import styles from './login.module.css';
+
 interface Props {
   className?: string;
 }
@@ -29,20 +31,15 @@ const Login: React.FC<Props> = ({ className }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={cn('py-10 mx-auto max-w-[545px] bg-white px-4 min-[440px]:px-10 rounded-[22px]', className)}
-    >
-      <h1 className={'text-[28px] leading-10 font-bold mb-2'}>Добро пожаловать!</h1>
+    <form onSubmit={handleSubmit} className={cn(styles.form, className)}>
+      <h1 className={styles.title}>Добро пожаловать</h1>
 
-      <p className={'mb-7'}>Введите свой логин и пароль для входа в личный кабинет</p>
+      <p className={styles.subtitle}>Введите свой логин и пароль для входа в личный кабинет</p>
 
       <Input
         error={loginError?.error}
         label={'Телефон'}
         id={'telephone'}
-        className={'h-12 mb-4'}
-        labelClassName={'text-base'}
         placeholder={'0555 555 555'}
         value={loginMutation.telephone}
         onChange={handleChange}
@@ -52,8 +49,6 @@ const Login: React.FC<Props> = ({ className }) => {
         error={loginError?.error}
         label={'Пароль'}
         id={'password'}
-        className={'h-12 mb-8'}
-        labelClassName={'text-base'}
         type={'password'}
         autoComplete={'on'}
         placeholder={'Введите пароль'}
@@ -64,22 +59,17 @@ const Login: React.FC<Props> = ({ className }) => {
       <Button
         loading={loginLoading}
         icon={ArrowRightIcon}
-        iconClassName={'hover:translate-x-1/2 block hover:scale-105'}
-        className={'flex justify-between w-full h-14 mb-2.5'}
+        className={styles.loginBtn}
         disabled={!isFormValid || loginLoading}
       >
         Войти
       </Button>
 
-      <Link href={'/forgot-password'} className={'text-tn-dark-green block text-right mb-8'}>
+      <Link href={'/forgot-password'} className={styles.forgotBtn}>
         Забыли пароль?
       </Link>
 
-      <Button
-        className={'bg-[#D9EBC6] text-tn-dark-green rounded-xl shadow-none h-12 w-full hover:bg-tn-green-secondary'}
-      >
-        Создать аккаунт
-      </Button>
+      <Button className={styles.createBtn}>Создать аккаунт</Button>
     </form>
   );
 };

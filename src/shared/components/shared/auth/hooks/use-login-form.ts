@@ -1,3 +1,5 @@
+'use client';
+
 import { formatTelephone } from '@/shared/lib';
 import { LoginMutation } from '@/shared/types/auth.types';
 
