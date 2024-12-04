@@ -1,0 +1,15 @@
+.filesPreviews {
+    @apply border rounded-lg mt-2 mb-2 p-5 bg-muted
+}
+
+.bntAddFile {
+    @apply w-full sm:w-auto
+}
+
+.image {
+    @apply w-auto h-40 rounded-lg mx-auto
+}
+
+.video {
+    @apply w-auto h-40 rounded-lg mx-auto
+}

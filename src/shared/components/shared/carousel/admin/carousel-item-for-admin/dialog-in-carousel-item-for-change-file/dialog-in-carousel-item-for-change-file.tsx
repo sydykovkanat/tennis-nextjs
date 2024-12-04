@@ -10,15 +10,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
+import { cn } from '@/shared/lib';
 import { PaperAirplaneIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
+import styles from './dialog-in-carousel-item-for-change-file.module.css';
+
 interface DialogInCarouselItemForChangeFileProps {
   id: string;
+  className?: string;
 }
 
-export const DialogInCarouselItemForChangeFile: React.FC<DialogInCarouselItemForChangeFileProps> = ({ id }) => {
+export const DialogInCarouselItemForChangeFile: React.FC<DialogInCarouselItemForChangeFileProps> = ({
+  id,
+  className,
+}) => {
   const { newImage, fileInputChangeHandler, onUpdateImage, previewUrl } = useAdminCarousel();
 
   return (
@@ -42,17 +49,17 @@ export const DialogInCarouselItemForChangeFile: React.FC<DialogInCarouselItemFor
                 name='image'
                 onChange={fileInputChangeHandler}
               />
-              <Button type='submit' className='w-full sm:w-auto' data-test-id='update-file-in-carousel'>
+              <Button type='submit' className={cn(styles.bntAddFile, className)} data-test-id='update-file-in-carousel'>
                 Добавить файл
                 <PaperAirplaneIcon />
               </Button>
             </form>
             {previewUrl && (
-              <div className='border rounded-lg mt-2 mb-2 p-5 bg-muted'>
+              <div className={cn(styles.filePreviews, className)}>
                 {newImage.image ? (
-                  <img src={previewUrl} alt='Preview' className='w-auto h-40 rounded-lg mx-auto' />
+                  <img src={previewUrl} alt='Preview' className={cn(styles.image, className)} />
                 ) : (
-                  <video controls src={previewUrl} className='w-auto h-40 rounded-lg mx-auto' />
+                  <video controls src={previewUrl} className={cn(styles.video, className)} />
                 )}
               </div>
             )}

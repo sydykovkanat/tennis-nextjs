@@ -5,9 +5,12 @@ import { useAdminCarousel } from '@/shared/components/shared/carousel/admin/hook
 import { Confirm } from '@/shared/components/shared/confirm/confirm';
 import { Button } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
+
+import styles from './carousel-item-for-admin.module.css';
 
 interface CarouselItemForAdminProps {
   className?: string;
@@ -26,20 +29,12 @@ export const CarouselItemForAdmin: React.FC<CarouselItemForAdminProps> = ({ clas
           carousel.map((image) => (
             <div key={image._id} className='relative'>
               {image.image ? (
-                <img
-                  src={API_URL + '/' + image.image}
-                  alt={image._id}
-                  className='rounded-lg object-cover h-full w-full max-h-[300px]'
-                />
+                <img src={API_URL + '/' + image.image} alt={image._id} className={cn(styles.image, className)} />
               ) : image.video ? (
-                <video
-                  controls
-                  src={API_URL + '/' + image.video}
-                  className='rounded-lg object-cover h-full w-full max-h-[300px]'
-                />
+                <video controls src={API_URL + '/' + image.video} className={cn(styles.video, className)} />
               ) : null}
               {user && user.role === 'admin' && (
-                <div className='top-3 left-6 absolute'>
+                <div className={cn(styles.blockBtn, className)}>
                   <Confirm onOk={() => onDelete(image._id)}>
                     <Button className='me-3' data-test-id='delete-file-in-carousel'>
                       <TrashIcon />
