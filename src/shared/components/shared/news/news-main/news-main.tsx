@@ -15,7 +15,7 @@ export const NewsMain: React.FC<Props> = async ({ className }) => {
 
   return (
     <>
-      <NewsTitle />
+      <NewsTitle isHomePage />
       <div className={cn(styles.newsMainContainer, className)}>
         {news.data.map((newsItem) => (
           <NewsCardMain key={newsItem._id} news={newsItem} />

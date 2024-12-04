@@ -1,5 +1,5 @@
-import React from 'react';
 import { cn } from '@/shared/lib';
+import React from 'react';
 import type { Metadata } from 'next';
 import styles from './news-title.module.css';
 
@@ -8,11 +8,18 @@ export const metadata: Metadata = {
   description: 'Блог Кыргызстанского сообщества любителей тенниса',
 };
 
-export const NewsTitle: React.FC = () => {
+interface Props {
+  isHomePage?: boolean;
+}
+
+export const NewsTitle: React.FC<Props> = ({ isHomePage }) => {
+  const Title = isHomePage ? 'h4' : 'h1';
+  const Subtitle = isHomePage ? 'h5' : 'h2';
+
   return (
     <div className={cn(styles.newsTitleBlock)}>
-      <h1 className={cn(styles.newsTitle)}>Свежие новости</h1>
-      <h2 className={cn(styles.newsSubtitle)}>Наш блог</h2>
+      <Title className={cn(styles.newsTitle)}>Свежие новости</Title>
+      <Subtitle className={cn(styles.newsSubtitle)}>Наш блог</Subtitle>
     </div>
   );
 };
