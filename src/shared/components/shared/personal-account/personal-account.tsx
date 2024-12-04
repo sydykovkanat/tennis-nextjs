@@ -5,6 +5,7 @@ import styles from '@/shared/components/shared/personal-account/personal-account
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectCurrentUser, selectUser } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
+import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 
 import React from 'react';
@@ -34,7 +35,7 @@ const PersonalAccount: React.FC = () => {
                 <small>Ваша персональная информация и управление данными</small>
               </div>
 
-              <Button>Редактировать</Button>
+              <Button icon={PencilSquareIcon}>Редактировать</Button>
             </header>
 
             <main className='mt-2 flex flex-col max-w-2xl'>
@@ -45,33 +46,29 @@ const PersonalAccount: React.FC = () => {
 
               <div className='space-y-2 flex flex-col'>
                 <div className='flex flex-wrap'>
-                  <h3 className='font-medium w-full dark:text-black  sm:w-1/3'>Почта</h3>
-                  <span className='text-muted-foreground w-full sm:w-2/3 break-words'>{currentUser.email}</span>
+                  <h3 className={styles.title}>Почта</h3>
+                  <span className={styles.subtitle}>{currentUser.email}</span>
                 </div>
 
                 <div className='flex flex-wrap'>
-                  <h3 className='font-medium w-full dark:text-black  sm:w-1/3'>Телефон</h3>
-                  <span className='text-muted-foreground w-full sm:w-2/3'>{currentUser.telephone}</span>
+                  <h3 className={styles.title}>Телефон</h3>
+                  <span className={styles.subtitle}>{currentUser.telephone}</span>
                 </div>
 
                 <div className='flex flex-wrap'>
-                  <h3 className='font-medium w-full dark:text-black  sm:w-1/3'>День рождения</h3>
-                  <span className='text-muted-foreground w-full sm:w-2/3'>{currentUser.dateOfBirth}</span>
+                  <h3 className={styles.title}>День рождения</h3>
+                  <span className={styles.subtitle}>{currentUser.dateOfBirth}</span>
                 </div>
 
                 <div className='flex flex-wrap'>
-                  <h3 className='font-medium w-full dark:text-black  sm:w-1/3'>Пол</h3>
-                  <span className='text-muted-foreground w-full sm:w-2/3'>
-                    {currentUser.gender === 'male' ? 'Муж.' : 'Жен.'}
-                  </span>
+                  <h3 className={styles.title}>Пол</h3>
+                  <span className={styles.subtitle}>{currentUser.gender === 'male' ? 'Муж.' : 'Жен.'}</span>
                 </div>
 
                 {currentUser.role === 'admin' && (
                   <div className='flex flex-wrap'>
-                    <h3 className='font-medium w-full dark:text-black  sm:w-1/3'>Роль</h3>
-                    <span className='text-muted-foreground w-full sm:w-2/3'>
-                      {currentUser.role === 'admin' ? 'Админ' : 'Пользователь'}
-                    </span>
+                    <h3 className={styles.title}>Роль</h3>
+                    <span className={styles.subtitle}>{currentUser.role === 'admin' ? 'Админ' : 'Пользователь'}</span>
                   </div>
                 )}
               </div>
