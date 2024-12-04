@@ -1,27 +1,31 @@
+import React, { memo } from 'react';
 import { Card } from '@/shared/components/ui';
 import { CardContent, CardHeader } from '@/shared/components/ui/card';
 import { API_URL } from '@/shared/constants';
-import { News } from '@/shared/types/news.types';
-import Link from 'next/link';
-
-import React, { memo } from 'react';
-
-import styles from './news-card.module.css';
 import { cn } from '@/shared/lib';
+import { News } from '@/shared/types/news.types';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './news-card.module.css';
 
 interface Props {
   news: News;
 }
 
 const CardImage = memo(
-  React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(({ className, alt, ...props }, ref) => (
-    <img
-      ref={ref}
-      alt={alt}
-      className={cn('h-[300px] max-h-[300px] object-cover w-full mb-6 rounded-md', className)}
-      {...props}
-    />
-  )),
+  React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(
+    ({ className, src, alt, ...props }, ref) => (
+      <Image
+        ref={ref}
+        src={src ? src : ''}
+        alt={alt ? alt : ''}
+        className={cn('h-[300px] max-h-[300px] object-cover w-full mb-6 rounded-md', className)}
+        {...props}
+        width={500}
+        height={500}
+      />
+    ),
+  ),
 );
 CardImage.displayName = 'CardImage';
 

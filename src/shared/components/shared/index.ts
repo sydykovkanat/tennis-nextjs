@@ -17,7 +17,7 @@ export { Carousel } from './carousel/carousel';
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
-
+export { ActionButtons } from './news/image-modal/acton-buttons';
 export { TournamentCard } from './tournaments/tournament-card/tournament-card';
 export { TournamentCardInfo } from './tournaments/tournament-card/tournament-card-info';
 export { TournamentActions } from './tournaments/tournament-card/tournament-card-action';
