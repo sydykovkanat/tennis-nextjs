@@ -1,8 +1,4 @@
-import {
-  errorImgCarouselState,
-  loadingCarouselState,
-  photoCarouselState,
-} from '@/shared/lib/features/carousel/carousel-slice';
+import { errorImgCarouselState, loadingCarouselState } from '@/shared/lib/features/carousel/carousel-slice';
 import {
   deleteImageCarousel,
   getCarousel,
@@ -25,7 +21,6 @@ export const useAdminCarousel = () => {
   const user = useAppSelector(selectUser);
   const [newImage, setNewImage] = useState<CarouselMutation>(emptyState);
   const dispatch = useAppDispatch();
-  const carousel = useAppSelector(photoCarouselState);
   const loadingCarousel = useAppSelector(loadingCarouselState);
   const errorImgCarousel = useAppSelector(errorImgCarouselState);
   const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -104,13 +99,8 @@ export const useAdminCarousel = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(getCarousel());
-  }, [dispatch]);
-
   return {
     user,
-    carousel,
     loadingCarousel,
     newImage,
     setAddModalOpen,

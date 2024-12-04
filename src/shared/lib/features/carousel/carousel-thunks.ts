@@ -10,6 +10,20 @@ export const getCarousel = createAsyncThunk<CarouselTypes[]>('carousel/getCarous
 });
 
 export const postFetchCarousel = createAsyncThunk('carousel/postFetchCarousel', async (newImage: CarouselMutation) => {
+  const user = localStorage.getItem('persist:tennis:auth');
+
+  if (!user) {
+    throw new Error('User authentication data not found in localStorage');
+  }
+
+  const userJson = JSON.parse(user);
+
+  if (!userJson.user) {
+    throw new Error('User data is corrupted or missing');
+  }
+
+  const token = JSON.parse(userJson.user);
+
   const formData = new FormData();
 
   if (newImage.image) {
@@ -20,7 +34,11 @@ export const postFetchCarousel = createAsyncThunk('carousel/postFetchCarousel', 
     throw new Error('No media file provided');
   }
 
-  const response = await axiosApi.post<CarouselMutation>('/carousel/admin-post-image-carousel', formData);
+  const response = await axiosApi.post<CarouselMutation>('/carousel/admin-post-image-carousel', formData, {
+    headers: {
+      Authorization: `Bearer ${token.token}`,
+    },
+  });
   return response.data;
 });
 
@@ -28,7 +46,23 @@ export const deleteImageCarousel = createAsyncThunk<void, { id: string }, { reje
   'carousel/deleteImageCarousel',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const response = await axiosApi.delete(`/carousel/admin-delete-image-carousel/${id}`);
+      const user = localStorage.getItem('persist:tennis:auth');
+      if (!user) {
+        return rejectWithValue({ error: 'User authentication data not found in localStorage' });
+      }
+
+      const userJson = JSON.parse(user);
+      if (!userJson.user) {
+        return rejectWithValue({ error: 'User data is corrupted or missing' });
+      }
+
+      const token = JSON.parse(userJson.user);
+
+      const response = await axiosApi.delete(`/carousel/admin-delete-image-carousel/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token.token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       if (isAxiosError(error) && error.response && error.response.status === 400) {
@@ -47,6 +81,18 @@ export const updateCarouselImage = createAsyncThunk<
   { rejectValue: GlobalError }
 >('carousel/updateCarouselImage', async ({ id, updatedImage }, { rejectWithValue }) => {
   try {
+    const user = localStorage.getItem('persist:tennis:auth');
+    if (!user) {
+      return rejectWithValue({ error: 'User authentication data not found in localStorage' });
+    }
+
+    const userJson = JSON.parse(user);
+    if (!userJson.user) {
+      return rejectWithValue({ error: 'User data is corrupted or missing' });
+    }
+
+    const token = JSON.parse(userJson.user);
+
     const formData = new FormData();
 
     if (updatedImage.image) {
@@ -57,7 +103,11 @@ export const updateCarouselImage = createAsyncThunk<
       return rejectWithValue({ error: 'No media file provided' });
     }
 
-    const response = await axiosApi.put<CarouselTypes>(`/carousel/admin-update-image-carousel/${id}`, formData);
+    const response = await axiosApi.put<CarouselTypes>(`/carousel/admin-update-image-carousel/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+      },
+    });
 
     return response.data;
   } catch (error) {

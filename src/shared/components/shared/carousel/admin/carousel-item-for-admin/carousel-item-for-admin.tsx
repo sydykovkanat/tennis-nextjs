@@ -6,9 +6,12 @@ import { Confirm } from '@/shared/components/shared/confirm/confirm';
 import { Button } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
+import { photoCarouselState } from '@/shared/lib/features/carousel/carousel-slice';
+import { getCarousel } from '@/shared/lib/features/carousel/carousel-thunks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './carousel-item-for-admin.module.css';
 
@@ -17,7 +20,16 @@ interface CarouselItemForAdminProps {
 }
 
 export const CarouselItemForAdmin: React.FC<CarouselItemForAdminProps> = ({ className }) => {
-  const { user, carousel, loadingCarousel, onDelete } = useAdminCarousel();
+  const { user, loadingCarousel, onDelete } = useAdminCarousel();
+  const dispatch = useAppDispatch();
+  const carousel = useAppSelector(photoCarouselState);
+
+  useEffect(() => {
+    if (!carousel.length) {
+      dispatch(getCarousel());
+    }
+  }, [dispatch, carousel.length]);
+
   return (
     <>
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
