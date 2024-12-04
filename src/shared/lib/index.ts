@@ -4,3 +4,4 @@ export { formatTelephone } from './helpers/format-telephone';
 export { usePagination } from './hooks/use-pagination';
 export { toQueryParams } from './to-query-params';
 export { deleteEmptyQueryStrings } from './delete-empty-query-strings';
+export { formatDate } from './helpers/format-date';

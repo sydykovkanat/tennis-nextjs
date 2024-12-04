@@ -4,6 +4,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } fro
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { categorySlice } from '@/shared/lib/features/categories/category-slice';
 
 const createNoopStorage = () => {
   return {
@@ -31,6 +32,7 @@ const persistedReducer = persistReducer(authPersistConfig, usersSlice.reducer);
 
 const rootReducer = combineReducers({
   users: persistedReducer,
+  category: categorySlice.reducer,
 });
 
 export const store = configureStore({

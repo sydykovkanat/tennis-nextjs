@@ -60,7 +60,7 @@ const Login: React.FC<Props> = ({ className }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn('py-12 max-w-[545px] bg-white px-20 rounded-[22px]', className)}>
+    <form onSubmit={handleSubmit} className={cn('py-12 mx-auto max-w-[545px] bg-white px-20 rounded-[22px]', className)}>
       <h1 className={'text-[28px] leading-10 font-bold mb-2'}>Добро пожаловать! </h1>
 
       <p className={'mb-7'}>Введите свой логин и пароль для входа в личный кабинет</p>
