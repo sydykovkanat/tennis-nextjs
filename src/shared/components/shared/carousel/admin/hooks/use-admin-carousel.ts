@@ -77,7 +77,6 @@ export const useAdminCarousel = () => {
       toast.success('Файл успешно удален');
     } catch (error) {
       console.error(error);
-      toast.error('Не удалось удалить файл');
     }
   };
 
@@ -95,7 +94,6 @@ export const useAdminCarousel = () => {
       toast.success('Файл успешно обновлен');
     } catch (error) {
       console.error(error);
-      toast.error('Не удалось обновить файл');
     }
   };
 
