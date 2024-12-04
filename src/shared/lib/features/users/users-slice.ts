@@ -1,10 +1,12 @@
-import { fetchOneUser, login } from '@/shared/lib/features/users/users-thunks';
+import { fetchOneUser, login, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { GlobalError, User } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface UsersState {
   user: User | null;
   currentUser: User | null;
+  usersUpdating: boolean;
+  usersUpdatingError: GlobalError | null;
   usersFetching: boolean;
   loginLoading: boolean;
   loginError: GlobalError | null;
@@ -13,6 +15,8 @@ interface UsersState {
 const initialState: UsersState = {
   user: null,
   usersFetching: false,
+  usersUpdating: false,
+  usersUpdatingError: null,
   currentUser: null,
   loginLoading: false,
   loginError: null,
@@ -49,13 +53,28 @@ export const usersSlice = createSlice({
       .addCase(fetchOneUser.rejected, (state) => {
         state.usersFetching = false;
       });
+
+    builder
+      .addCase(updateUserInfo.pending, (state) => {
+        state.usersUpdating = true;
+      })
+      .addCase(updateUserInfo.fulfilled, (state, { payload: user }) => {
+        state.usersUpdating = false;
+        state.user = user;
+      })
+      .addCase(updateUserInfo.rejected, (state, { payload }) => {
+        state.usersUpdatingError = payload || null;
+        state.usersUpdating = false;
+      });
   },
   selectors: {
     selectUser: (state) => state.user,
     selectCurrentUser: (state) => state.currentUser,
     selectLoginLoading: (state) => state.loginLoading,
     selectLoginError: (state) => state.loginError,
+    selectUpdating: (state) => state.usersUpdating,
   },
 });
 
-export const { selectUser, selectCurrentUser, selectLoginLoading, selectLoginError } = usersSlice.selectors;
+export const { selectUser, selectCurrentUser, selectLoginLoading, selectLoginError, selectUpdating } =
+  usersSlice.selectors;

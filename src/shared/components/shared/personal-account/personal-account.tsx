@@ -2,15 +2,20 @@
 
 import { Container } from '@/shared/components/shared';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
+import { UserEdit } from '@/shared/components/shared/personal-account/user-edit/user-edit';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectCurrentUser, selectUser } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
+import { addTokenInterceptors } from '@/shared/lib/helpers/axios-api';
+import { store } from '@/shared/lib/store';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 
 import React from 'react';
 
 import { Button } from '../../ui/button';
+
+addTokenInterceptors(store);
 
 const PersonalAccount: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,8 +39,9 @@ const PersonalAccount: React.FC = () => {
                 <h1>Личный кабинет</h1>
                 <small>Ваша персональная информация и управление данными</small>
               </div>
-
-              <Button icon={PencilSquareIcon}>Редактировать</Button>
+              <UserEdit user={currentUser}>
+                <Button icon={PencilSquareIcon}>Редактировать</Button>
+              </UserEdit>
             </header>
 
             <main className='mt-2 flex flex-col max-w-2xl'>
