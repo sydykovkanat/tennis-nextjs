@@ -1,8 +1,7 @@
 'use client';
 
-import { DialogInCarouselItemForChangeFile, Loader } from '@/shared/components/shared';
+import { Confirm, DialogInCarouselItemForChangeFile, Loader } from '@/shared/components/shared';
 import { useAdminCarousel } from '@/shared/components/shared/carousel/admin/hooks/use-admin-carousel';
-import { Confirm } from '@/shared/components/shared/confirm/confirm';
 import { Button } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';

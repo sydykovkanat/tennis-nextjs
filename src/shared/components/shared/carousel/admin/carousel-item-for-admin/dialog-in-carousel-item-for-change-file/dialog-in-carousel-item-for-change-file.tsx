@@ -1,15 +1,16 @@
 'use client';
 
 import { useAdminCarousel } from '@/shared/components/shared/carousel/admin/hooks/use-admin-carousel';
-import { Button, Input } from '@/shared/components/ui';
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/components/ui/dialog';
+  Input,
+} from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { PaperAirplaneIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
