@@ -12,7 +12,7 @@ export default function CategoryPage() {
 
   return (
     <>
-      <CategoryHeader categories={categories} />
+      <CategoryHeader />
       <Category categories={categories} categoriesFetching={categoriesFetching} />
     </>
   );

@@ -1,20 +1,24 @@
 'use client';
 
-import { selectCategoryCreating } from '@/shared/lib/features/categories/category-slice';
-import { useAppSelector } from '@/shared/lib/store';
-import { Category } from '@/shared/types/category.types';
+import { selectCategories, selectCategory, selectCategoryCreating, selectCategoryFetching, selectCategoryUpdating } from '@/shared/lib/features/categories/category-slice';
+import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 
-import React, { useRef, useState } from 'react';
 
-interface Props {
-  categories: Category[];
-}
 
-export const useCategoryForm = ({ categories }: Props) => {
+import React, { useEffect, useRef, useState } from 'react';
+
+
+export const useCategoryForm = () => {
   const [category, setCategory] = useState<string>('');
   const [open, setOpen] = useState(false);
 
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(selectCategories);
+  const fetchedCategory = useAppSelector(selectCategory);
+  const categoryFetching = useAppSelector(selectCategoryFetching);
   const categoryCreating = useAppSelector(selectCategoryCreating);
+  const categoryUpdating = useAppSelector(selectCategoryUpdating);
   const closeRef = useRef<HTMLButtonElement>(null);
   const blockedWords = categories.map((category) => category.name.toLowerCase());
   const isBlocked = blockedWords.includes(category.toLowerCase());
@@ -24,6 +28,12 @@ export const useCategoryForm = ({ categories }: Props) => {
     setCategory(value);
   };
 
+  useEffect(() => {
+    if (!categories.length) {
+      dispatch(fetchCategories()).unwrap();
+    }
+  }, [dispatch, categories]);
+
   return {
     open,
     setOpen,
@@ -31,6 +41,9 @@ export const useCategoryForm = ({ categories }: Props) => {
     isBlocked,
     closeRef,
     category,
+    fetchedCategory,
+    categoryFetching,
+    categoryUpdating,
     setCategory,
     categoryCreating,
   };

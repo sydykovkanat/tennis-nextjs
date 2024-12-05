@@ -1,0 +1,11 @@
+.card {
+    @apply p-5 shadow-none;
+}
+
+.contentBlock {
+    @apply flex items-start gap-2 p-0 justify-between flex-col xs:flex-row lg:items-center flex-wrap;
+}
+
+.text {
+    overflow-wrap: anywhere;
+}

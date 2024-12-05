@@ -3,8 +3,8 @@
 import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
-
 import { useEffect } from 'react';
+
 
 export const useCategory = () => {
   const dispatch = useAppDispatch();
@@ -12,8 +12,10 @@ export const useCategory = () => {
   const categoriesFetching = useAppSelector(selectCategoriesFetching);
 
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    if (!categories) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories]);
 
   return { categories, categoriesFetching };
 };

@@ -1,21 +1,19 @@
 'use client';
 
-import { CategoryForm } from '@/shared/components/shared';
+import { CategoryForm, useCategoryForm } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { Category } from '@/shared/types/category.types';
 import { SquaresPlusIcon } from '@heroicons/react/24/outline';
-
 import React from 'react';
-
 import styles from './category-header.module.css';
 
 interface Props {
-  categories: Category[];
   className?: string;
 }
 
-export const CategoryHeader: React.FC<Props> = ({ categories, className }) => {
+export const CategoryHeader: React.FC<Props> = ({ className }) => {
+  const { open, setOpen } = useCategoryForm();
+
   return (
     <div className={cn(styles.container, className)}>
       <div>
@@ -23,11 +21,10 @@ export const CategoryHeader: React.FC<Props> = ({ categories, className }) => {
         <small className={cn(styles.subtitle)}>Список всех категорий и управление категориями.</small>
       </div>
 
-      <CategoryForm categories={categories}>
-        <Button className={'w-full xs:w-max'} icon={SquaresPlusIcon}>
-          Добавить категорию
-        </Button>
-      </CategoryForm>
+      <Button className={'w-full xs:w-max'} icon={SquaresPlusIcon} onClick={() => setOpen(true)}>
+        Добавить категорию
+      </Button>
+      {open && <CategoryForm open={open} setOpen={setOpen} />}
     </div>
   );
 };

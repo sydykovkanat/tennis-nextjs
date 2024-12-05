@@ -1,3 +1,5 @@
-export default async function Page() {
+'use client';
+
+export default function Page() {
   return;
 }

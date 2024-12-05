@@ -1,12 +1,6 @@
-
-import { createSlice } from '@reduxjs/toolkit';
+import { createCategory, deleteCategory, fetchCategories, fetchCategory, updateCategory } from '@/shared/lib/features/categories/category-thunks';
 import { Category } from '@/shared/types/category.types';
-import {
-  createCategory,
-  deleteCategory,
-  fetchCategories, fetchCategory,
-  updateCategory,
-} from '@/shared/lib/features/categories/category-thunks';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface RanksState {
   categories: Category[];

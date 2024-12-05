@@ -1,3 +1,5 @@
+'use client';
+
 import { CategoryCard, CategoryForm } from '@/shared/components/shared';
 import { cn } from '@/shared/lib';
 import { Category as CategoryType } from '@/shared/types/category.types';
@@ -18,9 +20,9 @@ export const Category: React.FC<Props> = ({ categories, categoriesFetching, clas
       {!categoriesFetching && categories.length === 0 ? (
         <small className={cn(styles.errorText)}>
           Категории не найдены.
-          <CategoryForm categories={categories}>
-            <button className={cn(styles.warningButtonText)}>Добавьте категорию</button>
-          </CategoryForm>
+          {/*<CategoryForm>*/}
+          {/*  <button className={cn(styles.warningButtonText)}>Добавьте категорию</button>*/}
+          {/*</CategoryForm>*/}
         </small>
       ) : (
         <div className={cn(styles.container, className)}>
