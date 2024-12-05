@@ -1,6 +1,6 @@
 'use client';
 
-import { Confirm, DialogInCarouselItemForChangeFile, Loader } from '@/shared/components/shared';
+import { AdminCarouselDialog, Confirm, Loader } from '@/shared/components/shared';
 import { useAdminCarousel } from '@/shared/components/shared/carousel/admin/hooks/use-admin-carousel';
 import { Button } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
@@ -12,13 +12,13 @@ import { TrashIcon } from '@heroicons/react/24/outline';
 
 import React, { useEffect } from 'react';
 
-import styles from './carousel-item-for-admin.module.css';
+import styles from './admin-carousel-item.module.css';
 
 interface CarouselItemForAdminProps {
   className?: string;
 }
 
-export const CarouselItemForAdmin: React.FC<CarouselItemForAdminProps> = ({ className }) => {
+export const AdminCarouselItem: React.FC<CarouselItemForAdminProps> = ({ className }) => {
   const { user, loadingCarousel, onDelete } = useAdminCarousel();
   const dispatch = useAppDispatch();
   const carousel = useAppSelector(photoCarouselState);
@@ -52,7 +52,7 @@ export const CarouselItemForAdmin: React.FC<CarouselItemForAdminProps> = ({ clas
                     </Button>
                   </Confirm>
 
-                  <DialogInCarouselItemForChangeFile id={image._id} />
+                  <AdminCarouselDialog mode={'edit'} id={image._id} />
                 </div>
               )}
             </div>

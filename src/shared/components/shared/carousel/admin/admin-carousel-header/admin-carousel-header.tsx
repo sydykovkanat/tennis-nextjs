@@ -1,18 +1,17 @@
 'use client';
 
-import { Title } from '@/shared/components/shared';
-import { DialogInHeaderForAdminCarousel } from '@/shared/components/shared';
+import { AdminCarouselDialog, Title } from '@/shared/components/shared';
 import { cn } from '@/shared/lib';
 
 import React from 'react';
 
-import styles from './header-carousel.module.css';
+import styles from './admin-carousel-header.module.css';
 
 interface CarouselHeaderProps {
   className?: string;
 }
 
-export const HeaderCarouselForAdmin: React.FC<CarouselHeaderProps> = ({ className }) => {
+export const AdminCarouselHeader: React.FC<CarouselHeaderProps> = ({ className }) => {
   return (
     <>
       <div className={cn(styles.containerForHeader, className)}>
@@ -23,7 +22,7 @@ export const HeaderCarouselForAdmin: React.FC<CarouselHeaderProps> = ({ classNam
             </Title>
             <small className={cn(styles.subText, className)}>Управление фотографиями главной карусели</small>
           </div>
-          <DialogInHeaderForAdminCarousel />
+          <AdminCarouselDialog mode={'add'} />
         </header>
       </div>
     </>
