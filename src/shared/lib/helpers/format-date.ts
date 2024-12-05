@@ -7,3 +7,5 @@ export const formatDate: FormatDate = (date, style) => {
   const parsedDate = typeof date === 'string' ? parseISO(date) : date;
   return isValid(parsedDate) ? format(parsedDate, style, { locale: ru }) : 'Некорректная дата';
 };
+
+//надо перевести это на бэк
