@@ -1,14 +1,12 @@
 'use client';
 
 import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/components/shared';
+import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectCurrentUser, selectUser } from '@/shared/lib/features/users/users-slice';
-import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
+import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { addTokenInterceptors } from '@/shared/lib/helpers/axios-api';
-import { store } from '@/shared/lib/store';
+import { store, useAppSelector } from '@/shared/lib/store';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
-import { useRouter } from 'next/navigation';
 
 import React from 'react';
 
@@ -17,17 +15,9 @@ import { Button } from '../../ui/button';
 addTokenInterceptors(store);
 
 const PersonalAccount: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
+  useFetchUser();
   const currentUser = useAppSelector(selectCurrentUser);
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if (!user) return router.push('/login');
-
-    dispatch(fetchOneUser(user._id));
-  }, [dispatch, user, router]);
-
+  if (!currentUser) return null;
   return (
     currentUser && (
       <>

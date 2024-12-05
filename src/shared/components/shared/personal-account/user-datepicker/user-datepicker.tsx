@@ -12,7 +12,7 @@ interface Props {
   addUserAdmin?: boolean;
 }
 
-const UserDatePicker: React.FC<Props> = ({ value, onChange, label, addUserAdmin }) => {
+export const UserDatePicker: React.FC<Props> = ({ value, onChange, label, addUserAdmin }) => {
   const CURRENT_YEAR_FULL = new Date().getFullYear();
 
   const parseDate = (dateString: string): Date | undefined => {
@@ -56,5 +56,3 @@ const UserDatePicker: React.FC<Props> = ({ value, onChange, label, addUserAdmin 
     </div>
   );
 };
-
-export default UserDatePicker;

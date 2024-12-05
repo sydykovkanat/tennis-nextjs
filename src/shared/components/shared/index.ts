@@ -29,3 +29,4 @@ export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles, userCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { UserEdit } from './personal-account/user-edit/user-edit';
+export { UserDatePicker } from './personal-account/user-datepicker/user-datepicker';
