@@ -12,7 +12,7 @@ export const useCategory = () => {
   const categoriesFetching = useAppSelector(selectCategoriesFetching);
 
   useEffect(() => {
-    if (!categories) {
+    if (!categories.length) {
       dispatch(fetchCategories());
     }
   }, [dispatch, categories]);

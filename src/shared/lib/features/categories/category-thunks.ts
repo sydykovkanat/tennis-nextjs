@@ -5,14 +5,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';
 
-
 export const fetchCategories = createAsyncThunk<Category[], void>('category/fetchCategories', async () => {
   const { data: ranks } = await axiosApi.get<Category[]>('/categories');
 
   return ranks;
 });
 
-export const deleteCategory = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
+export const removeCategory = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
   'category/deleteCategory',
   async (id, thunkAPI) => {
     try {

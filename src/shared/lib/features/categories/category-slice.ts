@@ -1,12 +1,13 @@
-import { createCategory, deleteCategory, fetchCategories, fetchCategory, updateCategory } from '@/shared/lib/features/categories/category-thunks';
+import { createCategory, fetchCategories, fetchCategory, removeCategory, updateCategory } from '@/shared/lib/features/categories/category-thunks';
 import { Category } from '@/shared/types/category.types';
 import { createSlice } from '@reduxjs/toolkit';
+
 
 interface RanksState {
   categories: Category[];
   category: Category | null;
   categoriesFetching: boolean;
-  categoryDeleting: string | null;
+  categoryRemoving: string | false;
   categoryCreating: boolean;
   categoryUpdating: boolean;
   categoryFetching: boolean;
@@ -16,7 +17,7 @@ const initialState: RanksState = {
   categories: [],
   category: null,
   categoriesFetching: false,
-  categoryDeleting: null,
+  categoryRemoving: false,
   categoryCreating: false,
   categoryUpdating: false,
   categoryFetching: true,
@@ -40,15 +41,14 @@ export const categorySlice = createSlice({
       });
 
     builder
-      .addCase(deleteCategory.pending, (state, { meta }) => {
-        state.categoryDeleting = meta.arg;
+      .addCase(removeCategory.pending, (state, { meta }) => {
+        state.categoryRemoving = meta.arg;
       })
-      .addCase(deleteCategory.fulfilled, (state, { meta }) => {
-        state.categories = state.categories.filter((rank) => rank._id !== meta.arg);
-        state.categoryDeleting = null;
+      .addCase(removeCategory.fulfilled, (state) => {
+        state.categoryRemoving = false;
       })
-      .addCase(deleteCategory.rejected, (state) => {
-        state.categoryDeleting = null;
+      .addCase(removeCategory.rejected, (state) => {
+        state.categoryRemoving = false;
       });
 
     builder
@@ -92,7 +92,7 @@ export const categorySlice = createSlice({
     selectCategory: (state) => state.category,
     selectCategoryFetching: (state) => state.categoryFetching,
     selectCategoriesFetching: (state) => state.categoriesFetching,
-    selectCategoryDeleting: (state) => state.categoryDeleting,
+    selectCategoryDeleting: (state) => state.categoryRemoving,
     selectCategoryCreating: (state) => state.categoryCreating,
     selectCategoryUpdating: (state) => state.categoryUpdating,
   },
