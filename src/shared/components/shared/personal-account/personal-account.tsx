@@ -1,8 +1,7 @@
 'use client';
 
-import { Container } from '@/shared/components/shared';
+import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/components/shared';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
-import { UserEdit } from '@/shared/components/shared/personal-account/user-edit/user-edit';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectCurrentUser, selectUser } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
@@ -33,6 +32,9 @@ const PersonalAccount: React.FC = () => {
     currentUser && (
       <>
         <Container className={'w-full'}>
+          {userCircles.map((circle, id) => (
+            <GradientCircle key={id} {...circle} />
+          ))}
           <div className={styles.accountWrapper} style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}>
             <header className={styles.accountHeader}>
               <div>

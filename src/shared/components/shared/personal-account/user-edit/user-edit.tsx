@@ -1,3 +1,5 @@
+'use client';
+
 import UserDatePicker from '@/shared/components/shared/personal-account/user-datepicker/user-datepicker';
 import {
   Button,
