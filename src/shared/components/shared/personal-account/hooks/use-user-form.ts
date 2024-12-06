@@ -1,10 +1,10 @@
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { User } from '@/shared/types/user.types';
-import { DateValue } from '@react-types/calendar';
 import { toast } from 'sonner';
 
 import React, { useEffect, useState } from 'react';
+import { DateValue } from 'react-aria-components';
 
 interface UseUserFormProps {
   user: User;
@@ -23,16 +23,18 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
   const [userInfo, setUserInfo] = useState(initialState);
   const dispatch = useAppDispatch();
 
+  const resetUserInfo = () => {
+    setUserInfo({
+      telephone: user.telephone || '',
+      fullName: user.fullName || '',
+      email: user.email || '',
+      dateOfBirth: user.dateOfBirth || '',
+      gender: user.gender || '',
+    });
+  };
+
   useEffect(() => {
-    if (user) {
-      setUserInfo({
-        telephone: user.telephone,
-        fullName: user.fullName,
-        email: user.email,
-        dateOfBirth: user.dateOfBirth,
-        gender: user.gender,
-      });
-    }
+    resetUserInfo();
   }, [user]);
 
   const updateField = (field: string, value: string) => {
@@ -57,5 +59,5 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
-  return { userInfo, updateField, dateChange, handleSubmit };
+  return { userInfo, updateField, dateChange, handleSubmit, resetUserInfo };
 };
