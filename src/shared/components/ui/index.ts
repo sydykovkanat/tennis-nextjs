@@ -47,3 +47,5 @@ export {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './dropdown-menu';
+
+export { Checkbox } from './checkbox';
