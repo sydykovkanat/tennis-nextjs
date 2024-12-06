@@ -1,5 +1,5 @@
 .chapter {
-  @apply text-xl mb-2;
+  @apply text-xl mb-2 font-semibold text-center;
 }
 
 .rating {
