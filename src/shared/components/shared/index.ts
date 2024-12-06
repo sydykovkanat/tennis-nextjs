@@ -11,7 +11,6 @@ export { NewsCard } from './news/news-card/news-card';
 export { DatePicker } from './news/datepicker/datepicker';
 export { useDatePicker } from './news/hooks/use-date-picker';
 export { ImageModal } from './news/image-modal/image-modal';
-
 export { BlockCarousel } from './carousel/block-carousel';
 export { CarouselItems } from './carousel/carousel-item';
 export { Carousel } from './carousel/carousel';
@@ -23,7 +22,7 @@ export { AdminCarouselDialog } from '@/shared/components/shared/carousel/admin/a
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
-
+export { Register } from './auth/register';
 export { TournamentCard } from './tournaments/tournament-card/tournament-card';
 export { TournamentCardInfo } from './tournaments/tournament-card/tournament-card-info';
 export { TournamentActions } from './tournaments/tournament-card/tournament-card-action';
@@ -35,3 +34,4 @@ export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { Confirm } from '@/shared/components/shared/confirm/confirm';
+
