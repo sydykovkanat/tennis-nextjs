@@ -48,4 +48,6 @@ export {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 
+export { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './dialog';
+
 export { Checkbox } from './checkbox';

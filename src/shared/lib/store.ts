@@ -1,3 +1,4 @@
+import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
@@ -29,6 +30,7 @@ const persistedReducer = persistReducer(authPersistConfig, usersSlice.reducer);
 
 const rootReducer = combineReducers({
   users: persistedReducer,
+  carousel: CarouselReducer,
 });
 
 export const store = configureStore({
