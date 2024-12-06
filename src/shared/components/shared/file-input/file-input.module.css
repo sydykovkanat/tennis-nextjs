@@ -1,0 +1,7 @@
+.inputContainer {
+  @apply flex flex-col space-y-2;
+}
+
+.inputWrapper {
+  @apply flex items-center space-x-2;
+}

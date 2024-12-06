@@ -1,3 +1,4 @@
+import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
@@ -31,6 +32,7 @@ const persistedReducer = persistReducer(authPersistConfig, usersSlice.reducer);
 
 const rootReducer = combineReducers({
   users: persistedReducer,
+  carousel: ratingMembersReducer,
 });
 
 export const store = configureStore({

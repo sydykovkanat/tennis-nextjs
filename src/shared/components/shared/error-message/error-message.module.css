@@ -1,0 +1,15 @@
+.error {
+  @apply text-red-500;
+}
+
+.warning {
+  @apply text-yellow-500;
+}
+
+.info {
+  @apply text-grey-500;
+}
+
+.text {
+  @apply text-xs;
+}

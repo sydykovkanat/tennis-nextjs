@@ -1,6 +1,9 @@
 export { Container } from './container/container';
 export { MainTitles } from './main-titles/main-titles';
 export { Loader } from './loader/loader';
+export { ErrorMessage } from './error-message/error-message';
+export { WarningMessage } from './warning-message/warning-message';
+export { FileInput } from './file-input/file-input';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
 export { NewsMain } from './news/news-main/news-main';
