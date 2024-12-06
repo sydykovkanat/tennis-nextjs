@@ -1,0 +1,15 @@
+.containerForHeader {
+    @apply flex justify-center flex-col
+}
+
+.header{
+    @apply flex mb-4 xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5
+}
+
+.mainText {
+    @apply text-2xl font-medium leading-none
+}
+
+.subText {
+    @apply text-muted-foreground text-base
+}

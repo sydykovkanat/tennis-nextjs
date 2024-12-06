@@ -30,4 +30,6 @@ export { Toaster } from './sonner';
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 export { ScrollArea, ScrollBar } from './scroll-area';
+export { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './dialog';
+
 export { Checkbox } from './checkbox';

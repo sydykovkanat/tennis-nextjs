@@ -14,6 +14,11 @@ export { ImageModal } from './news/image-modal/image-modal';
 export { BlockCarousel } from './carousel/block-carousel';
 export { CarouselItems } from './carousel/carousel-item';
 export { Carousel } from './carousel/carousel';
+export { AdminCarouselHeader } from '@/shared/components/shared/carousel/admin/admin-carousel-header/admin-carousel-header';
+export { AdminCarouselPage } from './carousel/admin/admin-carousel';
+export { AdminCarouselItem } from '@/shared/components/shared/carousel/admin/admin-carousel-item/admin-carousel-item';
+export { AdminCarouselDialog } from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog';
+
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
@@ -28,3 +33,5 @@ export { TournamentCalendar } from './tournaments/tournament-calendar/tournament
 export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
+export { Confirm } from '@/shared/components/shared/confirm/confirm';
+
