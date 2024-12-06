@@ -31,7 +31,7 @@ export const AdminCarouselItem: React.FC<CarouselItemForAdminProps> = ({ classNa
 
   return (
     <>
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
+      <div className={cn(styles.containerCarouselItem)}>
         {loadingCarousel ? (
           <div>
             <Loader />
@@ -40,12 +40,12 @@ export const AdminCarouselItem: React.FC<CarouselItemForAdminProps> = ({ classNa
           carousel.map((image) => (
             <div key={image._id} className='relative'>
               {image.image ? (
-                <img src={API_URL + '/' + image.image} alt={image._id} className={cn(styles.image, className)} />
+                <img src={API_URL + '/' + image.image} alt={image._id} className={cn(styles.image)} />
               ) : image.video ? (
-                <video controls src={API_URL + '/' + image.video} className={cn(styles.video, className)} />
+                <video controls src={API_URL + '/' + image.video} className={cn(styles.video)} />
               ) : null}
               {user && user.role === 'admin' && (
-                <div className={cn(styles.blockBtn, className)}>
+                <div className={cn(styles.blockBtn)}>
                   <Confirm onOk={() => onDelete(image._id)}>
                     <Button className='me-3' data-test-id='delete-file-in-carousel'>
                       <TrashIcon />

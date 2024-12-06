@@ -14,13 +14,13 @@ interface CarouselHeaderProps {
 export const AdminCarouselHeader: React.FC<CarouselHeaderProps> = ({ className }) => {
   return (
     <>
-      <div className={cn(styles.containerForHeader, className)}>
-        <header className={cn(styles.header, className)}>
+      <div className={cn(styles.containerForHeader)}>
+        <header className={cn(styles.header)}>
           <div>
             <Title variant={'h1'} className={cn(styles.mainText, className)}>
               Карусель
             </Title>
-            <small className={cn(styles.subText, className)}>Управление фотографиями главной карусели</small>
+            <small className={cn(styles.subText)}>Управление фотографиями главной карусели</small>
           </div>
           <AdminCarouselDialog mode={'add'} />
         </header>

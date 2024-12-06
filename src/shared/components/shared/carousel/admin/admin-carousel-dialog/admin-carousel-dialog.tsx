@@ -59,10 +59,10 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
             <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
             <form
               onSubmit={(e) => (isAddMode ? handleImageUpload(e) : id && onUpdateImage(id, e))}
-              className={cn(styles.form, className)}
+              className={cn(styles.form)}
             >
               <Input
-                className={cn(styles.input, className)}
+                className={cn(styles.input)}
                 id='image'
                 type='file'
                 name='image'
@@ -79,11 +79,11 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
               </Button>
             </form>
             {previewUrl && (
-              <div className={cn(styles.filePreviews, className)}>
+              <div className={cn(styles.filePreviews)}>
                 {newImage.image ? (
-                  <img src={previewUrl} alt='Preview' className={cn(styles.image, className)} />
+                  <img src={previewUrl} alt='Preview' className={cn(styles.image)} />
                 ) : (
-                  <video controls src={previewUrl} className={cn(styles.video, className)} />
+                  <video controls src={previewUrl} className={cn(styles.video)} />
                 )}
               </div>
             )}

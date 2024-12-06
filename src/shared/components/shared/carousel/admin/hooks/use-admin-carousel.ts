@@ -1,4 +1,8 @@
-import { errorImgCarouselState, loadingCarouselState } from '@/shared/lib/features/carousel/carousel-slice';
+import {
+  errorImgCarouselState,
+  loadingCarouselState,
+  photoCarouselState,
+} from '@/shared/lib/features/carousel/carousel-slice';
 import {
   deleteImageCarousel,
   getCarousel,
@@ -20,17 +24,12 @@ const emptyState: CarouselMutation = {
 export const useAdminCarousel = () => {
   const user = useAppSelector(selectUser);
   const [newImage, setNewImage] = useState<CarouselMutation>(emptyState);
+  const carousel = useAppSelector(photoCarouselState);
   const dispatch = useAppDispatch();
   const loadingCarousel = useAppSelector(loadingCarouselState);
   const errorImgCarousel = useAppSelector(errorImgCarouselState);
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (errorImgCarousel) {
-      toast.error(errorImgCarousel.error);
-    }
-  }, [errorImgCarousel]);
 
   const fileInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -72,6 +71,15 @@ export const useAdminCarousel = () => {
 
   const onDelete = async (id: string) => {
     try {
+      if (carousel.length <= 2) {
+        if (errorImgCarousel?.error) {
+          toast.warning(errorImgCarousel.error);
+        } else {
+          toast.warning('Нельзя удалить файл. В карусели должно быть как минимум 2 файла.');
+        }
+        return;
+      }
+
       await dispatch(deleteImageCarousel({ id })).unwrap();
       await dispatch(getCarousel());
       toast.success('Файл успешно удален');

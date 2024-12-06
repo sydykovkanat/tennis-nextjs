@@ -1,3 +1,7 @@
+.containerCarouselItem {
+    @apply grid md:grid-cols-2 lg:grid-cols-3 gap-3
+}
+
 .image {
     @apply rounded-lg object-cover h-full w-full max-h-[300px]
 }
