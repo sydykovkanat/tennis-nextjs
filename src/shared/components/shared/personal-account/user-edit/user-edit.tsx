@@ -80,6 +80,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
                 {(segment) => <DateSegment segment={segment} className={styles.dateSegment} />}
               </DateInput>
             </DateField>
+
             <div>
               <Label htmlFor='gender' className={'text-base text-left font-medium block'}>
                 Пол

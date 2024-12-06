@@ -50,7 +50,7 @@
 }
 
 .dateField {
-    @apply space-y-0.5 mb-4;
+    @apply space-y-0.5 ;
 }
 
 
