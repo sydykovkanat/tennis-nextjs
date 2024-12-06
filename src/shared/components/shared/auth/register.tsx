@@ -15,7 +15,7 @@ import {
 import { cn } from '@/shared/lib';
 import { RegisterMutation } from '@/shared/types/auth.types';
 import { Category } from '@/shared/types/category.types';
-import { parseDate, parseDateTime, parseZonedDateTime } from '@internationalized/date';
+import { parseDate } from '@internationalized/date';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
