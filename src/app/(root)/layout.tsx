@@ -1,15 +1,14 @@
 import { getFooterItems } from '@/actions/footer';
-import { Footer } from '@/shared/components/shared';
-import { Navbar } from '@/shared/components/shared/navbar/navbar';
+import { Footer, Navbar } from '@/shared/components/shared';
 
-import React from 'react';
+import React, { use } from 'react';
 
-export default async function Layout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const footerItemsData = await getFooterItems();
+  const footerItemsData = use(getFooterItems());
 
   return (
     <div className='flex flex-col min-h-dvh'>

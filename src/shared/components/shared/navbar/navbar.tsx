@@ -1,7 +1,8 @@
 'use client';
 
-import { NavbarMobile } from '@/shared/components/shared';
+import { Loader } from '@/shared/components/shared';
 import { NavigationItems } from '@/shared/components/shared/navbar/menu-items';
+import NavBarDropDown from '@/shared/components/shared/navbar/nav-bar-drop-down';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,11 +11,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/shared/components/ui/navigation-menu';
-import { cn } from '@/shared/lib';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { useAppSelector } from '@/shared/lib/store';
 import { FooterElementsData } from '@/shared/types/footer.types';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -22,25 +21,18 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './navbar.module.css';
 
-const NavBarDropDown = dynamic(() => import('./nav-bar-drop-down').then((mod) => mod.default), { ssr: false });
-
 interface Props {
   dataItems: FooterElementsData[];
 }
 
 export const Navbar: React.FC<Props> = ({ dataItems }) => {
-  const [mounted, setMounted] = useState(false);
-
+  const [isHydrated, setIsHydrated] = useState(false);
   const user = useAppSelector(selectUser);
   const pathname = usePathname();
 
   useEffect(() => {
-    setMounted(true);
+    setIsHydrated(true);
   }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <div className={styles.header}>
@@ -49,10 +41,6 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
           <Link href='/' className={styles.logoWrapper}>
             <img className={styles.logo} src='/kslt.svg' alt='КСЛТ' />
           </Link>
-
-          <div className={styles.navBarMobile}>
-            <NavbarMobile footerItemsData={dataItems} />
-          </div>
 
           <div className={styles.headerMainNavInner}>
             <ul className={styles.headerMainNav}>
@@ -66,17 +54,15 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <NavigationMenu>
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
-                      {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && (
+              {dataItems.length > 0 && (
+                <li>
+                  <NavigationMenu>
+                    <NavigationMenuList>
+                      <NavigationMenuItem>
                         <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
-                      )}
-                      <NavigationMenuContent>
-                        <ul className={styles.navigationMenuContent}>
-                          {dataItems.length > 0 &&
-                            dataItems[0].menuPosition.map((menuItem) => (
+                        <NavigationMenuContent>
+                          <ul className={styles.navigationMenuContent}>
+                            {dataItems[0].menuPosition.map((menuItem) => (
                               <li key={menuItem._id} className={styles.navigationMenuList}>
                                 <NavigationMenuLink
                                   className={styles.navigationMenuLink}
@@ -87,22 +73,29 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                                 </NavigationMenuLink>
                               </li>
                             ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
-              </li>
+                          </ul>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
+                </li>
+              )}
             </ul>
           </div>
 
           <div className={styles.navigationMenu}>
-            {user ? (
-              <NavBarDropDown />
+            {isHydrated ? (
+              user ? (
+                <NavBarDropDown />
+              ) : (
+                <Link className='text-white underline' href='/login'>
+                  Авторизация
+                </Link>
+              )
             ) : (
-              <Link className={cn(styles.underlineAccent, 'text-white')} href='/login'>
-                Авторизация
-              </Link>
+              <div className={'size-6 grid place-items-center'}>
+                <Loader theme={'light'} />
+              </div>
             )}
           </div>
         </div>
