@@ -25,7 +25,6 @@ import {
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';
-import { DateField, DateInput, DateSegment } from 'react-aria-components';
 
 interface Props {
   user: User;
@@ -33,7 +32,7 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
   const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, dateChange, handleSubmit, resetUserInfo } = useUserForm({ user, closeDialog });
+  const { userInfo, updateField, handleDateChange, handleSubmit, resetUserInfo } = useUserForm({ user, closeDialog });
 
   const handleDialogOpenChange = (open: boolean) => {
     setIsDialogOpen(open);
@@ -81,13 +80,17 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               className={styles.inputField}
             />
 
-            <DateField id={'dateOfBirth'} onChange={dateChange} className={styles.dateField} aria-label='Дата рождения'>
-              <Label htmlFor={'dateOfBirth'}>Дата рождения</Label>
-              <DateInput className={styles.dateInput}>
-                {(segment) => <DateSegment segment={segment} className={styles.dateSegment} />}
-              </DateInput>
-            </DateField>
-
+            <div className='flex flex-col gap-2'>
+              <Label htmlFor='dateOfBirth'>Дата рождения</Label>
+              <Input
+                id='dateOfBirth'
+                type='date'
+                value={userInfo.dateOfBirth}
+                placeholder='Выберите дату'
+                onChange={handleDateChange}
+                className={styles.dateInput}
+              />
+            </div>
             <div>
               <Label htmlFor='gender' className={'text-base text-left font-medium block'}>
                 Пол

@@ -1,10 +1,10 @@
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { User } from '@/shared/types/user.types';
+import { isValid, parseISO } from 'date-fns';
 import { toast } from 'sonner';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { DateValue } from 'react-aria-components';
 
 interface UseUserFormProps {
   user: User;
@@ -41,12 +41,14 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     setUserInfo((prev) => ({ ...prev, [field]: value }));
   };
 
-  const dateChange = (date: DateValue | null) => {
-    if (!date) return;
-    setUserInfo((prev) => ({
-      ...prev,
-      dateOfBirth: date.toString(),
-    }));
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (isValid(parseISO(value))) {
+      setUserInfo((prev) => ({
+        ...prev,
+        dateOfBirth: value,
+      }));
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -59,5 +61,5 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
-  return { userInfo, updateField, dateChange, handleSubmit, resetUserInfo };
+  return { userInfo, updateField, handleSubmit, resetUserInfo, handleDateChange };
 };
