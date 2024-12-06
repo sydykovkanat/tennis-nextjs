@@ -3,7 +3,7 @@ import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-
 import { User } from '@/shared/types/user.types';
 import { toast } from 'sonner';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { DateValue } from 'react-aria-components';
 
 interface UseUserFormProps {
@@ -23,7 +23,7 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
   const [userInfo, setUserInfo] = useState(initialState);
   const dispatch = useAppDispatch();
 
-  const resetUserInfo = () => {
+  const resetUserInfo = useCallback(() => {
     setUserInfo({
       telephone: user.telephone || '',
       fullName: user.fullName || '',
@@ -31,11 +31,11 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
       dateOfBirth: user.dateOfBirth || '',
       gender: user.gender || '',
     });
-  };
+  }, [user.dateOfBirth, user.email, user.fullName, user.gender, user.telephone]);
 
   useEffect(() => {
     resetUserInfo();
-  }, [user]);
+  }, [user, resetUserInfo]);
 
   const updateField = (field: string, value: string) => {
     setUserInfo((prev) => ({ ...prev, [field]: value }));
