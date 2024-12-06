@@ -67,6 +67,7 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
                 type='file'
                 name='image'
                 onChange={fileInputChangeHandler}
+                accept=' image/*, video/*'
               />
               <Button
                 type='submit'
