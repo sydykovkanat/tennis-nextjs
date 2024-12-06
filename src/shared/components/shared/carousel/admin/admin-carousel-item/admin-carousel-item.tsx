@@ -4,10 +4,9 @@ import { AdminCarouselDialog, Confirm, Loader } from '@/shared/components/shared
 import { useAdminCarousel } from '@/shared/components/shared/carousel/admin/hooks/use-admin-carousel';
 import { Button } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib';
+import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { photoCarouselState } from '@/shared/lib/features/carousel/carousel-slice';
 import { getCarousel } from '@/shared/lib/features/carousel/carousel-thunks';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 import React, { useEffect } from 'react';

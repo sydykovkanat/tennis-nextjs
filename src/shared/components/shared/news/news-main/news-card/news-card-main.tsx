@@ -1,13 +1,13 @@
 import { Card } from '@/shared/components/ui';
 import { CardContent } from '@/shared/components/ui/card';
 import { API_URL } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
 import Link from 'next/link';
 
 import React from 'react';
 
 import styles from './news-card.module.css';
-import { cn } from '@/shared/lib';
 
 interface Props {
   news: News;

@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import {
   errorImgCarouselState,
   loadingCarouselState,
@@ -10,7 +11,6 @@ import {
   updateCarouselImage,
 } from '@/shared/lib/features/carousel/carousel-thunks';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { CarouselMutation } from '@/shared/types/carousel.types';
 import { toast } from 'sonner';
 
