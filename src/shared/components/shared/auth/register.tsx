@@ -15,6 +15,7 @@ import {
 import { cn } from '@/shared/lib';
 import { RegisterMutation } from '@/shared/types/auth.types';
 import { Category } from '@/shared/types/category.types';
+import { parseDate } from '@internationalized/date';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -97,7 +98,12 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         onChange={handleChange}
       />
 
-      <DateField id={'dateOfBirth'} onChange={dateChange} className={styles.dateField}>
+      <DateField
+        id={'dateOfBirth'}
+        value={registerMutation.dateOfBirth ? parseDate(registerMutation.dateOfBirth) : null}
+        onChange={dateChange}
+        className={styles.dateField}
+      >
         <Label htmlFor={'dateOfBirth'}>Дата рождения</Label>
         <DateInput className={styles.dateInput}>
           {(segment) => <DateSegment segment={segment} className={styles.dateSegment} />}
