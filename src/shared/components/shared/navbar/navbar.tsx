@@ -11,8 +11,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/shared/components/ui/navigation-menu';
+import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
-import { useAppSelector } from '@/shared/lib/store';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
