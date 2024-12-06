@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { User } from '@/shared/types/user.types';
-import { format } from 'date-fns';
+import { DateValue } from '@react-types/calendar';
 import { toast } from 'sonner';
 
 import React, { useEffect, useState } from 'react';
@@ -39,10 +39,12 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     setUserInfo((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleDateChange = (date: Date | undefined) => {
-    if (date) {
-      updateField('dateOfBirth', format(date, 'dd.MM.yyyy'));
-    }
+  const dateChange = (date: DateValue | null) => {
+    if (!date) return;
+    setUserInfo((prev) => ({
+      ...prev,
+      dateOfBirth: date.toString(),
+    }));
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -55,5 +57,5 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
-  return { userInfo, updateField, handleDateChange, handleSubmit };
+  return { userInfo, updateField, dateChange, handleSubmit };
 };

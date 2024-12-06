@@ -1,23 +1,22 @@
 'use client';
 
-import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/components/shared';
+import { Container, GradientCircle, userCircles } from '@/shared/components/shared';
 import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
+import { UserEdit } from '@/shared/components/shared/personal-account/user-edit/user-edit';
+import { useAxiosInterceptors } from '@/shared/hooks/hooks';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
-import { addTokenInterceptors } from '@/shared/lib/helpers/axios-api';
-import { store, useAppSelector } from '@/shared/lib/store';
+import { useAppSelector } from '@/shared/lib/store';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
 import { Button } from '../../ui/button';
 
-addTokenInterceptors(store);
-
-const PersonalAccount: React.FC = () => {
+const PersonalAccount = () => {
+  useAxiosInterceptors();
   useFetchUser();
   const currentUser = useAppSelector(selectCurrentUser);
-  if (!currentUser) return null;
   return (
     currentUser && (
       <>
@@ -36,35 +35,35 @@ const PersonalAccount: React.FC = () => {
               </UserEdit>
             </header>
 
-            <main className='mt-2 flex flex-col max-w-2xl'>
-              <div className='mb-3 flex flex-col'>
-                <h2 className='text-xl dark:text-black font-medium'>{currentUser.fullName}</h2>
-                <span className='text-[#64B32C]'>{currentUser.category.name}</span>
+            <main className={styles.mainWrapper}>
+              <div className={styles.fullNameDiv}>
+                <h2 className={styles.fullName}>{currentUser.fullName}</h2>
+                <span className={styles.greenText}>{currentUser.category.name}</span>
               </div>
 
-              <div className='space-y-2 flex flex-col'>
-                <div className='flex flex-wrap'>
+              <div className={styles.divWrapper}>
+                <div className={styles.textWrapper}>
                   <h3 className={styles.title}>Почта</h3>
                   <span className={styles.subtitle}>{currentUser.email}</span>
                 </div>
 
-                <div className='flex flex-wrap'>
+                <div className={styles.textWrapper}>
                   <h3 className={styles.title}>Телефон</h3>
                   <span className={styles.subtitle}>{currentUser.telephone}</span>
                 </div>
 
-                <div className='flex flex-wrap'>
+                <div className={styles.textWrapper}>
                   <h3 className={styles.title}>День рождения</h3>
                   <span className={styles.subtitle}>{currentUser.dateOfBirth}</span>
                 </div>
 
-                <div className='flex flex-wrap'>
+                <div className={styles.textWrapper}>
                   <h3 className={styles.title}>Пол</h3>
                   <span className={styles.subtitle}>{currentUser.gender === 'male' ? 'Муж.' : 'Жен.'}</span>
                 </div>
 
                 {currentUser.role === 'admin' && (
-                  <div className='flex flex-wrap'>
+                  <div className={styles.textWrapper}>
                     <h3 className={styles.title}>Роль</h3>
                     <span className={styles.subtitle}>{currentUser.role === 'admin' ? 'Админ' : 'Пользователь'}</span>
                   </div>

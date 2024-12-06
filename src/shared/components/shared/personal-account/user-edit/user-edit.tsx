@@ -1,7 +1,7 @@
 'use client';
 
-import { UserDatePicker } from '@/shared/components/shared';
 import { useDialog, useUserForm } from '@/shared/components/shared/personal-account/hooks';
+import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import {
   Button,
   Input,
@@ -25,6 +25,7 @@ import {
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';
+import { DateField, DateInput, DateSegment } from 'react-aria-components';
 
 interface Props {
   user: User;
@@ -32,7 +33,7 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
   const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, handleDateChange, handleSubmit } = useUserForm({ user, closeDialog });
+  const { userInfo, updateField, dateChange, handleSubmit } = useUserForm({ user, closeDialog });
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -40,7 +41,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Редактирование профиля</DialogTitle>
-          <DialogDescription>Заполните форму для редактирования профиля.</DialogDescription>
+          <DialogDescription>Заполните форму для редактирования профиля</DialogDescription>
 
           <form onSubmit={handleSubmit} className={'flex flex-col gap-1.5'}>
             <Input
@@ -50,6 +51,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               label='ФИО'
               placeholder='Введите ваше полное ФИО'
               autoComplete='name'
+              className={styles.inputField}
             />
 
             <Input
@@ -59,6 +61,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               label='Почта'
               placeholder={'example@gmail.com'}
               autoComplete={'email'}
+              className={styles.inputField}
             />
 
             <Input
@@ -68,20 +71,21 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               label='Номер телефона'
               placeholder={'0500 000 000'}
               autoComplete={'tel'}
+              className={styles.inputField}
             />
 
-            <UserDatePicker
-              value={userInfo.dateOfBirth}
-              onChange={(date) => handleDateChange(date)}
-              label={'Дата рождения'}
-            />
-
+            <DateField id={'dateOfBirth'} onChange={dateChange} className={styles.dateField} aria-label='Дата рождения'>
+              <Label htmlFor={'dateOfBirth'}>Дата рождения</Label>
+              <DateInput className={styles.dateInput}>
+                {(segment) => <DateSegment segment={segment} className={styles.dateSegment} />}
+              </DateInput>
+            </DateField>
             <div>
               <Label htmlFor='gender' className={'text-base text-left font-medium block'}>
                 Пол
               </Label>
               <Select value={userInfo.gender} onValueChange={(value) => updateField('gender', value)}>
-                <SelectTrigger className={'h-12 focus:ring-[#80BC41]'} id='gender'>
+                <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />
                 </SelectTrigger>
                 <SelectContent>
