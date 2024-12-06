@@ -13,3 +13,7 @@
 .blockBtn {
     @apply top-3 left-6 absolute
 }
+
+.deleteBtn {
+    @apply me-3
+}

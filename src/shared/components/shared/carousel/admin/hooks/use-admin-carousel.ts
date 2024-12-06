@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { CarouselMutation } from '@/shared/types/carousel.types';
 import { toast } from 'sonner';
 
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 
 const emptyState: CarouselMutation = {
   image: null,

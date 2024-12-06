@@ -47,7 +47,7 @@ export const AdminCarouselItem: React.FC<CarouselItemForAdminProps> = ({ classNa
               {user && user.role === 'admin' && (
                 <div className={cn(styles.blockBtn)}>
                   <Confirm onOk={() => onDelete(image._id)}>
-                    <Button className='me-3' data-test-id='delete-file-in-carousel'>
+                    <Button className={cn(styles.deleteBtn, className)} data-test-id='delete-file-in-carousel'>
                       <TrashIcon />
                     </Button>
                   </Confirm>
