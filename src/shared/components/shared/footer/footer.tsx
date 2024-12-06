@@ -1,11 +1,5 @@
-import { NavigationItems } from '@/shared/components/shared/navbar/menu-items';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
-import { API_URL } from '@/shared/constants';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/shared/components/ui';
+import { API_URL, NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { ChevronUpIcon } from '@radix-ui/react-icons';
@@ -26,7 +20,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
       <div className={styles.footerWrapper}>
         <div className={styles.footerColumn}>
           <div className={styles.logoWrapper}>
-            <Link href='/' className={styles.logo}>
+            <Link prefetch={true} href='/' className={styles.logo}>
               <img src='/kslt.svg' alt='КСЛТ' />
             </Link>
           </div>
@@ -55,9 +49,9 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
           <div className={styles.infoColumn}>
             <h1 className={styles.heading}>О нас</h1>
             <ul className={styles.linksList}>
-              {NavigationItems.map((itemMenu, id) => (
+              {NAVIGATION_ITEMS.map((itemMenu, id) => (
                 <li key={id}>
-                  <Link href={itemMenu.link} className={styles.link}>
+                  <Link prefetch={true} href={itemMenu.link} className={styles.link}>
                     {itemMenu.name}
                   </Link>
                 </li>

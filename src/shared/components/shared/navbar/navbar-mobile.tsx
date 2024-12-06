@@ -1,14 +1,7 @@
 'use client';
 
-import { NavigationItems } from '@/shared/components/shared/navbar/menu-items';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
-  SheetTrigger,
-} from '@/shared/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/shared/components/ui';
+import { NAVIGATION_ITEMS } from '@/shared/constants';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
@@ -71,15 +64,16 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
             <XMarkIcon className={styles.mobileMenuIconClone} />
           </button>
         </SheetClose>
-        <Link href='/' className={styles.mobileMenuLogoWrapper}>
+        <Link prefetch={true} href='/' className={styles.mobileMenuLogoWrapper}>
           <img className={styles.mobileMenuLogo} src='/kslt.svg' alt='КСЛТ' />
         </Link>
 
         <ul className={styles.mobileMenuUl}>
-          {NavigationItems.map((itemMenu, id) => (
+          {NAVIGATION_ITEMS.map((itemMenu, id) => (
             <li key={id} className={styles.mobileMenuLi}>
               <Link
-                className={`${pathname === itemMenu.link ? styles.mobileMenuLinkActive : styles.mobileMenuLink}`}
+                prefetch={true}
+                className={cn(pathname === itemMenu.link ? styles.mobileMenuLinkActive : styles.mobileMenuLink)}
                 href={itemMenu.link}
               >
                 {itemMenu.name}
@@ -117,7 +111,8 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
           <li>
             {!user && (
               <Link
-                className={`${pathname === '/login' ? styles.mobileMenuLinkActive : styles.mobileMenuLink}`}
+                prefetch={true}
+                className={cn(pathname === '/login' ? styles.mobileMenuLinkActive : styles.mobileMenuLink)}
                 href='/login'
               >
                 <span className={cn(styles.underlineAccent, styles.mobileMenuLiActionsText)}>Авторизация</span>
@@ -127,7 +122,8 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
           {user && (
             <li className={styles.mobileMenuLiActions}>
               <Link
-                className={`${pathname === '/personal-account' ? styles.mobileMenuLinkActive : styles.mobileMenuLink}`}
+                prefetch={true}
+                className={cn(pathname === '/personal-account' ? styles.mobileMenuLinkActive : styles.mobileMenuLink)}
                 href='/personal-account'
               >
                 <span className={styles.mobileMenuLiActionsText}>Личный кабинет</span>
@@ -137,7 +133,8 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
           {user?.role === 'admin' && (
             <li className={styles.mobileMenuLiActions}>
               <Link
-                className={`${pathname === '/admin' ? styles.mobileMenuLinkActive : styles.mobileMenuLink}`}
+                prefetch={true}
+                className={cn(pathname === '/admin' ? styles.mobileMenuLinkActive : styles.mobileMenuLink)}
                 href='/admin'
               >
                 <span className={styles.mobileMenuLiActionsText}>Панель администратора</span>

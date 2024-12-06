@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
+} from '@/shared/components/ui';
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { logout } from '@/shared/lib/features/users/users-thunks';
@@ -53,14 +53,14 @@ const NavBarDropDown = () => {
             <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setDropDown(false)}>
-              <Link className={styles.navigationMenuDropDown} href='/personal-account'>
+              <Link prefetch={true} className={styles.navigationMenuDropDown} href='/personal-account'>
                 <UserIcon className={styles.iconMenuDropDown} />
                 Личный кабинет
               </Link>
             </DropdownMenuItem>
             {user?.role === 'admin' && (
               <DropdownMenuItem onClick={() => setDropDown(false)}>
-                <Link className={styles.navigationMenuDropDown} href='/admin' id={'admin'}>
+                <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'admin'}>
                   <Cog6ToothIcon className={styles.iconMenuDropDown} />
                   Панель администратора
                 </Link>

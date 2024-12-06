@@ -1,7 +1,6 @@
 'use client';
 
 import { NavbarMobile } from '@/shared/components/shared';
-import { NavigationItems } from '@/shared/components/shared/navbar/menu-items';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,7 +8,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@/shared/components/ui/navigation-menu';
+} from '@/shared/components/ui';
+import { NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { useAppSelector } from '@/shared/lib/store';
@@ -56,10 +56,10 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
 
           <div className={styles.headerMainNavInner}>
             <ul className={styles.headerMainNav}>
-              {NavigationItems.map((itemMenu, id) => (
+              {NAVIGATION_ITEMS.map((itemMenu, id) => (
                 <li key={id}>
                   <Link
-                    className={`${pathname === itemMenu.link ? styles.mainNavLinkActive : styles.mainNavLink}`}
+                    className={cn(pathname === itemMenu.link ? styles.mainNavLinkActive : styles.mainNavLink)}
                     href={itemMenu.link}
                   >
                     {itemMenu.name}
