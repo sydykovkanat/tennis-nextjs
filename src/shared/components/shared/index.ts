@@ -28,3 +28,5 @@ export { TournamentCalendar } from './tournaments/tournament-calendar/tournament
 export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
+export { Ratings } from './ratings/ratings';
+export { RatingCard } from './ratings/rating-card';
