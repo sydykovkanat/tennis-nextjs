@@ -69,7 +69,9 @@ const Login: React.FC<Props> = ({ className }) => {
         Забыли пароль?
       </Link>
 
-      <Button className={styles.createBtn}>Создать аккаунт</Button>
+      <Link href={'/register'}>
+        <Button className={styles.createBtn}>Создать аккаунт</Button>
+      </Link>
     </form>
   );
 };
