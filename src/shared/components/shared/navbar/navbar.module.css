@@ -167,3 +167,7 @@
 .mobileMenuExit {
   @apply cursor-pointer py-[8px] block px-[10px];
 }
+
+.loaderStatusAuth {
+  @apply size-6 grid place-items-center;
+}

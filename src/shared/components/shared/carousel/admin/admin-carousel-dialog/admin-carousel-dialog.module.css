@@ -1,23 +1,23 @@
 .btnAddFile {
-    @apply w-full xs:w-max
+  @apply w-full xs:w-max;
 }
 
 .form {
-    @apply flex items-center space-x-2;
+  @apply flex items-center space-x-2;
 }
 
 .input {
-    @apply w-[250px] md:w-full sm:w-[250px]
+  @apply w-[250px] md:w-full sm:w-[250px];
 }
 
 .filePreviews {
-    @apply border rounded-lg mt-2 mb-2 p-5 bg-muted
+  @apply border rounded-lg mt-2 mb-2 p-5 bg-muted;
 }
 
 .image {
-    @apply w-auto h-40 rounded-lg mx-auto object-contain
+  @apply w-auto h-40 rounded-lg mx-auto object-contain;
 }
 
 .video {
-    @apply w-auto h-40 rounded-lg mx-auto
+  @apply w-auto h-40 rounded-lg mx-auto;
 }

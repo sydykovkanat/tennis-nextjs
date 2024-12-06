@@ -100,7 +100,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                 </Link>
               )
             ) : (
-              <div className={'size-6 grid place-items-center'}>
+              <div className={styles.loaderStatusAuth}>
                 <Loader theme={'light'} />
               </div>
             )}
