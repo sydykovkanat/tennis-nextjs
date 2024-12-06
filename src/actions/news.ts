@@ -2,7 +2,7 @@ import { axiosApi, toQueryParams } from '@/shared/lib';
 import { News, NewsResponse } from '@/shared/types/news.types';
 
 interface Filters {
-  query: { [p: string]: string | number };
+  query: { [p: string]: string | number } | undefined;
 }
 
 // const createFormData = (newsMutation: NewsMutation): FormData => {

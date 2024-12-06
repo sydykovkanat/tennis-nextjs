@@ -2,14 +2,12 @@
 
 import { Container } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
-import { ADMIN_PAGES } from '@/shared/config/pages';
 import { cn } from '@/shared/lib';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
 import React, { useEffect, useState } from 'react';
-
 import styles from './admin.module.css';
+import { ADMIN_PAGES } from '@/shared/config';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [currentTab, setCurrentTab] = useState<string>('partners');
