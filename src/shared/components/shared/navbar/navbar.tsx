@@ -1,6 +1,7 @@
 'use client';
 
-import { NavbarMobile } from '@/shared/components/shared';
+import { Loader, NavbarMobile } from '@/shared/components/shared';
+import NavBarDropDown from '@/shared/components/shared/navbar/nav-bar-drop-down';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,11 +11,9 @@ import {
   NavigationMenuTrigger,
 } from '@/shared/components/ui';
 import { NAVIGATION_ITEMS } from '@/shared/constants';
-import { cn } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
-import { useAppSelector } from '@/shared/lib/store';
 import { FooterElementsData } from '@/shared/types/footer.types';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -22,31 +21,25 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './navbar.module.css';
 
-const NavBarDropDown = dynamic(() => import('./nav-bar-drop-down').then((mod) => mod.default), { ssr: false });
-
 interface Props {
   dataItems: FooterElementsData[];
 }
 
 export const Navbar: React.FC<Props> = ({ dataItems }) => {
-  const [mounted, setMounted] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   const user = useAppSelector(selectUser);
   const pathname = usePathname();
 
   useEffect(() => {
-    setMounted(true);
+    setIsHydrated(true);
   }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <div className={styles.header}>
       <div className={styles.container}>
         <div className={styles.headerInner}>
-          <Link href='/' className={styles.logoWrapper}>
+          <Link prefetch={true} href='/' className={styles.logoWrapper}>
             <img className={styles.logo} src='/kslt.svg' alt='КСЛТ' />
           </Link>
 
@@ -59,6 +52,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
               {NAVIGATION_ITEMS.map((itemMenu, id) => (
                 <li key={id}>
                   <Link
+                    prefetch={true}
                     className={cn(pathname === itemMenu.link ? styles.mainNavLinkActive : styles.mainNavLink)}
                     href={itemMenu.link}
                   >
@@ -97,12 +91,18 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
           </div>
 
           <div className={styles.navigationMenu}>
-            {user ? (
-              <NavBarDropDown />
+            {isHydrated ? (
+              user ? (
+                <NavBarDropDown />
+              ) : (
+                <Link prefetch={true} className={cn(styles.underlineAccent, 'text-white')} href='/login'>
+                  Авторизация
+                </Link>
+              )
             ) : (
-              <Link className={cn(styles.underlineAccent, 'text-white')} href='/login'>
-                Авторизация
-              </Link>
+              <div className={'size-6 grid place-items-center'}>
+                <Loader theme={'light'} />
+              </div>
             )}
           </div>
         </div>

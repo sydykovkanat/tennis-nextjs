@@ -8,10 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/shared/components/ui';
-import { useAppDispatch } from '@/shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { logout } from '@/shared/lib/features/users/users-thunks';
-import { useAppSelector } from '@/shared/lib/store';
 import { ArrowRightStartOnRectangleIcon, Cog6ToothIcon, UserCircleIcon, UserIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
