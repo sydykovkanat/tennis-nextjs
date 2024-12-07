@@ -3,7 +3,6 @@ export { MainTitles } from './main-titles/main-titles';
 export { Loader } from './loader/loader';
 export { ErrorMessage } from './error-message/error-message';
 export { WarningMessage } from './warning-message/warning-message';
-export { FileInput } from './file-input/file-input';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
 export { NewsMain } from './news/news-main/news-main';
@@ -21,19 +20,27 @@ export { AdminCarouselHeader } from '@/shared/components/shared/carousel/admin/a
 export { AdminCarouselPage } from './carousel/admin/admin-carousel';
 export { AdminCarouselItem } from '@/shared/components/shared/carousel/admin/admin-carousel-item/admin-carousel-item';
 export { AdminCarouselDialog } from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog';
+
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
 export { RatingMemberForm } from './rating-members/rating-member-form/rating-member-form';
+export { RatingMemberEdit } from './rating-members/rating-member-edit/rating-member-edit';
+export { RatingMemberAdminCard } from './rating-members/rating-member-admin-card/rating-member-admin-card';
+export { RatingMembersAdminList } from './rating-members/rating-members-admin-list/rating-members-admin-list';
+export { RatingMembersAdmin } from './rating-members/rating-members-admin/rating-members-admin';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
+
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
 export { ActionButtons } from './news/image-modal/acton-buttons';
 export { NavbarMobile } from './navbar/navbar-mobile';
 export { Register } from './auth/register';
+
 export { TournamentCard } from './tournaments/tournament-card/tournament-card';
 export { TournamentCardInfo } from './tournaments/tournament-card/tournament-card-info';
 export { TournamentActions } from './tournaments/tournament-card/tournament-card-action';
 export { TournamentRegistration } from './tournaments/tournament-card/tournament-card-registration';
 export { TournamentCardsList } from './tournaments/tournament-cards-list/tournament-card-list';
 export { TournamentAccordion } from './tournaments/tournament-accordion/tournament-accordion';
+
 export { TournamentCalendar } from './tournaments/tournament-calendar/tournament-calendar';
 export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';

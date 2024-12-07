@@ -1,13 +1,13 @@
 .error {
-  @apply text-red-500;
+  @apply text-red-950;
 }
 
 .warning {
-  @apply text-yellow-500;
+  @apply text-yellow-400;
 }
 
 .info {
-  @apply text-grey-500;
+  @apply text-gray-500;
 }
 
 .text {

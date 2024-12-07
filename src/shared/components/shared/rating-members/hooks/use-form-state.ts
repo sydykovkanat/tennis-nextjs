@@ -1,3 +1,5 @@
+'use client';
+
 import { RatingMemberMutation } from '@/shared/types/rating-member.types';
 
 import React, { useState } from 'react';

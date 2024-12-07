@@ -1,0 +1,19 @@
+.noContentText {
+  @apply my-6;
+}
+
+.titlesWrapper {
+  @apply text-center;
+}
+
+.mainTitle {
+  @apply text-[20px] sm:text-[22px] font-semibold;
+}
+
+.categoryTitle {
+  @apply text-lg text-[#64B32C] font-semibold mt-1 sm:mt-3;
+}
+
+.contentContainer {
+  @apply flex flex-col items-center gap-y-3 mt-5 sm:mt-8;
+}

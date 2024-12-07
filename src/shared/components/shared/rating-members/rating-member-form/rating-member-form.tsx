@@ -1,5 +1,5 @@
 // 'use client';
-import { ErrorMessage, FileInput, WarningMessage } from '@/shared/components/shared';
+import { ErrorMessage, WarningMessage } from '@/shared/components/shared';
 import { useRatingMembersForm } from '@/shared/components/shared/rating-members/hooks';
 import {
   Button,
@@ -54,13 +54,13 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
     <form onSubmit={handleSubmit}>
       <div className={styles.formContainer}>
         <div className={styles.fieldContainer}>
-          <Label htmlFor='name'>Имя</Label>
           <Input
             required
             id='name'
             name='name'
             placeholder='Введите имя участника'
             value={state.name}
+            label='Имя'
             onChange={handleChange}
           />
           {((!existingMember && existingName) ||
@@ -122,8 +122,7 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
         </div>
 
         <div className={styles.fileInputContainer}>
-          <Label htmlFor='image'>Фото</Label>
-          <FileInput id='image' name='image' accept='image/*' onChange={fileInputChangeHandler} />
+          <Input id='image' name='image' type='file' accept='image/*' label='Фото' onChange={fileInputChangeHandler} />
         </div>
       </div>
 

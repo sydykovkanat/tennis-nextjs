@@ -1,8 +1,19 @@
 import { axiosApi } from '@/shared/lib';
-import { RatingMemberMutation, UpdateCategoryArg, UpdateRatingMemberArg } from '@/shared/types/rating-member.types';
+import {
+  RatingMember,
+  RatingMemberMutation,
+  UpdateCategoryArg,
+  UpdateRatingMemberArg,
+} from '@/shared/types/rating-member.types';
 import { GlobalError } from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { isAxiosError } from 'axios';
+
+export const fetchRatingMembers = createAsyncThunk<RatingMember[]>('ratingMembers/fetchAll', async () => {
+  const { data: ratingMembers } = await axiosApi.get<RatingMember[]>('/ratingMembers');
+
+  return ratingMembers;
+});
 
 export const createRatingMember = createAsyncThunk<void, RatingMemberMutation, { rejectValue: GlobalError }>(
   'ratingMembers/create',
