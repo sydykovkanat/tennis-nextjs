@@ -1,6 +1,6 @@
-'use client';
-
+// 'use client';
 import { ErrorMessage, FileInput, WarningMessage } from '@/shared/components/shared';
+import { useRatingMembersForm } from '@/shared/components/shared/rating-members/hooks';
 import {
   Button,
   DialogClose,
@@ -16,9 +16,11 @@ import {
 import { getGenderTitles } from '@/shared/lib/helpers/rating-member-utils';
 import { RatingMember, RatingMemberMutation } from '@/shared/types/rating-member.types';
 
-import React, { useState } from 'react';
+import React from 'react';
 
-interface Props {
+import styles from './rating-member-from.module.css';
+
+export interface RatingMembersProps {
   forWhichGender: 'male' | 'female';
   onSubmit: (ratingMember: RatingMemberMutation) => void;
   existingMember?: RatingMember;
@@ -27,15 +29,7 @@ interface Props {
   ratingMembers: RatingMember[];
 }
 
-const emptyState: RatingMemberMutation = {
-  name: '',
-  image: null,
-  gender: '',
-  place: '',
-  ratingType: '',
-};
-
-export const RatingMemberForm: React.FC<Props> = ({
+export const RatingMemberForm: React.FC<RatingMembersProps> = ({
   forWhichGender,
   onSubmit,
   existingMember,
@@ -43,39 +37,23 @@ export const RatingMemberForm: React.FC<Props> = ({
   onClose,
   ratingMembers,
 }) => {
-  const initialState = existingMember
-    ? { ...existingMember, place: existingMember.place.toString() }
-    : {
-        ...emptyState,
-        gender: forWhichGender,
-        ratingType: forWhichGender === 'female' ? 'womensTop3' : ('' as '' | 'mensTop8' | 'mensTop3' | 'womensTop3'),
-      };
   const { dialogTitle } = getGenderTitles(forWhichGender);
-  const [state, setState] = useState<RatingMemberMutation>(initialState);
-  const { placesTop3, placesTop8 } = useAdminRatingMembers();
-  const { handleChange, handleChangeSelect, fileInputChangeHandler } = useFormHandlers(setState);
-  const { existingName, maxMembersExceeded, isFormInvalid } = useFormRatingMembers(
-    ratingMembers,
+  const {
     state,
-    forWhichGender,
-    existingMember,
-    isLoading,
-  );
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    onSubmit({
-      ...state,
-    });
-
-    setState(initialState);
-  };
+    places,
+    existingName,
+    maxMembersExceeded,
+    isFormInvalid,
+    handleChange,
+    handleChangeSelect,
+    fileInputChangeHandler,
+    handleSubmit,
+  } = useRatingMembersForm(ratingMembers, forWhichGender, onSubmit, existingMember, isLoading);
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='flex flex-col gap-3 pt-3 pb-5'>
-        <div className='flex flex-col gap-1'>
+      <div className={styles.formContainer}>
+        <div className={styles.fieldContainer}>
           <Label htmlFor='name'>Имя</Label>
           <Input
             required
@@ -92,7 +70,7 @@ export const RatingMemberForm: React.FC<Props> = ({
         </div>
 
         {forWhichGender === 'male' && (
-          <div className='flex flex-col gap-1'>
+          <div className={styles.fieldContainer}>
             <Label htmlFor='ratingType'>Топ</Label>
             <Select
               name='ratingType'
@@ -112,7 +90,7 @@ export const RatingMemberForm: React.FC<Props> = ({
           </div>
         )}
 
-        <div className='flex flex-col gap-1'>
+        <div className={styles.fieldContainer}>
           <Label htmlFor='place'>Место</Label>
           <Select
             required
@@ -127,12 +105,12 @@ export const RatingMemberForm: React.FC<Props> = ({
             <SelectContent>
               <SelectGroup>
                 {forWhichGender === 'male' && state.ratingType === 'mensTop8'
-                  ? placesTop8.map((place) => (
+                  ? places.map((place) => (
                       <SelectItem key={place} value={place}>
                         {place}
                       </SelectItem>
                     ))
-                  : placesTop3.map((place) => (
+                  : places.map((place) => (
                       <SelectItem key={place} value={place}>
                         {place}
                       </SelectItem>
@@ -143,7 +121,7 @@ export const RatingMemberForm: React.FC<Props> = ({
           {forWhichGender === 'male' && !state.ratingType && <ErrorMessage>Сначала выберите топ</ErrorMessage>}
         </div>
 
-        <div className='flex flex-col'>
+        <div className={styles.fileInputContainer}>
           <Label htmlFor='image'>Фото</Label>
           <FileInput id='image' name='image' accept='image/*' onChange={fileInputChangeHandler} />
         </div>
@@ -165,7 +143,7 @@ export const RatingMemberForm: React.FC<Props> = ({
         />
       )}
 
-      <div className='flex flex-col gap-1'>
+      <div className={styles.fieldContainer}>
         <Button type='submit' disabled={isFormInvalid}>
           Сохранить
         </Button>

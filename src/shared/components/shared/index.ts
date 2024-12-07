@@ -22,6 +22,7 @@ export { AdminCarouselPage } from './carousel/admin/admin-carousel';
 export { AdminCarouselItem } from '@/shared/components/shared/carousel/admin/admin-carousel-item/admin-carousel-item';
 export { AdminCarouselDialog } from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog';
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
+export { RatingMemberForm } from './rating-members/rating-member-form/rating-member-form';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
 export { ActionButtons } from './news/image-modal/acton-buttons';

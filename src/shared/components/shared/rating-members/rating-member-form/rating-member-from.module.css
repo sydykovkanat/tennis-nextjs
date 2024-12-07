@@ -1,0 +1,11 @@
+.formContainer {
+  @apply flex flex-col gap-3 pt-3 pb-5;
+}
+
+.fieldContainer {
+  @apply flex flex-col gap-1;
+}
+
+.fileInputContainer {
+  @apply flex flex-col;
+}
