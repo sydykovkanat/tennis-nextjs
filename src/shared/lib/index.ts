@@ -5,3 +5,4 @@ export { usePagination } from './hooks/use-pagination';
 export { toQueryParams } from './to-query-params';
 export { deleteEmptyQueryStrings } from './delete-empty-query-strings';
 export { formatDate } from './helpers/format-date';
+export { useAppDispatch, useAppSelector, type RootState } from '@/shared/hooks/hooks';

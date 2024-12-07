@@ -1,18 +1,15 @@
 'use client';
 
+import { useLogin, useLoginForm, useLoginSelectors } from '@/shared/components/shared/auth/hooks';
 import { Button, Input } from '@/shared/components/ui';
-import { useAppDispatch } from '@/shared/hooks/hooks';
-import { cn, formatTelephone } from '@/shared/lib';
-import { selectLoginError, selectLoginLoading, selectUser } from '@/shared/lib/features/users/users-slice';
-import { login } from '@/shared/lib/features/users/users-thunks';
-import { useAppSelector } from '@/shared/lib/store';
+import { cn } from '@/shared/lib';
 import { LoginMutation } from '@/shared/types/auth.types';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { toast } from 'sonner';
 
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+
+import styles from './login.module.css';
 
 interface Props {
   className?: string;
@@ -24,53 +21,25 @@ const initialState: LoginMutation = {
 };
 
 const Login: React.FC<Props> = ({ className }) => {
-  const user = useAppSelector(selectUser);
-  const loginError = useAppSelector(selectLoginError);
-  const loginLoading = useAppSelector(selectLoginLoading);
-  const dispatch = useAppDispatch();
-  const [loginMutation, setLoginMutation] = useState<LoginMutation>(initialState);
-  const router = useRouter();
-
-  const isFormValid = Boolean(loginMutation.telephone.length === 12 && loginMutation.password);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { id } = event.target;
-    let { value } = event.target;
-
-    if (id === 'telephone') {
-      value = formatTelephone(value);
-    }
-
-    setLoginMutation((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
+  const { loginMutation, handleChange, isFormValid } = useLoginForm(initialState);
+  const { loginError, loginLoading } = useLoginSelectors();
+  const { handleLogin } = useLogin();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    try {
-      event.preventDefault();
-
-      await dispatch(login(loginMutation)).unwrap();
-      toast.success(`Вы успешно вошли в систему ${user && `- ${user.fullName}!`}`);
-      router.push('/');
-    } catch (error) {
-      console.log(error);
-    }
+    event.preventDefault();
+    await handleLogin(loginMutation);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn('py-12 mx-auto max-w-[545px] bg-white px-20 rounded-[22px]', className)}>
-      <h1 className={'text-[28px] leading-10 font-bold mb-2'}>Добро пожаловать! </h1>
+    <form onSubmit={handleSubmit} className={cn(styles.form, className)}>
+      <h1 className={styles.title}>Добро пожаловать</h1>
 
-      <p className={'mb-7'}>Введите свой логин и пароль для входа в личный кабинет</p>
+      <p className={styles.subtitle}>Введите свой логин и пароль для входа в личный кабинет</p>
 
       <Input
         error={loginError?.error}
         label={'Телефон'}
         id={'telephone'}
-        className={'h-12 mb-4'}
-        labelClassName={'text-base'}
         placeholder={'0555 555 555'}
         value={loginMutation.telephone}
         onChange={handleChange}
@@ -80,8 +49,6 @@ const Login: React.FC<Props> = ({ className }) => {
         error={loginError?.error}
         label={'Пароль'}
         id={'password'}
-        className={'h-12 mb-8'}
-        labelClassName={'text-base'}
         type={'password'}
         autoComplete={'on'}
         placeholder={'Введите пароль'}
@@ -92,22 +59,19 @@ const Login: React.FC<Props> = ({ className }) => {
       <Button
         loading={loginLoading}
         icon={ArrowRightIcon}
-        iconClassName={'hover:translate-x-1/2 block hover:scale-105'}
-        className={'flex justify-between w-full h-14 mb-2.5'}
+        className={styles.loginBtn}
         disabled={!isFormValid || loginLoading}
       >
         Войти
       </Button>
 
-      <Link href={'/forgot-password'} className={'text-tn-dark-green block text-right mb-8'}>
+      <Link href={'/forgot-password'} className={styles.forgotBtn}>
         Забыли пароль?
       </Link>
 
-      <Button
-        className={'bg-[#D9EBC6] text-tn-dark-green rounded-xl shadow-none h-12 w-full hover:bg-tn-green-secondary'}
-      >
-        Создать аккаунт
-      </Button>
+      <Link href={'/register'}>
+        <Button className={styles.createBtn}>Создать аккаунт</Button>
+      </Link>
     </form>
   );
 };
