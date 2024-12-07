@@ -2,9 +2,8 @@
 
 import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { useEffect } from 'react';
-
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 
 export const useCategory = () => {
   const dispatch = useAppDispatch();

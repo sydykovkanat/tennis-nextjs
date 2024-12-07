@@ -9,3 +9,11 @@
 .text {
     overflow-wrap: anywhere;
 }
+
+.createdAt {
+    @apply text-muted-foreground;
+}
+
+.actionsBlock {
+    @apply space-x-1 flex items-center;
+}

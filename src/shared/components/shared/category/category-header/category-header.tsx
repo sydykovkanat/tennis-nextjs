@@ -21,7 +21,7 @@ export const CategoryHeader: React.FC<Props> = ({ className }) => {
         <small className={cn(styles.subtitle)}>Список всех категорий и управление категориями.</small>
       </div>
 
-      <Button className={'w-full xs:w-max'} icon={SquaresPlusIcon} onClick={() => setOpen(true)}>
+      <Button className={cn(styles.addButton)} icon={SquaresPlusIcon} onClick={() => setOpen(true)}>
         Добавить категорию
       </Button>
       {open && <CategoryForm open={open} setOpen={setOpen} />}

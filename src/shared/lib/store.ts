@@ -1,11 +1,9 @@
 import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
+import { categorySlice } from '@/shared/lib/features/categories/category-slice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
-
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { categorySlice } from '@/shared/lib/features/categories/category-slice';
 
 const createNoopStorage = () => {
   return {
