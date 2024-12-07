@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, RatingMembersAdminList, Title } from '@/shared/components/shared';
+import { CategoriesEditAction, Loader, RatingMembersAdminList, Title } from '@/shared/components/shared';
 import { useRatingMembers } from '@/shared/components/shared/rating-members/hooks';
 import RatingMemberNew from '@/shared/components/shared/rating-members/rating-member-new/rating-member-new';
 
@@ -25,9 +25,9 @@ export const RatingMembersAdmin = () => {
           </Title>
           <small className='text-muted-foreground text-base'>Управление рейтингам и категориями рейтингов</small>
         </div>
-        {/*<div>*/}
-        {/*  <CategoriesEditAction ratingMembers={ratingMembers} />*/}
-        {/*</div>*/}
+        <div>
+          <CategoriesEditAction ratingMembers={ratingMembers} />
+        </div>
       </div>
       <div className='flex flex-col gap-14'>
         <div className='w-full'>

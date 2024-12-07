@@ -28,6 +28,8 @@ export { RatingMemberAdminCard } from './rating-members/rating-member-admin-card
 export { RatingMembersAdminList } from './rating-members/rating-members-admin-list/rating-members-admin-list';
 export { RatingMembersAdmin } from './rating-members/rating-members-admin/rating-members-admin';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
+export { RatingMembersCategoriesEdit } from './rating-members/rating-members-categories/rating-categories-edit';
+export { CategoriesEditAction } from './rating-members/rating-members-categories/categories-edit-action';
 
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
 export { ActionButtons } from './news/image-modal/acton-buttons';
