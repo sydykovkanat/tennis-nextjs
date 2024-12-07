@@ -18,7 +18,6 @@ export { AdminCarouselHeader } from '@/shared/components/shared/carousel/admin/a
 export { AdminCarouselPage } from './carousel/admin/admin-carousel';
 export { AdminCarouselItem } from '@/shared/components/shared/carousel/admin/admin-carousel-item/admin-carousel-item';
 export { AdminCarouselDialog } from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog';
-
 export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
 export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
@@ -36,3 +35,7 @@ export { GradientCircle, gradientCircles } from './gradient-circles/gradient-cir
 export { Title } from './title/title';
 export { Footer } from './footer/footer';
 export { Confirm } from '@/shared/components/shared/confirm/confirm';
+export { AdminPartnerCard } from './partners/admin-partner-card';
+export { AdminPartnerEdit } from './partners/admin-partner-edit';
+export { AdminPartnerForm } from './partners/admin-partner-form';
+export { AdminPageHeader } from './admin-page-header/admin-page-header';
