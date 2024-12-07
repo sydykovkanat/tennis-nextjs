@@ -2,8 +2,8 @@
 
 import { selectCategories, selectCategory, selectCategoryCreating, selectCategoryFetching, selectCategoryUpdating } from '@/shared/lib/features/categories/category-slice';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import React, { useEffect, useRef, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 
 export const useCategoryForm = () => {
   const [category, setCategory] = useState<string>('');

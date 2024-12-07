@@ -1,10 +1,9 @@
+import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
+import { categorySlice } from '@/shared/lib/features/categories/category-slice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
-
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { categorySlice } from '@/shared/lib/features/categories/category-slice';
 
 const createNoopStorage = () => {
   return {
@@ -33,6 +32,7 @@ const persistedReducer = persistReducer(authPersistConfig, usersSlice.reducer);
 const rootReducer = combineReducers({
   users: persistedReducer,
   category: categorySlice.reducer,
+  carousel: CarouselReducer,
 });
 
 export const store = configureStore({
@@ -48,6 +48,3 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

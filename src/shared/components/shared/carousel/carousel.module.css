@@ -19,5 +19,5 @@
 }
 
 .errorBlock {
-  @apply text-red-500 text-center py-[122px] sm:py-[200px]  md:py-[225px] lg:py-[331px] rounded-lg  bg-primary/10
+  @apply text-red-500 text-center py-[122px] sm:py-[200px]  md:py-[225px] lg:py-[331px] rounded-lg  bg-primary/10;
 }

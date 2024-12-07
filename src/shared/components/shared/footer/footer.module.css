@@ -1,0 +1,79 @@
+.footer {
+  @apply bg-cr-shark pt-8 pb-4 dark:bg-gray-900;
+}
+
+.footerWrapper {
+  @apply mx-auto max-w-[1335px] px-[16px] flex flex-col items-center justify-center lmd:items-start lmd:flex-row p-6 lg:px-8 lmd:justify-evenly gap-10;
+}
+
+.footerColumn {
+  @apply basis-1/4 flex flex-col gap-5 lmd:gap-10;
+}
+
+.logoWrapper {
+  @apply flex lg:flex-1 justify-evenly lmd:justify-start;
+}
+
+.logo {
+  @apply w-[98px] h-[36px];
+}
+
+.copyright {
+  @apply text-center lmd:text-left text-[#D9DBE1];
+}
+
+.socialIcons {
+  @apply flex flex-row justify-center lmd:justify-start gap-[16px];
+}
+
+.socialIcon {
+  @apply inline-flex text-white gap-5;
+}
+
+.infoColumns {
+  @apply flex flex-col text-center xs:text-left xs:flex-row xs:justify-between basis-1 lmd:basis-[55%] text-cr-white gap-10 xs:gap-0;
+}
+
+.infoColumn {
+  @apply basis-1/3;
+}
+
+.heading {
+  @apply pb-7 text-lg xs:text-xl;
+}
+
+.linksList {
+  @apply flex items-center xs:items-start flex-col gap-4 text-sm xs:text-base text-[#D9DBE1];
+}
+
+.link {
+  @apply hover:text-white;
+}
+
+.dropdownTrigger {
+  @apply flex cursor-pointer items-center gap-1 hover:text-white;
+}
+
+.dropdownIcon {
+  @apply w-4 h-4;
+}
+
+.dropdownContent {
+  @apply p-0 w-[302px];
+}
+
+.dropdownItem {
+  @apply hover:bg-gray-50 cursor-pointer p-0 transition-colors duration-200;
+}
+
+.dropdownLink {
+  @apply p-[25px] w-full block text-[16px];
+}
+
+.partnerColumn {
+  @apply flex flex-col items-center basis-1/3;
+}
+
+.partnerImage {
+  @apply w-[100px] h-[100px] block;
+}

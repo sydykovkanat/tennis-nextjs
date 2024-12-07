@@ -1,9 +1,9 @@
+import { fetchNewsByLimit, fetchOneNews } from '@/actions/news';
 import { News } from '@/shared/types/news.types';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useParams } from 'next/navigation';
 
 import { useEffect, useState } from 'react';
-import { fetchNewsByLimit, fetchOneNews } from '@/actions/news';
 
 export const useOneNews = () => {
   const { id } = useParams<{ id: string }>();

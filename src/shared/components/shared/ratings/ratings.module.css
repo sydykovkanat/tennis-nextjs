@@ -1,0 +1,7 @@
+.container {
+  @apply space-y-3;
+}
+
+.ratings {
+  @apply space-y-4;
+}

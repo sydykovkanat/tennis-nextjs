@@ -2,10 +2,10 @@
 
 import { Loader, useCategoryForm } from '@/shared/components/shared';
 import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from '@/shared/components/ui';
-import { cn } from '@/shared/lib';
+import { cn, useAppDispatch } from '@/shared/lib';
 import { createCategory, fetchCategory, updateCategory } from '@/shared/lib/features/categories/category-thunks';
-import { useAppDispatch } from '@/shared/lib/store';
 import React, { FormEvent, PropsWithChildren, useEffect } from 'react';
+import styles from './category-form.module.css';
 
 interface Props extends PropsWithChildren {
   open: boolean;
@@ -75,11 +75,11 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
             <Loader />
           ) : (
             <form onSubmit={handleSubmit} className={cn(className)}>
-              <div className={'mb-2 text-left'}>
-                <div className={'flex items-center flex-wrap justify-between gap-2 mb-1'}>
+              <div className={cn(styles.mainBlock)}>
+                <div className={cn(styles.inputBlock)}>
                   <Label htmlFor={'category'}>Название</Label>
                   {isBlocked && (
-                    <small className={'text-red-600 leading-tight'}>Категория {category} уже существует.</small>
+                    <small className={cn(styles.error)}>Категория {category} уже существует.</small>
                   )}
                 </div>
                 <Input
@@ -90,7 +90,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
                 />
               </div>
 
-              <div className={'flex flex-col gap-1'}>
+              <div className={cn(styles.buttonBlock)}>
                 <Button disabled={categoryCreating || category.length === 0 || isBlocked} size={'sm'}>
                   {isEdit ? 'Редактировать' : 'Добавить'}
                   {(categoryCreating || categoryUpdating) && <Loader size={'sm'} theme={'light'} />}

@@ -4,3 +4,8 @@ export interface CarouselTypes {
   video?: string | null;
   createdAt: string;
 }
+
+export interface CarouselMutation {
+  image: string | null;
+  video?: string | null;
+}

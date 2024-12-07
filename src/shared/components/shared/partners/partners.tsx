@@ -1,5 +1,5 @@
 import { getPartners } from '@/actions/partners';
-import { PartnerCard, Title} from '@/shared/components/shared';
+import { PartnerCard, Title } from '@/shared/components/shared';
 import { cn } from '@/shared/lib/helpers/utils';
 
 import React from 'react';

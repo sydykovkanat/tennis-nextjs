@@ -1,11 +1,11 @@
 .newsCardMain {
-    @apply relative bg-cover bg-center h-full w-full;
+  @apply relative bg-cover bg-center h-full w-full;
 }
 
 .newsLink {
-    @apply no-underline h-full;
+  @apply no-underline h-full;
 }
 
 .cardText {
-    @apply text-white text-[18px];
+  @apply text-white text-[18px];
 }

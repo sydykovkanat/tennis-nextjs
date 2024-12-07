@@ -1,0 +1,63 @@
+.form {
+  @apply py-10 mx-auto max-w-[545px] bg-white px-4 min-[440px]:px-10 rounded-[22px];
+
+  & input {
+    @apply h-12 mb-4;
+  }
+
+  & label {
+    @apply text-base font-medium;
+  }
+}
+
+.title {
+  @apply text-[28px] leading-10 font-bold mb-2;
+}
+
+.subtitle {
+  @apply mb-7;
+}
+
+.dateField {
+  @apply space-y-0.5 mb-4;
+}
+
+.dateInput {
+  @apply flex h-12 w-full items-center rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-tn-green focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
+}
+
+.dateSegment {
+  @apply inline rounded p-0.5 text-foreground caret-transparent outline outline-0 data-[disabled]:cursor-not-allowed data-[focused]:bg-accent data-[invalid]:data-[focused]:bg-destructive data-[type=literal]:px-0 data-[focused]:data-[placeholder]:text-foreground data-[focused]:text-foreground data-[invalid]:data-[focused]:data-[placeholder]:text-destructive-foreground data-[invalid]:data-[focused]:text-destructive-foreground data-[invalid]:data-[placeholder]:text-destructive data-[invalid]:text-destructive data-[placeholder]:text-muted-foreground/70 data-[type=literal]:text-muted-foreground/70 data-[disabled]:opacity-50;
+}
+
+.selectTrigger {
+  @apply h-12 focus:ring-[#80BC41];
+}
+
+.selectContainer {
+  @apply mb-4;
+}
+
+.checkboxContainer {
+  @apply flex items-center gap-2 mb-1;
+
+  & label {
+    @apply flex items-center font-normal text-base;
+  }
+
+  &:last-of-type {
+    @apply mb-8;
+  }
+}
+
+.checkbox {
+  @apply size-5;
+}
+
+.registerBtn {
+  @apply flex justify-between w-full h-14 mb-1;
+}
+
+.isAlreadyRegistered {
+  @apply text-muted-foreground block text-center underline hover:text-primary;
+}

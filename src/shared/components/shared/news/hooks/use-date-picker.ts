@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
+
 import { useEffect, useState } from 'react';
 
 export const useDatePicker = () => {
@@ -48,7 +49,7 @@ export const useDatePicker = () => {
   };
 
   const handleResetDates = () => {
-    setSelectedDates({startDate: undefined, endDate: undefined});
+    setSelectedDates({ startDate: undefined, endDate: undefined });
     updateQueryParams();
   };
 

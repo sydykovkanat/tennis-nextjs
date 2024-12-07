@@ -1,3 +1,5 @@
+import { NavigationItemsTypes } from '@/shared/types/footer.types';
+
 export const API_URL = 'http://localhost:8000';
 
 export const CURRENT_YEAR_FULL = new Date().getFullYear();
@@ -16,4 +18,11 @@ export const MONTH_NAMES = [
   'Октябрь',
   'Ноябрь',
   'Декабрь',
+];
+
+export const NAVIGATION_ITEMS: NavigationItemsTypes[] = [
+  { name: 'Главная', link: '/' },
+  { name: 'Календарь', link: '/calendar' },
+  { name: 'Рейтинг', link: '/rating' },
+  { name: 'Блог', link: '/news' },
 ];

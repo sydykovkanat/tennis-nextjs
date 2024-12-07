@@ -9,3 +9,7 @@
 .subtitle {
     @apply text-muted-foreground text-base;
 }
+
+.addButton {
+    @apply w-full xs:w-max;
+}
