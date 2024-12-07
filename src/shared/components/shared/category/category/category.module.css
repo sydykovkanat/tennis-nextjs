@@ -1,0 +1,11 @@
+.container {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-3;
+}
+
+.errorText {
+    @apply fixed top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 text-muted-foreground;
+}
+
+.warningButtonText {
+    @apply mx-1 underline underline-offset-2 hover:text-black;
+}
