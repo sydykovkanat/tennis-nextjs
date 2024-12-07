@@ -2,11 +2,11 @@
 
 import { Container, GradientCircle, userCircles } from '@/shared/components/shared';
 import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
+import { useAxiosInterceptors } from '@/shared/components/shared/personal-account/hooks/use-interceptor';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import { UserEdit } from '@/shared/components/shared/personal-account/user-edit/user-edit';
-import { useAxiosInterceptors } from '@/shared/hooks/hooks';
+import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
-import { useAppSelector } from '@/shared/lib/store';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';

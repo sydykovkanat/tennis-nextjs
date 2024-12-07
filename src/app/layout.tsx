@@ -3,6 +3,7 @@ import { Toaster } from '@/shared/components/ui';
 import { geistSans } from '@/shared/fonts/geist';
 import { cn } from '@/shared/lib/helpers/utils';
 import type { Metadata } from 'next';
+import NextTopLoader from 'nextjs-toploader';
 
 import React from 'react';
 
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={cn('antialiased')} style={geistSans.style}>
         <StoreProvider>
+          <NextTopLoader color={'#64B32C'} height={1} />
           {children}
           <Toaster />
         </StoreProvider>

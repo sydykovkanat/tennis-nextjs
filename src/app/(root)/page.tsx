@@ -1,4 +1,5 @@
 import {
+  Carousel,
   Container,
   GradientCircle,
   MainPageRating,
@@ -6,13 +7,13 @@ import {
   NewsMain,
   Partners,
   gradientCircles,
-  Carousel,
 } from '@/shared/components/shared';
+
 import React from 'react';
 
 export default async function HomePage() {
   return (
-    <>
+    <div className='overflow-x-hidden'>
       {gradientCircles.map((circle, id) => (
         <GradientCircle key={id} {...circle} />
       ))}
@@ -29,6 +30,6 @@ export default async function HomePage() {
           <NewsMain />
         </section>
       </Container>
-    </>
+    </div>
   );
 }

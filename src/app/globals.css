@@ -80,7 +80,8 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground overflow-x-hidden relative;
+      position: relative;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
   img {
     width: auto;

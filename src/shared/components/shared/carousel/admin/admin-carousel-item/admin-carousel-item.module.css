@@ -1,0 +1,19 @@
+.containerCarouselItem {
+  @apply grid md:grid-cols-2 lg:grid-cols-3 gap-3;
+}
+
+.image {
+  @apply rounded-lg object-cover h-full w-full max-h-[300px];
+}
+
+.video {
+  @apply rounded-lg object-cover h-full w-full max-h-[300px];
+}
+
+.blockBtn {
+  @apply top-3 left-6 absolute;
+}
+
+.deleteBtn {
+  @apply me-3;
+}
