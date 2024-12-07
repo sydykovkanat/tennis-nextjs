@@ -1,0 +1,15 @@
+.card {
+  @apply shadow-none p-3 min-w-72 flex-1;
+}
+
+.cardInner {
+  @apply flex items-center justify-between gap-2;
+}
+
+.cardBlock {
+  @apply flex items-center gap-1;
+
+  & img {
+    @apply w-[70px] h-[60px] object-contain;
+  }
+}

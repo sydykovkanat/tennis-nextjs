@@ -6,3 +6,9 @@ export interface Partner {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface PartnerMutation {
+  name: string;
+  image: File | null;
+  url: string;
+}
