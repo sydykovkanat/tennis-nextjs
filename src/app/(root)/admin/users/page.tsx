@@ -1,5 +1,11 @@
+import { AdminUsersList } from '@/shared/components/shared';
+
 import React from 'react';
 
 export default function UsersPage() {
-  return <div>Users page</div>;
+  return (
+    <>
+      <AdminUsersList />
+    </>
+  );
 }

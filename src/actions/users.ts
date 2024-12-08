@@ -1,4 +1,3 @@
-// Пример
 import { axiosApi } from '@/shared/lib/helpers/axios-api';
 
 export const getUsers = async () => {

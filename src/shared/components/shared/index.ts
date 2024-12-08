@@ -35,4 +35,5 @@ export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { Footer } from './footer/footer';
-export { Confirm } from '@/shared/components/shared/confirm/confirm';
+export { Confirm } from './confirm/confirm';
+export { AdminUsersList } from './admin-users-list/admin-users-list';
