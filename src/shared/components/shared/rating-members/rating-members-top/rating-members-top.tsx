@@ -1,4 +1,5 @@
-import { RatingMemberCard, Title } from '@/shared/components/shared';
+import { Title } from '@/shared/components/shared';
+import { RatingMemberCard } from '@/shared/components/shared/rating-members';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
 import React from 'react';
