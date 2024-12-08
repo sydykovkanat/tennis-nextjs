@@ -10,7 +10,7 @@ export interface User {
   email: string;
   isActive: boolean;
   token: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'moderator' | 'user';
   createdAt: string;
   updatedAt: string;
 }
@@ -29,4 +29,20 @@ export interface ValidationError {
 
 export interface GlobalError {
   error: string;
+}
+
+export interface UsersResponse {
+  page: number;
+  limit: number;
+  total: number;
+  pages: number;
+  data: User[];
+}
+
+export interface UsersFilter {
+  category?: string;
+  telephone?: string;
+  fullName?: string;
+  page: number;
+  role?: string;
 }

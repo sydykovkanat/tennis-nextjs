@@ -44,4 +44,6 @@ export { Ratings } from './ratings/ratings';
 export { RatingCard } from './ratings/rating-card';
 export { Footer } from './footer/footer';
 export { Confirm } from './confirm/confirm';
+
 export { AdminUsersList } from './admin-users-list/admin-users-list';
+export { UsersList } from './admin-users-list/users-list/users-list';

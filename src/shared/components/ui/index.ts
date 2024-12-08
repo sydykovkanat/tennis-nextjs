@@ -62,3 +62,4 @@ export {
   DialogTitle,
   DialogDescription,
 } from './dialog';
+export { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table';
