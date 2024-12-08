@@ -57,3 +57,7 @@ export { Ratings } from './ratings/ratings';
 export { RatingCard } from './ratings/rating-card';
 export { Footer } from './footer/footer';
 export { Confirm } from '@/shared/components/shared/confirm/confirm';
+export { AdminPartnerCard } from './partners/admin-partner-card';
+export { AdminPartnerEdit } from './partners/admin-partner-edit';
+export { AdminPartnerForm } from './partners/admin-partner-form';
+export { AdminPageHeader } from './admin-page-header/admin-page-header';
