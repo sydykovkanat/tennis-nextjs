@@ -1,0 +1,34 @@
+# Игнорирование директорий
+node_modules/
+public/*
+
+# Игнорирование системных файлов
+.DS_Store
+
+# Игнорирование конфигурационных файлов
+.prettierrc
+nodemon.json
+tsconfig.json
+
+# Игнорирование файлов окружения
+.env
+.env.local
+.env.*.local
+
+# Игнорирование скомпилированных файлов
+dist/
+build/
+
+# Игнорирование файлов журналов
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Игнорирование временных файлов
+*.tmp
+*.log
+*.bak
+
+# Игнорирование IDE
+.idea/
+.vscode/
