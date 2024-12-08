@@ -1,0 +1,23 @@
+.noContentText {
+  @apply text-center text-xs md:text-sm;
+}
+
+.titleWrapper {
+  @apply text-center;
+}
+
+.mainTitle {
+  @apply text-2xl sm:text-3xl md:text-[38px] font-semibold mb-[14px] sm:mb-4 md:mb-6 lg:mb-8;
+}
+
+.topTitle {
+  @apply text-lg md:text-2xl font-medium mb-2 sm:mb-5 md:mb-6 lg:mb-8 text-[#000000a1] uppercase dark:text-white;
+}
+
+.categoryTitle {
+  @apply text-lg md:text-[22px] font-bold text-tn-green;
+}
+
+.contentWrapper {
+  @apply flex flex-wrap justify-center gap-x-7 gap-y-7 xs:gap-x-12 md:gap-x-16 xs:gap-y-9 mt-[34px] sm:mt-10 lg:mt-16;
+}

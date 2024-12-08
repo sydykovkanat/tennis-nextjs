@@ -1,0 +1,7 @@
+.messageContainer {
+  @apply flex items-start gap-3 p-1 mb-2 border-l-4 border-yellow-500 bg-yellow-50 rounded-md text-yellow-800;
+}
+
+.messageIcon {
+  @apply w-5 h-5 shrink-0;
+}
