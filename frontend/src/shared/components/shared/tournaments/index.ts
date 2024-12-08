@@ -2,7 +2,6 @@ export { TournamentCard } from './tournament-card/tournament-card';
 export { TournamentCardInfo } from './tournament-card/tournament-card-info';
 export { TournamentActions } from './tournament-card/tournament-card-action';
 export { TournamentRegistration } from './tournament-card/tournament-card-registration';
-export { TournamentCardsList } from './tournament-cards-list/tournament-card-list';
 export { TournamentAccordion } from './tournament-accordion/tournament-accordion';
 export { RankFilter } from './rank-filter/rank-filter';
 export { TournamentForm } from './tournament-form/tournament-form';

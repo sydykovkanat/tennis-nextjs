@@ -1,4 +1,4 @@
-import { TournamentCardsList } from '@/shared/components/shared';
+import { TournamentCard } from '@/shared/components/shared/tournaments';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/shared/components/ui';
 import { MONTH_NAMES } from '@/shared/constants';
 import { Tournament } from '@/shared/types/tournament.types';
@@ -22,7 +22,13 @@ export const TournamentAccordion: React.FC<Props> = ({ tournaments }) => {
             </div>
           </AccordionTrigger>
           <AccordionContent className={styles.accordionContent}>
-            <TournamentCardsList tournaments={tournamentList} />
+            <div className={styles.contentWrapper}>
+              {tournamentList.length > 0 ? (
+                tournamentList.map((tournament) => <TournamentCard key={tournament._id} tournament={tournament} />)
+              ) : (
+                <p className={styles.noContentText}>Турниры отсутствуют</p>
+              )}
+            </div>
           </AccordionContent>
         </AccordionItem>
       ))}

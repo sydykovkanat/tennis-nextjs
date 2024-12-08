@@ -22,6 +22,10 @@
   @apply hover:text-[#4d4d4d] dark:hover:text-black mt-1 text-[#8c8c8c] dark:text-[#4d4d4d] underline underline-offset-2;
 }
 
+.cardPopover {
+  @apply bg-gray-100 text-xs;
+}
+
 .cardActionsWrapper {
   @apply flex flex-col text-[13px] mt-3 sm:mt-0;
 }
@@ -64,4 +68,8 @@
 
 .cardInfoWrapperText {
   @apply text-black;
+}
+
+.adminCardActions {
+  @apply ml-auto mt-1 gap-4 flex pr-3 mb-2;
 }

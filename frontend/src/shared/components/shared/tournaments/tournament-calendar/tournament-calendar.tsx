@@ -1,4 +1,5 @@
-import { RankFilter, TournamentAccordion } from '@/shared/components/shared';
+import { Title } from '@/shared/components/shared';
+import { RankFilter, TournamentAccordion } from '@/shared/components/shared/tournaments';
 import { CURRENT_YEAR_FULL, NEXT_YEAR, PREVIOUS_YEAR } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { Tournaments } from '@/shared/types/tournament.types';
@@ -17,7 +18,9 @@ export const TournamentCalendar: React.FC<Props> = ({ tournaments }) => {
 
   return (
     <div>
-      <h1 className={styles.mainTitle}>Календарь турниров</h1>
+      <Title variant='h2' className={styles.mainTitle}>
+        Календарь турниров
+      </Title>
       <RankFilter />
       <div className={cn(styles.calendarTitles, 'mb-10 mt-8')}>{CURRENT_YEAR_FULL}</div>
       <TournamentAccordion tournaments={tournaments.currentYear} />

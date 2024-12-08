@@ -7,7 +7,7 @@ import {
   updateTournament,
 } from '@/shared/lib/features/tournaments/tournamentsThunks';
 import { Tournaments } from '@/shared/types/tournament.types';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface tournamentSlice {
   items: Tournaments;
@@ -16,7 +16,6 @@ export interface tournamentSlice {
   isUpdating: boolean;
   isDeleting: boolean | string;
   isDeletingByYear: boolean | string;
-  selectedRank: string | undefined;
 }
 
 const initialState: tournamentSlice = {
@@ -30,17 +29,12 @@ const initialState: tournamentSlice = {
   isUpdating: false,
   isDeleting: false,
   isDeletingByYear: false,
-  selectedRank: 'all',
 };
 
 export const tournamentsSlice = createSlice({
   name: 'tournaments',
   initialState,
-  reducers: {
-    setRank(state, action: PayloadAction<string | undefined>) {
-      state.selectedRank = action.payload || 'all';
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchTournaments.pending, (state) => {
@@ -105,13 +99,10 @@ export const tournamentsSlice = createSlice({
     selectTournamentUpdating: (state) => state.isUpdating,
     selectTournamentDeleting: (state) => state.isDeleting,
     selectTournamentsByYearDeleting: (state) => state.isDeletingByYear,
-    selectSelectedRank: (state) => state.selectedRank,
   },
 });
 
 export const tournamentsReducer = tournamentsSlice.reducer;
-
-export const { setRank } = tournamentsSlice.actions;
 
 export const {
   selectTournaments,
@@ -119,5 +110,4 @@ export const {
   selectTournamentCreating,
   selectTournamentUpdating,
   selectTournamentDeleting,
-  selectSelectedRank,
 } = tournamentsSlice.selectors;
