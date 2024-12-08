@@ -15,7 +15,7 @@
 }
 
 .categoryTitle {
-  @apply text-lg md:text-[22px] font-bold text-[#64B32C];
+  @apply text-lg md:text-[22px] font-bold text-tn-green;
 }
 
 .contentWrapper {

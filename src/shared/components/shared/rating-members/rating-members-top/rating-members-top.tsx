@@ -1,4 +1,4 @@
-import { RatingMemberCard } from '@/shared/components/shared';
+import { RatingMemberCard, Title } from '@/shared/components/shared';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
 import React from 'react';
@@ -11,26 +11,44 @@ interface Props {
   subtitle?: string;
   category: string;
   ratingType: 'top3' | 'top8';
+  className?: string;
 }
 
-export const RatingMembersTop: React.FC<Props> = ({ ratingMembers, title, subtitle, category, ratingType }) => {
-  let content: React.ReactNode = <p className={styles.noContentText}>Данные рейтинга отсутствуют</p>;
-
-  if (ratingMembers.length > 0) {
-    content = ratingMembers.map((ratingMember) => (
-      <RatingMemberCard key={ratingMember._id} ratingMember={ratingMember} />
-    ));
-  }
+export const RatingMembersTop: React.FC<Props> = ({
+  ratingMembers,
+  title,
+  subtitle,
+  category,
+  ratingType,
+  className,
+}) => {
+  const additionalTitle =
+    ratingType === 'top3' && subtitle ? `Топ-3 ${subtitle}` : ratingType === 'top8' ? 'Топ-8 участников' : '';
 
   return (
-    <>
+    <section className={className}>
       <div className={styles.titleWrapper}>
-        {title && <h1 className={styles.mainTitle}>{title} рейтинг</h1>}
-        {ratingType === 'top3' && subtitle && <h1 className={styles.topTitle}>Топ-3 {subtitle}</h1>}
-        {ratingType === 'top8' && <h1 className={styles.topTitle}>Топ-8 участников</h1>}
-        <h1 className={styles.categoryTitle}>{category}</h1>
+        {title && (
+          <Title className={styles.mainTitle} variant={'h3'}>
+            {title} рейтинг
+          </Title>
+        )}
+        {additionalTitle && (
+          <Title className={styles.topTitle} variant={'h3'}>
+            {additionalTitle}
+          </Title>
+        )}
+        <Title className={styles.categoryTitle} variant={'h4'}>
+          {category}
+        </Title>
       </div>
-      <div className={styles.contentWrapper}>{content}</div>
-    </>
+      <div className={styles.contentWrapper}>
+        {ratingMembers.length > 0 ? (
+          ratingMembers.map((ratingMember) => <RatingMemberCard key={ratingMember._id} ratingMember={ratingMember} />)
+        ) : (
+          <p className={styles.noContentText}>Данные рейтинга отсутствуют</p>
+        )}
+      </div>
+    </section>
   );
 };

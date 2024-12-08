@@ -1,6 +1,8 @@
 export { Container } from './container/container';
 export { MainTitles } from './main-titles/main-titles';
 export { Loader } from './loader/loader';
+export { ErrorMessage } from './error-message/error-message';
+export { WarningMessage } from './warning-message/warning-message';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
 export { NewsMain } from './news/news-main/news-main';
@@ -18,8 +20,7 @@ export { AdminCarouselHeader } from '@/shared/components/shared/carousel/admin/a
 export { AdminCarouselPage } from './carousel/admin/admin-carousel';
 export { AdminCarouselItem } from '@/shared/components/shared/carousel/admin/admin-carousel-item/admin-carousel-item';
 export { AdminCarouselDialog } from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog';
-export { RatingMemberCard } from './rating-members/rating-member-card/rating-member-card';
-export { RatingMembersTop } from './rating-members/rating-members-top/rating-members-top';
+export { RatingMembersAdmin } from './rating-members/rating-members-admin/rating-members-admin';
 export { MainPageRating } from './rating-members/main-page-rating/main-page-rating';
 export { ActionButtons } from './news/image-modal/acton-buttons';
 export { NavbarMobile } from './navbar/navbar-mobile';
@@ -39,7 +40,6 @@ export { CategoryCard } from './category/category-card/caregory-card';
 export { CategoryHeader } from '@/shared/components/shared/category/category-header/category-header';
 export { CategoryForm } from './category/category-form/category-form';
 export { useCategoryForm } from './category/hooks/use-category-form';
-
 export { Ratings } from './ratings/ratings';
 export { RatingCard } from './ratings/rating-card';
 export { Footer } from './footer/footer';

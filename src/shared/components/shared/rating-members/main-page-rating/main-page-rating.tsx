@@ -1,6 +1,5 @@
 import { getRatingMembers } from '@/actions/rating-members';
-import { RatingMembersTop } from '@/shared/components/shared';
-import { cn } from '@/shared/lib/helpers/utils';
+import { RatingMembersTop } from '@/shared/components/shared/rating-members';
 
 import React from 'react';
 
@@ -21,32 +20,28 @@ export const MainPageRating: React.FC<Props> = async ({ className }) => {
   const ratingWomenMembers = ratingMembers.filter((ratingMember) => ratingMember.gender === 'female');
 
   return (
-    <div className={cn(className)}>
-      <div className={styles.manTop8}>
-        <RatingMembersTop
-          ratingMembers={ratingMenMembersTop8}
-          category={ratingMembers[0]?.mensRatingCategoryTop8 || 'Мужская категория'}
-          title='Мужской'
-          ratingType='top8'
-        />
-      </div>
-      <div className={styles.manTop3}>
-        <RatingMembersTop
-          ratingMembers={ratingMenMembersTop3}
-          category={ratingMembers[0]?.mensRatingCategoryTop3 || 'Мужская категория'}
-          subtitle='участника'
-          ratingType='top3'
-        />
-      </div>
-      <div>
-        <RatingMembersTop
-          ratingMembers={ratingWomenMembers}
-          category={ratingMembers[0]?.womensRatingCategoryTop3 || 'Женская категория'}
-          title='Женский'
-          subtitle='участницы'
-          ratingType='top3'
-        />
-      </div>
+    <div className={className}>
+      <RatingMembersTop
+        ratingMembers={ratingMenMembersTop8}
+        category={ratingMembers[0]?.mensRatingCategoryTop8 || 'Мужская категория'}
+        title='Мужской'
+        ratingType='top8'
+        className={styles.manTop8}
+      />
+      <RatingMembersTop
+        ratingMembers={ratingMenMembersTop3}
+        category={ratingMembers[0]?.mensRatingCategoryTop3 || 'Мужская категория'}
+        subtitle='участника'
+        ratingType='top3'
+        className={styles.manTop3}
+      />
+      <RatingMembersTop
+        ratingMembers={ratingWomenMembers}
+        category={ratingMembers[0]?.womensRatingCategoryTop3 || 'Женская категория'}
+        title='Женский'
+        subtitle='участницы'
+        ratingType='top3'
+      />
     </div>
   );
 };
