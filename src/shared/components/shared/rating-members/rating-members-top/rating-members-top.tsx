@@ -22,34 +22,33 @@ export const RatingMembersTop: React.FC<Props> = ({
   ratingType,
   className,
 }) => {
-  let content: React.ReactNode = <p className={styles.noContentText}>Данные рейтинга отсутствуют</p>;
   const additionalTitle =
     ratingType === 'top3' && subtitle ? `Топ-3 ${subtitle}` : ratingType === 'top8' ? 'Топ-8 участников' : '';
 
-  if (ratingMembers.length > 0) {
-    content = ratingMembers.map((ratingMember) => (
-      <RatingMemberCard key={ratingMember._id} ratingMember={ratingMember} />
-    ));
-  }
-
   return (
-    <div className={className}>
+    <section className={className}>
       <div className={styles.titleWrapper}>
         {title && (
-          <Title className={styles.mainTitle} variant={'h1'}>
+          <Title className={styles.mainTitle} variant={'h3'}>
             {title} рейтинг
           </Title>
         )}
         {additionalTitle && (
-          <Title className={styles.topTitle} variant={'h1'}>
+          <Title className={styles.topTitle} variant={'h3'}>
             {additionalTitle}
           </Title>
         )}
-        <Title className={styles.categoryTitle} variant={'h1'}>
+        <Title className={styles.categoryTitle} variant={'h4'}>
           {category}
         </Title>
       </div>
-      <div className={styles.contentWrapper}>{content}</div>
-    </div>
+      <div className={styles.contentWrapper}>
+        {ratingMembers.length > 0 ? (
+          ratingMembers.map((ratingMember) => <RatingMemberCard key={ratingMember._id} ratingMember={ratingMember} />)
+        ) : (
+          <p className={styles.noContentText}>Данные рейтинга отсутствуют</p>
+        )}
+      </div>
+    </section>
   );
 };

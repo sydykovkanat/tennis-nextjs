@@ -1,4 +1,3 @@
-// 'use client';
 import { ErrorMessage, WarningMessage } from '@/shared/components/shared';
 import { useRatingMembersForm } from '@/shared/components/shared/rating-members/hooks';
 import {
@@ -13,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
-import { getGenderTitles } from '@/shared/lib/helpers/rating-member-utils';
+import { getGenderTitles } from '@/shared/lib';
 import { RatingMember, RatingMemberMutation } from '@/shared/types/rating-member.types';
 
 import React from 'react';
@@ -121,9 +120,7 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
           {forWhichGender === 'male' && !state.ratingType && <ErrorMessage>Сначала выберите топ</ErrorMessage>}
         </div>
 
-        <div className={styles.fileInputContainer}>
-          <Input id='image' name='image' type='file' accept='image/*' label='Фото' onChange={fileInputChangeHandler} />
-        </div>
+        <Input id='image' name='image' type='file' accept='image/*' label='Фото' onChange={fileInputChangeHandler} />
       </div>
 
       {!existingMember && maxMembersExceeded && (

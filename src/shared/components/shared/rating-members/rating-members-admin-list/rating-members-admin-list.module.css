@@ -1,7 +1,3 @@
-.noContentText {
-  @apply my-6;
-}
-
 .titlesWrapper {
   @apply text-center;
 }
@@ -11,7 +7,7 @@
 }
 
 .categoryTitle {
-  @apply text-lg text-[#64B32C] font-semibold mt-1 sm:mt-3;
+  @apply text-lg text-tn-green font-semibold mt-1 sm:mt-3;
 }
 
 .contentContainer {

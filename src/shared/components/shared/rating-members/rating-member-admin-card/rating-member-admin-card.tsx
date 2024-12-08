@@ -1,4 +1,5 @@
-import { Confirm, RatingMemberEdit, Title } from '@/shared/components/shared';
+import { Confirm, Title } from '@/shared/components/shared';
+import { RatingMemberEdit } from '@/shared/components/shared/rating-members';
 import { useRatingMemberDelete } from '@/shared/components/shared/rating-members/hooks';
 import { Button, Card } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
@@ -31,17 +32,15 @@ export const RatingMemberAdminCard: React.FC<Props> = ({ ratingMember, ratingMem
           quality={100}
           className={styles.cardImage}
         />
-        <Title variant='h3' className={styles.place}>
+        <Title variant='h5' className={styles.place}>
           № {ratingMember.place}
         </Title>
-        <Title variant='h3' className={styles.name}>
+        <Title variant='h5' className={styles.name}>
           {ratingMember.name}
         </Title>
         <div className={styles.actionsWrapper}>
           <Confirm onOk={() => handleDelete(ratingMember._id)}>
-            <Button size='sm' disabled={isDeleting === ratingMember._id} data-testid='delete'>
-              <TrashIcon />
-            </Button>
+            <Button size='sm' disabled={isDeleting === ratingMember._id} data-testid='delete' icon={TrashIcon} />
           </Confirm>
           <RatingMemberEdit
             ratingMembers={ratingMembers}

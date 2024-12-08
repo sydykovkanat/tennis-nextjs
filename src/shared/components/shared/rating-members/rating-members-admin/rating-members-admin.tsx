@@ -1,8 +1,15 @@
 'use client';
 
-import { CategoriesEditAction, Loader, RatingMembersAdminList, Title } from '@/shared/components/shared';
+import { Loader, Title } from '@/shared/components/shared';
+import {
+  CategoriesEditAction,
+  RatingMemberNew,
+  RatingMembersAdminList,
+} from '@/shared/components/shared/rating-members';
 import { useRatingMembers } from '@/shared/components/shared/rating-members/hooks';
-import RatingMemberNew from '@/shared/components/shared/rating-members/rating-member-new/rating-member-new';
+import { cn } from '@/shared/lib';
+
+import styles from './rating-member-admin.module.css';
 
 export const RatingMembersAdmin = () => {
   const {
@@ -14,35 +21,29 @@ export const RatingMembersAdmin = () => {
     duplicatePlaces,
   } = useRatingMembers();
 
-  return ratingMembersFetching ? (
-    <Loader fixed />
-  ) : (
-    <div className='lg:max-w-[900px] lg:mx-auto mb-7 mt-3'>
-      <div className='flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 mb-4'>
+  return (
+    <div className={styles.adminContainer}>
+      <div className={styles.adminHeader}>
         <div>
-          <Title variant='h1' className='text-2xl font-medium leading-none mb-1'>
+          <Title variant='h1' className={styles.adminTitle}>
             Рейтинги топ-участников
           </Title>
-          <small className='text-muted-foreground text-base'>Управление рейтингам и категориями рейтингов</small>
+          <small className={styles.adminSubtitle}>Управление рейтингам и категориями рейтингов</small>
         </div>
-        <div>
-          <CategoriesEditAction ratingMembers={ratingMembers} />
-        </div>
+        <CategoriesEditAction ratingMembers={ratingMembers} />
       </div>
-      <div className='flex flex-col gap-14'>
-        <div className='w-full'>
-          <RatingMemberNew
-            forWhichGender={'male'}
-            ratingMembers={ratingMembers}
-            className='text-center sm:text-right mb-5'
-          />
+      {ratingMembersFetching ? (
+        <Loader absolute />
+      ) : (
+        <>
+          <RatingMemberNew forWhichGender={'male'} ratingMembers={ratingMembers} className={styles.addButton} />
           <RatingMembersAdminList
             ratingMembers={ratingMenMembersTop8}
             ratingMembersAll={ratingMembers}
             title='Топ-8 мужского'
             category={ratingMembers[0]?.mensRatingCategoryTop8 || 'Здесь будет категория'}
             hasDuplicatePlaces={duplicatePlaces.mensTop8}
-            className='mb-10'
+            className={styles.adminList}
           />
           <RatingMembersAdminList
             ratingMembers={ratingMenMembersTop3}
@@ -51,12 +52,10 @@ export const RatingMembersAdmin = () => {
             category={ratingMembers[0]?.mensRatingCategoryTop3 || 'Здесь будет категория'}
             hasDuplicatePlaces={duplicatePlaces.mensTop3}
           />
-        </div>
-        <div>
           <RatingMemberNew
             forWhichGender={'female'}
             ratingMembers={ratingMembers}
-            className='text-center sm:text-right mb-5'
+            className={cn(styles.addButton, 'mt-14')}
           />
           <RatingMembersAdminList
             ratingMembers={ratingWomenMembers}
@@ -65,8 +64,8 @@ export const RatingMembersAdmin = () => {
             category={ratingMembers[0]?.womensRatingCategoryTop3 || 'Здесь будет категория'}
             hasDuplicatePlaces={duplicatePlaces.womensTop3}
           />
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

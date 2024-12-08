@@ -1,7 +1,11 @@
-.formContainer {
+.button {
+  @apply w-full xs:w-max;
+}
+
+.formInner {
   @apply flex flex-col gap-3 pt-3 pb-5;
 }
 
-.fieldContainer {
+.formActionsWrapper {
   @apply flex flex-col gap-1;
 }

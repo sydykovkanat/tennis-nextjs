@@ -13,6 +13,8 @@ import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
+import styles from './rating-categories.module.css';
+
 interface Props {
   existingMensCategoryTop8: string;
   existingMensCategoryTop3: string;
@@ -30,8 +32,8 @@ export const RatingMembersCategoriesEdit: React.FC<Props> = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button onClick={handleOpen} className='w-full xs:w-max'>
-          Изменить категории <PencilSquareIcon />
+        <Button onClick={handleOpen} className={styles.button} icon={PencilSquareIcon}>
+          Изменить категории
         </Button>
       </DialogTrigger>
       <DialogContent aria-describedby={undefined}>
@@ -39,44 +41,38 @@ export const RatingMembersCategoriesEdit: React.FC<Props> = ({
           <DialogTitle>Редактировать категории рейтинга</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
-          <div className='flex flex-col gap-3 pt-3 pb-5'>
-            <div className='flex flex-col gap-1'>
-              <Input
-                required
-                id='mensCategoryTop8'
-                name='mensCategoryTop8'
-                placeholder='Введите категорию для мужского топ-8'
-                value={state.mensCategoryTop8}
-                label='Мужская категория для топ-8'
-                onChange={handleChange}
-              />
-            </div>
+          <div className={styles.formInner}>
+            <Input
+              required
+              id='mensCategoryTop8'
+              name='mensCategoryTop8'
+              placeholder='Введите категорию для мужского топ-8'
+              value={state.mensCategoryTop8}
+              label='Мужская категория для топ-8'
+              onChange={handleChange}
+            />
 
-            <div className='flex flex-col gap-1'>
-              <Input
-                required
-                id='mensCategoryTop3'
-                name='mensCategoryTop3'
-                placeholder='Введите категорию для мужского топ-3'
-                value={state.mensCategoryTop3}
-                label='Мужская категория для топ-3'
-                onChange={handleChange}
-              />
-            </div>
+            <Input
+              required
+              id='mensCategoryTop3'
+              name='mensCategoryTop3'
+              placeholder='Введите категорию для мужского топ-3'
+              value={state.mensCategoryTop3}
+              label='Мужская категория для топ-3'
+              onChange={handleChange}
+            />
 
-            <div className='flex flex-col gap-1'>
-              <Input
-                required
-                id='womensCategoryTop3'
-                name='womensCategoryTop3'
-                placeholder='Введите категорию для женского топ-3'
-                value={state.womensCategoryTop3}
-                label='Женская категория для топ-3'
-                onChange={handleChange}
-              />
-            </div>
+            <Input
+              required
+              id='womensCategoryTop3'
+              name='womensCategoryTop3'
+              placeholder='Введите категорию для женского топ-3'
+              value={state.womensCategoryTop3}
+              label='Женская категория для топ-3'
+              onChange={handleChange}
+            />
           </div>
-          <div className='flex flex-col gap-1'>
+          <div className={styles.formActionsWrapper}>
             <Button type='submit' disabled={isFormInvalid}>
               Сохранить
             </Button>

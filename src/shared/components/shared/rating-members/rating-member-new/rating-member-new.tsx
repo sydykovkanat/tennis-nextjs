@@ -1,4 +1,4 @@
-import { RatingMemberForm } from '@/shared/components/shared';
+import { RatingMemberForm } from '@/shared/components/shared/rating-members';
 import { useRatingMemberNew } from '@/shared/components/shared/rating-members/hooks';
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/components/ui';
 import { cn, getGenderTitles } from '@/shared/lib';
@@ -15,7 +15,7 @@ interface Props {
   className?: string;
 }
 
-const RatingMemberNew: React.FC<Props> = ({ forWhichGender, ratingMembers, className }) => {
+export const RatingMemberNew: React.FC<Props> = ({ forWhichGender, ratingMembers, className }) => {
   const { isCreating, open, setOpen, handleClose, onFormSubmit } = useRatingMemberNew();
   const { buttonTitle, dialogTitle } = getGenderTitles(forWhichGender);
 
@@ -23,8 +23,8 @@ const RatingMemberNew: React.FC<Props> = ({ forWhichGender, ratingMembers, class
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <div className={className}>
-          <Button className={cn(styles.addButton)}>
-            Добавить в {buttonTitle} рейтинг <SquaresPlusIcon />
+          <Button className={cn(styles.addButton)} icon={SquaresPlusIcon}>
+            Добавить в {buttonTitle} рейтинг
           </Button>
         </div>
       </DialogTrigger>
@@ -43,5 +43,3 @@ const RatingMemberNew: React.FC<Props> = ({ forWhichGender, ratingMembers, class
     </Dialog>
   );
 };
-
-export default RatingMemberNew;

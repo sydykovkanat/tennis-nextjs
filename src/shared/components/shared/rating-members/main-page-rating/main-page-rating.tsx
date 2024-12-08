@@ -1,5 +1,5 @@
 import { getRatingMembers } from '@/actions/rating-members';
-import { RatingMembersTop } from '@/shared/components/shared';
+import { RatingMembersTop } from '@/shared/components/shared/rating-members';
 
 import React from 'react';
 

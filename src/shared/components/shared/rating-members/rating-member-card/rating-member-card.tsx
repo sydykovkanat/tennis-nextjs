@@ -13,8 +13,7 @@ interface Props {
 
 export const RatingMemberCard: React.FC<Props> = ({ ratingMember }) => {
   const image = `${API_URL}/${ratingMember.image}`;
-  const fullName = ratingMember.name;
-  const nameParts = fullName.split(' ');
+  const nameParts = ratingMember.name.split(' ');
   const firstName = nameParts[0];
   const lastName = nameParts.slice(1).join(' ');
 

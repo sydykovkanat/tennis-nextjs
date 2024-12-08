@@ -1,4 +1,4 @@
-import { RatingMemberForm } from '@/shared/components/shared';
+import { RatingMemberForm } from '@/shared/components/shared/rating-members';
 import { useRatingMemberEdit } from '@/shared/components/shared/rating-members/hooks';
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/components/ui';
 import { getGenderTitles } from '@/shared/lib';
@@ -21,9 +21,7 @@ export const RatingMemberEdit: React.FC<Props> = ({ forWhichGender, id, existing
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size='sm' data-testid='edit'>
-          <PencilSquareIcon />
-        </Button>
+        <Button size='sm' data-testid='edit' icon={PencilSquareIcon} />
       </DialogTrigger>
       <DialogContent aria-describedby={undefined}>
         <DialogHeader>

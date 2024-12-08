@@ -1,0 +1,23 @@
+.adminContainer {
+  @apply lg:max-w-[900px] lg:mx-auto mb-7 mt-3;
+}
+
+.adminHeader {
+  @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 mb-4;
+}
+
+.adminTitle {
+  @apply text-2xl font-medium leading-none mb-1;
+}
+
+.adminSubtitle {
+  @apply text-muted-foreground text-base;
+}
+
+.addButton {
+  @apply text-center sm:text-right mb-5;
+}
+
+.adminList {
+  @apply mb-10;
+}

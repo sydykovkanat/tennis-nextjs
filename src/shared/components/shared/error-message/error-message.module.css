@@ -1,5 +1,5 @@
 .error {
-  @apply text-red-950;
+  @apply text-red-600;
 }
 
 .warning {
