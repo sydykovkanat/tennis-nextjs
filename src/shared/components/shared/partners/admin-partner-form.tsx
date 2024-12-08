@@ -14,7 +14,8 @@ interface Props {
 }
 
 export const AdminPartnerForm: React.FC<Props> = ({ className, onSubmit }) => {
-  const { handleChange, partnerMutation, isFormValid, imagePreview, handleImageChange } = usePartners();
+  const { handleChange, partnerMutation, isFormValid, imagePreview, handleImageChange, partnerCreating } =
+    usePartners();
 
   const onEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ export const AdminPartnerForm: React.FC<Props> = ({ className, onSubmit }) => {
       <div className={styles.inputs}>
         <Input id={'name'} value={partnerMutation.name} onChange={handleChange} label={'Название'} />
         <Input type={'url'} id={'url'} value={partnerMutation.url} onChange={handleChange} label={'Ссылка'} />
-        <Input type={'file'} id={'image'} onChange={handleImageChange} label={'Логотип'} />
+        <Input type={'file'} id={'image'} onChange={handleImageChange} label={'Логотип'} accept={'image/*'} />
       </div>
 
       {imagePreview && (
@@ -35,7 +36,13 @@ export const AdminPartnerForm: React.FC<Props> = ({ className, onSubmit }) => {
         </div>
       )}
 
-      <Button disabled={!isFormValid} icon={Save} className={styles.btn} size={'lg'}>
+      <Button
+        disabled={!isFormValid || partnerCreating}
+        loading={partnerCreating}
+        icon={Save}
+        className={styles.btn}
+        size={'lg'}
+      >
         Сохранить
       </Button>
     </form>

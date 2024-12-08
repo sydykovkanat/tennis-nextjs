@@ -7,7 +7,7 @@
 }
 
 .previewImageBlock {
-  @apply mb-3 p-2 bg-zinc-200/50 rounded-lg;
+  @apply mb-3 p-2 bg-zinc-200/50 rounded-lg max-h-[500px] object-cover overflow-hidden;
 
   & img {
     @apply w-full h-full rounded-lg;

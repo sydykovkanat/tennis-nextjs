@@ -11,7 +11,6 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { PartnerMutation } from '@/shared/types/partner.types';
 
 import React, { PropsWithChildren, useEffect } from 'react';
 

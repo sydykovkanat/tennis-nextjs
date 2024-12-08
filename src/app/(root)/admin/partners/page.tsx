@@ -35,7 +35,7 @@ const PartnersPageContent: React.FC = () => {
               </Button>
             </AdminPartnerCreate>
           </AdminPageHeader>
-          <div className='flex items-center gap-3 flex-wrap'>
+          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-3'>
             {partners.map((partner) => (
               <AdminPartnerCard key={partner._id} partner={partner} />
             ))}
