@@ -1,19 +1,12 @@
 'use client';
 
+import { ActionButtons } from '@/shared/components/shared';
 import { useImagesModal } from '@/shared/components/shared/news/hooks/use-images-modal';
-import {
-  Button,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/shared/components/ui';
+import { Button, Carousel, CarouselContent, CarouselItem } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';
-
 import React from 'react';
 
 import styles from './image-modal.module.css';
@@ -47,8 +40,7 @@ export const ImageModal: React.FC<Props> = ({ images, open, onClose, initialInde
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className={cn(styles.actionButton, 'left-10')} />
-        <CarouselNext className={cn(styles.actionButton, 'right-10')} />
+        <ActionButtons />
       </Carousel>
     </div>
   ) : null;

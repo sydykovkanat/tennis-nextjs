@@ -3,9 +3,9 @@
 }
 
 .title {
-  @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-tn-default-black font-bold uppercase leading-[36px];
+  @apply text-tn-default-black font-bold uppercase;
 }
 
 .subtitle {
-  @apply text-lg sm:text-2xl text-tn-secondary font-medium;
+  @apply text-tn-secondary font-medium;
 }

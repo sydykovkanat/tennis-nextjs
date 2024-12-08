@@ -1,11 +1,11 @@
 .newsTitleBlock {
-  @apply text-center mb-5 sm:mb-0 sm:pb-16;
+    @apply text-center mb-5 sm:mb-0 sm:pb-12;
 }
 
 .newsTitle {
-  @apply text-tn-default-black font-semibold leading-10 xs:mb-5 text-3xl xs:text-4xl md:text-5xl;
+    @apply text-tn-default-black font-semibold leading-10 mb-2 md:mb-5 text-3xl sm:text-4xl md:text-5xl;
 }
 
 .newsSubtitle {
-  @apply text-tn-secondary text-[20px] sm:text-2xl font-medium uppercase;
+    @apply text-tn-secondary text-lg sm:text-2xl font-medium uppercase;
 }
