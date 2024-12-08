@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/helpers/utils';
+import { cn } from '@/shared/lib';
 
 import * as React from 'react';
 

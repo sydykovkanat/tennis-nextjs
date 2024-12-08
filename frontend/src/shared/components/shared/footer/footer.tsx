@@ -20,7 +20,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
       <div className={styles.footerWrapper}>
         <div className={styles.footerColumn}>
           <div className={styles.logoWrapper}>
-            <Link prefetch={true} href='/' className={styles.logo}>
+            <Link prefetch={true} href='/frontend/public' className={styles.logo}>
               <img src='/kslt.svg' alt='КСЛТ' />
             </Link>
           </div>

@@ -4,7 +4,6 @@ import {
   postFetchCarousel,
   updateCarouselImage,
 } from '@/shared/lib/features/carousel/carousel-thunks';
-import { RootState } from '@/shared/lib/store';
 import { CarouselTypes } from '@/shared/types/carousel.types';
 import { GlobalError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
@@ -79,10 +78,14 @@ export const CarouselSlice = createSlice({
       state.errorImgCarousel = error || null;
     });
   },
+  selectors: {
+    photoCarouselState: (state) => state.img,
+    loadingCarouselState: (state) => state.loadingImgCarousel,
+    deleteCarouselState: (state) => state.deleteImgCarousel,
+    errorImgCarouselState: (state) => state.errorImgCarousel,
+  },
 });
 
 export const CarouselReducer = CarouselSlice.reducer;
-export const photoCarouselState = (state: RootState) => state.carousel.img;
-export const loadingCarouselState = (state: RootState) => state.carousel.loadingImgCarousel;
-export const deleteCarouselState = (state: RootState) => state.carousel.deleteImgCarousel;
-export const errorImgCarouselState = (state: RootState) => state.carousel.errorImgCarousel;
+export const { photoCarouselState, deleteCarouselState, loadingCarouselState, errorImgCarouselState } =
+  CarouselSlice.selectors;

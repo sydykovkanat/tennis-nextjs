@@ -64,7 +64,7 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
             <XMarkIcon className={styles.mobileMenuIconClone} />
           </button>
         </SheetClose>
-        <Link prefetch={true} href='/' className={styles.mobileMenuLogoWrapper}>
+        <Link prefetch={true} href='/frontend/public' className={styles.mobileMenuLogoWrapper}>
           <img className={styles.mobileMenuLogo} src='/kslt.svg' alt='КСЛТ' />
         </Link>
 

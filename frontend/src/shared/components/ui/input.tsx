@@ -1,4 +1,4 @@
-import { Label } from '@/shared/components/ui';
+import { Label } from '@/shared/components/ui/index';
 import { cn } from '@/shared/lib/helpers/utils';
 
 import * as React from 'react';
