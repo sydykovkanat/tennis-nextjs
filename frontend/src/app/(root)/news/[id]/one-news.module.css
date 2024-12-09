@@ -1,0 +1,23 @@
+.titleBlock {
+  @apply text-center mb-5 sm:mb-12;
+}
+
+.title {
+  @apply font-semibold text-tn-default-black leading-10 text-3xl sm:text-4xl md:text-5xl sm:mb-6;
+}
+
+.subtitle {
+  @apply text-tn-secondary text-[20px] text-2xl font-medium uppercase;
+}
+
+.content {
+  @apply text-lg text-tn-default-black sm:text-xl leading-6 sm:leading-8 mb-5;
+}
+
+.cardContainer {
+  @apply grid gap-5 justify-center items-center sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.sectionTitle {
+  @apply text-2xl text-center sm:text-start sm:text-4xl font-semibold mb-5 sm:mb-8;
+}

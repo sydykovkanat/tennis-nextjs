@@ -1,0 +1,7 @@
+.noContentText {
+  @apply my-3 text-center text-xs md:text-sm;
+}
+
+.contentWrapper {
+  @apply flex flex-col gap-1 pb-1;
+}

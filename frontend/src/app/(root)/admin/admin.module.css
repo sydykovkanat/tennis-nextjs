@@ -1,0 +1,11 @@
+.title {
+  @apply text-center text-2xl sm:text-4xl mb-8 font-semibold;
+}
+
+.scroll {
+  @apply max-w-max pb-3 mx-auto;
+}
+
+.tabsList {
+  @apply flex items-center gap-1 bg-zinc-200/30 border;
+}

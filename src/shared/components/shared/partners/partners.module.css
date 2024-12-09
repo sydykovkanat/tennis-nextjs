@@ -1,7 +1,0 @@
-.container {
-  @apply overflow-x-clip;
-}
-
-.mainTitle {
-  @apply text-2xl sm:text-3xl md:text-[38px] font-semibold mb-[14px] sm:mb-4 md:mb-6 lg:mb-9 text-center;
-}

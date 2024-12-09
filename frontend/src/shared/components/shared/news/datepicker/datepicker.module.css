@@ -1,0 +1,15 @@
+.datePickerBlock {
+  @apply flex flex-wrap justify-center sm:justify-start items-center gap-2.5 mb-7;
+}
+
+.datePopoverContent {
+  @apply w-auto p-0;
+}
+
+.filterSetDate {
+  @apply w-full xs:w-[135px] sm:w-[180px] md:w-[200px] text-left font-medium flex justify-center items-center;
+}
+
+.resetButton {
+  @apply text-cr-green-900 hover:text-rose-700 dark:text-green-500;
+}

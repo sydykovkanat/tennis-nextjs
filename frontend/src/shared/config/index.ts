@@ -1,0 +1,1 @@
+export { PAGES } from './pages';

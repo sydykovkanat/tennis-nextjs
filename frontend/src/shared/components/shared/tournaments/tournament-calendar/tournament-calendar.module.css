@@ -1,0 +1,7 @@
+.mainTitle {
+  @apply mb-10 font-semibold text-2xl md:text-3xl text-center;
+}
+
+.calendarTitles {
+  @apply text-xl sm:text-2xl font-bold text-[#3F6A11] dark:text-white mb-5 uppercase text-center;
+}

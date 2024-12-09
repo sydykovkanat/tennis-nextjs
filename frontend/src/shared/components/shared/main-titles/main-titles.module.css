@@ -1,0 +1,11 @@
+.container {
+  @apply text-center mb-6 sm:mb-12 md:mb-16 lg:mb-20;
+}
+
+.title {
+  @apply text-tn-default-black font-bold uppercase;
+}
+
+.subtitle {
+  @apply text-tn-secondary font-medium;
+}

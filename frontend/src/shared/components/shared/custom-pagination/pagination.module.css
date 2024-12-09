@@ -1,0 +1,7 @@
+.paginationItem {
+  @apply hidden min-[380px]:list-item;
+}
+
+.selectTrigger {
+  @apply flex justify-between items-center w-11 h-9;
+}
