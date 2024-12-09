@@ -1,10 +1,10 @@
-import { Confirm, Title } from '@/shared/components/shared';
+import { Confirm } from '@/shared/components/shared';
 import { RatingMemberEdit } from '@/shared/components/shared/rating-members';
-import { useRatingMemberDelete } from '@/shared/components/shared/rating-members/hooks';
+import { useRatingMemberDelete, useRatingMemberEdit } from '@/shared/components/shared/rating-members/hooks';
 import { Button, Card } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { RatingMember } from '@/shared/types/rating-member.types';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
 import React from 'react';
@@ -19,6 +19,7 @@ interface Props {
 export const RatingMemberAdminCard: React.FC<Props> = ({ ratingMember, ratingMembers }) => {
   const image = `${API_URL}/${ratingMember.image}`;
   const { handleDelete, isDeleting } = useRatingMemberDelete();
+  const { open, setOpen } = useRatingMemberEdit();
 
   return (
     <Card className={styles.card} data-testid={`${ratingMember.name}`}>
@@ -32,22 +33,23 @@ export const RatingMemberAdminCard: React.FC<Props> = ({ ratingMember, ratingMem
           quality={100}
           className={styles.cardImage}
         />
-        <Title variant='h5' className={styles.place}>
-          № {ratingMember.place}
-        </Title>
-        <Title variant='h5' className={styles.name}>
-          {ratingMember.name}
-        </Title>
+        <h5 className={styles.place}>№ {ratingMember.place}</h5>
+        <h5 className={styles.name}>{ratingMember.name}</h5>
         <div className={styles.actionsWrapper}>
           <Confirm onOk={() => handleDelete(ratingMember._id)}>
             <Button size='sm' disabled={isDeleting === ratingMember._id} data-testid='delete' icon={TrashIcon} />
           </Confirm>
-          <RatingMemberEdit
-            ratingMembers={ratingMembers}
-            id={ratingMember._id}
-            existingMember={ratingMember}
-            forWhichGender={ratingMember.gender === 'female' ? 'female' : 'male'}
-          />
+          <Button size='sm' data-testid='edit' icon={PencilSquareIcon} onClick={() => setOpen(true)} />
+          {open && (
+            <RatingMemberEdit
+              open={open}
+              setOpen={setOpen}
+              ratingMembers={ratingMembers}
+              id={ratingMember._id}
+              existingMember={ratingMember}
+              forWhichGender={ratingMember.gender === 'female' ? 'female' : 'male'}
+            />
+          )}
         </div>
       </div>
     </Card>

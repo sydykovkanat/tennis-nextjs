@@ -1,5 +1,9 @@
+.container {
+  @apply max-w-[900px] mx-auto;
+}
+
 .mainTitle {
-  @apply mb-10 font-semibold text-2xl md:text-3xl text-center;
+  @apply font-semibold text-2xl md:text-3xl text-center;
 }
 
 .calendarTitles {

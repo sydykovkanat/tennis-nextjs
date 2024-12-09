@@ -30,6 +30,6 @@ export type Tournaments = {
 };
 
 export interface UpdateTournamentArg {
-  id: string;
+  id?: string;
   tournamentMutation: TournamentMutation;
 }

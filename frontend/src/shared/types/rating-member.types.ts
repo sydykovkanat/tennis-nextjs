@@ -11,7 +11,7 @@ export interface RatingMember {
 }
 
 export interface UpdateRatingMemberArg {
-  id: string;
+  id?: string;
   ratingMemberMutation: RatingMemberMutation;
 }
 

@@ -1,18 +1,22 @@
+'use client';
+
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
+import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { Tournament } from '@/shared/types/tournament.types';
-import { User } from '@/shared/types/user.types';
 
 import styles from './tournament-card.module.css';
 
-export const TournamentActions = ({ tournament, permission }: { tournament: Tournament; permission?: User | null }) => {
+export const TournamentActions = ({ tournament }: { tournament: Tournament }) => {
+  const user = useAppSelector(selectUser);
+
   const renderActionItem = (text: string, link?: string | null) => {
     if (!link) {
       return null;
     }
 
-    return permission !== null ? (
+    return user !== null ? (
       <a
         href={link}
         target='_blank'

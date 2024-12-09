@@ -2,7 +2,6 @@ import { TournamentCard } from '@/shared/components/shared/tournaments';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/shared/components/ui';
 import { MONTH_NAMES } from '@/shared/constants';
 import { Tournament } from '@/shared/types/tournament.types';
-import { User } from '@/shared/types/user.types';
 
 import React from 'react';
 
@@ -13,7 +12,6 @@ interface Props {
   isFetching?: boolean;
   isAdmin?: boolean;
   tournamentsLastYearExist?: boolean;
-  user?: User | null;
 }
 
 export const TournamentAccordion: React.FC<Props> = ({
@@ -21,7 +19,6 @@ export const TournamentAccordion: React.FC<Props> = ({
   isFetching, //добавить загрузку
   isAdmin,
   tournamentsLastYearExist,
-  user,
 }) => {
   return (
     <Accordion type='multiple'>
@@ -41,7 +38,6 @@ export const TournamentAccordion: React.FC<Props> = ({
                     tournament={tournament}
                     isAdmin={isAdmin}
                     tournamentsLastYearExist={tournamentsLastYearExist}
-                    user={user}
                   />
                 ))
               ) : (

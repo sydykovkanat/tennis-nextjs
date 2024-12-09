@@ -3,11 +3,14 @@
 import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './rank-filter.module.css';
 
-export const RankFilter = () => {
+interface Props {
+  className?: string;
+}
+export const RankFilter: React.FC<Props> = ({ className }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialRank = searchParams.get('rank') || 'all';
@@ -25,7 +28,7 @@ export const RankFilter = () => {
   }, [searchParams]);
 
   return (
-    <Tabs value={selectedRank} onValueChange={handleRankChange}>
+    <Tabs value={selectedRank} onValueChange={handleRankChange} className={className}>
       <TabsList className={styles.tabsList}>
         {[
           { value: 'all', label: 'Все' },

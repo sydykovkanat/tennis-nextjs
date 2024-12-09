@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 import { useState } from 'react';
 
-export const useTournamentEdit = (id: string) => {
+export const useTournamentEdit = (id?: string) => {
   const dispatch = useAppDispatch();
   const isEditing = useAppSelector(selectTournamentUpdating);
   const [open, setOpen] = useState(false);

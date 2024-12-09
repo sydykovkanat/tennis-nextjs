@@ -1,26 +1,32 @@
 import { TournamentForm } from '@/shared/components/shared/tournaments';
 import { useTournamentEdit } from '@/shared/components/shared/tournaments/hooks';
-import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/components/ui';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/components/ui';
 import { Tournament } from '@/shared/types/tournament.types';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import styles from './tournament-edit.module.css';
 
-interface Props {
+interface Props extends PropsWithChildren {
   id: string;
   existingTournament: Tournament;
   tournamentsLastYearExist?: boolean;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
-export const TournamentEdit: React.FC<Props> = ({ id, existingTournament, tournamentsLastYearExist }) => {
-  const { isEditing, open, setOpen, handleClose, onFormSubmit } = useTournamentEdit(id);
+export const TournamentEdit: React.FC<Props> = ({
+  id,
+  existingTournament,
+  tournamentsLastYearExist,
+  open,
+  setOpen,
+  children,
+}) => {
+  const { isEditing, handleClose, onFormSubmit } = useTournamentEdit(id);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size='sm' data-testid='edit' icon={PencilSquareIcon} />
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent aria-describedby={undefined} className={styles.tournamentDialog}>
         <DialogHeader>
           <DialogTitle>Редактировать турнир</DialogTitle>
