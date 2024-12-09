@@ -1,11 +1,7 @@
-import { Confirm } from '@/shared/components/shared';
 import { TournamentActions, TournamentCardInfo, TournamentRegistration } from '@/shared/components/shared/tournaments';
-import { useTournamentsDelete } from '@/shared/components/shared/tournaments/hooks';
-import { Button } from '@/shared/components/ui';
-import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectUser } from '@/shared/lib/features/users/users-slice';
+import { AdminCard } from '@/shared/components/shared/tournaments/tournament-card/admin-card';
 import { Tournament } from '@/shared/types/tournament.types';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { User } from '@/shared/types/user.types';
 
 import React from 'react';
 
@@ -15,11 +11,11 @@ interface Props {
   tournament: Tournament;
   isAdmin?: boolean;
   tournamentsLastYearExist?: boolean;
+  user?: User | null;
+  handleDelete?: () => void;
 }
 
-export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamentsLastYearExist }) => {
-  const { handleDelete, isDeleting } = useTournamentsDelete();
-  const user = useAppSelector(selectUser);
+export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamentsLastYearExist, user }) => {
   return (
     <div className={styles.cardBg} data-testid={`${tournament.name}`}>
       <div className={styles.card}>
@@ -33,18 +29,7 @@ export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamen
           </div>
         </div>
 
-        {isAdmin && (
-          <div className={styles.adminCardActions}>
-            <Confirm onOk={() => handleDelete(tournament._id)}>
-              <Button size='sm' disabled={isDeleting === tournament._id} data-testid='delete' icon={TrashIcon} />
-            </Confirm>
-            <TournamentEdit
-              existingTournament={tournament}
-              id={tournament._id}
-              tournamentsLastYearExist={tournamentsLastYearExist}
-            />
-          </div>
-        )}
+        {isAdmin && <AdminCard tournament={tournament} tournamentsLastYearExist={tournamentsLastYearExist} />}
       </div>
     </div>
   );

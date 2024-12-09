@@ -6,3 +6,6 @@ export { TournamentAccordion } from './tournament-accordion/tournament-accordion
 export { RankFilter } from './rank-filter/rank-filter';
 export { TournamentForm } from './tournament-form/tournament-form';
 export { TournamentDatePicker } from './tournament-datepicker/tournament-datepicker';
+export { TournamentEdit } from './tournament-edit/tournament-edit';
+export { TournamentNew } from './tournament-new/tournament-new';
+export { AdminCalendar } from './admin-calendar/admin-calendar';

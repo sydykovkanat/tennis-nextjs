@@ -6,7 +6,7 @@ import { User } from '@/shared/types/user.types';
 
 import styles from './tournament-card.module.css';
 
-export const TournamentActions = ({ tournament, permission }: { tournament: Tournament; permission: User | null }) => {
+export const TournamentActions = ({ tournament, permission }: { tournament: Tournament; permission?: User | null }) => {
   const renderActionItem = (text: string, link?: string | null) => {
     if (!link) {
       return null;

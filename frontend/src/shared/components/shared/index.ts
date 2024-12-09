@@ -41,3 +41,4 @@ export { AdminPartnerCard } from './partners/admin-partner-card';
 export { AdminPartnerEdit } from './partners/admin-partner-edit';
 export { AdminPartnerForm } from './partners/admin-partner-form';
 export { AdminPageHeader } from './admin-page-header/admin-page-header';
+export { AdminCalendar } from './tournaments/admin-calendar/admin-calendar';

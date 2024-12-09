@@ -1,3 +1,5 @@
+'use client';
+
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectTournamentDeleting } from '@/shared/lib/features/tournaments/tournamentsSlice';
 import {
