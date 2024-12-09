@@ -44,3 +44,5 @@ export { Ratings } from './ratings/ratings';
 export { RatingCard } from './ratings/rating-card';
 export { Footer } from './footer/footer';
 export { Confirm } from '@/shared/components/shared/confirm/confirm';
+
+export { UserEdit } from './personal-account/user-edit/user-edit';

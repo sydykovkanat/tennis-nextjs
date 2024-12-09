@@ -2,6 +2,7 @@
 
 import { useDialog, useUserForm } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
+import UserDatePicker from '@/shared/components/shared/personal-account/user-datepicker/user-datepicker';
 import {
   Button,
   Input,
@@ -49,7 +50,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
           <DialogTitle>Редактирование профиля</DialogTitle>
           <DialogDescription>Заполните форму для редактирования профиля</DialogDescription>
 
-          <form onSubmit={handleSubmit} className={'flex flex-col gap-1.5'}>
+          <form onSubmit={handleSubmit} className={styles.formWrapper}>
             <Input
               id='fullName'
               value={userInfo.fullName}
@@ -80,17 +81,12 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               className={styles.inputField}
             />
 
-            <div className='flex flex-col gap-2'>
-              <Label htmlFor='dateOfBirth'>Дата рождения</Label>
-              <Input
-                id='dateOfBirth'
-                type='date'
-                value={userInfo.dateOfBirth}
-                placeholder='Выберите дату'
-                onChange={handleDateChange}
-                className={styles.dateInput}
-              />
-            </div>
+            <UserDatePicker
+              value={userInfo.dateOfBirth}
+              onChange={(date) => handleDateChange(date)}
+              label={'Дата рождения'}
+            />
+
             <div>
               <Label htmlFor='gender' className={'text-base text-left font-medium block'}>
                 Пол
@@ -108,7 +104,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               </Select>
             </div>
 
-            <div className={'flex flex-col gap-1 mt-1'}>
+            <div className={styles.buttonWrapper}>
               <Button type={'submit'}>Сохранить</Button>
 
               <DialogClose asChild>

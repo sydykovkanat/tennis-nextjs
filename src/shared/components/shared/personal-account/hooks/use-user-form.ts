@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { User } from '@/shared/types/user.types';
-import { isValid, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { toast } from 'sonner';
 
 import React, { useCallback, useEffect, useState } from 'react';
@@ -41,13 +41,10 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     setUserInfo((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (isValid(parseISO(value))) {
-      setUserInfo((prev) => ({
-        ...prev,
-        dateOfBirth: value,
-      }));
+  const handleDateChange = (date: Date | undefined) => {
+    if (date) {
+      const formattedDate = format(date, 'dd.MM.yyyy');
+      updateField('dateOfBirth', formattedDate);
     }
   };
 
