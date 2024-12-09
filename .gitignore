@@ -1,6 +1,5 @@
 node_modules
 .idea
-.git
 .env
 .DS_Store
 .vscode/*
