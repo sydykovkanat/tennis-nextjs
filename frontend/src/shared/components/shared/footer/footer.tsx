@@ -1,5 +1,5 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/shared/components/ui';
-import { API_URL, NAVIGATION_ITEMS } from '@/shared/constants';
+import { API_URL, CURRENT_YEAR_FULL, NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { ChevronUpIcon } from '@radix-ui/react-icons';
@@ -25,7 +25,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
             </Link>
           </div>
           <div className={styles.copyright}>
-            <p>Copyright © 2022 KSLT</p>
+            <p>Copyright © {CURRENT_YEAR_FULL} KSLT</p>
             <p>All rights reserved</p>
           </div>
           <div className={styles.socialIcons}>
@@ -91,14 +91,14 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
           </div>
 
           <div className={styles.partnerColumn}>
-            <h1 className={cn(styles.heading, 'text-center')}>Генеральный партнер</h1>
+            <h1 className={cn(styles.headingMainPartner, 'text-center')}>Генеральный партнер</h1>
             <img
               src={
                 dataItems.length > 0 && dataItems[0].mainPartnerImage
                   ? `${API_URL}/${dataItems[0].mainPartnerImage}`
                   : ''
               }
-              alt='Генеральный партнер'
+              alt='Ген.партнер'
               className={styles.partnerImage}
             />
           </div>

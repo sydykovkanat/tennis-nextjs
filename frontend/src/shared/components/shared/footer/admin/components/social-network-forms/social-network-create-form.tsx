@@ -2,6 +2,7 @@
 
 import { Loader } from '@/shared/components/shared';
 import {
+  Button,
   Dialog,
   DialogClose,
   DialogContent,
@@ -9,11 +10,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  Input,
+  Label,
 } from '@/shared/components/ui';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
-import { Label } from '@/shared/components/ui';
-import { Input } from '@/shared/components/ui';
-import { Button } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemCreating, selectItemsData } from '@/shared/lib/features/footer/footers-slice';
 import { createSocialNetwork, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
