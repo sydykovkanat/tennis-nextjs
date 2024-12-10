@@ -1,9 +1,10 @@
+import { API_URL } from '@/shared/constants';
 import { RootState } from '@/shared/hooks/hooks';
 import axios from 'axios';
 import { Store } from 'redux';
 
 export const axiosApi = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: API_URL,
 });
 
 export const addTokenInterceptors = (store: Store<RootState>) => {
