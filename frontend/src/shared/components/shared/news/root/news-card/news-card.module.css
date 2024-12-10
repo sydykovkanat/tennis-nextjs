@@ -1,0 +1,23 @@
+.newsCard {
+    @apply h-full w-full flex flex-col;
+}
+
+.newsLink {
+    @apply no-underline h-full;
+}
+
+.newsCardContent {
+    @apply flex flex-wrap mt-auto items-start p-6 pt-0;
+}
+
+.newsCardSubtitle {
+    @apply text-tn-default-black text-[16px];
+}
+
+.newsCardTitle {
+    @apply text-cr-black font-bold text-lg;
+}
+
+.newsCardCreatedAt {
+    @apply text-cr-green-900 font-medium text-sm;
+}
