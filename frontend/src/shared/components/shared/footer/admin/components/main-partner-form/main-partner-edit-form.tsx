@@ -77,7 +77,7 @@ export const MainPartnerEditForm: React.FC<PropsWithChildren> = ({ children }) =
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               <Label htmlFor={'image'}>Изображение партнера</Label>
-              <Input id='image' type='file' name='image' onChange={onChangeFileInput} />
+              <Input id='image' accept='image/*' type='file' name='image' onChange={onChangeFileInput} />
             </div>
             <div className={styles.formActions}>
               <Button disabled={mainPartner.image === null} size={'sm'}>

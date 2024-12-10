@@ -51,7 +51,7 @@
 }
 
 .menuPositionCardIcon {
-  @apply h-[25px] w-[25px] sm:h-[30px] sm:w-[30px] mr-2 flex-shrink-0;
+  @apply h-[25px] w-[25px] sm:h-[27px] sm:w-[27px] mr-2 flex-shrink-0;
 }
 
 .menuPositionCardTitle {
@@ -75,7 +75,7 @@
 }
 
 .mainPartnerCardImage {
-  @apply rounded-[5px] object-cover h-[30px] w-[30px] mr-2 cursor-pointer;
+  @apply object-contain h-[30px] w-[30px] mr-2 cursor-pointer;
 }
 
 .mainPartnerCardTooltipContent {
