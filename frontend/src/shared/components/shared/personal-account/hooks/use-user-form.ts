@@ -25,6 +25,7 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
 
   const resetUserInfo = useCallback(() => {
     setUserInfo({
+      ...initialState,
       telephone: user.telephone || '',
       fullName: user.fullName || '',
       email: user.email || '',
