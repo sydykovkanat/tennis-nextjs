@@ -1,4 +1,7 @@
+'use client';
+
 import { useFormState } from '@/shared/components/shared/tournaments/hooks/use-form-state';
+import { useTournamentFormLogic } from '@/shared/components/shared/tournaments/hooks/use-tournament-form-logic';
 import { useTournamentsDelete } from '@/shared/components/shared/tournaments/hooks/use-tournaments-delete';
 import { useValidation } from '@/shared/components/shared/tournaments/hooks/use-validation';
 import { CURRENT_YEAR_FULL, NEXT_YEAR } from '@/shared/constants';
@@ -18,12 +21,7 @@ const emptyState: TournamentMutation = {
   tournamentYear: '',
 };
 
-export const useTournamentForm = (
-  onSubmit: (tournament: TournamentMutation) => void,
-  existingTournament?: Tournament,
-  tournamentsLastYearExist?: boolean,
-  isLoading?: boolean,
-) => {
+export const useTournamentForm = (existingTournament?: Tournament, tournamentsLastYearExist?: boolean, id?: string) => {
   const initialState = existingTournament
     ? {
         ...existingTournament,
@@ -35,7 +33,16 @@ export const useTournamentForm = (
   const { state, setState, handleChangeSelect, handleChange, fileInputChangeHandler, handleDateChange } =
     useFormState(initialState);
 
-  const { showWarning, isFormInvalid } = useValidation(state, tournamentsLastYearExist, isLoading);
+  const {
+    handleSubmit: submitLogic,
+    open,
+    setOpen,
+    handleClose,
+    isCreating,
+    isEditing,
+  } = useTournamentFormLogic(state, existingTournament, id);
+
+  const { showWarning, isFormInvalid } = useValidation(state, tournamentsLastYearExist, isCreating, isEditing);
 
   const { handleDeleteByYear } = useTournamentsDelete();
 
@@ -46,9 +53,7 @@ export const useTournamentForm = (
       await handleDeleteByYear(CURRENT_YEAR_FULL.toString());
     }
 
-    onSubmit({
-      ...state,
-    });
+    await submitLogic();
 
     setState(initialState);
   };
@@ -60,6 +65,9 @@ export const useTournamentForm = (
     handleChange,
     fileInputChangeHandler,
     handleDateChange,
+    open,
+    setOpen,
+    handleClose,
     showWarning,
     isFormInvalid,
     handleSubmit,

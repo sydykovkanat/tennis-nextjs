@@ -1,6 +1,8 @@
+import { Loader } from '@/shared/components/shared';
 import { TournamentCard } from '@/shared/components/shared/tournaments';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/shared/components/ui';
 import { MONTH_NAMES } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 import { Tournament } from '@/shared/types/tournament.types';
 
 import React from 'react';
@@ -12,16 +14,18 @@ interface Props {
   isFetching?: boolean;
   isAdmin?: boolean;
   tournamentsLastYearExist?: boolean;
+  className?: string;
 }
 
 export const TournamentAccordion: React.FC<Props> = ({
   tournaments,
-  isFetching, //добавить загрузку
+  isFetching,
   isAdmin,
   tournamentsLastYearExist,
+  className,
 }) => {
   return (
-    <Accordion type='multiple'>
+    <Accordion type='multiple' className={cn(className)}>
       {Object.entries(tournaments).map(([month, tournamentList]) => (
         <AccordionItem key={month} value={month} className={styles.accordionItem}>
           <AccordionTrigger className={styles.accordionTrigger}>
@@ -31,7 +35,9 @@ export const TournamentAccordion: React.FC<Props> = ({
           </AccordionTrigger>
           <AccordionContent className={styles.accordionContent}>
             <div className={styles.contentWrapper}>
-              {tournamentList.length > 0 && !isFetching ? (
+              {isFetching ? (
+                <Loader fixed />
+              ) : tournamentList.length > 0 ? (
                 tournamentList.map((tournament) => (
                   <TournamentCard
                     key={tournament._id}

@@ -15,9 +15,13 @@ export const useTournaments = (rank?: string) => {
     return Object.values(tournaments.previousYear).some((monthTournaments) => monthTournaments.length > 0);
   }, [tournaments.previousYear]);
 
+  const tournamentsNextYearExist = useMemo(() => {
+    return Object.values(tournaments.nextYear).some((monthTournaments) => monthTournaments.length > 0);
+  }, [tournaments.nextYear]);
+
   useEffect(() => {
     dispatch(fetchTournaments(rank));
   }, [dispatch, rank]);
 
-  return { tournaments, tournamentsFetching, tournamentsLastYearExist };
+  return { tournaments, tournamentsFetching, tournamentsLastYearExist, tournamentsNextYearExist };
 };

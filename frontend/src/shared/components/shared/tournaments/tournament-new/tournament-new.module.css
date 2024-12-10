@@ -1,7 +1,0 @@
-.addButton {
-  @apply w-full xs:w-max;
-}
-
-.tournamentDialog {
-  @apply max-h-[90dvh] overflow-y-auto;
-}

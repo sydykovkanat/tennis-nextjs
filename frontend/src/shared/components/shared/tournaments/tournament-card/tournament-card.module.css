@@ -11,7 +11,7 @@
 }
 
 .cardActions {
-  @apply flex flex-col sm:mt-auto;
+  @apply flex flex-col sm:mt-auto gap-1;
 }
 
 .cardRegister {

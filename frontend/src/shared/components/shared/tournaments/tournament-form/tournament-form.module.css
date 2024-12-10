@@ -5,3 +5,7 @@
 .fieldWrapper {
   @apply flex flex-col gap-1;
 }
+
+.tournamentDialog {
+  @apply max-h-[90dvh] overflow-y-auto;
+}

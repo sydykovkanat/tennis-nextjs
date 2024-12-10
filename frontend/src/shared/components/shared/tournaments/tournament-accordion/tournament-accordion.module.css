@@ -15,7 +15,7 @@
 }
 
 .noContentText {
-  @apply my-3 text-center text-xs md:text-sm;
+  @apply my-3 text-center text-xs md:text-sm text-muted-foreground;
 }
 
 .contentWrapper {
