@@ -3,7 +3,9 @@
 import { CategoryCard, CategoryForm, useCategoryForm } from '@/shared/components/shared';
 import { cn } from '@/shared/lib';
 import { Category as CategoryType } from '@/shared/types/category.types';
+
 import React from 'react';
+
 import styles from './category.module.css';
 
 interface Props {

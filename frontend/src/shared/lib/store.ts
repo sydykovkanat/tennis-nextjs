@@ -5,6 +5,7 @@ import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
+import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
 
 const createNoopStorage = () => {
   return {
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   category: categorySlice.reducer,
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
+  footers: footersReducer,
 });
 
 export const store = configureStore({

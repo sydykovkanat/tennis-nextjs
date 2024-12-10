@@ -49,6 +49,7 @@ export {
 } from './dropdown-menu';
 
 export { Checkbox } from './checkbox';
+export { Tooltip } from './tooltip';
 
 export {
   Dialog,

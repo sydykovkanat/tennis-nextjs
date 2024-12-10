@@ -1,15 +1,24 @@
-import { getFooterItems } from '@/actions/footer';
+'use client';
+
 import { Footer } from '@/shared/components/shared';
 import { Navbar } from '@/shared/components/shared/navbar/navbar';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { selectItemsData } from '@/shared/lib/features/footer/footers-slice';
+import { getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export default async function Layout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const footerItemsData = await getFooterItems();
+  const dispatch = useAppDispatch();
+  const footerItemsData = useAppSelector(selectItemsData);
+
+  useEffect(() => {
+    dispatch(getFooterItems());
+  }, [dispatch]);
 
   return (
     <div className='flex flex-col min-h-dvh'>

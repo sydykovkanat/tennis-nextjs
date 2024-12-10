@@ -1,0 +1,7 @@
+.formContainer {
+  @apply flex flex-col justify-between gap-2 mb-3;
+}
+
+.formActions {
+  @apply flex flex-col gap-1;
+}

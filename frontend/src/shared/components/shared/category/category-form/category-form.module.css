@@ -1,15 +1,15 @@
 .mainBlock {
-    @apply mb-2 text-left;
+  @apply mb-2 text-left;
 }
 
 .inputBlock {
-    @apply flex items-center flex-wrap justify-between gap-2 mb-1;
+  @apply flex items-center flex-wrap justify-between gap-2 mb-1;
 }
 
 .buttonBlock {
-    @apply flex flex-col gap-1;
+  @apply flex flex-col gap-1;
 }
 
 .error {
-    @apply text-red-600 leading-tight;
+  @apply text-red-600 leading-tight;
 }

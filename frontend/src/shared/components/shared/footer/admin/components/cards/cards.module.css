@@ -1,0 +1,91 @@
+.card {
+  @apply p-3 shadow-none relative min-w-72 flex-1;
+}
+
+.cardHeader {
+  @apply flex items-center gap-2 justify-between lg:flex-row flex-nowrap;
+}
+
+.networkInfo {
+  @apply flex items-center;
+}
+
+.networkName {
+  @apply capitalize;
+}
+
+.actions {
+  @apply space-x-1 flex items-center;
+}
+
+.publicOfferCard {
+  @apply p-3 shadow-none relative min-w-72 flex-1;
+}
+
+.publicOfferCardHeader {
+  @apply flex items-center gap-2 justify-between lg:flex-row flex-wrap;
+}
+
+.publicOfferCardTextContainer {
+  @apply flex items-center gap-2 whitespace-normal max-w-full;
+}
+
+.publicOfferCardIcon {
+  @apply h-[30px] w-[30px] shrink-0;
+}
+
+.publicOfferCardText {
+  @apply truncate;
+}
+
+.menuPositionCard {
+  @apply p-3 shadow-none relative min-w-72 flex-1;
+}
+
+.menuPositionCardHeader {
+  @apply flex items-center gap-2 h-[100%] justify-between lg:flex-row flex-nowrap;
+}
+
+.menuPositionCardTitleContainer {
+  @apply flex items-center;
+}
+
+.menuPositionCardIcon {
+  @apply h-[25px] w-[25px] sm:h-[30px] sm:w-[30px] mr-2 flex-shrink-0;
+}
+
+.menuPositionCardTitle {
+  @apply text-xs;
+}
+
+.menuPositionCardActions {
+  @apply space-x-1 flex items-center;
+}
+
+.mainPartnerCard {
+  @apply p-3 shadow-none relative min-w-72 flex-1;
+}
+
+.mainPartnerCardHeader {
+  @apply flex items-center gap-2 justify-between lg:flex-row flex-nowrap;
+}
+
+.mainPartnerCardImageContainer {
+  @apply flex items-center;
+}
+
+.mainPartnerCardImage {
+  @apply rounded-[5px] object-cover h-[30px] w-[30px] mr-2 cursor-pointer;
+}
+
+.mainPartnerCardTooltipContent {
+  @apply bg-muted w-[150px] h-[144px] border drop-shadow-2xl;
+}
+
+.mainPartnerCardTooltipImage {
+  @apply w-full h-full rounded;
+}
+
+.mainPartnerCardText {
+  @apply text-[14px] sm:text-[16px];
+}

@@ -8,7 +8,9 @@ import { selectCategoryDeleting } from '@/shared/lib/features/categories/categor
 import { removeCategory } from '@/shared/lib/features/categories/category-thunks';
 import { Category } from '@/shared/types/category.types';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+
 import React from 'react';
+
 import styles from './category-card.module.css';
 
 interface Props {
