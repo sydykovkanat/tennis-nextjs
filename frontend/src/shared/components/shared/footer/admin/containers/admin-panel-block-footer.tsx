@@ -24,12 +24,12 @@ export const AdminPanelBlockFooter = () => {
 
   return (
     <>
-      <header className={styles.header}>
+      <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>Подвал сайта</h1>
+          <h2 className={styles.title}>Подвал сайта</h2>
           <small className={styles.subtitle}>Элементы управления контентом и его созданием.</small>
         </div>
-      </header>
+      </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
         <TabsList className={styles.tabsList}>
           <TabsTrigger className={styles.tabsTrigger} value='social-network'>
