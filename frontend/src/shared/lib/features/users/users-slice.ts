@@ -121,6 +121,7 @@ export const usersSlice = createSlice({
 
 export const {
   selectUser,
+  selectCurrentUser,
   selectLoginLoading,
   selectLoginError,
   selectRegisterLoading,
@@ -129,4 +130,3 @@ export const {
   selectUserPermission,
 } = usersSlice.selectors;
 export const { unsetUser } = usersSlice.actions;
-
