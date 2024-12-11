@@ -26,7 +26,6 @@ export { ActionButtons } from './news/image-modal/acton-buttons';
 export { NavbarMobile } from './navbar/navbar-mobile';
 export { Register } from './auth/register';
 export { TournamentCalendar } from './tournaments/tournament-calendar/tournament-calendar';
-export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles, userCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { Category } from './category/category/category';

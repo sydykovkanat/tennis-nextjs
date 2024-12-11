@@ -24,12 +24,11 @@ export const useTournamentFormLogic = (state: TournamentMutation, existingTourna
       if (existingTournament && id) {
         await dispatch(updateTournament({ id, tournamentMutation: state })).unwrap();
         toast.success('Турнир обновлен успешно');
-        handleClose();
       } else {
         await dispatch(createTournament(state)).unwrap();
         toast.success('Турнир создан успешно');
-        handleClose();
       }
+      handleClose();
       await dispatch(fetchTournaments());
     } catch (error) {
       handleClose();
