@@ -42,6 +42,10 @@
   @apply pb-7 text-lg xs:text-xl;
 }
 
+.headingMainPartner {
+  @apply pb-[34px] text-lg xs:text-xl;
+}
+
 .linksList {
   @apply flex items-center xs:items-start flex-col gap-4 text-sm xs:text-base text-[#D9DBE1];
 }

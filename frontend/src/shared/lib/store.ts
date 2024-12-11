@@ -1,5 +1,6 @@
 import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
 import { categorySlice } from '@/shared/lib/features/categories/category-slice';
+import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
 import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   category: categorySlice.reducer,
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
+  footers: footersReducer,
 });
 
 export const store = configureStore({

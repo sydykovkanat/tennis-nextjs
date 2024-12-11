@@ -33,7 +33,7 @@ export { TournamentCardsList } from './tournaments/tournament-cards-list/tournam
 export { TournamentAccordion } from './tournaments/tournament-accordion/tournament-accordion';
 export { TournamentCalendar } from './tournaments/tournament-calendar/tournament-calendar';
 export { RankFilter } from './tournaments/rank-filter/rank-filter';
-export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
+export { GradientCircle, gradientCircles, userCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { Category } from './category/category/category';
 export { CategoryCard } from './category/category-card/caregory-card';
@@ -43,6 +43,22 @@ export { useCategoryForm } from './category/hooks/use-category-form';
 export { Ratings } from './ratings/ratings';
 export { RatingCard } from './ratings/rating-card';
 export { Footer } from './footer/footer';
+export { SocialNetwork } from './footer/admin/containers/tabs-content/social-network';
+export { PublicOffer } from './footer/admin/containers/tabs-content/public-offer';
+export { MenuPosition } from './footer/admin/containers/tabs-content/menu-position';
+export { MainPartner } from './footer/admin/containers/tabs-content/main-partner';
+export { AdminPanelBlockFooter } from './footer/admin/containers/admin-panel-block-footer';
+export { MainPartnerEditForm } from './footer/admin/components/main-partner-form/main-partner-edit-form';
+export { MainPartnerCard } from './footer/admin/components/cards/main-partner-card';
+export { MenuPositionCreateForm } from './footer/admin/components/menu-position-forms/menu-position-create-form';
+export { MenuPositionCard } from './footer/admin/components/cards/menu-position-card';
+export { PublicOfferCard } from './footer/admin/components/cards/public-offer-card';
+export { SocialNetworkCard } from './footer/admin/components/cards/social-network-card';
+export { PublicOfferEditForm } from './footer/admin/components/public-offer-form/public-offer-edit-form';
+export { SocialNetworkCreateForm } from './footer/admin/components/social-network-forms/social-network-create-form';
+export { SocialNetworkEditForm } from './footer/admin/components/social-network-forms/social-network-edit-form';
+export { MenuPositionEditForm } from './footer/admin/components/menu-position-forms/menu-position-edit-form';
+
 export { AdminPartnerCard } from './partners/admin-partner-card';
 export { AdminPartnerEdit } from './partners/admin-partner-edit';
 export { AdminPartnerForm } from './partners/admin-partner-form';
@@ -55,3 +71,5 @@ export { UsersForm } from './admin-users-list/users-form/users-form';
 export { useUsersForm } from './admin-users-list/hooks/use-users-form';
 export { UsersInput } from './admin-users-list/users-input/users-input';
 export { UsersDatePicker } from './admin-users-list/users-date-picker/users-date-picker';
+
+export { UserEdit } from './personal-account/user-edit/user-edit';

@@ -4,7 +4,9 @@ import { CategoryForm, useCategoryForm } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { SquaresPlusIcon } from '@heroicons/react/24/outline';
+
 import React from 'react';
+
 import styles from './category-header.module.css';
 
 interface Props {

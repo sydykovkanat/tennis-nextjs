@@ -1,9 +1,10 @@
 'use client';
 
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
+
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 
 export const useCategory = () => {
   const dispatch = useAppDispatch();

@@ -48,3 +48,7 @@ export const gradientCircles: GradientCirclesTypes[] = [
   { width: '630px', height: '654px', bottom: '1500px', left: '-20px', visible: 'block' },
   { width: '516px', height: '528px', bottom: '628px', right: '170px', visible: 'block' },
 ];
+export const userCircles = [
+  { width: '569px', height: '572px', top: '-90px', left: '-272px', visible: 'block' },
+  { width: '569px', height: '572px', bottom: '50px', right: '20px', visible: 'block' },
+];

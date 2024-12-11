@@ -2,7 +2,7 @@ import { RootState, axiosApi } from '@/shared/lib';
 import { unsetUser } from '@/shared/lib/features/users/users-slice';
 import { LoginMutation, RegisterMutation } from '@/shared/types/auth.types';
 import {
-  GlobalError,
+  GlobalError, RegisterMutationWithoutCoupleFields,
   User,
   UserMutation,
   UsersFilter,
@@ -11,6 +11,7 @@ import {
 } from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { isAxiosError } from 'axios';
+import { toast } from 'sonner';
 
 export const register = createAsyncThunk<User, RegisterMutation, { rejectValue: ValidationError }>(
   'users-list/register',
@@ -82,6 +83,31 @@ export const addUser = createAsyncThunk<void, UserMutation, { rejectValue: Valid
         return rejectWithValue(error.response.data);
       }
 
+      throw error;
+    }
+  },
+);
+
+
+
+export const fetchOneUser = createAsyncThunk<User, string>('users/fetchOneUser', async (id) => {
+  const { data: user } = await axiosApi.get<User>(`/users/${id}`);
+  return user;
+});
+
+
+export const updateUserInfo = createAsyncThunk<User, RegisterMutationWithoutCoupleFields, { rejectValue: GlobalError }>(
+  'users/updateUserInfo',
+  async (userInfo) => {
+    try {
+      const { data: user } = await axiosApi.put<User>('/users/update-info', userInfo);
+      return user;
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        if (error.response.data.error) {
+          toast.error(error.response.data.error);
+        }
+      }
       throw error;
     }
   },

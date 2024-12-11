@@ -1,10 +1,23 @@
 'use client';
 
 import { Loader, useCategoryForm } from '@/shared/components/shared';
-import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from '@/shared/components/ui';
+import {
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+} from '@/shared/components/ui';
 import { cn, useAppDispatch } from '@/shared/lib';
 import { createCategory, fetchCategory, updateCategory } from '@/shared/lib/features/categories/category-thunks';
+
 import React, { FormEvent, PropsWithChildren, useEffect } from 'react';
+
 import styles from './category-form.module.css';
 
 interface Props extends PropsWithChildren {
@@ -78,9 +91,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
               <div className={cn(styles.mainBlock)}>
                 <div className={cn(styles.inputBlock)}>
                   <Label htmlFor={'category'}>Название</Label>
-                  {isBlocked && (
-                    <small className={cn(styles.error)}>Категория {category} уже существует.</small>
-                  )}
+                  {isBlocked && <small className={cn(styles.error)}>Категория {category} уже существует.</small>}
                 </div>
                 <Input
                   placeholder={'Введите название категории'}
