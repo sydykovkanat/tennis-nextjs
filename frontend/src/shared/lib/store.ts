@@ -1,5 +1,6 @@
 import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
 import { categorySlice } from '@/shared/lib/features/categories/category-slice';
+import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
 import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
 import { tournamentsReducer } from '@/shared/lib/features/tournaments/tournamentsSlice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
   tournaments: tournamentsReducer,
+  footers: footersReducer,
 });
 
 export const store = configureStore({

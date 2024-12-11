@@ -39,7 +39,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
     <div className={styles.header}>
       <div className={styles.container}>
         <div className={styles.headerInner}>
-          <Link prefetch={true} href='/frontend/public' className={styles.logoWrapper}>
+          <Link prefetch={true} href='/' className={styles.logoWrapper}>
             <img className={styles.logo} src='/kslt.svg' alt='КСЛТ' />
           </Link>
 

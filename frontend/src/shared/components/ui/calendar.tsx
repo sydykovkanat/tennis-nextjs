@@ -2,12 +2,12 @@
 
 import { buttonVariants } from '@/shared/components/ui/button';
 import { ScrollArea } from '@/shared/components/ui/scroll-area';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select';
 import { cn } from '@/shared/lib';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import * as React from 'react';
 import { DayPicker, DropdownProps } from 'react-day-picker';
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -92,8 +92,8 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
             </Select>
           );
         },
-        IconLeft: () => <ChevronLeft className='h-4 w-4' />,
-        IconRight: () => <ChevronRight className='h-4 w-4' />,
+        // IconLeft: ({ ...props }) => <ChevronLeft className='h-4 w-4' />,
+        // IconRight: ({ ...props }) => <ChevronRight className='h-4 w-4' />,
       }}
       {...props}
     />
