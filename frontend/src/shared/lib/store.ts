@@ -1,12 +1,12 @@
 import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
 import { categorySlice } from '@/shared/lib/features/categories/category-slice';
+import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
 import { newsSlice } from '@/shared/lib/features/news/news-slice';
 import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
-
 
 const createNoopStorage = () => {
   return {
@@ -38,6 +38,7 @@ const rootReducer = combineReducers({
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
   news: newsSlice.reducer,
+  footers: footersReducer,
 });
 
 export const store = configureStore({
