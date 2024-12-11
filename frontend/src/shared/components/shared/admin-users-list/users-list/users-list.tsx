@@ -7,7 +7,11 @@ import { fetchUsers } from '@/shared/lib/features/users/users-thunks';
 
 import React, { useEffect } from 'react';
 
-export const UsersList = () => {
+interface UsersListProps {
+  role: 'user' | 'moderator';
+}
+
+export const UsersList: React.FC<UsersListProps> = ({ role }) => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsersList);
 
@@ -18,10 +22,10 @@ export const UsersList = () => {
         fullName: '',
         category: 'all',
         page: 1,
-        role: 'user',
+        role,
       }),
     );
-  }, [dispatch]);
+  }, [dispatch, role]);
 
   return (
     <>

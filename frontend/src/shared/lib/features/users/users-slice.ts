@@ -48,6 +48,17 @@ export const usersSlice = createSlice({
       .addCase(login.fulfilled, (state, { payload: user }) => {
         state.loginLoading = false;
         state.user = user;
+        if (user.role === 'user') {
+          if (user.isActive) {
+            state.userPermission = 1;
+          } else {
+            state.userPermission = 0;
+          }
+        } else if (user.role === 'moderator') {
+          state.userPermission = 2;
+        } else {
+          state.userPermission = 3;
+        }
       })
       .addCase(login.rejected, (state, { payload: error }) => {
         state.loginError = error || null;
