@@ -33,7 +33,7 @@ export { TournamentCardsList } from './tournaments/tournament-cards-list/tournam
 export { TournamentAccordion } from './tournaments/tournament-accordion/tournament-accordion';
 export { TournamentCalendar } from './tournaments/tournament-calendar/tournament-calendar';
 export { RankFilter } from './tournaments/rank-filter/rank-filter';
-export { GradientCircle, gradientCircles } from './gradient-circles/gradient-circles';
+export { GradientCircle, gradientCircles, userCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { Category } from './category/category/category';
 export { CategoryCard } from './category/category-card/caregory-card';
@@ -64,3 +64,5 @@ export { AdminPartnerCard } from './partners/admin-partner-card';
 export { AdminPartnerEdit } from './partners/admin-partner-edit';
 export { AdminPartnerForm } from './partners/admin-partner-form';
 export { AdminPageHeader } from './admin-page-header/admin-page-header';
+
+export { UserEdit } from './personal-account/user-edit/user-edit';
