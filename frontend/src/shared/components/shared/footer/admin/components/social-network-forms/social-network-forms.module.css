@@ -1,0 +1,11 @@
+.formGroup {
+  @apply flex flex-col justify-between gap-2 mb-3;
+}
+
+.errorMessage {
+  @apply text-red-600 leading-none;
+}
+
+.formActions {
+  @apply flex flex-col gap-1;
+}
