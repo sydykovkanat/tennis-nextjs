@@ -22,7 +22,7 @@ const PersonalAccount = () => {
             <GradientCircle key={id} {...circle} />
           ))}
           <div className={styles.accountWrapper} style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}>
-            <header className={styles.accountHeader}>
+            <div className={styles.accountHeader}>
               <div>
                 <h1>Личный кабинет</h1>
                 <small>Ваша персональная информация и управление данными</small>
@@ -30,7 +30,7 @@ const PersonalAccount = () => {
               <UserEdit user={currentUser}>
                 <Button icon={PencilSquareIcon}>Редактировать</Button>
               </UserEdit>
-            </header>
+            </div>
 
             <main className={styles.mainWrapper}>
               <div className={styles.fullNameDiv}>
@@ -50,21 +50,14 @@ const PersonalAccount = () => {
                 </div>
 
                 <div className={styles.textWrapper}>
-                  <h3 className={styles.title}>День рождения</h3>
+                  <h3 className={styles.title}>Дата рождения</h3>
                   <span className={styles.subtitle}>{currentUser.dateOfBirth}</span>
                 </div>
 
                 <div className={styles.textWrapper}>
                   <h3 className={styles.title}>Пол</h3>
-                  <span className={styles.subtitle}>{currentUser.gender === 'male' ? 'Муж.' : 'Жен.'}</span>
+                  <span className={styles.subtitle}>{currentUser.gender === 'male' ? 'Мужской' : 'Женский'}</span>
                 </div>
-
-                {currentUser.role === 'admin' && (
-                  <div className={styles.textWrapper}>
-                    <h3 className={styles.title}>Роль</h3>
-                    <span className={styles.subtitle}>{currentUser.role === 'admin' ? 'Админ' : 'Пользователь'}</span>
-                  </div>
-                )}
               </div>
             </main>
           </div>

@@ -45,6 +45,7 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
       const formattedDate = format(date, 'dd.MM.yyyy');
+      //этот формат надо перенести на бэк
       updateField('dateOfBirth', formattedDate);
     }
   };
