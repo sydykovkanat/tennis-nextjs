@@ -1,7 +1,9 @@
-import { axiosApi } from '@/shared/lib';
+import { axiosApi, toQueryParams } from '@/shared/lib';
 import { AppDispatch } from '@/shared/lib/store';
 import { News, NewsMutation, NewsResponse } from '@/shared/types/news.types';
+import { Filters } from '@/shared/types/root.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 
 const createFormData = (newsMutation: NewsMutation): FormData => {
   const formData = new FormData();
@@ -52,10 +54,22 @@ export const createNews = createAsyncThunk<void, NewsMutation, { dispatch: AppDi
   },
 );
 
-export const fetchNews = createAsyncThunk<NewsResponse>('news/fetchNews', async (): Promise<NewsResponse> => {
-  const response = await axiosApi.get<NewsResponse>('/news');
-  return response.data;
-});
+export const fetchNews = createAsyncThunk<NewsResponse, Filters | undefined>(
+  'news/fetchNews',
+  async (data): Promise<NewsResponse> => {
+    let query = '';
+    try {
+      if (data?.query) {
+        query = toQueryParams(data.query);
+      }
+      const { data: news } = await axiosApi.get<NewsResponse>(`/news/${query}`);
+      return news;
+    } catch (error) {
+      console.error('Error fetching news: ', error);
+      throw error;
+    }
+  },
+);
 
 export const fetchOneNews = createAsyncThunk<News, string>('news/fetchOneNews', async (id) => {
   const { data: oneNews } = await axiosApi.get<News>(`/news/${id}`);

@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface NewsState {
   news: News[];
+  pages: number;
   oneNews: News | null;
   createNewsLoading: boolean;
   fetchNewsLoading: boolean;
@@ -14,6 +15,7 @@ interface NewsState {
 
 const initialState: NewsState = {
   news: [],
+  pages: 1,
   oneNews: null,
   createNewsLoading: false,
   fetchNewsLoading: false,
@@ -44,6 +46,7 @@ export const newsSlice = createSlice({
       })
       .addCase(fetchNews.fulfilled, (state, { payload }) => {
         state.news = payload.data;
+        state.pages = payload.pages;
         state.fetchNewsLoading = false;
       })
       .addCase(fetchNews.rejected, (state) => {
@@ -86,6 +89,7 @@ export const newsSlice = createSlice({
   },
   selectors: {
     selectNews: (state) => state.news,
+    selectNewsPages: (state) => state.pages,
     selectOneNews: (state) => state.oneNews,
     selectCreateNewsLoading: (state) => state.createNewsLoading,
     selectFetchNewsLoading: (state) => state.fetchNewsLoading,
@@ -99,6 +103,7 @@ export const newsReducer = newsSlice.reducer;
 
 export const {
   selectNews,
+  selectNewsPages,
   selectOneNews,
   selectCreateNewsLoading,
   selectFetchOneNewsLoading,

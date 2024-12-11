@@ -67,6 +67,7 @@ export const useNewsForm = () => {
   const toggleOpen = () => setOpen((prev) => !prev);
 
   return {
+    initialState,
     news,
     setNews,
     open,

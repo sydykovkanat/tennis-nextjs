@@ -2,6 +2,10 @@
     @apply max-h-svh overflow-y-auto max-w-7xl;
 }
 
+.form {
+    @apply space-y-4;
+}
+
 .title {
     @apply text-2xl font-bold;
 }

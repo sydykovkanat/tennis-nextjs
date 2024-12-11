@@ -1,9 +1,6 @@
 import { axiosApi, toQueryParams } from '@/shared/lib';
 import { News, NewsResponse } from '@/shared/types/news.types';
-
-interface Filters {
-  query: { [p: string]: string | number } | undefined;
-}
+import { Filters } from '@/shared/types/root.types';
 
 export const fetchNews = async ({ data }: { data: Filters }) => {
   let query = '';

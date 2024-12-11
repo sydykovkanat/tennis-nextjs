@@ -1,46 +1,46 @@
 'use client';
 
-import { fetchNews } from '@/actions/news';
-import { NewsResponse } from '@/shared/types/news.types';
+import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
+import { deleteEmptyQueryStrings, useAppDispatch, useAppSelector } from '@/shared/lib';
+import { selectNews, selectNewsPages } from '@/shared/lib/features/news/news-slice';
+import { fetchNews } from '@/shared/lib/features/news/news-thunks';
+import { Filters } from '@/shared/types/root.types';
 import { useSearchParams } from 'next/navigation';
 
-import { useEffect, useState } from 'react';
-import { deleteEmptyQueryStrings } from '@/shared/lib';
-import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
+
+
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 
 export const AdminNewsPage = () => {
-  const [news, setNews] = useState<NewsResponse['data'] | null>(null);
-  const [pages, setPages] = useState<NewsResponse['pages']>(1);
+  const dispatch = useAppDispatch();
+  const news = useAppSelector(selectNews);
+  const pages = useAppSelector(selectNewsPages);
   const searchParams = useSearchParams();
-  let queryObj;
+  const [data, setData] = useState<Filters | undefined>(undefined);
 
-  if (searchParams) {
-    queryObj = {
+  const updateFilters = useCallback(() => {
+    const queryObj = {
       page: searchParams.get('page') || '1',
       startDate: searchParams.get('startDate') || '',
       endDate: searchParams.get('endDate') || '',
     };
-  }
 
-  const validateQuery = queryObj && deleteEmptyQueryStrings(queryObj);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const data = { query: validateQuery };
+    const validatedQuery = deleteEmptyQueryStrings(queryObj);
+    setData({ query: validatedQuery });
+  }, [searchParams]);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const newsResponse: NewsResponse = await fetchNews({ data });
-        setNews(newsResponse.data);
-        setPages(newsResponse.pages);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    updateFilters();
+  }, [updateFilters]);
 
-    if (!news) {
-      void getData();
+  useEffect(() => {
+    if (!news.length) {
+      dispatch(fetchNews(data));
     }
-  }, [data, news]);
+  }, [dispatch, news.length, data]);
 
-  return <>{news && renderNewsContent({ news: news, pages: pages })}</>;
+  const renderedContent = useMemo(() => renderNewsContent({ news, pages }), [news, pages]);
+
+  return <>{renderedContent}</>;
 };

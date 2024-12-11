@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, NewsEditor } from '@/shared/components/shared';
+import { Confirm, Loader, NewsEditor } from '@/shared/components/shared';
 import { useNewsForm } from '@/shared/components/shared/news/hooks/use-news-form';
 import {
   Button,
@@ -14,14 +14,14 @@ import {
   Label,
 } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
+import { useAppDispatch } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { createNews } from '@/shared/lib/features/news/news-thunks';
 import { PencilSquareIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
 import { XIcon } from 'lucide-react';
-import Image from 'next/image';
 
 import React, { FormEvent } from 'react';
-import { useAppDispatch } from '@/shared/hooks/hooks';
-import { cn } from '@/shared/lib';
+
 import styles from './news-form.module.css';
 
 interface Props {
@@ -35,7 +35,9 @@ interface Props {
 export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = false, classname }) => {
   const dispatch = useAppDispatch();
   const {
+    initialState,
     news,
+    setNews,
     handleChange,
     handleEditorChange,
     handleFileInputChange,
@@ -55,6 +57,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
 
     try {
       await dispatch(createNews(news)).unwrap();
+      setNews(initialState);
       toast.success('Новость успешно добавлена!');
     } catch (error) {
       console.error(error);
@@ -68,9 +71,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
         {isEdit ? (
           <Button size='lg' icon={PencilSquareIcon} />
         ) : (
-          <Button icon={SquaresPlusIcon}>
-            Добавить новость
-          </Button>
+          <Button icon={SquaresPlusIcon}>Добавить новость</Button>
         )}
       </DialogTrigger>
       <DialogContent className={cn(styles.content)}>
@@ -84,7 +85,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
         {oneNewsFetching ? (
           <Loader />
         ) : (
-          <form className='space-y-4' onSubmit={handleSubmit}>
+          <form className={cn(styles.form)} onSubmit={handleSubmit}>
             <div className={cn(styles.inputBlock)}>
               <Label htmlFor='title' className={cn(styles.label)}>
                 Заголовок новости
@@ -123,7 +124,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
               <Input type='file' name='newsCover' onChange={handleFileInputChange} />
               {news.newsCover && (
                 <div className={cn(styles.newsCoverBlock)}>
-                  <Image
+                  <img
                     src={
                       news.newsCover instanceof File
                         ? URL.createObjectURL(news.newsCover)
@@ -131,14 +132,10 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
                     }
                     alt='News cover preview'
                     className={cn(styles.mediaInForm, 'max-h-[230px]')}
-                    width={250}
-                    height={250}
                   />
-                  <Button
-                    className={cn(styles.removeMediaButton)}
-                    icon={XIcon}
-                    onClick={() => handleRemoveMedia()}
-                  />
+                  <Confirm onOk={handleRemoveMedia}>
+                    <Button type='button' className={cn(styles.removeMediaButton)} icon={XIcon} />
+                  </Confirm>
                 </div>
               )}
             </div>
@@ -152,29 +149,21 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
                 <div className={cn(styles.imagesBlock)}>
                   {news.images.map((image, index) => (
                     <div className={cn(styles.images)} key={index}>
-                      <Image
+                      <img
                         src={image instanceof File ? URL.createObjectURL(image) : `${API_URL}/${image}`}
                         alt={`NewsPage Image ${index + 1}`}
                         className={cn(styles.mediaInForm, 'max-h-[150px]')}
-                        width={250}
-                        height={250}
                       />
-                      <Button
-                        className={cn(styles.removeMediaButton)}
-                        icon={XIcon}
-                        onClick={() => handleRemoveMedia()}
-                      />
+                      <Confirm onOk={() => handleRemoveMedia(index)}>
+                        <Button type='button' className={cn(styles.removeMediaButton)} icon={XIcon} />
+                      </Confirm>
                     </div>
                   ))}
                 </div>
               )}
             </div>
 
-            <Button
-              type='submit'
-              className={cn(styles.submitButton)}
-              disabled={newsCreating || newsUpdating}
-            >
+            <Button type='submit' className={cn(styles.submitButton)} disabled={newsCreating || newsUpdating}>
               {isEdit ? 'Редактировать' : 'Создать'}
               {(newsCreating || newsUpdating) && <Loader size={'sm'} theme={'light'} />}
             </Button>
