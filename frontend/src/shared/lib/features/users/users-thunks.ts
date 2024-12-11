@@ -1,7 +1,14 @@
 import { RootState, axiosApi } from '@/shared/lib';
 import { unsetUser } from '@/shared/lib/features/users/users-slice';
 import { LoginMutation, RegisterMutation } from '@/shared/types/auth.types';
-import { GlobalError, User, UsersFilter, UsersResponse, ValidationError } from '@/shared/types/user.types';
+import {
+  GlobalError,
+  User,
+  UserMutation,
+  UsersFilter,
+  UsersResponse,
+  ValidationError,
+} from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { isAxiosError } from 'axios';
 
@@ -64,3 +71,18 @@ export const fetchUsers = createAsyncThunk<UsersResponse, UsersFilter>('users/fe
   const { data: response } = await axiosApi.get<UsersResponse>(url);
   return response;
 });
+
+export const addUser = createAsyncThunk<void, UserMutation, { rejectValue: ValidationError }>(
+  'users/add-user',
+  async (registerMutation, { rejectWithValue }) => {
+    try {
+      await axiosApi.post<User>('/users/add-user', registerMutation);
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        return rejectWithValue(error.response.data);
+      }
+
+      throw error;
+    }
+  },
+);

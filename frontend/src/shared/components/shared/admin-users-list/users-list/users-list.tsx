@@ -10,7 +10,6 @@ import React, { useEffect } from 'react';
 export const UsersList = () => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsersList);
-  console.log(users, 'hello');
 
   useEffect(() => {
     dispatch(

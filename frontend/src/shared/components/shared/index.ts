@@ -48,5 +48,10 @@ export { AdminPartnerEdit } from './partners/admin-partner-edit';
 export { AdminPartnerForm } from './partners/admin-partner-form';
 export { AdminPageHeader } from './admin-page-header/admin-page-header';
 export { Confirm } from './confirm/confirm';
+
 export { AdminUsersList } from './admin-users-list/admin-users-list';
 export { UsersList } from './admin-users-list/users-list/users-list';
+export { UsersForm } from './admin-users-list/users-form/users-form';
+export { useUsersForm } from './admin-users-list/hooks/use-users-form';
+export { UsersInput } from './admin-users-list/users-input/users-input';
+export { UsersDatePicker } from './admin-users-list/users-date-picker/users-date-picker';

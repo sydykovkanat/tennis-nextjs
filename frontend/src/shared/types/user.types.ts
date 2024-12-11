@@ -15,6 +15,17 @@ export interface User {
   updatedAt: string;
 }
 
+export interface UserMutation {
+  telephone: string;
+  email: string;
+  password?: string;
+  dateOfBirth: string;
+  fullName: string;
+  gender: string;
+  category: string;
+  role?: string;
+}
+
 export interface ValidationError {
   errors: {
     [key: string]: {

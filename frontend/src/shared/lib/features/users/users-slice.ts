@@ -11,6 +11,7 @@ interface UsersState {
   registerError: ValidationError | null;
   users: User[];
   usersFetching: boolean;
+  userPermission: number;
 }
 
 const initialState: UsersState = {
@@ -21,6 +22,7 @@ const initialState: UsersState = {
   registerError: null,
   users: [],
   usersFetching: false,
+  userPermission: 0,
 };
 
 export const usersSlice = createSlice({
@@ -29,6 +31,7 @@ export const usersSlice = createSlice({
   reducers: {
     unsetUser: (state) => {
       state.user = null;
+      state.userPermission = 0;
     },
   },
   extraReducers: (builder) => {
@@ -79,6 +82,7 @@ export const usersSlice = createSlice({
     selectRegisterLoading: (state) => state.registerLoading,
     selectRegisterError: (state) => state.registerError,
     selectUsersList: (state) => state.users,
+    selectUserPermission: (state) => state.userPermission,
   },
 });
 
@@ -89,5 +93,6 @@ export const {
   selectRegisterLoading,
   selectRegisterError,
   selectUsersList,
+  selectUserPermission,
 } = usersSlice.selectors;
 export const { unsetUser } = usersSlice.actions;
