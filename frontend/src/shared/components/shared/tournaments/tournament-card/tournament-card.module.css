@@ -1,5 +1,5 @@
 .cardBg {
-  @apply rounded-[22px] bg-gradient-135 from-[#f5f5f5] dark:from-[#e1e1e1] from-30% sm:from-25% md:from-10% to-[#64B32C] dark:to-[#478c16] p-1;
+  @apply rounded-[22px] bg-gradient-135 from-[#f5f5f5] dark:from-[#e1e1e1] from-30% sm:from-25% md:from-10% to-tn-green dark:to-[#478c16] p-1;
 }
 
 .card {
@@ -15,7 +15,7 @@
 }
 
 .cardRegister {
-  @apply text-[#64B32C] dark:text-[#478c16] font-semibold ml-auto sm:ml-0 sm:mt-1;
+  @apply text-tn-green dark:text-[#478c16] font-semibold ml-auto sm:ml-0 sm:mt-1;
 }
 
 .cardActionLink {
@@ -35,7 +35,7 @@
 }
 
 .tournamentCategory {
-  @apply text-[#64B32C] italic dark:text-[#478c16];
+  @apply text-tn-green italic dark:text-[#478c16];
 }
 
 .cardInfoWrapper {

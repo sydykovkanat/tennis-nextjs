@@ -1,6 +1,6 @@
 import { Confirm } from '@/shared/components/shared';
 import { TournamentForm } from '@/shared/components/shared/tournaments';
-import { useTournamentsDelete } from '@/shared/components/shared/tournaments/hooks';
+import { useTournamentForm, useTournamentsDelete } from '@/shared/components/shared/tournaments/hooks';
 import { Button } from '@/shared/components/ui';
 import { Tournament } from '@/shared/types/tournament.types';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -12,13 +12,13 @@ import styles from './tournament-card.module.css';
 interface Props {
   tournament: Tournament;
   tournamentsLastYearExist?: boolean;
-  open: boolean;
-  setOpen: (open: boolean) => void;
   id: string;
 }
 
-export const AdminCardActions: React.FC<Props> = ({ tournament, tournamentsLastYearExist, open, setOpen, id }) => {
+export const AdminCardActions: React.FC<Props> = ({ tournament, tournamentsLastYearExist, id }) => {
   const { handleDelete, isDeleting } = useTournamentsDelete();
+  const { open, setOpen } = useTournamentForm();
+
   return (
     <div className={styles.adminCardActions}>
       <Confirm onOk={() => handleDelete(tournament._id)}>

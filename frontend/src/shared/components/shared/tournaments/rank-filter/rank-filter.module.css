@@ -1,10 +1,10 @@
 .tabsList {
-  @apply flex justify-between bg-transparent border-b-2 rounded-none text-black px-0;
+  @apply border-b-2;
 }
 
 .tabsTriggers {
-  @apply dark:text-white dark:data-[state=active]:text-[#64B32C]
-  data-[state=active]:text-[#64B32C] data-[state=active]:border-[#64B32C]
-  data-[state=active]:shadow-none rounded-none border-b-2 border-b-transparent bg-transparent
-  leading-7 hover:bg-transparent hover:text-[#64B32C] dark:hover:text-[#64B32C];
+  @apply dark:text-white dark:data-[state=active]:text-tn-green
+  data-[state=active]:text-tn-green data-[state=active]:border-tn-green
+  rounded-none border-b-2 border-b-transparent bg-transparent
+  hover:text-tn-green dark:hover:text-tn-green;
 }

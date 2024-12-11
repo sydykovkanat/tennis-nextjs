@@ -9,4 +9,5 @@ export { useAppDispatch, useAppSelector, type RootState } from '@/shared/hooks/h
 export { getGenderTitles } from './helpers/rating-member-utils';
 export { usePlaces } from './helpers/rating-member-utils';
 export { isTournamentUpcoming } from './helpers/tournament-utils';
+export { getUpdatedSearchParams } from './helpers/tournament-utils';
 export { translateRank } from './helpers/tournament-utils';

@@ -2,7 +2,6 @@ import { Button, Calendar, Popover, PopoverContent, PopoverTrigger } from '@/sha
 import { CURRENT_YEAR_FULL, NEXT_YEAR, PREVIOUS_YEAR } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { Tournament } from '@/shared/types/tournament.types';
-import { CalendarIcon } from '@heroicons/react/24/outline';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
@@ -32,9 +31,8 @@ export const TournamentDatePicker: React.FC<Props> = ({ value, onChange, existin
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant='outline' className={cn(styles.button, className)} icon={CalendarIcon}>
+        <Button variant='outline' className={cn(styles.button, className)}>
           {value ? format(getDateFromState(value) || new Date(), 'PPP', { locale: ru }) : <span>Выберите дату</span>}
-          {/*<CalendarIcon className='ml-auto h-4 w-4 opacity-50' />*/}
         </Button>
       </PopoverTrigger>
       <PopoverContent align='start' className={styles.popoverContent}>

@@ -1,5 +1,4 @@
 import { TournamentActions, TournamentCardInfo, TournamentRegistration } from '@/shared/components/shared/tournaments';
-import { useTournamentForm } from '@/shared/components/shared/tournaments/hooks';
 import { AdminCardActions } from '@/shared/components/shared/tournaments/tournament-card/admin-card-actions';
 import { Tournament } from '@/shared/types/tournament.types';
 
@@ -14,8 +13,6 @@ interface Props {
 }
 
 export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamentsLastYearExist }) => {
-  const { open, setOpen } = useTournamentForm();
-
   return (
     <div className={styles.cardBg} data-testid={`${tournament.name}`}>
       <div className={styles.card}>
@@ -31,8 +28,6 @@ export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamen
           <AdminCardActions
             tournament={tournament}
             tournamentsLastYearExist={tournamentsLastYearExist}
-            open={open}
-            setOpen={setOpen}
             id={tournament._id}
           />
         )}

@@ -1,3 +1,4 @@
+import { MainTitles } from '@/shared/components/shared';
 import { RankFilter, TournamentAccordion } from '@/shared/components/shared/tournaments';
 import { CURRENT_YEAR_FULL, NEXT_YEAR, PREVIOUS_YEAR } from '@/shared/constants';
 import { cn } from '@/shared/lib';
@@ -26,9 +27,9 @@ export const TournamentCalendar: React.FC<Props> = ({
 }) => {
   return (
     <div className={styles.container}>
-      {title && <h2 className={styles.mainTitle}>Календарь турниров</h2>}
+      {title && <MainTitles title='Календарь турниров' titleSize='small' />}
       <RankFilter className='mt-10' />
-      <div className={cn(styles.calendarTitles, 'mb-10 mt-8')}>{CURRENT_YEAR_FULL}</div>
+      <div className={cn(styles.calendarTitles, 'mt-8')}>{CURRENT_YEAR_FULL}</div>
       <TournamentAccordion
         tournaments={tournaments.currentYear}
         isFetching={isFetching}

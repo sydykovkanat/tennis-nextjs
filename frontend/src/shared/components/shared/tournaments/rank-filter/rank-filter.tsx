@@ -1,9 +1,11 @@
 'use client';
 
+import { useRankFilter } from '@/shared/components/shared/tournaments/hooks';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { RANK_TABS } from '@/shared/config';
+import { cn } from '@/shared/lib';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import styles from './rank-filter.module.css';
 
@@ -11,32 +13,17 @@ interface Props {
   className?: string;
 }
 export const RankFilter: React.FC<Props> = ({ className }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const initialRank = searchParams.get('rank') || 'all';
-  const [selectedRank, setSelectedRank] = useState(initialRank);
-
-  const handleRankChange = (rank: string) => {
-    setSelectedRank(rank);
-    const params = new URLSearchParams(searchParams);
-    params.set('rank', rank);
-    router.push(`?${params.toString()}`);
-  };
-
-  useEffect(() => {
-    setSelectedRank(searchParams.get('rank') || 'all');
-  }, [searchParams]);
+  const { selectedRank, updateRank } = useRankFilter();
 
   return (
-    <Tabs value={selectedRank} onValueChange={handleRankChange} className={className}>
-      <TabsList className={styles.tabsList}>
-        {[
-          { value: 'all', label: 'Все' },
-          { value: 'male', label: 'Мужские' },
-          { value: 'female', label: 'Женские' },
-          { value: 'mixed', label: 'Микст' },
-        ].map(({ value, label }) => (
-          <TabsTrigger key={value} value={value} className={styles.tabsTriggers}>
+    <Tabs value={selectedRank} onValueChange={updateRank} className={className}>
+      <TabsList className={cn(styles.tabsList, 'flex justify-between bg-transparent rounded-none text-black px-0')}>
+        {RANK_TABS.map(({ value, label }) => (
+          <TabsTrigger
+            key={value}
+            value={value}
+            className={cn(styles.tabsTriggers, 'hover:bg-transparent leading-7 data-[state=active]:shadow-none')}
+          >
             {label}
           </TabsTrigger>
         ))}

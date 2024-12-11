@@ -7,5 +7,5 @@
 }
 
 .calendarTitles {
-  @apply text-xl sm:text-2xl font-bold text-[#3F6A11] dark:text-white mb-5 uppercase text-center;
+  @apply text-xl sm:text-2xl font-bold text-tn-dark-green dark:text-white mb-5 uppercase text-center;
 }

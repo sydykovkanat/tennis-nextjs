@@ -1,4 +1,3 @@
-import { CardInfoRow } from '@/shared/components/shared/tournaments';
 import { translateRank } from '@/shared/lib/helpers/tournament-utils';
 import { Tournament } from '@/shared/types/tournament.types';
 
@@ -13,9 +12,18 @@ export const TournamentCardInfo = ({ tournament }: { tournament: Tournament }) =
         Турнир “{tournament.name}”<span className={styles.tournamentCategory}>{tournament.category}</span>
       </h6>
       <div className={styles.cardInfoWrapper}>
-        <CardInfoRow label='Дата проведения:' value={tournament.eventDate} />
-        <CardInfoRow label='Разряд:' value={translatedRank} />
-        <CardInfoRow label='Кол-во участников:' value={tournament.participants} />
+        <div className={styles.indoRowWrapper}>
+          <span>Дата проведения:</span>
+          <span className={styles.cardInfoWrapperText}>{tournament.eventDate}</span>
+        </div>
+        <div className={styles.indoRowWrapper}>
+          <span>Разряд:</span>
+          <span className={styles.cardInfoWrapperText}>{translatedRank}</span>
+        </div>
+        <div className={styles.indoRowWrapper}>
+          <span>Кол-во участников:</span>
+          <span className={styles.cardInfoWrapperText}>{tournament.participants}</span>
+        </div>
       </div>
     </div>
   );
