@@ -12,9 +12,9 @@ export const useLoginForm = (initialState: LoginMutation) => {
     const { id } = event.target;
     let { value } = event.target;
 
-    if (id === 'telephone') {
-      value = formatTelephone(value);
-    }
+    // if (id === 'telephone') {
+    //   value = formatTelephone(value);
+    // }
 
     setLoginMutation((prev) => ({
       ...prev,
