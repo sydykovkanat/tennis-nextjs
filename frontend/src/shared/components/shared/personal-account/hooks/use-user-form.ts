@@ -1,10 +1,11 @@
 import { useAppDispatch } from '@/shared/hooks/hooks';
+import { formatTelephone } from '@/shared/lib';
 import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { User } from '@/shared/types/user.types';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 interface UseUserFormProps {
   user: User;
@@ -42,6 +43,19 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     setUserInfo((prev) => ({ ...prev, [field]: value }));
   };
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
+
+    if (id === 'telephone') {
+      const formattedPhone = formatTelephone(value);
+
+      setUserInfo((prev) => ({ ...prev, telephone: formattedPhone }));
+      return;
+    }
+
+    updateField(id, value);
+  };
+
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
       const formattedDate = format(date, 'dd.MM.yyyy');
@@ -59,5 +73,5 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
-  return { userInfo, updateField, handleSubmit, resetUserInfo, handleDateChange };
+  return { userInfo, updateField, handleChange, handleSubmit, resetUserInfo, handleDateChange };
 };

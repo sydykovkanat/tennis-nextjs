@@ -33,7 +33,10 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
   const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, handleDateChange, handleSubmit, resetUserInfo } = useUserForm({ user, closeDialog });
+  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, resetUserInfo } = useUserForm({
+    user,
+    closeDialog,
+  });
 
   const handleDialogOpenChange = (open: boolean) => {
     setIsDialogOpen(open);
@@ -54,7 +57,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
             <Input
               id='fullName'
               value={userInfo.fullName}
-              onChange={(e) => updateField('fullName', e.currentTarget.value)}
+              onChange={handleChange}
               label='ФИО'
               placeholder='Введите ваше полное ФИО'
               autoComplete='name'
@@ -64,7 +67,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
             <Input
               id='email'
               value={userInfo.email}
-              onChange={(e) => updateField('email', e.currentTarget.value)}
+              onChange={handleChange}
               label='Почта'
               placeholder={'example@gmail.com'}
               autoComplete={'email'}
@@ -74,9 +77,9 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
             <Input
               id='telephone'
               value={userInfo.telephone}
-              onChange={(e) => updateField('telephone', e.currentTarget.value)}
-              label='Номер телефона'
-              placeholder={'0500 000 000'}
+              onChange={handleChange}
+              label='Телефон'
+              placeholder={'0555 555 555'}
               autoComplete={'tel'}
               className={styles.inputField}
             />
