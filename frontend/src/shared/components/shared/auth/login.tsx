@@ -60,7 +60,7 @@ const Login: React.FC<Props> = ({ className }) => {
         loading={loginLoading}
         icon={ArrowRightIcon}
         className={styles.loginBtn}
-        // disabled={!isFormValid || loginLoading}
+        disabled={!isFormValid || loginLoading}
       >
         Войти
       </Button>

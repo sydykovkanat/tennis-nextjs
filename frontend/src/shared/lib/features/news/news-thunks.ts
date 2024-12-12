@@ -4,7 +4,6 @@ import { News, NewsMutation, NewsResponse } from '@/shared/types/news.types';
 import { Filters } from '@/shared/types/root.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
 const createFormData = (newsMutation: NewsMutation): FormData => {
   const formData = new FormData();
   const keys = Object.keys(newsMutation) as (keyof NewsMutation)[];

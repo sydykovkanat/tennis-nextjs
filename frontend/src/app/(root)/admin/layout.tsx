@@ -5,7 +5,7 @@ import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from 
 import { ADMIN_PAGES } from '@/shared/config/pages';
 import { cn } from '@/shared/lib';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import React, { useEffect, useState } from 'react';
 
@@ -14,16 +14,20 @@ import styles from './admin.module.css';
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [currentTab, setCurrentTab] = useState<string>('partners');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const savedTab = sessionStorage.getItem('adminPanelTab');
+    const currentQueryParams = searchParams.toString();
+    const queryString = currentQueryParams ? `?${currentQueryParams}` : '';
+
     if (savedTab) {
       setCurrentTab(savedTab);
-      void router.push(`/admin/${savedTab}`);
+      void router.push(`/admin/${savedTab}${queryString}`);
     } else {
-      void router.push('/admin/partners');
+      void router.push(`/admin/partners${queryString}`);
     }
-  }, [router]);
+  }, [router, searchParams]);
 
   const handleTabChange = (newTab: string) => {
     setCurrentTab(newTab);

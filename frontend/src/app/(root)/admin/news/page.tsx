@@ -15,15 +15,18 @@ export default function Page() {
 
   return (
     <>
-      <div className={cn(styles.header)}>
-        <h1 className='text-2xl font-medium'>Управление новостями</h1>
+        <div className={cn(styles.header)}>
+            <div>
+                <h2 className={cn(styles.title)}>Управление новостями</h2>
+                <small className={cn(styles.subtitle)}>Страница для управления новостями</small>
+            </div>
 
-        <Button className={'w-full xs:w-max'} icon={SquaresPlusIcon} onClick={toggleOpen}>
-          Добавить новость
-        </Button>
-        {open && <NewsForm open={open} setOpen={toggleOpen} />}
-      </div>
-      <AdminNewsPage />
+            <Button icon={SquaresPlusIcon} onClick={toggleOpen}>
+                Добавить новость
+            </Button>
+            {open && <NewsForm open={open} setOpen={toggleOpen}/>}
+        </div>
+        <AdminNewsPage/>
     </>
   );
 }
