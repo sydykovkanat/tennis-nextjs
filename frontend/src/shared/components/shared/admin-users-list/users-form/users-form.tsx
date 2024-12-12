@@ -57,6 +57,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
     setNewUser,
     handleSubmit,
     loadingUpdateUser,
+    currentUser,
   } = useUsersForm();
 
   useEffect(() => {
@@ -72,26 +73,34 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (mode === 'edit' && id) {
-      dispatch(fetchOneUser(id))
-        .unwrap()
-        .then((user) => {
-          setNewUser({
-            id: user._id,
-            fullName: user.fullName || '',
-            telephone: user.telephone || '',
-            email: user.email || '',
-            role: user.role || '',
-            gender: user.gender || '',
-            dateOfBirth: user.dateOfBirth || '',
-            category: user.category?._id || '',
-          });
-        })
-        .catch(() => {
-          toast.error('Не удалось обвновить пользователя');
-        });
+    if (isDialogOpen) {
+      if (id != null) {
+        dispatch(fetchOneUser(id));
+      }
     }
-  }, [id, dispatch, mode, setNewUser]);
+  }, [dispatch, isDialogOpen, id]);
+
+  useEffect(() => {
+    try {
+      if (mode === 'edit' && id) {
+        if (currentUser) {
+          setNewUser({
+            id: currentUser._id,
+            fullName: currentUser.fullName || '',
+            telephone: currentUser.telephone || '',
+            email: currentUser.email || '',
+            role: currentUser.role || '',
+            gender: currentUser.gender || '',
+            dateOfBirth: currentUser.dateOfBirth || '',
+            category: currentUser.category?._id || '',
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Не удалось обвновить пользователя');
+    }
+  }, [id, dispatch, mode, setNewUser, currentUser]);
 
   return (
     <>

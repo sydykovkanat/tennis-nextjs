@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { formatTelephone } from '@/shared/lib';
 import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
 import {
+  selectCurrentUser,
   selectRegisterError,
   selectRegisterLoading,
   selectUpdating,
@@ -39,6 +40,7 @@ export const useUsersForm = () => {
   const [newUser, setNewUser] = useState(initialState);
   const loadingUpdateUser = useAppSelector(selectUpdating);
   const errorUpdateUser = useAppSelector(selectUpdatingError);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
@@ -92,20 +94,25 @@ export const useUsersForm = () => {
 
   const addUserAdmin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await dispatch(addUser(newUser)).unwrap();
-    await dispatch(
-      fetchUsers({
-        fullName: '',
-        telephone: '',
-        category: 'all',
-        page: 1,
-        role: newUser.role,
-      }),
-    );
-    setConfirmPassword('');
-    setNewUser(initialState);
-    toast.success('Профиль успешно создан');
-    closeRef.current?.click();
+    try {
+      await dispatch(addUser(newUser)).unwrap();
+      await dispatch(
+        fetchUsers({
+          fullName: '',
+          telephone: '',
+          category: 'all',
+          page: 1,
+          role: newUser.role,
+        }),
+      );
+      setConfirmPassword('');
+      setNewUser(initialState);
+      toast.success('Профиль успешно создан');
+      closeRef.current?.click();
+    } catch (error) {
+      console.log(error);
+      toast.error('не удалось обновить пользователя');
+    }
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -157,5 +164,6 @@ export const useUsersForm = () => {
     handleSubmit,
     loadingUpdateUser,
     errorUpdateUser,
+    currentUser,
   };
 };
