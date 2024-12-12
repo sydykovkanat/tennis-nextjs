@@ -27,3 +27,9 @@ export function translateRank(rank: string): string {
       return 'Неизвестный разряд';
   }
 }
+
+export const getUpdatedSearchParams = (searchParams: URLSearchParams, key: string, value: string): string => {
+  const params = new URLSearchParams(searchParams);
+  params.set(key, value);
+  return `?${params.toString()}`;
+};

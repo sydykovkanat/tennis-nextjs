@@ -1,5 +1,9 @@
 .adminContainer {
-  @apply lg:max-w-[900px] lg:mx-auto mb-7 mt-3;
+  @apply mb-7 mt-3;
+}
+
+.adminListContainer {
+  @apply lg:max-w-[900px] lg:mx-auto;
 }
 
 .adminHeader {

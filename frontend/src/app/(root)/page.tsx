@@ -24,7 +24,7 @@ export default async function HomePage() {
       <Partners />
       <Container>
         <section>
-          <MainPageRating className='mb-24 mt-8 lg:mt-28' />
+          <MainPageRating className='mb-24 mt-16 md:mt-24 lg:mt-40' />
         </section>
         <section>
           <NewsMain />

@@ -11,7 +11,7 @@ interface Props extends PropsWithChildren {
 
 export const AdminPageHeader: React.FC<Props> = ({ className, title, description, children }) => {
   return (
-    <div className={cn('flex items-center justify-between border-b mb-3', className)}>
+    <div className={cn('flex xs:items-center justify-between gap-2 flex-col xs:flex-row pb-2.5 xs:pb-0 border-b mb-3', className)}>
       <div>
         <h3 className={'text-xl leading-none font-medium'}>{title}</h3>
         {description && <p className={'text-muted-foreground'}>{description}</p>}
