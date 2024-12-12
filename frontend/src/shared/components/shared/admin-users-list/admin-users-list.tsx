@@ -33,7 +33,7 @@ export const AdminUsersList = () => {
             Список всех пользователей и управление пользователями.
           </small>
         </div>
-        <UsersForm mode={'add'} />
+        {userPermission === 3 && <UsersForm mode={'add'} />}
       </header>
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'} defaultValue={'users'}>
         <ScrollArea className={'max-w-max pb-3 mx-auto'}>

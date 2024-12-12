@@ -1,6 +1,6 @@
 'use client';
 
-import { InfoTip, UsersForm } from '@/shared/components/shared';
+import { InfoTip, UserSearch, UsersForm } from '@/shared/components/shared';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectUsersList } from '@/shared/lib/features/users/users-slice';
@@ -45,6 +45,9 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
 
   return (
     <>
+      <div>
+        <UserSearch />
+      </div>
       {users.length === 0 ? (
         <p className={'text-center text-muted-foreground mt-10'}>Список пользователей пуст…</p>
       ) : (
