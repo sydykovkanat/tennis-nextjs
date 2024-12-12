@@ -1,15 +1,22 @@
+'use client';
+
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
+import { cn, useAppSelector } from '@/shared/lib';
+import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { Tournament } from '@/shared/types/tournament.types';
 
 import styles from './tournament-card.module.css';
 
 export const TournamentActions = ({ tournament }: { tournament: Tournament }) => {
+  const user = useAppSelector(selectUser);
+
   const renderActionItem = (text: string, link?: string | null) => {
     if (!link) {
       return null;
     }
 
-    return (
+    return user !== null ? (
       <a
         href={link}
         target='_blank'
@@ -19,6 +26,18 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
       >
         {text}
       </a>
+    ) : (
+      <Popover>
+        <PopoverTrigger asChild>
+          <span className={cn(styles.cardActionLink, 'cursor-pointer')} data-testid='tournament-actions-link'>
+            {text}
+          </span>
+        </PopoverTrigger>
+        <PopoverContent className={styles.cardPopover}>
+          Этот функционал доступен только для зарегистрированных пользователей. Пожалуйста, войдите или
+          зарегистрируйтесь, чтобы получить доступ.
+        </PopoverContent>
+      </Popover>
     );
   };
 

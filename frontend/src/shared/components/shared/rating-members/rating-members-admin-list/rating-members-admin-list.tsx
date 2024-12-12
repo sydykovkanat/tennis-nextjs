@@ -1,4 +1,4 @@
-import { Title, WarningMessage } from '@/shared/components/shared';
+import { WarningMessage } from '@/shared/components/shared';
 import { RatingMemberAdminCard } from '@/shared/components/shared/rating-members';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
@@ -26,12 +26,8 @@ export const RatingMembersAdminList: React.FC<Props> = ({
   return (
     <section className={className}>
       <header className={styles.titlesWrapper}>
-        <Title variant='h2' className={styles.mainTitle}>
-          {title} рейтинга
-        </Title>
-        <Title variant='h3' className={styles.categoryTitle}>
-          {category}
-        </Title>
+        <h3 className={styles.mainTitle}>{title} рейтинга</h3>
+        <h4 className={styles.categoryTitle}>{category}</h4>
       </header>
       {hasDuplicatePlaces && (
         <WarningMessage

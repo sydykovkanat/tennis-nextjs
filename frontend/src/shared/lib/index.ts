@@ -8,3 +8,6 @@ export { formatDate } from './helpers/format-date';
 export { useAppDispatch, useAppSelector, type RootState } from '@/shared/hooks/hooks';
 export { getGenderTitles } from './helpers/rating-member-utils';
 export { usePlaces } from './helpers/rating-member-utils';
+export { isTournamentUpcoming } from './helpers/tournament-utils';
+export { getUpdatedSearchParams } from './helpers/tournament-utils';
+export { translateRank } from './helpers/tournament-utils';
