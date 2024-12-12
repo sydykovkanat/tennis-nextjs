@@ -25,14 +25,7 @@ export { MainPageRating } from './rating-members/main-page-rating/main-page-rati
 export { ActionButtons } from './news/root/image-modal/action-buttons';
 export { NavbarMobile } from './navbar/navbar-mobile';
 export { Register } from './auth/register';
-export { TournamentCard } from './tournaments/tournament-card/tournament-card';
-export { TournamentCardInfo } from './tournaments/tournament-card/tournament-card-info';
-export { TournamentActions } from './tournaments/tournament-card/tournament-card-action';
-export { TournamentRegistration } from './tournaments/tournament-card/tournament-card-registration';
-export { TournamentCardsList } from './tournaments/tournament-cards-list/tournament-card-list';
-export { TournamentAccordion } from './tournaments/tournament-accordion/tournament-accordion';
 export { TournamentCalendar } from './tournaments/tournament-calendar/tournament-calendar';
-export { RankFilter } from './tournaments/rank-filter/rank-filter';
 export { GradientCircle, gradientCircles, userCircles } from './gradient-circles/gradient-circles';
 export { Title } from './title/title';
 export { Category } from './category/category/category';
@@ -67,5 +60,6 @@ export { AdminPageHeader } from './admin-page-header/admin-page-header';
 export { AdminNewsPage } from './news/admin/news-page';
 export { useNewsForm } from './news/hooks/use-news-form';
 export { NewsEditor } from './news/admin/news-editor';
+export { AdminCalendar } from './tournaments/admin-calendar/admin-calendar';
 
 export { UserEdit } from './personal-account/user-edit/user-edit';

@@ -3,6 +3,7 @@ import { categorySlice } from '@/shared/lib/features/categories/category-slice';
 import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
 import { newsSlice } from '@/shared/lib/features/news/news-slice';
 import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
+import { tournamentsReducer } from '@/shared/lib/features/tournaments/tournamentsSlice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   category: categorySlice.reducer,
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
+  tournaments: tournamentsReducer,
   news: newsSlice.reducer,
   footers: footersReducer,
 });
