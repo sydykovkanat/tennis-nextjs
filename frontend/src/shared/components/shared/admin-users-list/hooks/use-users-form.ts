@@ -1,5 +1,6 @@
 'use client';
 
+import { useAdminUsersList } from '@/shared/components/shared';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { formatTelephone } from '@/shared/lib';
 import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
@@ -30,6 +31,7 @@ export const initialState: UserMutation = {
 
 export const useUsersForm = () => {
   const dispatch = useAppDispatch();
+  const { handleTabChange } = useAdminUsersList();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const closeRef = useRef<HTMLButtonElement | null>(null);
@@ -130,6 +132,10 @@ export const useUsersForm = () => {
             role: newUser.role,
           }),
         );
+
+        if (newUser.role) {
+          handleTabChange(newUser.role === 'moderator' ? 'moderators' : 'users');
+        }
 
         setNewUser(initialState);
         toast.success('Профиль успешно обвновлен');

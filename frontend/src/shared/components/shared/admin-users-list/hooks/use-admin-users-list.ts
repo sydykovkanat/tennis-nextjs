@@ -10,11 +10,17 @@ export const useAdminUsersList = () => {
   const [currentTab, setCurrentTab] = useState<string>('users');
   const [isClient, setIsClient] = useState(false);
 
+  const handleTabChange = (newTab: string) => {
+    setCurrentTab(newTab);
+    sessionStorage.setItem('listOfUsersTab', newTab);
+  };
+
   return {
     userPermission,
     currentTab,
     setCurrentTab,
     isClient,
     setIsClient,
+    handleTabChange,
   };
 };

@@ -14,6 +14,8 @@ import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import React, { useEffect } from 'react';
 
+import styles from './users-list.module.css';
+
 interface UsersListProps {
   role: 'user' | 'moderator';
 }
@@ -56,11 +58,11 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
 
   return (
     <>
-      <div>
+      <div className={styles.userSearch}>
         <UserSearch />
       </div>
       {users.length === 0 ? (
-        <p className={'text-center text-muted-foreground mt-10'}>Список пользователей пуст…</p>
+        <p className={styles.emptyMessage}>Список пользователей пуст…</p>
       ) : (
         <Table>
           <TableHeader>
@@ -77,21 +79,21 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
           <TableBody>
             {users.map((user) => (
               <TableRow key={user._id}>
-                <TableCell className={'w-[12.5%]'}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
-                <TableCell className={'w-[12.5%]'}>{user.email}</TableCell>
-                <TableCell className={'w-[12.5%]'}>{user.telephone}</TableCell>
-                <TableCell className={'w-[12.5%]'}>{user.fullName}</TableCell>
-                <TableCell className={'w-[12.5%]'}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
-                <TableCell className={'w-[12.5%]'}>{user.dateOfBirth}</TableCell>
-                <TableCell className={'w-[12.5%]'}>{user.category.name}</TableCell>
-                <TableCell className={'w-[160px] flex gap-2'}>
+                <TableCell className={styles.tableCell}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
+                <TableCell className={styles.tableCell}>{user.email}</TableCell>
+                <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
+                <TableCell className={styles.tableCell}>{user.fullName}</TableCell>
+                <TableCell className={styles.tableCell}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
+                <TableCell className={styles.tableCell}>{user.dateOfBirth}</TableCell>
+                <TableCell className={styles.tableCell}>{user.category.name}</TableCell>
+                <TableCell className={styles.actionButtons}>
                   <UsersForm mode={'edit'} id={user._id} />
                   {isUsersRoles ? (
                     user.isActive ? (
-                      <InfoTip text={'Деактивировать'} delay={300} className={'border border-muted-foreground'}>
+                      <InfoTip text={'Деактивировать'} delay={300} className={styles.infoTipBorder}>
                         <Button
                           size={'icon'}
-                          className={'font-normal'}
+                          className={styles.deactivateButton}
                           variant='destructive'
                           onClick={() => toggleActive(user._id)}
                         >
@@ -99,12 +101,8 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                         </Button>
                       </InfoTip>
                     ) : (
-                      <InfoTip text={'Активировать'} className={'border border-muted-foreground'} delay={300}>
-                        <Button
-                          size={'icon'}
-                          className={'p-3 text-white hover:bg-green-600 font-normal bg-green-500'}
-                          onClick={() => toggleActive(user._id)}
-                        >
+                      <InfoTip text={'Активировать'} className={styles.infoTipBorder} delay={300}>
+                        <Button size={'icon'} className={styles.activateButton} onClick={() => toggleActive(user._id)}>
                           <CheckIcon className={'size-4'} />
                         </Button>
                       </InfoTip>

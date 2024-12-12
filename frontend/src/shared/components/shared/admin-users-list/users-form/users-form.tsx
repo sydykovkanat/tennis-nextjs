@@ -28,6 +28,8 @@ import { toast } from 'sonner';
 
 import React, { useEffect } from 'react';
 
+import styles from './users-form.module.css';
+
 interface UsersFromProps {
   mode: 'add' | 'edit';
   id?: string;
@@ -106,7 +108,10 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
     <>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button className={isAddMode ? 'w-full xs:w-max' : 'font-normal'} size={isAddMode ? 'default' : 'icon'}>
+          <Button
+            className={isAddMode ? styles.dialogTriggerButton : 'font-normal'}
+            size={isAddMode ? 'default' : 'icon'}
+          >
             {isAddMode ? (
               <>
                 Добавить пользователя
@@ -117,14 +122,14 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
             )}
           </Button>
         </DialogTrigger>
-        <DialogContent className={'py-4 max-h-[80dvh] overflow-y-auto'}>
+        <DialogContent className={styles.dialogContent}>
           <DialogHeader>
             <DialogTitle>{isAddMode ? 'Создание аккаунта' : 'Редактирование профиля'}</DialogTitle>
             <DialogDescription>
               {isAddMode ? 'Заполните форму для создания аккаунта.' : 'Заполните форму для редактирования профиля'}
             </DialogDescription>
             <form onSubmit={isAddMode ? addUserAdmin : handleSubmit}>
-              <div className='space-y-3 mb-8'>
+              <div className={styles.blockForm}>
                 <UsersInput
                   id='fullName'
                   value={newUser.fullName}
@@ -132,7 +137,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   label='ФИО'
                   placeholder='Введите ваше полное ФИО'
                   autoComplete={'name'}
-                  className={'h-[50px] focus-visible:border-[#80BC41]'}
+                  className={styles.inputField}
                 />
 
                 <UsersInput
@@ -142,7 +147,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   label='Номер телефона'
                   placeholder={'0500 000 000'}
                   autoComplete={'tel'}
-                  className={'h-10'}
+                  className={styles.inputField}
                 />
 
                 <UsersInput
@@ -152,7 +157,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   label='Почта'
                   placeholder={'example@gmail.com'}
                   autoComplete={'email'}
-                  className={'h-10'}
+                  className={styles.inputField}
                 />
 
                 {isAddMode ? (
@@ -165,7 +170,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                       placeholder='Введите пароль'
                       type='password'
                       autoComplete={'new-password'}
-                      className={'h-10'}
+                      className={styles.inputField}
                     />
 
                     <UsersInput
@@ -176,7 +181,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                       type='password'
                       autoComplete={'current-password'}
                       placeholder='Введите пароль еще раз'
-                      className={`${confirmPassword !== newUser.password && 'border-[#eb3434] focus-visible:border-[#eb3434]'} h-10 focus-visible:border-[#80BC41]`}
+                      className={`${confirmPassword !== newUser.password && styles.errorMessage}`}
                       error={confirmPassword !== newUser.password ? 'Пароли не совпадают' : ''}
                     />
                   </>
@@ -186,12 +191,12 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   value={newUser.dateOfBirth}
                   onChange={(date) => handleDateChange(date)}
                   label={'Дата рождения'}
-                  className={'h-10 focus-visible:border-[#80BC41]'}
+                  className={styles.inputField}
                   addUserAdmin={true}
                 />
 
                 <div className='pt-5'>
-                  <Label htmlFor='gender' className={'text-base text-start font-medium block mt-1'}>
+                  <Label htmlFor='gender' className={styles.label}>
                     Пол
                   </Label>
                   <Select value={newUser.gender} onValueChange={(value) => handleSelectChange(value, 'gender')}>
@@ -208,7 +213,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                 </div>
 
                 <div>
-                  <Label htmlFor='category' className={'text-base text-start font-medium block'}>
+                  <Label htmlFor='category' className={styles.label}>
                     Категория
                   </Label>
                   <Select
@@ -216,7 +221,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     value={newUser.category}
                     onValueChange={(value) => handleSelectChange(value, 'category')}
                   >
-                    <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='category'>
+                    <SelectTrigger className={styles.selectTrigger} id='category'>
                       <SelectValue placeholder='Выберите категорию' />
                     </SelectTrigger>
                     <SelectContent>
@@ -231,11 +236,11 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor='role' className={'text-base text-start font-medium block'}>
+                  <Label htmlFor='role' className={styles.label}>
                     Роль
                   </Label>
                   <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
-                    <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='role'>
+                    <SelectTrigger className={styles.selectTrigger} id='role'>
                       <SelectValue placeholder='Выберите роль' />
                     </SelectTrigger>
                     <SelectContent>
@@ -259,7 +264,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
 
               <Button
                 type='submit'
-                className='w-full h-8 sm:h-10 bg-[#232A2E] px-10 font-bold mb-2.5 dark:bg-blue-50'
+                className={styles.buttonSubmit}
                 disabled={
                   isAddMode ? !isFormValidAdmin() || !validateEmail(newUser.email) : !validateEmail(newUser.email)
                 }
@@ -268,7 +273,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
               </Button>
 
               <DialogClose asChild>
-                <Button ref={closeRef} className={'w-full h-8 sm:h-10'} type={'button'} variant={'outline'}>
+                <Button ref={closeRef} className={styles.buttonCancel} type={'button'} variant={'outline'}>
                   Отменить
                 </Button>
               </DialogClose>

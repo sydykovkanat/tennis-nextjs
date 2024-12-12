@@ -1,9 +1,14 @@
 'use client';
+
 import { Button, Calendar, Label, Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
-import {CalendarIcon } from '@heroicons/react/24/outline';
 import { CURRENT_YEAR_FULL } from '@/shared/constants';
-import { ru } from 'date-fns/locale';
+import { CalendarIcon } from '@heroicons/react/24/outline';
 import { format, parse } from 'date-fns';
+import { ru } from 'date-fns/locale';
+
+import React from 'react';
+
+import styles from './users-date-picker.module.css';
 
 interface Props {
   value: string;
@@ -26,17 +31,17 @@ export const UsersDatePicker: React.FC<Props> = ({ value, onChange, label, addUs
 
   return (
     <div className={className}>
-      <div className='flex items-center justify-between mb-0.5'>
-        <Label className='text-base font-medium block'>{label}</Label>
+      <div className={styles.container}>
+        <Label className={styles.label}>{label}</Label>
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant='outline' className={`w-full font-normal ${addUserAdmin ? 'py-5' : 'py-6'}`}>
+          <Button variant='outline' className={`${styles.buttonOutline} ${addUserAdmin ? 'py-5' : 'py-6'}`}>
             {value ? format(parseDate(value) || new Date(), 'PPP', { locale: ru }) : <span>Дата рождения</span>}
-            <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+            <CalendarIcon className={styles.icon} />
           </Button>
         </PopoverTrigger>
-        <PopoverContent align='start' className='w-full p-0'>
+        <PopoverContent align='start' className={styles.popoverContent}>
           <Calendar
             mode='single'
             initialFocus

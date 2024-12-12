@@ -6,6 +6,8 @@ import { XIcon } from 'lucide-react';
 
 import React from 'react';
 
+import styles from './users-search.module.css';
+
 export const UserSearch = () => {
   const {
     filters,
@@ -17,7 +19,7 @@ export const UserSearch = () => {
   } = useUserSearch();
   return (
     <>
-      <div className={'flex gap-4 mb-4 flex-col md:flex-row'}>
+      <div className={styles.container}>
         <Input
           placeholder={'Поиск по ФИО…'}
           value={filters.fullName}
@@ -34,7 +36,7 @@ export const UserSearch = () => {
         />
 
         <Select value={filters.category} onValueChange={handleCategoryFilterChange}>
-          <SelectTrigger>
+          <SelectTrigger className={styles.selectTrigger}>
             <SelectValue placeholder={'Выберите категорию…'} />
           </SelectTrigger>
           <SelectContent>
@@ -60,11 +62,7 @@ export const UserSearch = () => {
           </SelectContent>
         </Select>
 
-        <Button
-          variant={'outline'}
-          onClick={handleResetFilters}
-          className='filter-set-date h-9 ms-auto text-cr-green-900 hover:text-rose-700 dark:text-green-500'
-        >
+        <Button variant={'outline'} onClick={handleResetFilters} className={styles.buttonReset}>
           Сбросить
           <XIcon />
         </Button>

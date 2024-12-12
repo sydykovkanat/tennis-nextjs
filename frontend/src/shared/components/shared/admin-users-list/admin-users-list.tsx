@@ -6,8 +6,10 @@ import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from 
 
 import React, { useEffect } from 'react';
 
+import styles from './admin-users-list.module.css';
+
 export const AdminUsersList = () => {
-  const { userPermission, currentTab, setCurrentTab, isClient, setIsClient } = useAdminUsersList();
+  const { userPermission, currentTab, setCurrentTab, setIsClient, handleTabChange, isClient } = useAdminUsersList();
 
   useEffect(() => {
     setIsClient(true);
@@ -17,27 +19,20 @@ export const AdminUsersList = () => {
     }
   }, [setCurrentTab, setIsClient]);
 
-  const handleTabChange = (newTab: string) => {
-    setCurrentTab(newTab);
-    sessionStorage.setItem('listOfUsersTab', newTab);
-  };
-
   if (!isClient) return null;
 
   return (
     <>
-      <header className={'flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 mb-7'}>
+      <header className={styles.header}>
         <div>
-          <h1 className={'text-2xl font-medium leading-none'}>Пользователи</h1>
-          <small className={'text-muted-foreground text-base'}>
-            Список всех пользователей и управление пользователями.
-          </small>
+          <h1 className={styles.headerTitle}>Пользователи</h1>
+          <small className={styles.headerSubtitle}>Список всех пользователей и управление пользователями.</small>
         </div>
         {userPermission === 3 && <UsersForm mode={'add'} />}
       </header>
-      <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'} defaultValue={'users'}>
-        <ScrollArea className={'max-w-max pb-3 mx-auto'}>
-          <TabsList className='flex items-center gap-1'>
+      <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
+        <ScrollArea className={styles.scrollArea}>
+          <TabsList className={styles.tabsList}>
             <TabsTrigger value='users'>Пользователи</TabsTrigger>
             {userPermission === 3 && (
               <TabsTrigger key='moderators' value='moderators'>
