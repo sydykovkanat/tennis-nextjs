@@ -7,7 +7,7 @@ import {
   updateUserInfo,
 } from '@/shared/lib/features/users/users-thunks';
 import { GlobalError, User, ValidationError } from '@/shared/types/user.types';
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface UsersState {
   user: User | null;
@@ -21,6 +21,8 @@ interface UsersState {
   users: User[];
   usersFetching: boolean;
   userPermission: number;
+  usersPages: number;
+  currentPage: number;
 }
 
 const initialState: UsersState = {
@@ -35,6 +37,8 @@ const initialState: UsersState = {
   registerError: null,
   users: [],
   userPermission: 0,
+  usersPages: 0,
+  currentPage: 1,
 };
 
 export const usersSlice = createSlice({
@@ -44,6 +48,9 @@ export const usersSlice = createSlice({
     unsetUser: (state) => {
       state.user = null;
       state.userPermission = 0;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -93,6 +100,8 @@ export const usersSlice = createSlice({
       .addCase(fetchUsers.fulfilled, (state, { payload: users }) => {
         state.usersFetching = false;
         state.users = users.data;
+        state.usersPages = users.pages;
+        state.currentPage = users.page;
       })
       .addCase(fetchUsers.rejected, (state) => {
         state.usersFetching = false;
@@ -148,6 +157,8 @@ export const usersSlice = createSlice({
     selectUserPermission: (state) => state.userPermission,
     selectUpdating: (state) => state.usersUpdating,
     selectUpdatingError: (state) => state.usersUpdatingError,
+    selectUsersListPages: (state) => state.usersPages,
+    selectCurrentPage: (state) => state.currentPage,
   },
 });
 
@@ -162,5 +173,7 @@ export const {
   selectUserPermission,
   selectUpdating,
   selectUpdatingError,
+  selectUsersListPages,
+  selectCurrentPage,
 } = usersSlice.selectors;
-export const { unsetUser } = usersSlice.actions;
+export const { unsetUser, setCurrentPage } = usersSlice.actions;

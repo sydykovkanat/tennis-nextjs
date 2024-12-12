@@ -1,9 +1,14 @@
 'use client';
 
-import { InfoTip, UserSearch, UsersForm } from '@/shared/components/shared';
+import { CustomPagination, InfoTip, UserSearch, UsersForm } from '@/shared/components/shared';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectUsersList } from '@/shared/lib/features/users/users-slice';
+import {
+  selectCurrentPage,
+  selectUsersList,
+  selectUsersListPages,
+  setCurrentPage,
+} from '@/shared/lib/features/users/users-slice';
 import { fetchUsers, updateIsActive } from '@/shared/lib/features/users/users-thunks';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -17,6 +22,8 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsersList);
   const isUsersRoles = role === 'user';
+  const total = useAppSelector(selectUsersListPages);
+  const currentPage = useAppSelector(selectCurrentPage);
 
   const toggleActive = async (id: string) => {
     await dispatch(updateIsActive(id));
@@ -25,10 +32,14 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
         telephone: '',
         fullName: '',
         category: 'all',
-        page: 1,
+        page: currentPage,
         role,
       }),
     );
+  };
+
+  const handlePageChange = async (pageNumber: number) => {
+    dispatch(setCurrentPage(pageNumber));
   };
 
   useEffect(() => {
@@ -37,11 +48,11 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
         telephone: '',
         fullName: '',
         category: 'all',
-        page: 1,
+        page: currentPage,
         role,
       }),
     );
-  }, [dispatch, role]);
+  }, [dispatch, currentPage, role]);
 
   return (
     <>
@@ -105,6 +116,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
           </TableBody>
         </Table>
       )}
+      <CustomPagination total={total} setPageUser={handlePageChange} />
     </>
   );
 };
