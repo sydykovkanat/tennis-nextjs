@@ -1,4 +1,11 @@
-import { fetchOneUser, fetchUsers, login, register, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
+import {
+  fetchOneUser,
+  fetchUsers,
+  login,
+  register,
+  updateCurrentUserInfo,
+  updateUserInfo,
+} from '@/shared/lib/features/users/users-thunks';
 import { GlobalError, User, ValidationError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -116,6 +123,19 @@ export const usersSlice = createSlice({
         state.usersUpdatingError = payload || null;
         state.usersUpdating = false;
       });
+
+    builder
+      .addCase(updateCurrentUserInfo.pending, (state) => {
+        state.usersUpdating = true;
+      })
+      .addCase(updateCurrentUserInfo.fulfilled, (state, { payload: user }) => {
+        state.usersUpdating = false;
+        state.currentUser = user;
+      })
+      .addCase(updateCurrentUserInfo.rejected, (state, { payload }) => {
+        state.usersUpdatingError = payload || null;
+        state.usersUpdating = false;
+      });
   },
   selectors: {
     selectUser: (state) => state.user,
@@ -127,6 +147,7 @@ export const usersSlice = createSlice({
     selectUsersList: (state) => state.users,
     selectUserPermission: (state) => state.userPermission,
     selectUpdating: (state) => state.usersUpdating,
+    selectUpdatingError: (state) => state.usersUpdatingError,
   },
 });
 
@@ -139,5 +160,7 @@ export const {
   selectRegisterError,
   selectUsersList,
   selectUserPermission,
+  selectUpdating,
+  selectUpdatingError,
 } = usersSlice.selectors;
 export const { unsetUser } = usersSlice.actions;

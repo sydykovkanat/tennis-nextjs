@@ -1,13 +1,20 @@
 'use client';
-import { ChangeEvent, FormEvent, useRef, useState } from 'react';
+
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { formatTelephone } from '@/shared/lib';
 import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
-import { selectRegisterError, selectRegisterLoading } from '@/shared/lib/features/users/users-slice';
+import {
+  selectRegisterError,
+  selectRegisterLoading,
+  selectUpdating,
+  selectUpdatingError,
+} from '@/shared/lib/features/users/users-slice';
+import { addUser, fetchUsers, updateCurrentUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { UserMutation } from '@/shared/types/user.types';
 import { format } from 'date-fns';
-import { formatTelephone } from '@/shared/lib';
-import { addUser, fetchUsers } from '@/shared/lib/features/users/users-thunks';
 import { toast } from 'sonner';
+
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 
 export const initialState: UserMutation = {
   telephone: '',
@@ -30,6 +37,8 @@ export const useUsersForm = () => {
   const loading = useAppSelector(selectRegisterLoading);
   const error = useAppSelector(selectRegisterError);
   const [newUser, setNewUser] = useState(initialState);
+  const loadingUpdateUser = useAppSelector(selectUpdating);
+  const errorUpdateUser = useAppSelector(selectUpdatingError);
 
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
@@ -99,7 +108,31 @@ export const useUsersForm = () => {
     closeRef.current?.click();
   };
 
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault();
+      if (newUser) {
+        await dispatch(updateCurrentUserInfo(newUser)).unwrap();
 
+        await dispatch(
+          fetchUsers({
+            fullName: '',
+            telephone: '',
+            category: 'all',
+            page: 1,
+            role: newUser.role,
+          }),
+        );
+
+        setNewUser(initialState);
+        toast.success('Профиль успешно обвновлен');
+        closeRef.current?.click();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Не удалось обновить пользователя');
+    }
+  };
 
   return {
     isDialogOpen,
@@ -120,6 +153,9 @@ export const useUsersForm = () => {
     isFormValidAdmin,
     initialState,
     dispatch,
-    addUserAdmin
+    addUserAdmin,
+    handleSubmit,
+    loadingUpdateUser,
+    errorUpdateUser,
   };
 };

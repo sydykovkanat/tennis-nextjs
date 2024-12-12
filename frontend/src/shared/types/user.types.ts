@@ -26,6 +26,7 @@ export interface User {
 }
 
 export interface UserMutation {
+  id?: string;
   telephone: string;
   email: string;
   password?: string;

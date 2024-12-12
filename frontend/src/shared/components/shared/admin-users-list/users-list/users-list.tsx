@@ -1,5 +1,6 @@
 'use client';
 
+import { UsersForm } from '@/shared/components/shared';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectUsersList } from '@/shared/lib/features/users/users-slice';
@@ -54,7 +55,9 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                 <TableCell className={'w-[12.5%]'}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
                 <TableCell className={'w-[12.5%]'}>{user.dateOfBirth}</TableCell>
                 <TableCell className={'w-[12.5%]'}>{user.category.name}</TableCell>
-                <TableCell className={'w-[160px] flex gap-2'}></TableCell>
+                <TableCell className={'w-[160px] flex gap-2'}>
+                  <UsersForm mode={'edit'} id={user._id} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

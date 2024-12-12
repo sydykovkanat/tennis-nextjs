@@ -2,7 +2,8 @@ import { RootState, axiosApi } from '@/shared/lib';
 import { unsetUser } from '@/shared/lib/features/users/users-slice';
 import { LoginMutation, RegisterMutation } from '@/shared/types/auth.types';
 import {
-  GlobalError, RegisterMutationWithoutCoupleFields,
+  GlobalError,
+  RegisterMutationWithoutCoupleFields,
   User,
   UserMutation,
   UsersFilter,
@@ -88,13 +89,10 @@ export const addUser = createAsyncThunk<void, UserMutation, { rejectValue: Valid
   },
 );
 
-
-
 export const fetchOneUser = createAsyncThunk<User, string>('users/fetchOneUser', async (id) => {
   const { data: user } = await axiosApi.get<User>(`/users/${id}`);
   return user;
 });
-
 
 export const updateUserInfo = createAsyncThunk<User, RegisterMutationWithoutCoupleFields, { rejectValue: GlobalError }>(
   'users/updateUserInfo',
@@ -108,6 +106,24 @@ export const updateUserInfo = createAsyncThunk<User, RegisterMutationWithoutCoup
           toast.error(error.response.data.error);
         }
       }
+      throw error;
+    }
+  },
+);
+
+export const updateCurrentUserInfo = createAsyncThunk<User, UserMutation, { rejectValue: GlobalError }>(
+  'users/updateCurrentUserInfo',
+  async (userInfo) => {
+    try {
+      const { data: user } = await axiosApi.put<User>(`/users/${userInfo.id}/update-info`, userInfo);
+      return user;
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        if (error.response.data.error) {
+          toast.error(error.response.data.error);
+        }
+      }
+
       throw error;
     }
   },
