@@ -11,4 +11,5 @@ export interface RegisterMutation {
   fullName: string;
   gender: string;
   category: string;
+  role?: string;
 }

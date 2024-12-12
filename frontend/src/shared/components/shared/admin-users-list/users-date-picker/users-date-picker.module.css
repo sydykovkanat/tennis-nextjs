@@ -1,0 +1,19 @@
+.container {
+    @apply flex items-center justify-between mb-0.5
+}
+
+.label {
+    @apply text-base font-medium block mb-0.5;
+}
+
+.buttonOutline {
+    @apply w-full font-normal;
+}
+
+.icon {
+    @apply ml-auto h-4 w-4 opacity-50;
+}
+
+.popoverContent {
+    @apply w-full p-0;
+}

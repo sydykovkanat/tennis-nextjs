@@ -57,14 +57,22 @@ const NavBarDropDown = () => {
                 Личный кабинет
               </Link>
             </DropdownMenuItem>
-            {user?.role === 'admin' && (
+            {(user?.role === 'admin' && (
               <DropdownMenuItem onClick={() => setDropDown(false)}>
                 <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'admin'}>
                   <Cog6ToothIcon className={styles.iconMenuDropDown} />
                   Панель администратора
                 </Link>
               </DropdownMenuItem>
-            )}
+            )) ||
+              (user?.role === 'moderator' && (
+                <DropdownMenuItem onClick={() => setDropDown(false)}>
+                  <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'moderator'}>
+                    <Cog6ToothIcon className={styles.iconMenuDropDown} />
+                    Панель модератора
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className={styles.navigationMenuDropDown}>
               <ArrowRightStartOnRectangleIcon />

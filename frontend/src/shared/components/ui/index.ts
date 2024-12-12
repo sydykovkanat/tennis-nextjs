@@ -49,7 +49,7 @@ export {
 } from './dropdown-menu';
 
 export { Checkbox } from './checkbox';
-export { Tooltip } from './tooltip';
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
 
 export {
   Dialog,
@@ -63,3 +63,4 @@ export {
   DialogTitle,
   DialogDescription,
 } from './dialog';
+export { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table';

@@ -1,0 +1,15 @@
+.wrapper {
+    @apply flex items-center justify-between mb-0.5;
+}
+
+.label {
+    @apply text-base font-medium block;
+}
+
+.error {
+    @apply leading-none text-red-500;
+}
+
+.input {
+    @apply h-12 focus-visible:border-[#80BC41];
+}
