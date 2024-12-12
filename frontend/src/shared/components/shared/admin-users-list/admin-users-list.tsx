@@ -1,17 +1,13 @@
 'use client';
 
-import { UsersList } from '@/shared/components/shared';
+import { UsersList, useAdminUsersList } from '@/shared/components/shared';
 import { UsersForm } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
-import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 export const AdminUsersList = () => {
-  const userPermission = useAppSelector(selectUserPermission);
-  const [currentTab, setCurrentTab] = useState<string>('users');
-  const [isClient, setIsClient] = useState(false);
+  const { userPermission, currentTab, setCurrentTab, isClient, setIsClient } = useAdminUsersList();
 
   useEffect(() => {
     setIsClient(true);
@@ -19,7 +15,7 @@ export const AdminUsersList = () => {
     if (savedTab) {
       setCurrentTab(savedTab);
     }
-  }, []);
+  }, [setCurrentTab, setIsClient]);
 
   const handleTabChange = (newTab: string) => {
     setCurrentTab(newTab);

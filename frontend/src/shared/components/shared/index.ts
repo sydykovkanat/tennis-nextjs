@@ -71,5 +71,9 @@ export { UsersForm } from './admin-users-list/users-form/users-form';
 export { useUsersForm } from './admin-users-list/hooks/use-users-form';
 export { UsersInput } from './admin-users-list/users-input/users-input';
 export { UsersDatePicker } from './admin-users-list/users-date-picker/users-date-picker';
+export { useAdminUsersList } from './admin-users-list/hooks/use-admin-users-list';
+export { useUsersList } from './admin-users-list/hooks/use-users-list';
 
 export { UserEdit } from './personal-account/user-edit/user-edit';
+
+export { InfoTip } from './info-tip/info-tip';

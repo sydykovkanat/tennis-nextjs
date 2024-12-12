@@ -1,10 +1,11 @@
 'use client';
 
-import { UsersForm } from '@/shared/components/shared';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
+import { InfoTip, UsersForm } from '@/shared/components/shared';
+import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectUsersList } from '@/shared/lib/features/users/users-slice';
-import { fetchUsers } from '@/shared/lib/features/users/users-thunks';
+import { fetchUsers, updateIsActive } from '@/shared/lib/features/users/users-thunks';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import React, { useEffect } from 'react';
 
@@ -15,6 +16,20 @@ interface UsersListProps {
 export const UsersList: React.FC<UsersListProps> = ({ role }) => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsersList);
+  const isUsersRoles = role === 'user';
+
+  const toggleActive = async (id: string) => {
+    await dispatch(updateIsActive(id));
+    await dispatch(
+      fetchUsers({
+        telephone: '',
+        fullName: '',
+        category: 'all',
+        page: 1,
+        role,
+      }),
+    );
+  };
 
   useEffect(() => {
     dispatch(
@@ -57,6 +72,30 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                 <TableCell className={'w-[12.5%]'}>{user.category.name}</TableCell>
                 <TableCell className={'w-[160px] flex gap-2'}>
                   <UsersForm mode={'edit'} id={user._id} />
+                  {isUsersRoles ? (
+                    user.isActive ? (
+                      <InfoTip text={'Деактивировать'} delay={300} className={'border border-muted-foreground'}>
+                        <Button
+                          size={'icon'}
+                          className={'font-normal'}
+                          variant='destructive'
+                          onClick={() => toggleActive(user._id)}
+                        >
+                          <XMarkIcon className={'size-4'} />
+                        </Button>
+                      </InfoTip>
+                    ) : (
+                      <InfoTip text={'Активировать'} className={'border border-muted-foreground'} delay={300}>
+                        <Button
+                          size={'icon'}
+                          className={'p-3 text-white hover:bg-green-600 font-normal bg-green-500'}
+                          onClick={() => toggleActive(user._id)}
+                        >
+                          <CheckIcon className={'size-4'} />
+                        </Button>
+                      </InfoTip>
+                    )
+                  ) : null}
                 </TableCell>
               </TableRow>
             ))}
