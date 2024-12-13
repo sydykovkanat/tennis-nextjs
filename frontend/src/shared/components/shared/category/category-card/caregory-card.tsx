@@ -3,7 +3,7 @@
 import { CategoryForm, Confirm, Loader, useCategoryForm } from '@/shared/components/shared';
 import { Button, Card } from '@/shared/components/ui';
 import { CardContent } from '@/shared/components/ui/card';
-import { cn, formatDate, useAppDispatch, useAppSelector } from '@/shared/lib';
+import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectCategoryDeleting } from '@/shared/lib/features/categories/category-slice';
 import { removeCategory } from '@/shared/lib/features/categories/category-thunks';
 import { Category } from '@/shared/types/category.types';
@@ -31,9 +31,7 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
       <CardContent className={cn(styles.contentBlock)}>
         <div>
           <h3 className={cn(styles.text)}>{category.name}</h3>
-          <small className={cn(styles.createdAt)}>
-            Добавлено: {formatDate(category.createdAt, 'dd MMM yy, hh:mm')}
-          </small>
+          <small className={cn(styles.createdAt)}>Добавлено: {category.createdAt}</small>
         </div>
 
         <div className={cn(styles.actionsBlock)}>

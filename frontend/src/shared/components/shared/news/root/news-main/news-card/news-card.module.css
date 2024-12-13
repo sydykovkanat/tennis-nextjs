@@ -3,7 +3,7 @@
 }
 
 .newsLink {
-    @apply no-underline h-full;
+    @apply no-underline h-full w-full;
 }
 
 .cardText {
