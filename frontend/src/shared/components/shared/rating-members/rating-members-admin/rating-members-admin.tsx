@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, Title } from '@/shared/components/shared';
+import { AdminPageHeader, Loader } from '@/shared/components/shared';
 import {
   CategoriesEditAction,
   RatingMemberNew,
@@ -8,6 +8,8 @@ import {
 } from '@/shared/components/shared/rating-members';
 import { useRatingMembers } from '@/shared/components/shared/rating-members/hooks';
 import { cn } from '@/shared/lib';
+
+import React from 'react';
 
 import styles from './rating-member-admin.module.css';
 
@@ -23,15 +25,9 @@ export const RatingMembersAdmin = () => {
 
   return (
     <div className={styles.adminContainer}>
-      <div className={styles.adminHeader}>
-        <div>
-          <Title variant='h1' className={styles.adminTitle}>
-            Рейтинги топ-участников
-          </Title>
-          <small className={styles.adminSubtitle}>Управление рейтингам и категориями рейтингов</small>
-        </div>
+      <AdminPageHeader title='Рейтинги топ-участников' description='Управление рейтингам и категориями рейтингов'>
         <CategoriesEditAction ratingMembers={ratingMembers} />
-      </div>
+      </AdminPageHeader>
       {ratingMembersFetching ? (
         <Loader absolute />
       ) : (

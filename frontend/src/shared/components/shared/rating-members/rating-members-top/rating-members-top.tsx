@@ -1,4 +1,3 @@
-import { Title } from '@/shared/components/shared';
 import { RatingMemberCard } from '@/shared/components/shared/rating-members';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
@@ -29,19 +28,9 @@ export const RatingMembersTop: React.FC<Props> = ({
   return (
     <section className={className}>
       <div className={styles.titleWrapper}>
-        {title && (
-          <Title className={styles.mainTitle} variant={'h3'}>
-            {title} рейтинг
-          </Title>
-        )}
-        {additionalTitle && (
-          <Title className={styles.topTitle} variant={'h3'}>
-            {additionalTitle}
-          </Title>
-        )}
-        <Title className={styles.categoryTitle} variant={'h4'}>
-          {category}
-        </Title>
+        {title && <h3 className={styles.mainTitle}>{title} рейтинг</h3>}
+        {additionalTitle && <h4 className={styles.topTitle}>{additionalTitle}</h4>}
+        <h5 className={styles.categoryTitle}>{category}</h5>
       </div>
       <div className={styles.contentWrapper}>
         {ratingMembers.length > 0 ? (

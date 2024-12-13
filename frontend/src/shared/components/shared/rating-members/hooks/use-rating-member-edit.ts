@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 import { useState } from 'react';
 
-export const useRatingMemberEdit = (id: string) => {
+export const useRatingMemberEdit = (id?: string) => {
   const dispatch = useAppDispatch();
   const isEditing = useAppSelector(selectRatingMemberUpdating);
   const [open, setOpen] = useState(false);

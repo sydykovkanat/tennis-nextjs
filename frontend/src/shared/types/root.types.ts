@@ -3,3 +3,11 @@ export interface Base {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Query {
+  [p: string]: string | number;
+}
+
+export interface Filters {
+  query: Query | undefined;
+}

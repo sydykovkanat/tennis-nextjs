@@ -1,15 +1,23 @@
 .accordionTrigger {
-  @apply rounded-md bg-[#64B32C] bg-opacity-25 dark:bg-opacity-40 px-5 mb-1 py-3 hover:no-underline;
+  @apply rounded-md bg-tn-green bg-opacity-25 dark:bg-opacity-40 px-5 mb-1;
 }
 
 .accordionItem {
-  @apply p-0 bg-inherit border-0;
+  @apply p-0 bg-inherit;
 }
 
 .monthName {
-  @apply text-sm sm:text-base text-[#3F6A11] dark:text-[#d9ead3] italic font-extrabold uppercase;
+  @apply text-sm sm:text-base text-tn-dark-green dark:text-[#d9ead3] italic font-extrabold uppercase;
 }
 
 .accordionContent {
-  @apply flex flex-col gap-1 py-1;
+  @apply flex flex-col gap-1;
+}
+
+.noContentText {
+  @apply my-3 text-center text-xs md:text-sm text-muted-foreground;
+}
+
+.contentWrapper {
+  @apply flex flex-col gap-1 pb-1;
 }
