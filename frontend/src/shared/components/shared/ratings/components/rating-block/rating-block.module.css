@@ -1,0 +1,46 @@
+.chapter {
+    @apply text-xl mb-2 font-semibold text-center;
+}
+
+.rating {
+    @apply p-4 bg-muted rounded-xl border;
+}
+
+.ratingTitles {
+    @apply flex items-center gap-1;
+    & h3 {
+        @apply font-medium mb-1 ml-2 text-lg;
+    }
+}
+
+.events {
+    @apply flex items-center gap-4 rounded-xl;
+}
+
+.eventCard {
+    @apply shadow-none w-64;
+}
+
+.eventTitle {
+    @apply font-normal;
+}
+
+.eventCategory {
+    @apply text-tn-green font-medium;
+}
+
+.eventDescription {
+    @apply max-w-max;
+}
+
+.eventLink {
+    @apply max-w-max flex items-center gap-0.5;
+}
+
+.eventArrowRight {
+    @apply size-4 transition-all;
+}
+
+.scroll {
+    @apply hidden;
+}

@@ -1,7 +1,8 @@
 import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
-import { categorySlice } from '@/shared/lib/features/categories/category-slice';
+import { categoryReducer } from '@/shared/lib/features/categories/category-slice';
 import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
 import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
+import { ratingsReducer } from '@/shared/lib/features/rating/rating-slice';
 import { tournamentsReducer } from '@/shared/lib/features/tournaments/tournamentsSlice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -34,11 +35,12 @@ const persistedReducer = persistReducer(authPersistConfig, usersSlice.reducer);
 
 const rootReducer = combineReducers({
   users: persistedReducer,
-  category: categorySlice.reducer,
+  category: categoryReducer,
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
   tournaments: tournamentsReducer,
   footers: footersReducer,
+  ratings: ratingsReducer,
 });
 
 export const store = configureStore({
