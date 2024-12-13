@@ -71,7 +71,6 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
       }
 
       setOpen(false);
-      toast.success('Новость успешно добавлена!');
     } catch (error) {
       console.error(error);
       toast.error('Ошибка при создании/обновлении новости!');
