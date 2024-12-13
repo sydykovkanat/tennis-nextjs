@@ -4,10 +4,10 @@ export interface Base {
   updatedAt: string;
 }
 
-export interface NewsQuery {
+export interface Query {
   [p: string]: string | number;
 }
 
 export interface Filters {
-  query: NewsQuery | undefined;
+  query: Query | undefined;
 }

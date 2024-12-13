@@ -10,6 +10,10 @@
     @apply flex flex-wrap mt-auto items-start p-6 pt-0;
 }
 
+.newsCardFooter {
+    @apply flex flex-wrap justify-between items-center border-t pt-2;
+}
+
 .newsCardSubtitle {
     @apply text-tn-default-black text-[16px];
 }

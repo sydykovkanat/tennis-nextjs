@@ -1,5 +1,6 @@
 'use client';
 
+import { useAppSelector } from '@/shared/hooks/hooks';
 import {
   selectCreateNewsLoading,
   selectFetchOneNewsLoading,
@@ -7,10 +8,10 @@ import {
 } from '@/shared/lib/features/news/news-slice';
 import { NewsMutation } from '@/shared/types/news.types';
 
-import { useState } from 'react';
-import { useAppSelector } from '@/shared/hooks/hooks';
+import React, { useState } from 'react';
 
 const initialState: NewsMutation = {
+  _id: '',
   title: '',
   subtitle: '',
   content: '',
@@ -26,8 +27,10 @@ export const useNewsForm = () => {
   const newsUpdating = useAppSelector(selectUpdateNewsLoading);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setNews({ ...news, [name]: value });
+    setNews((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const handleEditorChange = (content: string) => {
@@ -67,7 +70,6 @@ export const useNewsForm = () => {
   const toggleOpen = () => setOpen((prev) => !prev);
 
   return {
-    initialState,
     news,
     setNews,
     open,

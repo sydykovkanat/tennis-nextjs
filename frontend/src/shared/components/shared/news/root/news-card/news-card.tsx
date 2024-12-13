@@ -1,8 +1,13 @@
-import { Card } from '@/shared/components/ui';
-import { CardContent, CardHeader } from '@/shared/components/ui/card';
+'use client';
+
+import { Confirm, useNewsCard, useNewsForm } from '@/shared/components/shared';
+import { NewsForm } from '@/shared/components/shared/news/admin/news-form';
+import { Button, Card } from '@/shared/components/ui';
+import { CardContent, CardFooter, CardHeader } from '@/shared/components/ui/card';
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
+import {PencilSquareIcon, TrashIcon} from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,6 +17,7 @@ import styles from './news-card.module.css';
 
 interface Props {
   news: News;
+  isAdmin?: boolean;
 }
 
 const CardImage = memo(
@@ -42,8 +48,10 @@ const arePropsEqual = (prevProps: Props, nextProps: Props) => {
 };
 
 // eslint-disable-next-line react/display-name
-export const NewsCard: React.FC<Props> = React.memo(({ news }) => {
+export const NewsCard: React.FC<Props> = React.memo(({ news, isAdmin }) => {
   const { _id, title, subtitle, newsCover, createdAt } = news;
+  const { open, toggleOpen } = useNewsForm();
+  const { newsRemoving, handleRemove } = useNewsCard(_id);
 
   return (
     <Card className={cn(styles.newsCard)}>
@@ -59,6 +67,16 @@ export const NewsCard: React.FC<Props> = React.memo(({ news }) => {
           <span className={cn(styles.newsCardCreatedAt)}>{createdAt}</span>
         </CardContent>
       </Link>
+      {isAdmin && (
+        <CardFooter className={cn(styles.newsCardFooter)}>
+          <Confirm onOk={handleRemove}>
+            <Button size='lg' disabled={newsRemoving === _id} icon={TrashIcon} />
+          </Confirm>
+
+          <Button size='lg' icon={PencilSquareIcon} onClick={toggleOpen}/>
+          {open && <NewsForm isEdit newsId={_id} open={open} setOpen={toggleOpen} />}
+        </CardFooter>
+      )}
     </Card>
   );
 }, arePropsEqual);

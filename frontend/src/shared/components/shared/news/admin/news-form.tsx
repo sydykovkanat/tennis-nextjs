@@ -2,27 +2,21 @@
 
 import { Confirm, Loader, NewsEditor } from '@/shared/components/shared';
 import { useNewsForm } from '@/shared/components/shared/news/hooks/use-news-form';
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  Input,
-  Label,
-} from '@/shared/components/ui';
+import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
-import { useAppDispatch } from '@/shared/hooks/hooks';
-import { cn } from '@/shared/lib';
-import { createNews } from '@/shared/lib/features/news/news-thunks';
-import { PencilSquareIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
+import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
+import { selectOneNews } from '@/shared/lib/features/news/news-slice';
+import { createNews, fetchOneNews, updateNews } from '@/shared/lib/features/news/news-thunks';
 import { XIcon } from 'lucide-react';
 
-import React, { FormEvent } from 'react';
+
+
+import React, { FormEvent, useEffect } from 'react';
+
+
 
 import styles from './news-form.module.css';
+
 
 interface Props {
   open: boolean;
@@ -33,9 +27,7 @@ interface Props {
 }
 
 export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = false, classname }) => {
-  const dispatch = useAppDispatch();
   const {
-    initialState,
     news,
     setNews,
     handleChange,
@@ -46,6 +38,20 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
     oneNewsFetching,
     newsUpdating,
   } = useNewsForm();
+  const dispatch = useAppDispatch();
+  const data = useAppSelector(selectOneNews);
+
+  useEffect(() => {
+    if (newsId) {
+      dispatch(fetchOneNews(newsId)).unwrap();
+    }
+  }, [newsId, dispatch]);
+
+  useEffect(() => {
+    if (data && newsId) {
+      setNews(data);
+    }
+  }, [newsId, data, setNews]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -56,8 +62,15 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
     }
 
     try {
-      await dispatch(createNews(news)).unwrap();
-      setNews(initialState);
+      if (isEdit && newsId) {
+        await dispatch(updateNews({ newsId, newsMutation: news })).unwrap();
+        toast.success('Новость успешно обновлена!');
+      } else {
+        await dispatch(createNews(news)).unwrap();
+        toast.success('Новость успешно добавлена!');
+      }
+
+      setOpen(false);
       toast.success('Новость успешно добавлена!');
     } catch (error) {
       console.error(error);
@@ -67,13 +80,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        {isEdit ? (
-          <Button size='lg' icon={PencilSquareIcon} />
-        ) : (
-          <Button icon={SquaresPlusIcon}>Добавить новость</Button>
-        )}
-      </DialogTrigger>
+      <DialogTrigger asChild/>
       <DialogContent className={cn(styles.content)}>
         <DialogHeader>
           <DialogTitle className={cn(styles.title)}>
@@ -85,7 +92,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
         {oneNewsFetching ? (
           <Loader />
         ) : (
-          <form className={cn(styles.form)} onSubmit={handleSubmit}>
+            <form className={cn(styles.form, classname)} onSubmit={handleSubmit}>
             <div className={cn(styles.inputBlock)}>
               <Label htmlFor='title' className={cn(styles.label)}>
                 Заголовок новости
@@ -121,7 +128,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
               <Label htmlFor='newsCover' className={cn(styles.label)}>
                 Обложка новости
               </Label>
-              <Input type='file' name='newsCover' onChange={handleFileInputChange} />
+              <Input required={!isEdit} type='file' name='newsCover' onChange={handleFileInputChange}/>
               {news.newsCover && (
                 <div className={cn(styles.newsCoverBlock)}>
                   <img
@@ -133,7 +140,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
                     alt='News cover preview'
                     className={cn(styles.mediaInForm, 'max-h-[230px]')}
                   />
-                  <Confirm onOk={handleRemoveMedia}>
+                  <Confirm onOk={() => handleRemoveMedia()}>
                     <Button type='button' className={cn(styles.removeMediaButton)} icon={XIcon} />
                   </Confirm>
                 </div>

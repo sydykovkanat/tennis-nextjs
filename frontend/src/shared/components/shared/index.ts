@@ -59,6 +59,7 @@ export { AdminPartnerForm } from './partners/admin-partner-form';
 export { AdminPageHeader } from './admin-page-header/admin-page-header';
 export { AdminNewsPage } from './news/admin/news-page';
 export { useNewsForm } from './news/hooks/use-news-form';
+export { useNewsCard } from './news/hooks/use-news-card';
 export { NewsEditor } from './news/admin/news-editor';
 export { AdminCalendar } from './tournaments/admin-calendar/admin-calendar';
 

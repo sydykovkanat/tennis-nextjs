@@ -56,10 +56,12 @@ export const newsSlice = createSlice({
     builder
       .addCase(fetchOneNews.pending, (state) => {
         state.fetchOneNewsLoading = true;
+        state.oneNews = null;
       })
       .addCase(fetchOneNews.fulfilled, (state, { payload: oneNews }) => {
-        state.oneNews = oneNews;
         state.fetchOneNewsLoading = false;
+        state.oneNews = null;
+        state.oneNews = oneNews;
       })
       .addCase(fetchOneNews.rejected, (state) => {
         state.fetchOneNewsLoading = false;
