@@ -37,13 +37,11 @@ export const AdminUsersList = () => {
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
           <TabsList className={styles.tabsList}>
+            <TabsTrigger value='users'>Пользователи</TabsTrigger>
             {userPermission === 3 && (
-                <>
-                  <TabsTrigger value='users'>Пользователи</TabsTrigger>
-                  <TabsTrigger key='moderators' value='moderators'>
-                    Модераторы
-                  </TabsTrigger>
-                </>
+                <TabsTrigger key='moderators' value='moderators'>
+                  Модераторы
+                </TabsTrigger>
             )}
           </TabsList>
           <ScrollBar orientation={'horizontal'} />
