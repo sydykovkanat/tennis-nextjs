@@ -12,7 +12,7 @@ import {
 export const categoriesRouter = express.Router();
 
 categoriesRouter.get('/', getCategories);
-categoriesRouter.post('/', auth, permit('admin'), createCategory);
-categoriesRouter.delete('/:id', auth, permit('admin'), removeCategory);
-categoriesRouter.put('/:id', auth, permit('admin'), updateCategory);
+categoriesRouter.post('/', auth, permit('admin', 'moderator'), createCategory);
+categoriesRouter.delete('/:id', auth, permit('admin', 'moderator'), removeCategory);
+categoriesRouter.put('/:id', auth, permit('admin', 'moderator'), updateCategory);
 categoriesRouter.get('/:id', getCategoryById);

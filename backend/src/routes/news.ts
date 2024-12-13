@@ -9,7 +9,7 @@ export const newsRouter = Router();
 newsRouter.post(
   '/',
   auth,
-  permit('admin'),
+  permit('admin', 'moderator'),
   imagesUpload.fields([
     { name: 'newsCover', maxCount: 1 },
     { name: 'images', maxCount: 15 },
@@ -21,11 +21,11 @@ newsRouter.get('/:id', getById);
 newsRouter.put(
   '/:id',
   auth,
-  permit('admin'),
+  permit('admin', 'moderator'),
   imagesUpload.fields([
     { name: 'newsCover', maxCount: 1 },
     { name: 'images', maxCount: 15 },
   ]),
   updateNews
 );
-newsRouter.delete('/:id', auth, permit('admin'), removeNews);
+newsRouter.delete('/:id', auth, permit('admin', 'moderator'), removeNews);
