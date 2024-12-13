@@ -71,8 +71,10 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   }, [error]);
 
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    if (!categories) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories]);
 
   useEffect(() => {
     if (isDialogOpen) {
