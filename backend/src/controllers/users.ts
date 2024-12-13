@@ -203,7 +203,7 @@ export const getUsers = async (req: RequestWithUser, res: Response, next: NextFu
     }
 
     const page = parseInt(req.query.page as string, 10) || 1;
-    const limit = parseInt(req.query.limit as string, 10) || 6;
+    const limit = parseInt(req.query.limit as string, 10) || 10;
     const startIndex = (page - 1) * limit;
 
     const users = await User.find(filter).populate('category').skip(startIndex).limit(limit).lean();

@@ -28,7 +28,7 @@ const storage = typeof window !== 'undefined' ? createWebStorage('local') : crea
 const authPersistConfig = {
   key: 'tennis:auth',
   storage: storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'userPermission'],
 };
 
 const persistedReducer = persistReducer(authPersistConfig, usersSlice.reducer);
