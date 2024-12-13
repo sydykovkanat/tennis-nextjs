@@ -7,7 +7,7 @@ import { clearImages } from '../utils/multer';
 
 export const getCarousel = async (_req: Request, res: Response, next: NextFunction) => {
   try {
-    const photos = await Carousel.find();
+    const photos = await Carousel.find().select('image video').lean();
     return res.send(photos);
   } catch (error) {
     return next(error);

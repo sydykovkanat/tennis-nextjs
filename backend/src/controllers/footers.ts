@@ -5,7 +5,7 @@ import { clearImages } from '../utils/multer';
 
 export const getFooterItems = async (_: Request, res: Response, next: NextFunction) => {
   try {
-    const footerData = await Footer.find();
+    const footerData = await Footer.find().lean();
 
     return res.send(footerData);
   } catch (error) {

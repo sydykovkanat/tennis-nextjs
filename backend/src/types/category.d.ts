@@ -1,6 +1,8 @@
 import { Types } from 'mongoose';
 
 export interface CategoryFields {
+  createdAt: Date;
+  updatedAt: Date;
   name: string;
 }
 
