@@ -51,7 +51,7 @@ export const TournamentForm: React.FC<Props> = ({
     showWarning,
     isFormInvalid,
     handleSubmit,
-  } = useTournamentForm(existingTournament, tournamentsLastYearExist, id);
+  } = useTournamentForm(setOpen, existingTournament, tournamentsLastYearExist, id);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
