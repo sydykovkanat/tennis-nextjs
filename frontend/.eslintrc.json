@@ -5,7 +5,6 @@
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-inferrable-types": "error",
-    "@next/next/no-img-element": "error",
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "jsx-quotes": ["error", "prefer-single"],

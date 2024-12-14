@@ -1,0 +1,11 @@
+.formInner {
+  @apply flex flex-col gap-3 pt-3 pb-5;
+}
+
+.fieldWrapper {
+  @apply flex flex-col gap-1;
+}
+
+.tournamentDialog {
+  @apply max-h-[90dvh] overflow-y-auto;
+}

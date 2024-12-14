@@ -1,4 +1,3 @@
-import React, { memo } from 'react';
 import { Card } from '@/shared/components/ui';
 import { CardContent, CardHeader } from '@/shared/components/ui/card';
 import { API_URL } from '@/shared/constants';
@@ -6,6 +5,9 @@ import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import React, { memo } from 'react';
+
 import styles from './news-card.module.css';
 
 interface Props {

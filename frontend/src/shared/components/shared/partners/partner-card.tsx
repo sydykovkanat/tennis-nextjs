@@ -14,7 +14,7 @@ interface Props {
 
 export const PartnerCard: React.FC<Props> = ({ className, partner }) => {
   return (
-    <a href={partner.url} className={cn(styles.card, className)}>
+    <a href={partner.url} className={cn(styles.card, className)} target={'_blank'}>
       <Image width={120} height={100} src={`${API_URL}/${partner.image}`} alt={partner.name} />
       <span className={'sr-only'}>{partner.name} partner logo</span>
     </a>

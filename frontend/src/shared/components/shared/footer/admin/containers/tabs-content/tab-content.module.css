@@ -1,0 +1,103 @@
+.mainPartnerContainer {
+  @apply relative;
+}
+
+.mainPartnerLoader {
+  @apply absolute mt-[100px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.mainPartnerEditButtonContainer {
+  @apply flex justify-end;
+}
+
+.mainPartnerEditButton {
+  @apply w-full xs:w-max;
+}
+
+.mainPartnerNoImageMessage {
+  @apply flex justify-center items-center flex-col mt-[30px];
+}
+
+.mainPartnerCardContainer {
+  @apply flex items-center gap-2 mt-3 flex-wrap;
+}
+
+.menuPositionContainer {
+  @apply relative;
+}
+
+.menuPositionLoader {
+  @apply absolute mt-[100px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.menuPositionCreateButtonContainer {
+  @apply flex justify-end;
+}
+
+.menuPositionButton {
+  @apply w-full xs:w-max;
+}
+
+.menuPositionNoItemsMessage {
+  @apply flex justify-center items-center flex-col mt-[30px];
+}
+
+.menuPositionAddButton {
+  @apply mx-1 underline underline-offset-2 hover:text-black;
+}
+
+.menuPositionCardContainer {
+  @apply flex items-stretch gap-2 mt-3 flex-wrap;
+}
+
+.publicOfferContainer {
+  @apply relative;
+}
+
+.publicOfferLoader {
+  @apply absolute mt-[100px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.publicOfferEditFormContainer {
+  @apply flex justify-end;
+}
+
+.publicOfferButton {
+  @apply w-full xs:w-max;
+}
+
+.publicOfferNoDataMessage {
+  @apply flex justify-center items-center flex-col mt-[30px];
+}
+
+.publicOfferCardContainer {
+  @apply flex items-center gap-2 mt-3 flex-wrap;
+}
+
+.socialNetworkContainer {
+  @apply relative;
+}
+
+.socialNetworkLoader {
+  @apply absolute mt-[100px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.socialNetworkCreateFormContainer {
+  @apply flex justify-end;
+}
+
+.socialNetworkButton {
+  @apply w-full xs:w-max;
+}
+
+.socialNetworkNoDataMessage {
+  @apply flex justify-center items-center flex-col mt-[30px];
+}
+
+.socialNetworkAddButton {
+  @apply mx-1 underline underline-offset-2 hover:text-black;
+}
+
+.socialNetworkCardContainer {
+  @apply flex items-center gap-2 mt-3 flex-wrap;
+}

@@ -1,4 +1,5 @@
-import { RankFilter, TournamentAccordion } from '@/shared/components/shared';
+import { MainTitles } from '@/shared/components/shared';
+import { RankFilter, TournamentAccordion } from '@/shared/components/shared/tournaments';
 import { CURRENT_YEAR_FULL, NEXT_YEAR, PREVIOUS_YEAR } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { Tournaments } from '@/shared/types/tournament.types';
@@ -9,27 +10,52 @@ import styles from './tournament-calendar.module.css';
 
 interface Props {
   tournaments: Tournaments;
+  isFetching?: boolean;
+  isAdmin?: boolean;
+  tournamentsLastYearExist?: boolean;
+  tournamentsNextYearExist?: boolean;
+  title?: boolean;
 }
 
-export const TournamentCalendar: React.FC<Props> = ({ tournaments }) => {
-  const hasPreviousTournaments = Object.values(tournaments.previousYear).some((month) => month.length > 0);
-  const hasNextTournaments = Object.values(tournaments.nextYear).some((month) => month.length > 0);
-
+export const TournamentCalendar: React.FC<Props> = ({
+  tournaments,
+  isFetching,
+  isAdmin,
+  tournamentsLastYearExist,
+  tournamentsNextYearExist,
+  title = true,
+}) => {
   return (
-    <div>
-      <h1 className={styles.mainTitle}>Календарь турниров</h1>
-      <RankFilter />
-      <div className={cn(styles.calendarTitles, 'mb-10 mt-8')}>{CURRENT_YEAR_FULL}</div>
-      <TournamentAccordion tournaments={tournaments.currentYear} />
-      {hasNextTournaments ? (
+    <div className={styles.container}>
+      {title && <MainTitles title='Календарь турниров' titleSize='small' />}
+      <RankFilter className='mt-10' />
+      <div className={cn(styles.calendarTitles, 'mt-8')}>{CURRENT_YEAR_FULL}</div>
+      <TournamentAccordion
+        tournaments={tournaments.currentYear}
+        isFetching={isFetching}
+        isAdmin={isAdmin}
+        tournamentsLastYearExist={tournamentsLastYearExist}
+        className='mb-8'
+      />
+      {tournamentsNextYearExist ? (
         <>
-          <div className={cn(styles.calendarTitles, 'mb-8')}>{NEXT_YEAR}</div>
-          <TournamentAccordion tournaments={tournaments.nextYear} />
+          <div className={styles.calendarTitles}>{NEXT_YEAR}</div>
+          <TournamentAccordion
+            tournaments={tournaments.nextYear}
+            isFetching={isFetching}
+            isAdmin={isAdmin}
+            tournamentsLastYearExist={tournamentsLastYearExist}
+          />
         </>
-      ) : hasPreviousTournaments ? (
+      ) : tournamentsLastYearExist ? (
         <>
-          <div className={cn(styles.calendarTitles, 'mt-8')}>{PREVIOUS_YEAR}</div>
-          <TournamentAccordion tournaments={tournaments.previousYear} />
+          <div className={styles.calendarTitles}>{PREVIOUS_YEAR}</div>
+          <TournamentAccordion
+            tournaments={tournaments.previousYear}
+            isFetching={isFetching}
+            isAdmin={isAdmin}
+            tournamentsLastYearExist={tournamentsLastYearExist}
+          />
         </>
       ) : null}
     </div>

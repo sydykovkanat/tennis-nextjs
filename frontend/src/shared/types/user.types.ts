@@ -1,5 +1,15 @@
 import { Category } from '@/shared/types/category.types';
 
+export interface RegisterMutation {
+  telephone: string;
+  email: string;
+  password: string;
+  dateOfBirth: string;
+  fullName: string;
+  gender: string;
+  category: string;
+}
+
 export interface User {
   _id: string;
   telephone: string;
@@ -30,3 +40,5 @@ export interface ValidationError {
 export interface GlobalError {
   error: string;
 }
+
+export type RegisterMutationWithoutCoupleFields = Omit<RegisterMutation, 'password' | 'category'>;

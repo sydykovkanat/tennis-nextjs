@@ -1,3 +1,5 @@
+'use client';
+
 import { type AppDispatch, store } from '@/shared/lib/store';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
