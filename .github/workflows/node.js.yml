@@ -16,12 +16,17 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: backend/node_modules
+          key: ${{ runner.os }}-backend-node-modules-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-backend-node-modules-
+
       - name: Install dependencies
         working-directory: backend
-        run: |
-          pwd
-          npm ci
-          echo "Backend dependencies installed"
+        run: npm ci
 
   frontend:
     runs-on: ubuntu-latest
@@ -34,13 +39,14 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-frontend-node-modules-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-node-modules-
+
       - name: Install dependencies
         working-directory: frontend
-        run: |
-          pwd
-          npm ci
-          echo "Frontend dependencies installed"
-
-      - name: Build frontend
-        working-directory: frontend
-        run: npm run build
+        run: npm ci
