@@ -16,9 +16,8 @@ interface Props {
 }
 
 export const AdminCalendar: React.FC<Props> = ({ tournaments }) => {
-  const { tournamentsFetching, tournamentsLastYearExist, tournamentsNextYearExist } = useTournaments();
+  const { tournamentsFetching, tournamentsLastYearExist } = useTournaments();
   const [open, setOpen] = useState(false);
-
   return (
     <>
       <AdminPageHeader title='Календарь' description='Управление турнирами'>
@@ -32,7 +31,6 @@ export const AdminCalendar: React.FC<Props> = ({ tournaments }) => {
         isFetching={tournamentsFetching}
         isAdmin={true}
         tournamentsLastYearExist={tournamentsLastYearExist}
-        tournamentsNextYearExist={tournamentsNextYearExist}
         title={false}
       />
     </>

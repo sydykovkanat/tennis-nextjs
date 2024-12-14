@@ -4,7 +4,8 @@ export const useValidation = (
   state: RatingMemberMutation,
   ratingMembers: RatingMember[],
   existingMember?: RatingMember,
-  isLoading?: boolean,
+  isCreating?: boolean,
+  isEditing?: boolean,
 ) => {
   const allMembersNames = ratingMembers?.map((member) => member.name.toLowerCase());
   const existingName = allMembersNames?.includes(state.name.toLowerCase());
@@ -22,7 +23,8 @@ export const useValidation = (
           : false;
 
   const isFormInvalid =
-    isLoading ||
+    isCreating ||
+    isEditing ||
     !state.place ||
     state.image === null ||
     (!existingMember && existingName) ||

@@ -19,9 +19,13 @@
 }
 
 .addButton {
-  @apply text-center sm:text-right mb-5;
+  @apply w-full xs:w-max mb-5;
 }
 
 .adminList {
   @apply mb-10;
+}
+
+.buttonContainer {
+  @apply sm:text-right;
 }

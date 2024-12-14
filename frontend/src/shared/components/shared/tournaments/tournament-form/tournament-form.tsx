@@ -58,7 +58,7 @@ export const TournamentForm: React.FC<Props> = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent aria-describedby={undefined} className={styles.tournamentDialog}>
         <DialogHeader>
-          <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'} </DialogTitle>
+          <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className={styles.formInner}>
