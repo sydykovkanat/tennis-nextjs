@@ -67,7 +67,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn(styles.form, className)}>
+    <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Создать аккаунт</h1>
 
       <p className={styles.subtitle}>Пожалуйста, заполните все данные для создания аккаунта</p>
@@ -126,10 +126,10 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           <SelectTrigger className={styles.selectTrigger} id='gender'>
             <SelectValue placeholder='Выберите ваш пол' />
           </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
+          <SelectContent className={'dark:bg-gray-900'}>
+            <SelectGroup className={'dark:bg-gray-900'}>
               {['male', 'female'].map((item) => (
-                <SelectItem key={item} value={item}>
+                <SelectItem className={'hover:dark:bg-gray-800  focus:dark:bg-gray-800'} key={item} value={item}>
                   {item === 'male' ? 'Муж.' : 'Жен.'}
                 </SelectItem>
               ))}
@@ -144,10 +144,14 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           <SelectTrigger className={styles.selectTrigger} id='category'>
             <SelectValue placeholder='Выберите вашу категорию' />
           </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
+          <SelectContent className={'dark:bg-gray-900'}>
+            <SelectGroup className={'dark:bg-gray-900'}>
               {categories.map((item) => (
-                <SelectItem key={item._id} value={item._id}>
+                <SelectItem
+                  className={'hover:dark:bg-gray-800  focus:dark:bg-gray-800'}
+                  key={item._id}
+                  value={item._id}
+                >
                   {item.name}
                 </SelectItem>
               ))}
@@ -176,7 +180,11 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         <Label htmlFor='personalData'>Даю согласие на обработку персональных данных</Label>
       </div>
 
-      <Button icon={ArrowRightIcon} className={styles.registerBtn} disabled={!isFormValid || registerLoading}>
+      <Button
+        icon={ArrowRightIcon}
+        className={cn(styles.registerBtn, 'dark:bg-gray-300', 'disabled:dark:bg-gray-600', 'disabled:dark:text-white')}
+        disabled={!isFormValid || registerLoading}
+      >
         Зарегистрироваться
       </Button>
 

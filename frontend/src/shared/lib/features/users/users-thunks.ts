@@ -1,7 +1,7 @@
 import { RootState, axiosApi } from '@/shared/lib';
 import { unsetUser } from '@/shared/lib/features/users/users-slice';
 import { LoginMutation, RegisterMutation } from '@/shared/types/auth.types';
-import { GlobalError, User, ValidationError,RegisterMutationWithoutCoupleFields } from '@/shared/types/user.types';
+import { GlobalError, RegisterMutationWithoutCoupleFields, User, ValidationError } from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { isAxiosError } from 'axios';
 import { toast } from 'sonner';

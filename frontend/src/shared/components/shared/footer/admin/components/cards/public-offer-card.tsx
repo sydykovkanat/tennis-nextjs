@@ -6,6 +6,7 @@ import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 
 import styles from './cards.module.css';
+import { cn } from '@/shared/lib';
 
 interface Props {
   publicOfferText: string;
@@ -13,7 +14,7 @@ interface Props {
 
 export const PublicOfferCard: React.FC<Props> = ({ publicOfferText }) => {
   return (
-    <Card className={styles.publicOfferCard}>
+    <Card className={cn(styles.publicOfferCard, 'dark:bg-[#1F2937]')}>
       <div className={styles.publicOfferCardHeader}>
         <div className={styles.publicOfferCardTextContainer}>
           <DocumentTextIcon className={styles.publicOfferCardIcon} />

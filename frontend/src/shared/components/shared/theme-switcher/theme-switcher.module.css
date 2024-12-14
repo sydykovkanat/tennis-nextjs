@@ -1,0 +1,11 @@
+.themeSwitcherButton {
+  @apply p-2 rounded-md bg-transparent text-secondary;
+}
+
+.themeSwitcherIconSun {
+  @apply size-5 text-white;
+}
+
+.themeSwitcherIconMoon {
+  @apply size-5;
+}

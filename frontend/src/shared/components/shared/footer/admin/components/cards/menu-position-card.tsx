@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import React from 'react';
 
 import styles from './cards.module.css';
+import { cn } from '@/shared/lib';
 
 interface Props {
   item: MenuPositionFields;
@@ -32,7 +33,7 @@ export const MenuPositionCard: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <Card className={styles.menuPositionCard}>
+    <Card className={cn(styles.menuPositionCard, 'dark:bg-[#1F2937]')}>
       <div className={styles.menuPositionCardHeader}>
         <div className={styles.menuPositionCardTitleContainer}>
           <LinkIcon className={styles.menuPositionCardIcon} />

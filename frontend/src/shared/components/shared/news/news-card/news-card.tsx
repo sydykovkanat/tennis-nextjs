@@ -53,10 +53,10 @@ export const NewsCard: React.FC<Props> = React.memo(({ news }) => {
         </CardHeader>
         <CardContent className={cn(styles.newsCardContent)}>
           <div className='me-auto'>
-            <h4 className={cn(styles.newsCardSubtitle)}>{subtitle}</h4>
-            <h3 className={cn(styles.newsCardTitle)}>{title}</h3>
+            <h4 className={cn(styles.newsCardSubtitle, 'dark:text-white')}>{subtitle}</h4>
+            <h3 className={cn(styles.newsCardTitle, 'dark:text-white')}>{title}</h3>
           </div>
-          <span className={cn(styles.newsCardCreatedAt)}>{createdAt}</span>
+          <span className={cn(styles.newsCardCreatedAt, 'dark:text-[#64B32C]')}>{createdAt}</span>
         </CardContent>
       </Link>
     </Card>

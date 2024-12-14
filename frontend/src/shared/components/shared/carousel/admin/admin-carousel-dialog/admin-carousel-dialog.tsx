@@ -53,7 +53,7 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
             )}
           </Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className={'dark:bg-[#1F2937]'}>
           <DialogHeader>
             <DialogTitle> {isAddMode ? 'Добавить файл' : 'Добавить файл'} </DialogTitle>
             <DialogDescription>Заполните форму перед добавлением.</DialogDescription>

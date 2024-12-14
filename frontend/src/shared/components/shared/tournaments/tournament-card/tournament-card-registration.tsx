@@ -22,7 +22,7 @@ export const TournamentRegistration: React.FC<Props> = ({ tournament, className 
         href={tournament.registrationLink}
         target='_blank'
         rel='noopener noreferrer'
-        className={cn(styles.registerLink, className)}
+        className={cn(styles.registerLink, 'dark:text-[#478C16]', className)}
       >
         <span>Принять участие</span>
         <ArrowRightIcon className={styles.registerIcon} />
@@ -34,15 +34,17 @@ export const TournamentRegistration: React.FC<Props> = ({ tournament, className 
     return (
       <Popover>
         <PopoverTrigger>
-          <span className={cn(styles.registerPopoverText, className)}>
+          <span className={cn(styles.registerPopoverText, 'dark:text-[#478C16]', className)}>
             Принять участие
             <ArrowRightIcon className={styles.registerIcon} />
           </span>
         </PopoverTrigger>
-        <PopoverContent className={styles.tournamentOver}>Запись на турнир завершена</PopoverContent>
+        <PopoverContent className={cn(styles.tournamentOver, 'dark:bg-gray-900', 'dark:text-white')}>
+          Запись на турнир завершена
+        </PopoverContent>
       </Popover>
     );
   }
 
-  return <span className={cn(styles.tournamentOverText, className)}>Турнир завершен</span>;
+  return <span className={cn(styles.tournamentOverText, 'dark:text-[#4B5563]', className)}>Турнир завершен</span>;
 };

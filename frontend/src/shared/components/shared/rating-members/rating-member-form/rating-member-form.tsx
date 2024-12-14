@@ -79,10 +79,14 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
               <SelectTrigger id='place'>
                 <SelectValue placeholder='Укажите топ' />
               </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value='mensTop8'>Топ-8</SelectItem>
-                  <SelectItem value='mensTop3'>Топ-3</SelectItem>
+              <SelectContent className={'dark:bg-gray-900'}>
+                <SelectGroup className={'dark:bg-gray-900'}>
+                  <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='mensTop8'>
+                    Топ-8
+                  </SelectItem>
+                  <SelectItem className={'hover:dark:bg-gray-800'} value='mensTop3'>
+                    Топ-3
+                  </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -101,16 +105,16 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
             <SelectTrigger id='place'>
               <SelectValue placeholder='Укажите место' />
             </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
+            <SelectContent className={'dark:bg-gray-900'}>
+              <SelectGroup className={'dark:bg-gray-900'}>
                 {forWhichGender === 'male' && state.ratingType === 'mensTop8'
                   ? places.map((place) => (
-                      <SelectItem key={place} value={place}>
+                      <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={place} value={place}>
                         {place}
                       </SelectItem>
                     ))
                   : places.map((place) => (
-                      <SelectItem key={place} value={place}>
+                      <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={place} value={place}>
                         {place}
                       </SelectItem>
                     ))}

@@ -60,3 +60,4 @@ export { AdminPageHeader } from './admin-page-header/admin-page-header';
 export { AdminCalendar } from './tournaments/admin-calendar/admin-calendar';
 
 export { UserEdit } from './personal-account/user-edit/user-edit';
+export { ThemeSwitcher } from './theme-switcher/theme-switcher';

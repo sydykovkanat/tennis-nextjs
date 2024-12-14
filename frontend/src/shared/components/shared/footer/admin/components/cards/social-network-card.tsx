@@ -13,6 +13,7 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 import styles from './cards.module.css';
+import { cn } from '@/shared/lib';
 
 interface Props {
   item: SocialNetworkFields;
@@ -33,7 +34,7 @@ export const SocialNetworkCard: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <Card className={styles.card}>
+    <Card className={cn(styles.card, 'dark:bg-[#1F2937]')}>
       <div className={styles.cardHeader}>
         <div className={styles.networkInfo}>
           <SocialIcon

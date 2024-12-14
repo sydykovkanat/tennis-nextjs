@@ -25,8 +25,21 @@ export const AdminPartnerForm: React.FC<Props> = ({ className, onSubmit }) => {
   return (
     <form onSubmit={onEdit} className={cn(className)}>
       <div className={styles.inputs}>
-        <Input id={'name'} value={partnerMutation.name} onChange={handleChange} label={'Название'} />
-        <Input type={'url'} id={'url'} value={partnerMutation.url} onChange={handleChange} label={'Ссылка'} />
+        <Input
+          id={'name'}
+          placeholder={'Введите название партнера'}
+          value={partnerMutation.name}
+          onChange={handleChange}
+          label={'Название'}
+        />
+        <Input
+          type={'url'}
+          placeholder={'Введите адрес ссылки на партнера'}
+          id={'url'}
+          value={partnerMutation.url}
+          onChange={handleChange}
+          label={'Ссылка'}
+        />
         <Input type={'file'} id={'image'} onChange={handleImageChange} label={'Логотип'} accept={'image/*'} />
       </div>
 

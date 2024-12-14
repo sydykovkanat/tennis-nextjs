@@ -27,7 +27,7 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
   };
 
   return (
-    <Card className={cn(styles.card)}>
+    <Card className={cn(styles.card, 'dark:bg-[#1F2937]')}>
       <CardContent className={cn(styles.contentBlock)}>
         <div>
           <h3 className={cn(styles.text)}>{category.name}</h3>

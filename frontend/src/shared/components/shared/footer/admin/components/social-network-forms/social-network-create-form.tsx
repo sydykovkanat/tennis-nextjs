@@ -85,7 +85,7 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Добавить электронную почту' : 'Добавить социальную сеть'}
@@ -100,12 +100,12 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
                 value={socialNetwork.name}
                 onValueChange={(name) => setSocialNetwork((prevState) => ({ ...prevState, name: name }))}
               >
-                <SelectTrigger>
+                <SelectTrigger className={'dark:border-gray-300 focus:dark:border-transparent'}>
                   <SelectValue placeholder='Выберите социальную сеть' />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className={'dark:bg-gray-900'}>
                   {SocialNetworkIcons.map((icon) => (
-                    <SelectItem key={icon.name} value={icon.name}>
+                    <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={icon.name} value={icon.name}>
                       <SocialIcon
                         network={icon.name}
                         bgColor='#393F43'

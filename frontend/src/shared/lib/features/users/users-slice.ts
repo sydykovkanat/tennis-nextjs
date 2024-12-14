@@ -1,4 +1,4 @@
-import { login, register,fetchOneUser, updateUserInfo  } from '@/shared/lib/features/users/users-thunks';
+import { fetchOneUser, login, register, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { GlobalError, User, ValidationError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -100,7 +100,13 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { selectUser, selectLoginLoading, selectLoginError, selectRegisterLoading, selectRegisterError,selectCurrentUser,selectUpdating } =
-  usersSlice.selectors;
+export const {
+  selectUser,
+  selectLoginLoading,
+  selectLoginError,
+  selectRegisterLoading,
+  selectRegisterError,
+  selectCurrentUser,
+  selectUpdating,
+} = usersSlice.selectors;
 export const { unsetUser } = usersSlice.actions;
-

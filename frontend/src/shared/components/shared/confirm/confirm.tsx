@@ -28,7 +28,7 @@ export const Confirm: React.FC<Props> = ({
       <PopoverTrigger asChild onClick={(e) => e.stopPropagation()}>
         {children}
       </PopoverTrigger>
-      <PopoverContent onClick={(e) => e.stopPropagation()} className={'max-w-max space-x-1 p-2'}>
+      <PopoverContent onClick={(e) => e.stopPropagation()} className={'max-w-max space-x-1 p-2 dark:bg-gray-900'}>
         <small className={'block text-center mb-1'}>{text}</small>
         <div className={'flex gap-1'}>
           <PopoverClose asChild>

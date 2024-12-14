@@ -28,7 +28,7 @@ export const RatingMemberNew: React.FC<Props> = ({ forWhichGender, ratingMembers
           </Button>
         </div>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent className={'dark:bg-[#1F2937]'} aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Добавить участника {dialogTitle} рейтинга</DialogTitle>
         </DialogHeader>

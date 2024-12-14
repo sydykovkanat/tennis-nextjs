@@ -35,10 +35,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <h1 className={cn(styles.title)}>Панель Администратора</h1>
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'} defaultValue={'partners'}>
         <ScrollArea className={cn(styles.scroll)}>
-          <TabsList className={cn(styles.tabsList)}>
+          <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
             {ADMIN_PAGES.map((page, i) => (
               <Link key={i} href={page.url}>
-                <TabsTrigger value={page.value}>{page.name}</TabsTrigger>
+                <TabsTrigger
+                  className={cn('focus:dark:bg-gray-700', currentTab === page.value && 'dark:bg-gray-700')}
+                  value={page.value}
+                >
+                  {page.name}
+                </TabsTrigger>
               </Link>
             ))}
           </TabsList>
