@@ -19,9 +19,8 @@ jobs:
       - name: Install dependencies
         working-directory: backend
         run: |
+          pwd
           npm ci
-          echo "Node modules in backend directory:"
-          ls -la node_modules
           echo "Backend dependencies installed"
 
   frontend:
@@ -38,9 +37,8 @@ jobs:
       - name: Install dependencies
         working-directory: frontend
         run: |
+          pwd
           npm ci
-          echo "Node modules in frontend directory:"
-          ls -la node_modules
           echo "Frontend dependencies installed"
 
       - name: Build frontend
