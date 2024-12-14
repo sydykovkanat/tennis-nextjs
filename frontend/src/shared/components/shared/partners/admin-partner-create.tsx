@@ -1,6 +1,6 @@
 'use client';
 
-import { usePartners } from '@/app/(root)/admin/partners/partners-context';
+import { usePartners } from '@/shared/components/admin/partners/partners-context';
 import { AdminPartnerForm } from '@/shared/components/shared';
 import {
   Dialog,

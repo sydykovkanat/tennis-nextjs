@@ -1,6 +1,6 @@
 'use client';
 
-import { PartnersProvider, usePartners } from '@/app/(root)/admin/partners/partners-context';
+import { PartnersProvider, usePartners } from '@/shared/components/admin/partners/partners-context';
 import { AdminPageHeader, Loader } from '@/shared/components/shared';
 import { AdminPartnerCard } from '@/shared/components/shared/partners/admin-partner-card';
 import { AdminPartnerCreate } from '@/shared/components/shared/partners/admin-partner-create';
@@ -46,10 +46,10 @@ const PartnersPageContent: React.FC = () => {
   );
 };
 
-export default function Page() {
+export const Partners = () => {
   return (
     <PartnersProvider>
       <PartnersPageContent />
     </PartnersProvider>
   );
-}
+};
