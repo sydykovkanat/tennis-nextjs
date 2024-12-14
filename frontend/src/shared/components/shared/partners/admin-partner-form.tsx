@@ -1,4 +1,4 @@
-import { usePartners } from '@/app/(root)/admin/partners/partners-context';
+import { usePartners } from '@/shared/components/admin/partners/partners-context';
 import { Button, Input } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { Save } from 'lucide-react';

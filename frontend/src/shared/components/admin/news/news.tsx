@@ -10,7 +10,7 @@ import React from 'react';
 
 import styles from './admin-news.module.css';
 
-export default function Page() {
+export const News = () => {
   const { open, toggleOpen } = useNewsForm();
 
   return (
@@ -29,4 +29,4 @@ export default function Page() {
       <AdminNewsPage />
     </>
   );
-}
+};

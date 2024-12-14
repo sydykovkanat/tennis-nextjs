@@ -1,4 +1,4 @@
-import { usePartners } from '@/app/(root)/admin/partners/partners-context';
+import { usePartners } from '@/shared/components/admin/partners/partners-context';
 import { AdminPartnerEdit, Confirm } from '@/shared/components/shared';
 import { Button, Card } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
