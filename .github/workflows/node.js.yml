@@ -16,14 +16,6 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: backend/node_modules
-          key: ${{ runner.os }}-backend-node-modules-${{ hashFiles('backend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-backend-node-modules-
-
       - name: Install dependencies
         working-directory: backend
         run: npm ci
@@ -38,14 +30,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.18.0'
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: frontend/node_modules
-          key: ${{ runner.os }}-frontend-node-modules-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-frontend-node-modules-
 
       - name: Install dependencies
         working-directory: frontend
