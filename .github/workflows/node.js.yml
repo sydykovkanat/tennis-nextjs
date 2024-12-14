@@ -15,6 +15,9 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Install PM2
+        run: npm install -g pm2
+
       - name: Install dependencies
         working-directory: backend
         run: npm ci
@@ -33,6 +36,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.18.0'
+
+      - name: Install PM2
+        run: npm install -g pm2
 
       - name: Install dependencies
         working-directory: frontend
