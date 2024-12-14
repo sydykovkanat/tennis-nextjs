@@ -8,14 +8,12 @@ import { toast } from 'sonner';
 
 import { ChangeEvent, useState } from 'react';
 
-export const useUserSearch = () => {
-  const [filters, setFilters] = useState<UsersFilter>({
-    telephone: '',
-    fullName: '',
-    category: 'all',
-    page: 1,
-    role: 'user',
-  });
+interface UseUserSearchProps {
+  filters: UsersFilter;
+}
+
+export const useUserSearch = ({ filters }: UseUserSearchProps) => {
+  const [currentFilters, setCurrentFilters] = useState<UsersFilter>(filters);
   const { categories, categoriesFetching } = useCategory();
   const dispatch = useAppDispatch();
 
@@ -24,14 +22,14 @@ export const useUserSearch = () => {
     let value = event.target.value;
 
     if (name === 'fullName') {
-      if (filters.fullName?.trim() === '' && value.trim() === '') {
+      if (currentFilters.fullName?.trim() === '' && value.trim() === '') {
         toast.error('Нельзя ввести пустое поле.');
         return;
       }
     }
 
     if (name === 'telephone') {
-      if (filters.telephone?.trim() === '' && value.trim() === '') {
+      if (currentFilters.telephone?.trim() === '' && value.trim() === '') {
         toast.error('Нельзя ввести пустое поле.');
         return;
       } else {
@@ -39,7 +37,7 @@ export const useUserSearch = () => {
       }
     }
 
-    setFilters((prevState) => ({
+    setCurrentFilters((prevState) => ({
       ...prevState,
       [name]: value,
       page: 1,
@@ -48,7 +46,7 @@ export const useUserSearch = () => {
   };
 
   const handleCategoryFilterChange = (category: string) => {
-    setFilters((prevState) => ({
+    setCurrentFilters((prevState) => ({
       ...prevState,
       category,
       page: 1,
@@ -57,7 +55,7 @@ export const useUserSearch = () => {
   };
 
   const handleResetFilters = async () => {
-    setFilters({
+    setCurrentFilters({
       telephone: '',
       fullName: '',
       category: 'all',
@@ -70,11 +68,12 @@ export const useUserSearch = () => {
 
   return {
     filters,
-    setFilters,
+    setCurrentFilters,
     categories,
     categoriesFetching,
     handleFiltersChange,
     handleCategoryFilterChange,
     handleResetFilters,
+    currentFilters,
   };
 };

@@ -3,25 +3,12 @@
 import { UsersForm, UsersList, useAdminUsersList } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 
-
-
-import React, { useEffect } from 'react';
-
-
+import React from 'react';
 
 import styles from './admin-users-list.module.css';
 
-
 export const AdminUsersList = () => {
-  const { userPermission, currentTab, setCurrentTab, setIsClient, handleTabChange, isClient } = useAdminUsersList();
-
-  useEffect(() => {
-    setIsClient(true);
-    const savedTab = sessionStorage.getItem('listOfUsersTab');
-    if (savedTab) {
-      setCurrentTab(savedTab);
-    }
-  }, [setCurrentTab, setIsClient]);
+  const { userPermission, currentTab, handleTabChange, isClient } = useAdminUsersList();
 
   if (!isClient) return null;
 
@@ -32,16 +19,16 @@ export const AdminUsersList = () => {
           <h2 className={styles.headerTitle}>Пользователи</h2>
           <small className={styles.headerSubtitle}>Список всех пользователей и управление пользователями.</small>
         </div>
-        <UsersForm mode={'add'}/>
+        <UsersForm mode={'add'} />
       </div>
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
           <TabsList className={styles.tabsList}>
             <TabsTrigger value='users'>Пользователи</TabsTrigger>
             {userPermission === 3 && (
-                <TabsTrigger key='moderators' value='moderators'>
-                  Модераторы
-                </TabsTrigger>
+              <TabsTrigger key='moderators' value='moderators'>
+                Модераторы
+              </TabsTrigger>
             )}
           </TabsList>
           <ScrollBar orientation={'horizontal'} />

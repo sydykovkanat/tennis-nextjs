@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomPagination, InfoTip, UserSearch, UsersForm } from '@/shared/components/shared';
+import { CustomPagination, InfoTip, UserSearch, UsersForm, useAdminUsersList } from '@/shared/components/shared';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import {
@@ -26,6 +26,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
   const isUsersRoles = role === 'user';
   const total = useAppSelector(selectUsersListPages);
   const currentPage = useAppSelector(selectCurrentPage);
+  const { currentTab } = useAdminUsersList();
 
   const toggleActive = async (id: string) => {
     await dispatch(updateIsActive(id));
@@ -59,7 +60,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
   return (
     <>
       <div className={styles.userSearch}>
-        <UserSearch />
+        <UserSearch role={currentTab === 'users' ? 'user' : 'moderator'} />
       </div>
       {users.length === 0 ? (
         <p className={styles.emptyMessage}>Список пользователей пуст…</p>
@@ -69,12 +70,12 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
             <TableRow>
               <TableHead>Статус</TableHead>
               <TableHead>ФИО</TableHead>
-                <TableHead>Номер телефона</TableHead>
-                <TableHead>Почта</TableHead>
+              <TableHead>Номер телефона</TableHead>
+              <TableHead>Почта</TableHead>
               <TableHead>Пол</TableHead>
               <TableHead>Год рождения</TableHead>
               <TableHead>Категория</TableHead>
-                <TableHead>Действия</TableHead>
+              <TableHead>Действия</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -82,8 +83,8 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
               <TableRow key={user._id}>
                 <TableCell className={styles.tableCell}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.fullName}</TableCell>
-                  <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
-                  <TableCell className={styles.tableCell}>{user.email}</TableCell>
+                <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
+                <TableCell className={styles.tableCell}>{user.email}</TableCell>
                 <TableCell className={styles.tableCell}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.dateOfBirth}</TableCell>
                 <TableCell className={styles.tableCell}>{user.category.name}</TableCell>

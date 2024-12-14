@@ -2,40 +2,61 @@
 
 import { useUserSearch } from '@/shared/components/shared';
 import { Button, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
+import { UsersFilter } from '@/shared/types/user.types';
 import { XIcon } from 'lucide-react';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './users-search.module.css';
 
-export const UserSearch = () => {
+interface UserSearchProps {
+  role: string;
+}
+
+export const UserSearch: React.FC<UserSearchProps> = ({ role }) => {
+  const [filters, setFilters] = useState<UsersFilter>({
+    telephone: '',
+    fullName: '',
+    category: 'all',
+    page: 1,
+    role: role,
+  });
+
   const {
-    filters,
     categories,
     categoriesFetching,
     handleFiltersChange,
     handleCategoryFilterChange,
     handleResetFilters,
-  } = useUserSearch();
+    currentFilters,
+  } = useUserSearch({ filters });
+
+  useEffect(() => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      role,
+    }));
+  }, [role]);
+
   return (
     <>
       <div className={styles.container}>
         <Input
           placeholder={'Поиск по ФИО…'}
-          value={filters.fullName}
+          value={currentFilters.fullName}
           name={'fullName'}
           onChange={handleFiltersChange}
         />
 
         <Input
           placeholder={'Поиск по номеру телефона…'}
-          value={filters.telephone}
+          value={currentFilters.telephone}
           type={'tel'}
           name={'telephone'}
           onChange={handleFiltersChange}
         />
 
-        <Select value={filters.category} onValueChange={handleCategoryFilterChange}>
+        <Select value={currentFilters.category} onValueChange={handleCategoryFilterChange}>
           <SelectTrigger className={styles.selectTrigger}>
             <SelectValue placeholder={'Выберите категорию…'} />
           </SelectTrigger>
