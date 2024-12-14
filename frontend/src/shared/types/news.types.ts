@@ -9,6 +9,7 @@ export interface News extends Base {
 }
 
 export interface NewsMutation {
+  _id: string;
   title: string;
   subtitle: string;
   content: string;

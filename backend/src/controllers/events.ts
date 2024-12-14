@@ -61,7 +61,7 @@ export const editEvent = async (req: Request, res: Response, next: NextFunction)
 
 export const getEvent = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const event = await Event.findById(req.params.id).populate('category').populate('rating');
+    const event = await Event.findById(req.params.id).populate('category').populate('rating').lean();
 
     if (!event) {
       return res.status(404).send({ error: 'Событие не найдено' });

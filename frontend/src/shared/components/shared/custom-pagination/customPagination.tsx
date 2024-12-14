@@ -23,9 +23,10 @@ import styles from './pagination.module.css';
 
 interface Props {
   total: number;
+  setPageUser?: (page: number) => void;
 }
 
-export const CustomPagination: React.FC<Props> = ({ total }) => {
+export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
   const router = useRouter();
 
   const { page, pageNumbers, disableButton, setPageToFirst, setPageToLast, setPageToPrevious, setPageToNext, setPage } =
@@ -35,6 +36,9 @@ export const CustomPagination: React.FC<Props> = ({ total }) => {
     const url = new URL(window.location.href);
     url.searchParams.set('page', pageNumber.toString());
     router.push(url.toString());
+    if (setPageUser) {
+      setPageUser(pageNumber);
+    }
   };
 
   return (

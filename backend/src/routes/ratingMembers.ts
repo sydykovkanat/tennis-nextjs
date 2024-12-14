@@ -13,7 +13,7 @@ import { imagesUpload } from '../utils/multer';
 export const ratingMembersRouter = express.Router();
 
 ratingMembersRouter.get('/', getRatingMembers);
-ratingMembersRouter.post('/', auth, permit('admin'), imagesUpload.single('image'), createRatingMember);
-ratingMembersRouter.delete('/:id', auth, permit('admin'), deleteRatingMember);
-ratingMembersRouter.put('/:id', auth, permit('admin'), imagesUpload.single('image'), updateRatingMember);
-ratingMembersRouter.patch('/categories', auth, permit('admin'), updateRatingMembersCategories);
+ratingMembersRouter.post('/', auth, permit('admin', 'moderator'), imagesUpload.single('image'), createRatingMember);
+ratingMembersRouter.delete('/:id', auth, permit('admin', 'moderator'), deleteRatingMember);
+ratingMembersRouter.put('/:id', auth, permit('admin', 'moderator'), imagesUpload.single('image'), updateRatingMember);
+ratingMembersRouter.patch('/categories', auth, permit('admin', 'moderator'), updateRatingMembersCategories);

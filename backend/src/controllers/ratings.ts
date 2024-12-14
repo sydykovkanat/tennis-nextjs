@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { getMonth } from '../lib/getMonth';
 import { Rating } from '../model/Rating';
 
-export const fetchRatings = async (req: Request, res: Response, next: NextFunction) => {
+export const fetchRatings = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const monthMap: Record<string, number> = {
       january: 1,

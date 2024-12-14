@@ -7,7 +7,7 @@ import { permit } from '../middleware/permit';
 export const partnersRouter = express.Router();
 
 partnersRouter.get('/', getPartners);
-partnersRouter.post('/', auth, permit('admin'), imagesUpload.single('image'), createNewPartner);
-partnersRouter.delete('/:id', auth, permit('admin'), removePartner);
-partnersRouter.put('/:id', auth, permit('admin'), imagesUpload.single('image'), updatePartner);
-partnersRouter.get('/:id', getOnePartner);
+partnersRouter.post('/', auth, permit('admin', 'moderator'), imagesUpload.single('image'), createNewPartner);
+partnersRouter.delete('/:id', auth, permit('admin', 'moderator'), removePartner);
+partnersRouter.put('/:id', auth, permit('admin', 'moderator'), imagesUpload.single('image'), updatePartner);
+partnersRouter.get('/:id', auth, permit('admin', 'moderator'), getOnePartner);
