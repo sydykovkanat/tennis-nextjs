@@ -4,28 +4,7 @@ on:
     branches: ["main"]
 
 jobs:
-  # Определение изменений
-  changes:
-    name: "Detect changes"
-    runs-on: ubuntu-latest
-    outputs:
-      backend: ${{ steps.filter.outputs.backend }}
-      frontend: ${{ steps.filter.outputs.frontend }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            backend:
-              - 'backend/**'
-            frontend:
-              - 'frontend/**'
-
-  # Сборка и развертывание бэкенда
   backend:
-    needs: changes
-    if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -34,7 +13,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: ['20.18.0']
 
       - name: Install dependencies
         working-directory: backend
@@ -42,12 +21,9 @@ jobs:
 
       - name: Run backend
         working-directory: backend
-        run: npx ts-node index.ts
+        run: pm2 start "ts-node index.ts" --name "backend" --no-daemon
 
-  # Сборка и развертывание фронтенда
   frontend:
-    needs: changes
-    if: needs.changes.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -56,7 +32,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: ['20.18.0']
 
       - name: Install dependencies
         working-directory: frontend
@@ -68,4 +44,4 @@ jobs:
 
       - name: Start frontend
         working-directory: frontend
-        run: npm run start
+        run: pm2 start "npm run start" --name "frontend" --no-daemon
