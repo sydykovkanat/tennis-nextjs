@@ -11,6 +11,7 @@ jobs:
 
     strategy:
       matrix:
+        project: ["frontend"]
         node-version: [20.18.0]
 
     steps:
