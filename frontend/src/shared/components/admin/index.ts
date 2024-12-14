@@ -1,0 +1,9 @@
+export { Calendar } from './calendar/calendar';
+export { News } from './news/news';
+export { Carousel } from './carousel/carousel';
+export { Rating } from './rating/rating';
+export { Footer } from './footer/footer';
+export { Users } from './users/users';
+export { Top } from './top/top';
+export { Partners } from './partners/partners';
+export { Category } from './category/category';
