@@ -17,9 +17,9 @@ export default function Page() {
         <h1 className={cn(styles.title)}>Панель Администратора</h1>
         <Tabs orientation={'vertical'} defaultValue={'calendar'}>
           <ScrollArea className={cn(styles.scroll)}>
-            <TabsList className={cn(styles.tabsList)}>
+            <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
               {ADMIN_PAGES.map((page, i) => (
-                <TabsTrigger key={i} value={page.value}>
+                <TabsTrigger className={'focus:dark:bg-gray-700'} key={i} value={page.value}>
                   {page.name}
                 </TabsTrigger>
               ))}
