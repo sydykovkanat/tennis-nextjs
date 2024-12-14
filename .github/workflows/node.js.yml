@@ -1,4 +1,5 @@
-name: "Deploy services"
+name: "Build Frontend and Backend"
+
 on:
   push:
     branches: ["main"]
@@ -15,16 +16,9 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Install PM2
-        run: npm install -g pm2
-
       - name: Install dependencies
         working-directory: backend
         run: npm ci
-
-      - name: Run backend
-        working-directory: backend
-        run: pm2 start "ts-node index.ts" --name "backend" --no-daemon
 
   frontend:
     runs-on: ubuntu-latest
@@ -37,9 +31,6 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Install PM2
-        run: npm install -g pm2
-
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
@@ -47,7 +38,3 @@ jobs:
       - name: Build frontend
         working-directory: frontend
         run: npm run build
-
-      - name: Start frontend
-        working-directory: frontend
-        run: pm2 start "npm run start" --name "frontend" --no-daemon
