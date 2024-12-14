@@ -67,7 +67,7 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
                 type='file'
                 name='image'
                 onChange={fileInputChangeHandler}
-                accept=' image/*, video/*'
+                accept='image/*, video/*'
               />
               <Button
                 type='submit'
@@ -79,7 +79,7 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
               </Button>
             </form>
             {previewUrl && (
-              <div className={cn(styles.filePreviews)}>
+              <div className={cn(styles.filePreviews, 'dark:bg-gray-700')}>
                 {newImage.image ? (
                   <img src={previewUrl} alt='Preview' className={cn(styles.image)} />
                 ) : (

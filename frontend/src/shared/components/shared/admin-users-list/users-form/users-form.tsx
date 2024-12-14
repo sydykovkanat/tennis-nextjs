@@ -281,12 +281,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
 
               <Button
                 type='submit'
-                className={cn(
-                  styles.buttonSubmit,
-                  'dark:bg-gray-300',
-                  'disabled:dark:bg-gray-600',
-                  'disabled:dark:text-white',
-                )}
+                className={cn(styles.buttonSubmit)}
                 disabled={
                   isAddMode ? !isFormValidAdmin() || !validateEmail(newUser.email) : !validateEmail(newUser.email)
                 }

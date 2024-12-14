@@ -59,7 +59,7 @@ const Login: React.FC<Props> = ({ className }) => {
       <Button
         loading={loginLoading}
         icon={ArrowRightIcon}
-        className={cn(styles.loginBtn, 'dark:bg-gray-300', 'disabled:dark:bg-gray-600', 'disabled:dark:text-white')}
+        className={cn(styles.loginBtn)}
         disabled={!isFormValid || loginLoading}
       >
         Войти

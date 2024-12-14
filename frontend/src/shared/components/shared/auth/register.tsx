@@ -180,11 +180,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         <Label htmlFor='personalData'>Даю согласие на обработку персональных данных</Label>
       </div>
 
-      <Button
-        icon={ArrowRightIcon}
-        className={cn(styles.registerBtn, 'dark:bg-gray-300', 'disabled:dark:bg-gray-600', 'disabled:dark:text-white')}
-        disabled={!isFormValid || registerLoading}
-      >
+      <Button icon={ArrowRightIcon} className={cn(styles.registerBtn)} disabled={!isFormValid || registerLoading}>
         Зарегистрироваться
       </Button>
 

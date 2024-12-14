@@ -33,44 +33,16 @@ export const AdminPanelBlockFooter = () => {
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
         <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
-          <TabsTrigger
-            className={cn(
-              styles.tabsTrigger,
-              footerTab === 'social-network' && 'dark:bg-gray-700',
-              'focus:dark:bg-gray-700',
-            )}
-            value='social-network'
-          >
+          <TabsTrigger className={styles.tabsTrigger} value='social-network'>
             Социальные сети
           </TabsTrigger>
-          <TabsTrigger
-            className={cn(
-              styles.tabsTrigger,
-              footerTab === 'menu-position' && 'dark:bg-gray-700',
-              'focus:dark:bg-gray-700',
-            )}
-            value='menu-position'
-          >
+          <TabsTrigger className={styles.tabsTrigger} value='menu-position'>
             Меню положение
           </TabsTrigger>
-          <TabsTrigger
-            className={cn(
-              styles.tabsTrigger,
-              footerTab === 'public-offer' && 'dark:bg-gray-700',
-              'focus:dark:bg-gray-700',
-            )}
-            value='public-offer'
-          >
+          <TabsTrigger className={styles.tabsTrigger} value='public-offer'>
             Публичная оферта
           </TabsTrigger>
-          <TabsTrigger
-            className={cn(
-              styles.tabsTrigger,
-              footerTab === 'main-partner' && 'dark:bg-gray-700',
-              'focus:dark:bg-gray-700',
-            )}
-            value='main-partner'
-          >
+          <TabsTrigger className={styles.tabsTrigger} value='main-partner'>
             Ген.партнер
           </TabsTrigger>
         </TabsList>
