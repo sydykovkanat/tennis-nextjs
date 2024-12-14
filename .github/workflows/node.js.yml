@@ -1,25 +1,10 @@
-name: "Building Frontend and Backend"
+name: "Build Frontend and Backend"
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  backend:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.18.0'
-
-      - name: Install dependencies
-        working-directory: backend
-        run: npm ci
-
   frontend:
     runs-on: self-hosted
     steps:
@@ -35,6 +20,38 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Build
+      - name: Build frontend
         working-directory: frontend
+        run: npm run build
+
+      - name: Save frontend artifacts
+        run: |
+          mkdir -p artifacts/frontend
+          cp -R frontend/node_modules artifacts/frontend/
+          cp -R frontend/.next artifacts/frontend/
+        if: always()
+
+  backend:
+    runs-on: self-hosted
+    needs: frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Restore frontend artifacts
+        run: |
+          cp -R artifacts/frontend/node_modules frontend/
+          cp -R artifacts/frontend/.next frontend/
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Run backend build
+        working-directory: backend
         run: npm run build
