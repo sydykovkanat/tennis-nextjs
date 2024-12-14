@@ -38,6 +38,10 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role }) => {
     }));
   }, [role]);
 
+  const showResetButton = Boolean(
+    currentFilters.telephone || currentFilters.fullName || currentFilters.category !== 'all',
+  );
+
   return (
     <>
       <div className={styles.container}>
@@ -83,10 +87,12 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role }) => {
           </SelectContent>
         </Select>
 
-        <Button variant={'outline'} onClick={handleResetFilters} className={styles.buttonReset}>
-          Сбросить
-          <XIcon />
-        </Button>
+        {showResetButton && (
+          <Button variant={'outline'} onClick={handleResetFilters} className={styles.buttonReset}>
+            Сбросить
+            <XIcon />
+          </Button>
+        )}
       </div>
     </>
   );

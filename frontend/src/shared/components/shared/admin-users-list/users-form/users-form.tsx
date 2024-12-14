@@ -63,6 +63,15 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   } = useUsersForm();
 
   useEffect(() => {
+    if (userPermission != null && userPermission !== 3) {
+      setNewUser((prev) => ({
+        ...prev,
+        role: 'user',
+      }));
+    }
+  }, [setNewUser, userPermission]);
+
+  useEffect(() => {
     if (error && error.errors) {
       Object.values(error.errors).forEach((err) => {
         toast.error(err.message);
@@ -237,31 +246,26 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
-                  <Label htmlFor='role' className={styles.label}>
-                    Роль
-                  </Label>
-                  <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
-                    <SelectTrigger className={styles.selectTrigger} id='role'>
-                      <SelectValue placeholder='Выберите роль' />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {isAddMode ? (
-                          <>
-                            <SelectItem value={'user'}>Пользователь</SelectItem>
-                            <SelectItem value={'moderator'}>Модератор</SelectItem>
-                          </>
-                        ) : (
-                          <>
-                            <SelectItem value='user'>Пользователь</SelectItem>
-                            {userPermission === 3 && <SelectItem value='moderator'>Модератор</SelectItem>}
-                          </>
-                        )}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
+                {userPermission === 3 ? (
+                  <div>
+                    <Label htmlFor='role' className={styles.label}>
+                      Роль
+                    </Label>
+                    <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
+                      <SelectTrigger className={styles.selectTrigger} id='role'>
+                        <SelectValue placeholder='Выберите роль' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value={'user'}>Пользователь</SelectItem>
+                          <SelectItem value={'moderator'}>Модератор</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : (
+                  <input type='hidden' value='user' />
+                )}
               </div>
 
               <Button
