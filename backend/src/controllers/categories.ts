@@ -2,12 +2,19 @@ import { Category } from '../model/Category';
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import { User } from '../model/User';
+import { format } from 'date-fns';
 
-export const getCategories = async (req: Request, res: Response, next: NextFunction) => {
+export const getCategories = async (_req: Request, res: Response, next: NextFunction) => {
   try {
-    const ranks = await Category.find();
+    const ranks = await Category.find().lean();
 
-    return res.send(ranks);
+    const formattedRanks = ranks.map((item) => ({
+      ...item,
+      createdAt: format(item.createdAt, 'dd.MM.yyyy, hh:mm'),
+      updatedAt: format(item.updatedAt, 'dd.MM.yyyy, hh:mm')
+    }));
+
+    return res.send(formattedRanks);
   } catch (error) {
     return next(error);
   }

@@ -203,7 +203,7 @@ export const getUsers = async (req: RequestWithUser, res: Response, next: NextFu
     }
 
     const page = parseInt(req.query.page as string, 10) || 1;
-    const limit = parseInt(req.query.limit as string, 10) || 6;
+    const limit = parseInt(req.query.limit as string, 10) || 10;
     const startIndex = (page - 1) * limit;
 
     const users = await User.find(filter).populate('category').skip(startIndex).limit(limit).lean();
@@ -298,18 +298,9 @@ export const updateActiveStatus = async (req: RequestWithUser, res: Response, ne
     }
 
     const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).send({ error: 'User not found' });
 
-    if (user) {
-      if (user.isActive === true) {
-        await User.findByIdAndUpdate(req.params.id, {
-          isActive: false,
-        });
-      } else {
-        await User.findByIdAndUpdate(req.params.id, {
-          isActive: true,
-        });
-      }
-    }
+    await User.findByIdAndUpdate(req.params.id, { isActive: !user.isActive });
 
     return res.send('Статус пользователя был обновлен');
   } catch (error) {
@@ -324,18 +315,10 @@ export const updateRoleStatus = async (req: RequestWithUser, res: Response, next
     }
 
     const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).send({ error: 'User not found' });
 
-    if (user) {
-      if (user.role === 'user') {
-        await User.findByIdAndUpdate(req.params.id, {
-          role: 'moderator',
-        });
-      } else {
-        await User.findByIdAndUpdate(req.params.id, {
-          role: 'user',
-        });
-      }
-    }
+    const updatedRole = user.role === 'user' ? 'moderator' : 'user';
+    await User.findByIdAndUpdate(req.params.id, { role: updatedRole });
 
     return res.send('Статус пользователя был обновлен');
   } catch (error) {

@@ -4,7 +4,6 @@ export { formatTelephone } from './helpers/format-telephone';
 export { usePagination } from './hooks/use-pagination';
 export { toQueryParams } from './to-query-params';
 export { deleteEmptyQueryStrings } from './delete-empty-query-strings';
-export { formatDate } from './helpers/format-date';
 export { useAppDispatch, useAppSelector, type RootState } from '@/shared/hooks/hooks';
 export { getGenderTitles } from './helpers/rating-member-utils';
 export { usePlaces } from './helpers/rating-member-utils';

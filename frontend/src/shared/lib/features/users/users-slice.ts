@@ -1,17 +1,28 @@
-import { fetchOneUser, login, register, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
+import {
+  fetchOneUser,
+  fetchUsers,
+  login,
+  register,
+  updateCurrentUserInfo,
+  updateUserInfo,
+} from '@/shared/lib/features/users/users-thunks';
 import { GlobalError, User, ValidationError } from '@/shared/types/user.types';
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface UsersState {
   user: User | null;
   currentUser: User | null;
   usersUpdating: boolean;
   usersUpdatingError: GlobalError | null;
-  usersFetching: boolean;
   loginLoading: boolean;
   registerLoading: boolean;
   loginError: GlobalError | null;
   registerError: ValidationError | null;
+  users: User[];
+  usersFetching: boolean;
+  userPermission: number;
+  usersPages: number;
+  currentPage: number;
 }
 
 const initialState: UsersState = {
@@ -24,6 +35,10 @@ const initialState: UsersState = {
   registerLoading: false,
   loginError: null,
   registerError: null,
+  users: [],
+  userPermission: 0,
+  usersPages: 0,
+  currentPage: 1,
 };
 
 export const usersSlice = createSlice({
@@ -32,6 +47,10 @@ export const usersSlice = createSlice({
   reducers: {
     unsetUser: (state) => {
       state.user = null;
+      state.userPermission = 0;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -43,6 +62,17 @@ export const usersSlice = createSlice({
       .addCase(login.fulfilled, (state, { payload: user }) => {
         state.loginLoading = false;
         state.user = user;
+        if (user.role === 'user') {
+          if (user.isActive) {
+            state.userPermission = 1;
+          } else {
+            state.userPermission = 0;
+          }
+        } else if (user.role === 'moderator') {
+          state.userPermission = 2;
+        } else {
+          state.userPermission = 3;
+        }
       })
       .addCase(login.rejected, (state, { payload: error }) => {
         state.loginError = error || null;
@@ -61,6 +91,20 @@ export const usersSlice = createSlice({
       .addCase(register.rejected, (state, { payload: error }) => {
         state.registerError = error || null;
         state.registerLoading = false;
+      });
+
+    builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.usersFetching = true;
+      })
+      .addCase(fetchUsers.fulfilled, (state, { payload: users }) => {
+        state.usersFetching = false;
+        state.users = users.data;
+        state.usersPages = users.pages;
+        state.currentPage = users.page;
+      })
+      .addCase(fetchUsers.rejected, (state) => {
+        state.usersFetching = false;
       });
 
     builder
@@ -88,6 +132,19 @@ export const usersSlice = createSlice({
         state.usersUpdatingError = payload || null;
         state.usersUpdating = false;
       });
+
+    builder
+      .addCase(updateCurrentUserInfo.pending, (state) => {
+        state.usersUpdating = true;
+      })
+      .addCase(updateCurrentUserInfo.fulfilled, (state, { payload: user }) => {
+        state.usersUpdating = false;
+        state.currentUser = user;
+      })
+      .addCase(updateCurrentUserInfo.rejected, (state, { payload }) => {
+        state.usersUpdatingError = payload || null;
+        state.usersUpdating = false;
+      });
   },
   selectors: {
     selectUser: (state) => state.user,
@@ -96,17 +153,27 @@ export const usersSlice = createSlice({
     selectLoginError: (state) => state.loginError,
     selectRegisterLoading: (state) => state.registerLoading,
     selectRegisterError: (state) => state.registerError,
+    selectUsersList: (state) => state.users,
+    selectUserPermission: (state) => state.userPermission,
     selectUpdating: (state) => state.usersUpdating,
+    selectUpdatingError: (state) => state.usersUpdatingError,
+    selectUsersListPages: (state) => state.usersPages,
+    selectCurrentPage: (state) => state.currentPage,
   },
 });
 
 export const {
   selectUser,
+  selectCurrentUser,
   selectLoginLoading,
   selectLoginError,
   selectRegisterLoading,
   selectRegisterError,
-  selectCurrentUser,
+  selectUsersList,
+  selectUserPermission,
   selectUpdating,
+  selectUpdatingError,
+  selectUsersListPages,
+  selectCurrentPage,
 } = usersSlice.selectors;
-export const { unsetUser } = usersSlice.actions;
+export const { unsetUser, setCurrentPage } = usersSlice.actions;

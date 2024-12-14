@@ -4,7 +4,6 @@ import { useDialogState } from '@/app/(root)/news/hooks/use-dialog-state';
 import { useOneNews } from '@/app/(root)/news/hooks/use-one-news';
 import { Container, ImageModal, NewsCard } from '@/shared/components/shared';
 import { API_URL } from '@/shared/constants';
-import { cn } from '@/shared/lib';
 import DOMPurify from 'dompurify';
 import Image from 'next/image';
 
@@ -12,6 +11,7 @@ import React from 'react';
 
 import carouselStyles from './carousel.module.css';
 import styles from './one-news.module.css';
+import { cn } from '@/shared/lib';
 
 export default function Page() {
   const { emblaRef, oneNews, initialIndex, setInitialIndex, news } = useOneNews();

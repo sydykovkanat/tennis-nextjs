@@ -65,7 +65,15 @@ const NavBarDropDown = () => {
                   Панель администратора
                 </Link>
               </DropdownMenuItem>
-            )}
+            )) ||
+              (user?.role === 'moderator' && (
+                <DropdownMenuItem onClick={() => setDropDown(false)}>
+                  <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'moderator'}>
+                    <Cog6ToothIcon className={styles.iconMenuDropDown} />
+                    Панель модератора
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={handleLogout}

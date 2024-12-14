@@ -8,12 +8,13 @@ import { Rating } from './src/model/Rating';
 import { User } from './src/model/User';
 import { Event } from './src/model/Event';
 import { Carousel } from './src/model/Carousel';
-import { newsFixtures } from './src/utils/newsFixtures';
+import { newsFixtures } from './src/utils/fixtures/newsFixtures';
 import { RatingMember } from './src/model/RatingMember';
 import Footer from './src/model/Footer';
 import { Tournament } from './src/model/Tournament';
-import { tournamentsFixtures } from './src/utils/tournamentsFixtures';
-import { mainRatingsFixtures } from './src/utils/mainRatingsFixtures';
+import { tournamentsFixtures } from './src/utils/fixtures/tournamentsFixtures';
+import { mainRatingsFixtures } from './src/utils/fixtures/mainRatingsFixtures';
+import {generateUsers} from "./src/utils/fixtures/generateUsers";
 
 const run = async () => {
   await mongoose.connect(config.database);
@@ -79,6 +80,8 @@ const run = async () => {
       name: 'Futures',
     }
   );
+
+  await generateUsers(masters, proMasters, futures);
 
   await User.create(
     {

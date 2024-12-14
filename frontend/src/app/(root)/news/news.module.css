@@ -1,3 +1,3 @@
 .newsContainer {
-  @apply grid gap-5 justify-center items-center sm:grid-cols-2 lmd:grid-cols-3 xl:grid-cols-4 mb-6;
+    @apply grid gap-5 justify-center items-center sm:grid-cols-2 lmd:grid-cols-3 xl:grid-cols-4 mb-6;
 }
