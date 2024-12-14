@@ -3,11 +3,11 @@
 import { Card } from '@/shared/components/ui';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/shared/components/ui/tooltip';
 import { API_URL } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 
 import React from 'react';
 
 import styles from './cards.module.css';
-import { cn } from '@/shared/lib';
 
 interface Props {
   image: string;

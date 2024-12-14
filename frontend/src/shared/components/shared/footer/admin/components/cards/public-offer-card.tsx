@@ -1,12 +1,12 @@
 'use client';
 
 import { Card } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
 import styles from './cards.module.css';
-import { cn } from '@/shared/lib';
 
 interface Props {
   publicOfferText: string;

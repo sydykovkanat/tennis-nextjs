@@ -105,7 +105,11 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
                 </SelectTrigger>
                 <SelectContent className={'dark:bg-gray-900'}>
                   {SocialNetworkIcons.map((icon) => (
-                    <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={icon.name} value={icon.name}>
+                    <SelectItem
+                      className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                      key={icon.name}
+                      value={icon.name}
+                    >
                       <SocialIcon
                         network={icon.name}
                         bgColor='#393F43'

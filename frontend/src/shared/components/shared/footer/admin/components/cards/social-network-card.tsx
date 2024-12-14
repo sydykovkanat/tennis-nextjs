@@ -3,6 +3,7 @@
 import { Confirm, Loader, SocialNetworkEditForm } from '@/shared/components/shared';
 import { Button, Card } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { selectItemDeleting } from '@/shared/lib/features/footer/footers-slice';
 import { deleteOneSocialNetwork, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { SocialNetworkFields } from '@/shared/types/footer.types';
@@ -13,7 +14,6 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 import styles from './cards.module.css';
-import { cn } from '@/shared/lib';
 
 interface Props {
   item: SocialNetworkFields;

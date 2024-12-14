@@ -7,7 +7,7 @@ import { CardContent, CardFooter, CardHeader } from '@/shared/components/ui/card
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
-import {PencilSquareIcon, TrashIcon} from '@heroicons/react/24/outline';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -73,7 +73,7 @@ export const NewsCard: React.FC<Props> = React.memo(({ news, isAdmin }) => {
             <Button size='lg' disabled={newsRemoving === _id} icon={TrashIcon} />
           </Confirm>
 
-          <Button size='lg' icon={PencilSquareIcon} onClick={toggleOpen}/>
+          <Button size='lg' icon={PencilSquareIcon} onClick={toggleOpen} />
           {open && <NewsForm isEdit newsId={_id} open={open} setOpen={toggleOpen} />}
         </CardFooter>
       )}

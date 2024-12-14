@@ -58,7 +58,7 @@ const NavBarDropDown = () => {
                 Личный кабинет
               </Link>
             </DropdownMenuItem>
-            {user?.role === 'admin' && (
+            {(user?.role === 'admin' && (
               <DropdownMenuItem className='hover:dark:bg-gray-800' onClick={() => setDropDown(false)}>
                 <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'admin'}>
                   <Cog6ToothIcon className={styles.iconMenuDropDown} />
@@ -67,7 +67,7 @@ const NavBarDropDown = () => {
               </DropdownMenuItem>
             )) ||
               (user?.role === 'moderator' && (
-                <DropdownMenuItem onClick={() => setDropDown(false)}>
+                <DropdownMenuItem className='hover:dark:bg-gray-800' onClick={() => setDropDown(false)}>
                   <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'moderator'}>
                     <Cog6ToothIcon className={styles.iconMenuDropDown} />
                     Панель модератора

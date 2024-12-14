@@ -3,6 +3,7 @@
 import { Confirm, Loader, MenuPositionEditForm } from '@/shared/components/shared';
 import { Button, Card } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { selectItemDeleting } from '@/shared/lib/features/footer/footers-slice';
 import { deleteMenuPosition, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { MenuPositionFields } from '@/shared/types/footer.types';
@@ -12,7 +13,6 @@ import { toast } from 'sonner';
 import React from 'react';
 
 import styles from './cards.module.css';
-import { cn } from '@/shared/lib';
 
 interface Props {
   item: MenuPositionFields;

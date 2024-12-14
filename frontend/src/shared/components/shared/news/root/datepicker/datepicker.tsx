@@ -1,14 +1,16 @@
 'use client';
 
-import React from 'react';
 import { useDatePicker } from '@/shared/components/shared';
 import { Button, Calendar, Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { XIcon } from 'lucide-react';
+
+import React from 'react';
+
 import styles from './datepicker.module.css';
-import { cn } from '@/shared/lib';
 
 export const DatePicker: React.FC = () => {
   const { selectedDates, handleDateSelect, handleResetDates } = useDatePicker();
