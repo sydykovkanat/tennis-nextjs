@@ -11,9 +11,5 @@ export const Calendar: React.FC = () => {
   const rank = searchParams.get('rank') || 'all';
   const { tournaments } = useTournaments(rank);
 
-  return (
-    <>
-      <AdminCalendar tournaments={tournaments} />
-    </>
-  );
+  return <AdminCalendar tournaments={tournaments} />;
 };
