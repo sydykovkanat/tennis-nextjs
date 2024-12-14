@@ -21,7 +21,7 @@ jobs:
         run: |
           npm ci
           echo "Node modules in backend directory:"
-          ls -la backend/node_modules
+          ls -la node_modules
           echo "Backend dependencies installed"
 
   frontend:
@@ -40,7 +40,7 @@ jobs:
         run: |
           npm ci
           echo "Node modules in frontend directory:"
-          ls -la frontend/node_modules
+          ls -la node_modules
           echo "Frontend dependencies installed"
 
       - name: Build frontend
