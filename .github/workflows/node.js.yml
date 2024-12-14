@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  backend:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -16,22 +16,27 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Install dependencies
+      - name: Cache node modules for backend
+        uses: actions/cache@v3
+        with:
+          path: backend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install backend dependencies
         working-directory: backend
         run: npm ci
 
-  frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Cache node modules for frontend
+        uses: actions/cache@v3
         with:
-          node-version: '20.18.0'
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
 
