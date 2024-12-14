@@ -2,15 +2,13 @@
 
 import { AdminCalendar } from '@/shared/components/shared';
 import { useTournaments } from '@/shared/components/shared/tournaments/hooks';
+import { useSearchParams } from 'next/navigation';
 
 import React from 'react';
 
-interface Props {
-  searchParams: { rank?: string };
-}
-
-export default function CalendarPage({ searchParams }: Props) {
-  const rank = searchParams.rank || 'all';
+export const Calendar: React.FC = () => {
+  const searchParams = useSearchParams();
+  const rank = searchParams.get('rank') || 'all';
   const { tournaments } = useTournaments(rank);
 
   return (
@@ -18,4 +16,4 @@ export default function CalendarPage({ searchParams }: Props) {
       <AdminCalendar tournaments={tournaments} />
     </>
   );
-}
+};

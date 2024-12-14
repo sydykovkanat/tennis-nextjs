@@ -1,6 +1,6 @@
 'use client';
 
-import { useCategory } from '@/app/(root)/admin/category/(hooks)/use-category';
+import { useCategory } from '@/shared/components/admin/category/hooks/use-category';
 import { formatTelephone, useAppDispatch } from '@/shared/lib';
 import { fetchUsers } from '@/shared/lib/features/users/users-thunks';
 import { UsersFilter } from '@/shared/types/user.types';
