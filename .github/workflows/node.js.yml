@@ -13,63 +13,37 @@ jobs:
         node-version: [20.18.0]
 
     steps:
-    # Шаг для проверки структуры репозитория после checkout
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Debug current directory and files
+    - name: Debug Repository Structure
       run: |
-        echo "Current Directory:"
+        echo "Repository Directory:"
         pwd
-        echo "Files and Folders:"
-        ls -R
 
-    # Установка Node.js
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    # Установка зависимостей для frontend
     - name: Install dependencies (frontend)
-      run: |
-        echo "Working Directory for Frontend:"
-        pwd
-        ls -R ./tennis-nextjs/frontend
-        npm ci
+      run: npm ci
       working-directory: './frontend'
 
-    # Сборка frontend
     - name: Build frontend
       run: npm run build --if-present
       working-directory: './frontend'
 
-    # Запуск frontend
-    - name: Start frontend
-      run: npm run start
-      working-directory: './frontend'
-
-    # Установка зависимостей для backend
     - name: Install dependencies (backend)
-      run: |
-        echo "Working Directory for Backend:"
-        pwd
-        ls -R ./tennis-nextjs/backend
-        npm ci
+      run: npm ci
       working-directory: './backend'
 
-    # Запуск seed для backend
     - name: Run seed
       run: npm run seed
       working-directory: './backend'
 
-    # Запуск backend
     - name: Start backend
-      run: |
-        echo "Starting Backend:"
-        pwd
-        ls -R
-        ts-node index.ts
+      run: npx ts-node index.ts
       working-directory: './backend'
