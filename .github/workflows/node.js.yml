@@ -19,8 +19,27 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: './frontend/package-lock.json'  # Укажите путь к файлу блокировки
-    - run: npm ci
-      working-directory: './frontend'  # Укажите рабочую директорию
-    - run: npm run build --if-present
-      working-directory: './frontend'  # Укажите рабочую директорию
+
+    - name: Install dependencies (frontend)
+      run: npm ci
+      working-directory: './frontend'
+
+    - name: Build frontend
+      run: npm run build --if-present
+      working-directory: './frontend'
+
+    - name: Start frontend
+      run: npm run start
+      working-directory: './frontend'
+
+    - name: Install dependencies (backend)
+      run: npm ci
+      working-directory: './backend'
+
+    - name: Run seed
+      run: npm run seed
+      working-directory: './backend'
+
+    - name: Start backend
+      run: npx ts-node index.ts
+      working-directory: './backend'
