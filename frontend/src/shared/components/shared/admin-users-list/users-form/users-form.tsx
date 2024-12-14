@@ -102,7 +102,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error('Не удалось обвновить пользователя');
+      toast.error('Не удалось обновить пользователя');
     }
   }, [id, dispatch, mode, setNewUser, currentUser]);
 

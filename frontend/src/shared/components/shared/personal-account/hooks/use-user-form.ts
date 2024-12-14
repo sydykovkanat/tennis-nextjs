@@ -63,6 +63,9 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
+  const isFormValid =
+    userInfo.fullName && userInfo.email && userInfo.telephone && userInfo.dateOfBirth && userInfo.gender;
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (user) {
@@ -73,5 +76,5 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
-  return { userInfo, updateField, handleChange, handleSubmit, resetUserInfo, handleDateChange };
+  return { userInfo, updateField, handleChange, handleSubmit, resetUserInfo, handleDateChange, isFormValid };
 };
