@@ -22,24 +22,24 @@ jobs:
 
     - name: Install dependencies (frontend)
       run: npm ci
-      working-directory: './frontend'
+      working-directory: './tennis-nextjs/frontend'
 
     - name: Build frontend
       run: npm run build --if-present
-      working-directory: './frontend'
+      working-directory: './tennis-nextjs/frontend'
 
     - name: Start frontend
       run: npm run start
-      working-directory: './frontend'
+      working-directory: './tennis-nextjs/frontend'
 
     - name: Install dependencies (backend)
       run: npm ci
-      working-directory: './backend'
+      working-directory: './tennis-nextjs/backend'
 
     - name: Run seed
       run: npm run seed
-      working-directory: './backend'
+      working-directory: './tennis-nextjs/backend'
 
     - name: Start backend
       run: npx ts-node index.ts
-      working-directory: './backend'
+      working-directory: './tennis-nextjs/backend'
