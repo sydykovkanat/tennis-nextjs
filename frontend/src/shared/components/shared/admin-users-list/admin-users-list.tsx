@@ -34,11 +34,11 @@ export const AdminUsersList = () => {
           <ScrollBar orientation={'horizontal'} />
         </ScrollArea>
         <TabsContent value={'users'}>
-          <UsersList role={'user'} />
+          <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
         </TabsContent>
         {userPermission === 3 && (
           <TabsContent value={'moderators'}>
-            <UsersList role={'moderator'} />
+            <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
           </TabsContent>
         )}
       </Tabs>

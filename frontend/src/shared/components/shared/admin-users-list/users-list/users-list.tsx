@@ -17,13 +17,12 @@ import React, { useEffect } from 'react';
 import styles from './users-list.module.css';
 
 interface UsersListProps {
-  role: 'user' | 'moderator';
+  role: string;
 }
 
 export const UsersList: React.FC<UsersListProps> = ({ role }) => {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectUsersList);
-  const isUsersRoles = role === 'user';
   const total = useAppSelector(selectUsersListPages);
   const currentPage = useAppSelector(selectCurrentPage);
   const { currentTab } = useAdminUsersList();
@@ -90,7 +89,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                 <TableCell className={styles.tableCell}>{user.category.name}</TableCell>
                 <TableCell className={styles.actionButtons}>
                   <UsersForm mode={'edit'} id={user._id} />
-                  {isUsersRoles ? (
+                  {role === 'user' ? (
                     user.isActive ? (
                       <InfoTip text={'Деактивировать'} delay={300} className={styles.infoTipBorder}>
                         <Button
