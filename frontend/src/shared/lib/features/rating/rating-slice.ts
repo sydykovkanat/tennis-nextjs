@@ -86,7 +86,6 @@ export const ratingsSlice = createSlice({
         state.ratingsDeleting = meta.arg;
       })
       .addCase(deleteRating.fulfilled, (state) => {
-        state.ratings = state.ratings.filter((rating) => rating._id !== state.ratingsDeleting);
         state.ratingsDeleting = null;
       })
       .addCase(deleteRating.rejected, (state) => {

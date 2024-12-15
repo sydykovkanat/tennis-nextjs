@@ -1,30 +1,19 @@
 'use client';
 
-import { useDialogState } from '@/app/(root)/news/hooks/use-dialog-state';
 import { Confirm } from '@/shared/components/shared';
 import { EventEdit } from '@/shared/components/shared/ratings/components/event-edit/event-edit';
 import styles from '@/shared/components/shared/ratings/rating-card.module.css';
-import {
-  Button,
-  Card,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/shared/components/ui';
+import { Button, Card } from '@/shared/components/ui';
 import { CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { useAppDispatch } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
-import { deleteEvent, fetchRatings } from '@/shared/lib/features/rating/rating-thunks';
-import { selectUser } from '@/shared/lib/features/users/users-slice';
-import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
+import { deleteEvent } from '@/shared/lib/features/rating/rating-thunks';
 import { Event } from '@/shared/types/event.types';
 import { Rating } from '@/shared/types/rating.types';
 import { ArrowRight, Pencil, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface Props {
   event: Event;
@@ -33,21 +22,14 @@ interface Props {
 
 export const EventCard: React.FC<Props> = ({ event, ratings }) => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
-  const { open, toggleOpen } = useDialogState();
 
   const handleDelete = async () => {
     await dispatch(deleteEvent(event._id)).unwrap();
-    await dispatch(fetchRatings()).unwrap();
     toast.success('Событие успешно удалено');
   };
 
-  useEffect(() => {
-    if (user) dispatch(fetchOneUser(user._id));
-  }, [dispatch, user]);
-
   return (
-    <Card id={'eventItem'} className={styles.eventCard}>
+    <Card id={'eventItem'} className={cn(styles.eventCard, 'dark:bg-[#1F2937] dark:border-black')}>
       <CardHeader>
         <CardTitle className={styles.eventTitle}>
           Категория - <span className={styles.eventCategory}>{event.category.name}</span>
@@ -75,17 +57,6 @@ export const EventCard: React.FC<Props> = ({ event, ratings }) => {
             </EventEdit>
           </div>
         </div>
-
-        {open && (
-          <Dialog open={open} onOpenChange={toggleOpen}>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle className='text-2xl font-bold'>Внимание!</DialogTitle>
-                <DialogDescription></DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
-        )}
       </CardHeader>
     </Card>
   );

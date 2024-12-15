@@ -1,4 +1,5 @@
 import { Confirm, EventCard } from '@/shared/components/shared';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import { Button, Card, ScrollArea, ScrollBar } from '@/shared/components/ui';
 import { CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
@@ -10,8 +11,6 @@ import { Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
 import React from 'react';
-
-import styles from './rating-block.module.css';
 
 interface Props {
   ratings: Rating[];

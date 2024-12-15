@@ -1,4 +1,5 @@
 import { axiosApi } from '@/shared/lib';
+import { AppDispatch } from '@/shared/lib/store';
 import { Event, EventMutation } from '@/shared/types/event.types';
 import { Rating, RatingMutation } from '@/shared/types/rating.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -41,18 +42,22 @@ export const createEvent = createAsyncThunk('ratings/createEvent', async (eventM
   }
 });
 
-export const deleteEvent = createAsyncThunk('ratings/deleteEvent', async (id: string) => {
-  try {
-    await axiosApi.delete(`/events/${id}`);
-  } catch (error) {
-    if (isAxiosError(error) && error.response && error.response.data.code === 404) {
-      toast.error(error.response.data.error);
-    } else {
-      toast.error('Произошла ошибка при удалении события');
+export const deleteEvent = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
+  'ratings/deleteEvent',
+  async (id: string, thunkAPI) => {
+    try {
+      await axiosApi.delete(`/events/${id}`);
+      await thunkAPI.dispatch(fetchRatings());
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.data.code === 404) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error('Произошла ошибка при удалении события');
+      }
+      throw error;
     }
-    throw error;
-  }
-});
+  },
+);
 
 export const editEvent = createAsyncThunk(
   'ratings/editEvent',
