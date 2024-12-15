@@ -14,7 +14,7 @@ import Footer from './src/model/Footer';
 import { Tournament } from './src/model/Tournament';
 import { tournamentsFixtures } from './src/utils/fixtures/tournamentsFixtures';
 import { mainRatingsFixtures } from './src/utils/fixtures/mainRatingsFixtures';
-import {generateUsers} from "./src/utils/fixtures/generateUsers";
+import { generateUsers } from './src/utils/fixtures/generateUsers';
 
 const run = async () => {
   await mongoose.connect(config.database);

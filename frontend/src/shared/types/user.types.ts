@@ -70,3 +70,7 @@ export interface UsersFilter {
 }
 
 export type RegisterMutationWithoutCoupleFields = Omit<RegisterMutation, 'password' | 'category'>;
+
+export interface UserPermissionLevel {
+  permissionLevel: number;
+}

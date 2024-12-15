@@ -6,6 +6,7 @@ import {
   RegisterMutationWithoutCoupleFields,
   User,
   UserMutation,
+  UserPermissionLevel,
   UsersFilter,
   UsersResponse,
   ValidationError,
@@ -72,6 +73,11 @@ export const fetchUsers = createAsyncThunk<UsersResponse, UsersFilter>('users/fe
   const url = `/users/get-users${filterUrl ? `?${filterUrl}` : ''}`;
   const { data: response } = await axiosApi.get<UsersResponse>(url);
   return response;
+});
+
+export const getPermissionForUser = createAsyncThunk<number, string>('users/get-permission', async (id) => {
+  const { data: response } = await axiosApi.get<UserPermissionLevel>(`/users/${id}/permission`);
+  return response.permissionLevel;
 });
 
 export const addUser = createAsyncThunk<void, UserMutation, { rejectValue: ValidationError }>(

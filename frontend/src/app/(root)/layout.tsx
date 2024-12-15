@@ -5,6 +5,8 @@ import { Navbar } from '@/shared/components/shared/navbar/navbar';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemsData } from '@/shared/lib/features/footer/footers-slice';
 import { getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
+import { selectUser } from '@/shared/lib/features/users/users-slice';
+import { getPermissionForUser } from '@/shared/lib/features/users/users-thunks';
 
 import React, { useEffect } from 'react';
 
@@ -14,11 +16,15 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
   const footerItemsData = useAppSelector(selectItemsData);
 
   useEffect(() => {
+    if (user) {
+      dispatch(getPermissionForUser(user._id));
+    }
     dispatch(getFooterItems());
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <div className='flex flex-col min-h-dvh'>

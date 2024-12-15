@@ -1,6 +1,7 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/shared/components/ui';
 import { API_URL, CURRENT_YEAR_FULL, NAVIGATION_ITEMS } from '@/shared/constants';
-import { cn } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
+import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { ChevronUpIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const Footer: React.FC<Props> = ({ dataItems }) => {
+  const userPermission = useAppSelector(selectUserPermission);
   return (
     <div className={styles.footer}>
       <div className={styles.footerWrapper}>
@@ -58,7 +60,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
               ))}
               <li>
                 <DropdownMenu>
-                  {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && (
+                  {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
                     <DropdownMenuTrigger className={styles.dropdownTrigger}>
                       Положение
                       <ChevronUpIcon className={styles.dropdownIcon} />

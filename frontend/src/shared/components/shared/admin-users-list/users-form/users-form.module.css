@@ -1,39 +1,38 @@
 .dialogTriggerButton {
-    @apply w-full xs:w-max font-normal;
+  @apply w-full xs:w-max font-normal;
 }
 
 .dialogContent {
-    @apply py-4 max-h-[80dvh] overflow-y-auto;
+  @apply py-4 max-h-[80dvh] overflow-y-auto;
 }
 
 .dialogDescription {
-    @apply text-sm text-muted-foreground;
+  @apply text-sm text-muted-foreground;
 }
 
 .blockForm {
-    @apply space-y-3 mb-8
+  @apply space-y-3 mb-8;
 }
 
 .inputField {
-    @apply h-10 focus-visible:border-[#80BC41];
+  @apply h-10 focus-visible:border-[#80BC41];
 }
 
 .errorMessage {
-    @apply border-[#eb3434] focus-visible:border-[#eb3434];
+  @apply border-[#eb3434] focus-visible:border-[#eb3434];
 }
 
 .label {
-    @apply text-base text-start font-medium block mt-1
+  @apply text-base text-start font-medium block mt-1;
 }
 
 .selectTrigger {
-    @apply h-10 focus:border-[#80BC41]
+  @apply h-10 focus:border-[#80BC41];
 }
 .buttonSubmit {
-    @apply w-full h-8 sm:h-10 bg-[#232A2E] px-10 font-bold mb-2.5 dark:bg-blue-50;
-
+  @apply w-full h-8 sm:h-10 bg-[#232A2E] px-10 font-bold mb-2.5 dark:bg-blue-50;
 }
 
 .buttonCancel {
-    @apply w-full h-8 sm:h-10;
+  @apply w-full h-8 sm:h-10;
 }

@@ -230,21 +230,18 @@ export const getPermissionLevel = async (req: RequestWithUser, res: Response, ne
   try {
     const user = await User.findById(req.params.id);
     if (user) {
-      if (user.role === 'user') {
-        if (user.isActive) {
-          return res.status(200).send({ permissionLevel: 1 });
-        } else {
-          return res.status(200).send({ permissionLevel: 0 });
-        }
-      }
-      if (user.role === 'moderator') {
+      if (user.role === 'user' && user.isActive) {
+        return res.status(200).send({ permissionLevel: 1 });
+      } else if (user.role === 'moderator') {
         return res.status(200).send({ permissionLevel: 2 });
-      }
-      if (user.role === 'admin') {
+      } else if (user.role === 'admin') {
         return res.status(200).send({ permissionLevel: 3 });
+      } else {
+        return res.status(200).send({ permissionLevel: 0 });
       }
+    } else {
+      return res.status(200).send({ permissionLevel: 0 });
     }
-    return res.status(200).send({ permissionLevel: 0 });
   } catch (error) {
     next(error);
   }

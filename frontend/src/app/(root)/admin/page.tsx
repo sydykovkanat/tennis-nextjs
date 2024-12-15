@@ -4,13 +4,21 @@ import { Calendar, Carousel, Category, Footer, News, Partners, Rating, Top, User
 import { Container } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { ADMIN_PAGES } from '@/shared/config/pages';
-import { cn } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
+import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
+import { redirect } from 'next/navigation';
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 
 import styles from './admin.module.css';
 
 export default function Page() {
+  const userPermission = useAppSelector(selectUserPermission);
+  useEffect(() => {
+    if (userPermission <= 1) {
+      redirect('/404');
+    }
+  }, []);
   return (
     <Suspense>
       <Container>
