@@ -7,13 +7,18 @@ import { cn } from '@/shared/lib';
 import { selectItemDeleting } from '@/shared/lib/features/footer/footers-slice';
 import { deleteOneSocialNetwork, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { SocialNetworkFields } from '@/shared/types/footer.types';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { Trash } from 'lucide-react';
 import { toast } from 'sonner';
+
+
 
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 
+
+
 import styles from './cards.module.css';
+
 
 interface Props {
   item: SocialNetworkFields;
@@ -50,7 +55,7 @@ export const SocialNetworkCard: React.FC<Props> = ({ item }) => {
         <div className={styles.actions}>
           <Confirm onOk={handleDelete}>
             <Button disabled={Boolean(socialNetworkDeleting)} size={'sm'} data-test-id='delete'>
-              {socialNetworkDeleting === item._id ? <Loader /> : <TrashIcon />}
+              {socialNetworkDeleting === item._id ? <Loader /> : <Trash />}
             </Button>
           </Confirm>
           <SocialNetworkEditForm id={item._id} />

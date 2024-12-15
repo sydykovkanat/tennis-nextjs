@@ -7,7 +7,7 @@ import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectCategoryDeleting } from '@/shared/lib/features/categories/category-slice';
 import { removeCategory } from '@/shared/lib/features/categories/category-thunks';
 import { Category } from '@/shared/types/category.types';
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { Pencil, Trash } from 'lucide-react';
 
 import React from 'react';
 
@@ -36,11 +36,11 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
 
         <div className={cn(styles.actionsBlock)}>
           <Confirm onOk={handleRemove}>
-            <Button size={'sm'} icon={TrashIcon}>
+            <Button size={'sm'} icon={Trash}>
               {categoryRemoving === category._id && <Loader size={'sm'} absolute />}
             </Button>
           </Confirm>
-          <Button size={'sm'} icon={PencilSquareIcon} onClick={() => setOpen(true)} />
+          <Button size={'sm'} icon={Pencil} onClick={() => setOpen(true)} />
           {open && <CategoryForm open={open} setOpen={setOpen} isEdit categoryId={category._id} />}
         </div>
       </CardContent>

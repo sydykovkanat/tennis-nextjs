@@ -3,11 +3,11 @@
 import { RatingMemberForm, RatingMembersAdminList } from '@/shared/components/shared/rating-members';
 import { Button } from '@/shared/components/ui';
 import { RatingMember } from '@/shared/types/rating-member.types';
-import { SquaresPlusIcon } from '@heroicons/react/24/outline';
 
 import React, { useState } from 'react';
 
 import styles from './rating-member-admin.module.css';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 interface Props {
   ratingMembers: RatingMember[];
@@ -25,7 +25,7 @@ export const MaleRatingSection: React.FC<Props> = ({
   return (
     <div>
       <div className={styles.buttonContainer}>
-        <Button className={styles.addButton} icon={SquaresPlusIcon} onClick={() => setOpenMaleForm(true)}>
+        <Button className={styles.addButton} icon={Grid2X2PlusIcon} onClick={() => setOpenMaleForm(true)}>
           Добавить в мужской рейтинг
         </Button>
       </div>

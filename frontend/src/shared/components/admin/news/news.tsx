@@ -4,11 +4,11 @@ import { AdminNewsPage, useNewsForm } from '@/shared/components/shared';
 import { NewsForm } from '@/shared/components/shared/news/admin/news-form';
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { SquaresPlusIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
 import styles from './admin-news.module.css';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 export const News = () => {
   const { open, toggleOpen } = useNewsForm();
@@ -21,7 +21,7 @@ export const News = () => {
           <small className={cn(styles.subtitle)}>Страница для управления новостями</small>
         </div>
 
-        <Button icon={SquaresPlusIcon} onClick={toggleOpen}>
+        <Button icon={Grid2X2PlusIcon} onClick={toggleOpen}>
           Добавить новость
         </Button>
         {open && <NewsForm open={open} setOpen={toggleOpen} />}

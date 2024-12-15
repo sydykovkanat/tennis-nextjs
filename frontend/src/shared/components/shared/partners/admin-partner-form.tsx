@@ -1,7 +1,6 @@
 import { usePartners } from '@/shared/components/admin/partners/partners-context';
 import { Button, Input } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { Save } from 'lucide-react';
 
 import React from 'react';
 
@@ -49,14 +48,8 @@ export const AdminPartnerForm: React.FC<Props> = ({ className, onSubmit }) => {
         </div>
       )}
 
-      <Button
-        disabled={!isFormValid || partnerCreating}
-        loading={partnerCreating}
-        icon={Save}
-        className={styles.btn}
-        size={'lg'}
-      >
-        Сохранить
+      <Button disabled={!isFormValid || partnerCreating} loading={partnerCreating} className={styles.btn} size={'lg'}>
+        Добавить
       </Button>
     </form>
   );

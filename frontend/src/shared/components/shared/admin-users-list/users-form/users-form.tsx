@@ -24,12 +24,12 @@ import { fetchCategories } from '@/shared/lib/features/categories/category-thunk
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
-import { PencilSquareIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
 import { toast } from 'sonner';
 
 import React, { useEffect } from 'react';
 
 import styles from './users-form.module.css';
+import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 interface UsersFromProps {
   mode: 'add' | 'edit';
@@ -118,10 +118,10 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
             {isAddMode ? (
               <>
                 Добавить пользователя
-                <SquaresPlusIcon />
+                <Grid2X2PlusIcon />
               </>
             ) : (
-              <PencilSquareIcon />
+              <Pencil />
             )}
           </Button>
         </DialogTrigger>

@@ -7,12 +7,18 @@ import { cn } from '@/shared/lib';
 import { selectItemDeleting } from '@/shared/lib/features/footer/footers-slice';
 import { deleteMenuPosition, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { MenuPositionFields } from '@/shared/types/footer.types';
-import { LinkIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { LinkIcon } from '@heroicons/react/24/outline';
+import { Trash } from 'lucide-react';
 import { toast } from 'sonner';
+
+
 
 import React from 'react';
 
+
+
 import styles from './cards.module.css';
+
 
 interface Props {
   item: MenuPositionFields;
@@ -43,7 +49,7 @@ export const MenuPositionCard: React.FC<Props> = ({ item }) => {
         <div className={styles.menuPositionCardActions}>
           <Confirm onOk={handleDelete}>
             <Button disabled={Boolean(menuPositionDeleting)} size={'sm'} data-test-id='delete'>
-              {menuPositionDeleting === item._id ? <Loader /> : <TrashIcon />}
+              {menuPositionDeleting === item._id ? <Loader /> : <Trash />}
             </Button>
           </Confirm>
           <MenuPositionEditForm id={item._id} />

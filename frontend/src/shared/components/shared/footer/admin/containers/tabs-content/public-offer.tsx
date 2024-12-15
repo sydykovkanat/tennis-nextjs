@@ -4,7 +4,7 @@ import { Loader, PublicOfferCard, PublicOfferEditForm } from '@/shared/component
 import { Button } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
-import { EditIcon } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 
 import styles from './tab-content.module.css';
 
@@ -23,7 +23,7 @@ export const PublicOffer = () => {
           <div className={styles.publicOfferEditFormContainer}>
             <PublicOfferEditForm>
               <Button disabled={publicOfferData.length === 0} className={styles.publicOfferButton}>
-                Изменить публичную оферту <EditIcon />
+                Изменить публичную оферту <Pencil />
               </Button>
             </PublicOfferEditForm>
           </div>
