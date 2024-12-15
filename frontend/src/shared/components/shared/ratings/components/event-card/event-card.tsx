@@ -1,3 +1,5 @@
+'use client';
+
 import { useDialogState } from '@/app/(root)/news/hooks/use-dialog-state';
 import { Confirm } from '@/shared/components/shared';
 import { EventEdit } from '@/shared/components/shared/ratings/components/event-edit/event-edit';
@@ -22,7 +24,7 @@ import { Rating } from '@/shared/types/rating.types';
 import { ArrowRight, Pencil, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
   event: Event;
@@ -40,7 +42,7 @@ export const EventCard: React.FC<Props> = ({ event, ratings }) => {
     toast.success('Событие успешно удалено');
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) dispatch(fetchOneUser(user._id));
   }, [dispatch, user]);
 

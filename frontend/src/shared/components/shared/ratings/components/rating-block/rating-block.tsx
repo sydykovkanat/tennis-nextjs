@@ -21,6 +21,7 @@ export const RatingBlock: React.FC<Props> = ({ ratings }) => {
   const dispatch = useAppDispatch();
   const ratingsDeleting = useAppSelector(selectRatingsDeleting);
 
+  //надо это перенести в бэк
   const sortedRatings = [...ratings].sort((a, b) => {
     const yearDiff = b.year - a.year;
     if (yearDiff !== 0) return yearDiff;
