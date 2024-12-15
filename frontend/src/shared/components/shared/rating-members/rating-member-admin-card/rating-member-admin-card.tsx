@@ -1,13 +1,16 @@
+'use client';
+
 import { Confirm } from '@/shared/components/shared';
-import { RatingMemberEdit } from '@/shared/components/shared/rating-members';
-import { useRatingMemberDelete, useRatingMemberEdit } from '@/shared/components/shared/rating-members/hooks';
+import { RatingMemberForm } from '@/shared/components/shared/rating-members';
+import { useRatingMemberDelete } from '@/shared/components/shared/rating-members/hooks';
 import { Button, Card } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 import { RatingMember } from '@/shared/types/rating-member.types';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './rating-member-admin-card.module.css';
 
@@ -19,10 +22,10 @@ interface Props {
 export const RatingMemberAdminCard: React.FC<Props> = ({ ratingMember, ratingMembers }) => {
   const image = `${API_URL}/${ratingMember.image}`;
   const { handleDelete, isDeleting } = useRatingMemberDelete();
-  const { open, setOpen } = useRatingMemberEdit();
+  const [open, setOpen] = useState(false);
 
   return (
-    <Card className={styles.card} data-testid={`${ratingMember.name}`}>
+    <Card className={cn(styles.card, 'dark:bg-[#1F2937]')} data-testid={`${ratingMember.name}`}>
       <div className={styles.cardInner}>
         <Image
           src={image}
@@ -41,7 +44,7 @@ export const RatingMemberAdminCard: React.FC<Props> = ({ ratingMember, ratingMem
           </Confirm>
           <Button size='sm' data-testid='edit' icon={PencilSquareIcon} onClick={() => setOpen(true)} />
           {open && (
-            <RatingMemberEdit
+            <RatingMemberForm
               open={open}
               setOpen={setOpen}
               ratingMembers={ratingMembers}

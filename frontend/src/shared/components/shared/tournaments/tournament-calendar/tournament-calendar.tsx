@@ -13,7 +13,6 @@ interface Props {
   isFetching?: boolean;
   isAdmin?: boolean;
   tournamentsLastYearExist?: boolean;
-  tournamentsNextYearExist?: boolean;
   title?: boolean;
 }
 
@@ -22,9 +21,10 @@ export const TournamentCalendar: React.FC<Props> = ({
   isFetching,
   isAdmin,
   tournamentsLastYearExist,
-  tournamentsNextYearExist,
   title = true,
 }) => {
+  const hasPreviousTournaments = Object.values(tournaments.previousYear).some((month) => month.length > 0);
+  const hasNextTournaments = Object.values(tournaments.nextYear).some((month) => month.length > 0);
   return (
     <div className={styles.container}>
       {title && <MainTitles title='Календарь турниров' titleSize='small' />}
@@ -37,7 +37,7 @@ export const TournamentCalendar: React.FC<Props> = ({
         tournamentsLastYearExist={tournamentsLastYearExist}
         className='mb-8'
       />
-      {tournamentsNextYearExist ? (
+      {hasNextTournaments ? (
         <>
           <div className={styles.calendarTitles}>{NEXT_YEAR}</div>
           <TournamentAccordion
@@ -47,7 +47,7 @@ export const TournamentCalendar: React.FC<Props> = ({
             tournamentsLastYearExist={tournamentsLastYearExist}
           />
         </>
-      ) : tournamentsLastYearExist ? (
+      ) : hasPreviousTournaments ? (
         <>
           <div className={styles.calendarTitles}>{PREVIOUS_YEAR}</div>
           <TournamentAccordion

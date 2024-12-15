@@ -1,3 +1,4 @@
+import { cn } from '@/shared/lib';
 import { translateRank } from '@/shared/lib/helpers/tournament-utils';
 import { Tournament } from '@/shared/types/tournament.types';
 
@@ -9,7 +10,8 @@ export const TournamentCardInfo = ({ tournament }: { tournament: Tournament }) =
   return (
     <div>
       <h6 className={styles.tournamentName}>
-        Турнир “{tournament.name}”<span className={styles.tournamentCategory}>{tournament.category}</span>
+        Турнир “{tournament.name}”
+        <span className={cn(styles.tournamentCategory, 'dark:text-[#478C16]')}>{tournament.category}</span>
       </h6>
       <div className={styles.cardInfoWrapper}>
         <div className={styles.indoRowWrapper}>

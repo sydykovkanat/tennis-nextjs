@@ -65,7 +65,7 @@ export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) =
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактировать публичную оферту</DialogTitle>
           <DialogDescription>Заполните форму перед обновлением.</DialogDescription>

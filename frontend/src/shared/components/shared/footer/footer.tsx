@@ -18,7 +18,7 @@ interface Props {
 export const Footer: React.FC<Props> = ({ dataItems }) => {
   const userPermission = useAppSelector(selectUserPermission);
   return (
-    <div className={styles.footer}>
+    <div className={cn(styles.footer, 'dark:bg-gray-900')}>
       <div className={styles.footerWrapper}>
         <div className={styles.footerColumn}>
           <div className={styles.logoWrapper}>
@@ -66,10 +66,13 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
                       <ChevronUpIcon className={styles.dropdownIcon} />
                     </DropdownMenuTrigger>
                   )}
-                  <DropdownMenuContent className={styles.dropdownContent}>
+                  <DropdownMenuContent className={cn(styles.dropdownContent, 'dark:bg-gray-900')}>
                     {dataItems.length > 0 &&
                       dataItems[0].menuPosition.map((menuItem) => (
-                        <DropdownMenuItem key={menuItem._id} className={styles.dropdownItem}>
+                        <DropdownMenuItem
+                          key={menuItem._id}
+                          className={cn(styles.dropdownItem, 'hover:dark:bg-gray-800')}
+                        >
                           <a href={menuItem.value} target='_blank' className={styles.dropdownLink}>
                             {menuItem.name}
                           </a>

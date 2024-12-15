@@ -10,3 +10,4 @@ export { usePlaces } from './helpers/rating-member-utils';
 export { isTournamentUpcoming } from './helpers/tournament-utils';
 export { getUpdatedSearchParams } from './helpers/tournament-utils';
 export { translateRank } from './helpers/tournament-utils';
+export { ThemeProvider } from './hooks/theme-provider';

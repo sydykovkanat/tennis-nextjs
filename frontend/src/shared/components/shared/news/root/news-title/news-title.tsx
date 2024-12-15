@@ -20,7 +20,7 @@ export const NewsTitle: React.FC<Props> = ({ isHomePage }) => {
 
   return (
     <div className={cn(styles.newsTitleBlock)}>
-      <Title className={cn(styles.newsTitle)}>Свежие новости</Title>
+      <Title className={cn(styles.newsTitle, 'dark:text-white')}>Свежие новости</Title>
       <Subtitle className={cn(styles.newsSubtitle)}>Наш блог</Subtitle>
     </div>
   );
