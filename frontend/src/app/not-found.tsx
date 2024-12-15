@@ -11,7 +11,7 @@ export default function NotFound() {
     if (pathName !== '/404') {
       redirect('/404');
     }
-  }, []);
+  }, [pathName]);
   return (
     <div className='flex place-content-center h-[100vh] items-center justify-center'>
       <div className='p-8 rounded-lg w-full max-w-5xl'>

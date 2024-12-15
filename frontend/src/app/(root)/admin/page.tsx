@@ -18,7 +18,7 @@ export default function Page() {
     if (userPermission <= 1) {
       redirect('/404');
     }
-  }, []);
+  }, [userPermission]);
   return (
     <Suspense>
       <Container>

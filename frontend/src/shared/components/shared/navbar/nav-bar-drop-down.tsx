@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import styles from './navbar.module.css';
+import { cn } from '@/shared/lib';
 
 const NavBarDropDown = () => {
   const userPermission = useAppSelector(selectUserPermission);
