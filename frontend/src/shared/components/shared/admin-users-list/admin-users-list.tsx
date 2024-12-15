@@ -23,24 +23,33 @@ export const AdminUsersList = () => {
       </div>
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
-          <TabsList className={styles.tabsList}>
-            <TabsTrigger value='users'>Пользователи</TabsTrigger>
-            {userPermission === 3 && (
+          {userPermission === 2 && (
+            <div className='hidden'>
+              <TabsList className={styles.tabsList}>
+                <TabsTrigger value='users'>Пользователи</TabsTrigger>
+              </TabsList>
+            </div>
+          )}
+
+          {userPermission === 3 && (
+            <TabsList className={styles.tabsList}>
+              <TabsTrigger value='users'>Пользователи</TabsTrigger>
               <TabsTrigger key='moderators' value='moderators'>
                 Модераторы
               </TabsTrigger>
-            )}
-          </TabsList>
+            </TabsList>
+          )}
+
           <ScrollBar orientation={'horizontal'} />
         </ScrollArea>
-        <TabsContent value={'users'}>
-          <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
-        </TabsContent>
         {userPermission === 3 && (
           <TabsContent value={'moderators'}>
             <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
           </TabsContent>
         )}
+        <TabsContent value={'users'}>
+          <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
+        </TabsContent>
       </Tabs>
     </>
   );
