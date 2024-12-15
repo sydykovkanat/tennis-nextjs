@@ -1,5 +1,4 @@
 import { Confirm, EventCard } from '@/shared/components/shared';
-import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import { Button, Card, ScrollArea, ScrollBar } from '@/shared/components/ui';
 import { CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
@@ -12,6 +11,8 @@ import { toast } from 'sonner';
 
 import React from 'react';
 
+import styles from './rating-block.module.css';
+
 interface Props {
   ratings: Rating[];
 }
@@ -20,44 +21,24 @@ export const RatingBlock: React.FC<Props> = ({ ratings }) => {
   const dispatch = useAppDispatch();
   const ratingsDeleting = useAppSelector(selectRatingsDeleting);
 
-  //надо это перенести в бэк
-  const sortedRatings = [...ratings].sort((a, b) => {
-    const yearDiff = b.year - a.year;
-    if (yearDiff !== 0) return yearDiff;
-    const monthOrder = [
-      'january',
-      'february',
-      'march',
-      'april',
-      'may',
-      'june',
-      'july',
-      'august',
-      'september',
-      'october',
-      'november',
-      'december',
-    ];
-    return monthOrder.indexOf(b.month) - monthOrder.indexOf(a.month);
-  });
   const handleDelete = async (id: string) => {
     await dispatch(deleteRating(id)).unwrap();
     toast.success('Рейтинг успешно удален');
   };
 
   return (
-    <div className={'grid gap-4 grid-cols-1'}>
-      {sortedRatings.map((rating) => {
+    <div className={styles.wrapper}>
+      {ratings.map((rating) => {
         const isDeleting = ratingsDeleting === rating._id;
 
         return (
-          <Card key={rating._id} className={'relative p-4 bg-gray-100 dark:bg-gray-800 rounded-lg'}>
+          <Card key={rating._id} className={styles.cardWrapper}>
             <CardHeader className={'p-2'}>
-              <div className={'flex  justify-between p-0'}>
-                <CardTitle className={'w-80 flex items-center'}>
+              <div className={styles.headerWrapper}>
+                <CardTitle className={styles.titleWrapper}>
                   {rating.year} - {formatMonth(rating.month)}
                 </CardTitle>
-                <div className={'flex justify-end gap-2 mb-2'}>
+                <div className={styles.deleteBlock}>
                   <Confirm onOk={() => handleDelete(rating._id)}>
                     <Button aria-label={'deleteRating'} icon={Trash} size={'icon'} loading={isDeleting} />
                   </Confirm>
@@ -68,7 +49,7 @@ export const RatingBlock: React.FC<Props> = ({ ratings }) => {
             <ScrollArea>
               <div className={styles.events}>
                 {rating.events.length === 0 ? (
-                  <span className={'block text-center text-muted-foreground'}>Нет событий</span>
+                  <span className={styles.textGray}>Нет событий</span>
                 ) : (
                   rating.events.map((event) => <EventCard key={event._id} event={event} ratings={ratings} />)
                 )}
