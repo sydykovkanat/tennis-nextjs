@@ -8,9 +8,11 @@ import React from 'react';
 import styles from './admin-users-list.module.css';
 
 export const AdminUsersList = () => {
-  const { userPermission, currentTab, handleTabChange, isClient } = useAdminUsersList();
+  const { currentTab, isClient, userPermission, handleTabChange } = useAdminUsersList();
 
-  if (!isClient) return null;
+  if (!isClient) {
+    return <div className='text-center'>Loading...</div>;
+  }
 
   return (
     <>

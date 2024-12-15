@@ -134,7 +134,8 @@ export const useUsersForm = () => {
         );
 
         if (newUser.role) {
-          handleTabChange(newUser.role === 'moderator' ? 'moderators' : 'users');
+          const updateRoleForTab = newUser.role === 'moderator' ? 'moderators' : 'users';
+          handleTabChange(updateRoleForTab);
         }
 
         setNewUser(initialState);
