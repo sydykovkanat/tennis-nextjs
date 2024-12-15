@@ -30,7 +30,7 @@ export const RatingMemberEdit: React.FC<Props> = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent className='dark:bg-[#1F2937]' aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Редактировать участника {dialogTitle} рейтинга</DialogTitle>
         </DialogHeader>

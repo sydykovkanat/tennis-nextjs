@@ -2,7 +2,7 @@
 
 import { AdminPageHeader, TournamentCalendar } from '@/shared/components/shared';
 import { TournamentForm } from '@/shared/components/shared/tournaments';
-import {useTournamentForm, useTournaments} from '@/shared/components/shared/tournaments/hooks';
+import { useTournamentForm, useTournaments } from '@/shared/components/shared/tournaments/hooks';
 import { Button } from '@/shared/components/ui';
 import { Tournaments } from '@/shared/types/tournament.types';
 import { SquaresPlusIcon } from '@heroicons/react/24/outline';
@@ -22,10 +22,10 @@ export const AdminCalendar: React.FC<Props> = ({ tournaments }) => {
   return (
     <>
       <AdminPageHeader title='Календарь' description='Управление турнирами'>
-          {open && <TournamentForm tournamentsLastYearExist={tournamentsLastYearExist} open={open} setOpen={setOpen}/>}
-          <Button className={styles.addButton} icon={SquaresPlusIcon} onClick={() => setOpen(true)}>
-              Создать турнир
-          </Button>
+        {open && <TournamentForm tournamentsLastYearExist={tournamentsLastYearExist} open={open} setOpen={setOpen} />}
+        <Button className={styles.addButton} icon={SquaresPlusIcon} onClick={() => setOpen(true)}>
+          Создать турнир
+        </Button>
       </AdminPageHeader>
       <TournamentCalendar
         tournaments={tournaments}

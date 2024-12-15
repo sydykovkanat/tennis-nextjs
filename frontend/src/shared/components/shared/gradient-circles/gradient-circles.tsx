@@ -18,7 +18,7 @@ interface Props {
 export const GradientCircle: React.FC<Props> = ({ width, height, top, right, left, bottom, visible }) => {
   return (
     <div
-      className={cn(styles.circle, {
+      className={cn(styles.circle, 'dark:bg-none', {
         [styles.hidden]: visible !== 'block',
         [styles.visible]: visible === 'block',
         [styles.responsiveHidden]: visible === 'block',

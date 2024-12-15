@@ -1,47 +1,47 @@
 .content {
-    @apply max-h-svh overflow-y-auto max-w-7xl;
+  @apply max-h-svh overflow-y-auto max-w-7xl;
 }
 
 .form {
-    @apply space-y-4;
+  @apply space-y-4;
 }
 
 .title {
-    @apply text-2xl font-bold;
+  @apply text-2xl font-bold;
 }
 
 .inputBlock {
-    @apply flex flex-col;
+  @apply flex flex-col;
 }
 
 .input {
-    @apply h-12;
+  @apply h-12;
 }
 
 .label {
-    @apply text-lg mb-1;
+  @apply text-lg mb-1;
 }
 
 .removeMediaButton {
-    @apply absolute top-1 right-1 bg-transparent border text-white rounded-md p-2 hover:bg-red-500;
+  @apply absolute top-1 right-1 bg-transparent border text-white rounded-md p-2 hover:bg-red-500;
 }
 
 .mediaInForm {
-    @apply w-full h-full object-cover;
+  @apply w-full h-full object-cover;
 }
 
 .newsCoverBlock {
-    @apply mt-2 relative w-full sm:w-1/3 h-auto;
+  @apply mt-2 relative w-full sm:w-1/3 h-auto;
 }
 
 .imagesBlock {
-    @apply mt-2 flex flex-wrap gap-2;
+  @apply mt-2 flex flex-wrap gap-2;
 }
 
 .images {
-    @apply relative h-auto w-full sm:w-[49%] md:w-[19%];
+  @apply relative h-auto w-full sm:w-[49%] md:w-[19%];
 }
 
 .submitButton {
-    @apply w-full h-12 px-10 font-bold;
+  @apply w-full h-12 px-10 font-bold;
 }

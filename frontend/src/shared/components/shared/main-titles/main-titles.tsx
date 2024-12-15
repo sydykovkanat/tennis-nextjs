@@ -22,7 +22,7 @@ export const MainTitles: React.FC<Props> = ({
   return (
     <div className={cn(styles.container, className)}>
       <h1
-        className={cn(styles.title, {
+        className={cn(styles.title, 'dark:text-white', {
           'mb-2': subtitle,
           'text-xl sm:text-2xl lg:text-3xl xl:text-4xl': titleSize === 'small',
           'text-2xl sm:text-3xl lg:text-4xl xl:text-5xl': titleSize === 'medium',

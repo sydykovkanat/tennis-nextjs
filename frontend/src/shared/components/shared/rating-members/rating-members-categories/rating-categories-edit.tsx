@@ -36,7 +36,7 @@ export const RatingMembersCategoriesEdit: React.FC<Props> = ({
           Изменить категории
         </Button>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent className={'dark:bg-[#1F2937]'} aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Редактировать категории рейтинга</DialogTitle>
         </DialogHeader>

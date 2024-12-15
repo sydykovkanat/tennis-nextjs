@@ -1,5 +1,6 @@
 import { TournamentActions, TournamentCardInfo, TournamentRegistration } from '@/shared/components/shared/tournaments';
 import { AdminCardActions } from '@/shared/components/shared/tournaments/tournament-card/admin-card-actions';
+import { cn } from '@/shared/lib';
 import { Tournament } from '@/shared/types/tournament.types';
 
 import React from 'react';
@@ -15,8 +16,8 @@ interface Props {
 export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamentsLastYearExist }) => {
   return (
     <div className={styles.cardBg} data-testid={`${tournament.name}`}>
-      <div className={styles.card}>
-        <div className={styles.cardInfo}>
+      <div className={cn(styles.card, 'dark:bg-[#AEC9A5]')}>
+        <div className={cn(styles.cardInfo, 'dark:text-black')}>
           <TournamentCardInfo tournament={tournament} />
           <div className={styles.cardActions}>
             <TournamentActions tournament={tournament} />

@@ -66,24 +66,24 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
       ) : (
         <Table>
           <TableHeader>
-            <TableRow>
+            <TableRow className={'hover:dark:bg-gray-800'}>
               <TableHead>Статус</TableHead>
               <TableHead>ФИО</TableHead>
-                <TableHead>Номер телефона</TableHead>
-                <TableHead>Почта</TableHead>
+              <TableHead>Номер телефона</TableHead>
+              <TableHead>Почта</TableHead>
               <TableHead>Пол</TableHead>
               <TableHead>Год рождения</TableHead>
               <TableHead>Категория</TableHead>
-                <TableHead>Действия</TableHead>
+              <TableHead>Действия</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {users.map((user) => (
-              <TableRow key={user._id}>
+              <TableRow className={'hover:dark:bg-gray-800'} key={user._id}>
                 <TableCell className={styles.tableCell}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.fullName}</TableCell>
-                  <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
-                  <TableCell className={styles.tableCell}>{user.email}</TableCell>
+                <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
+                <TableCell className={styles.tableCell}>{user.email}</TableCell>
                 <TableCell className={styles.tableCell}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.dateOfBirth}</TableCell>
                 <TableCell className={styles.tableCell}>{user.category.name}</TableCell>

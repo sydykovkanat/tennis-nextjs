@@ -3,6 +3,7 @@
 import { Card } from '@/shared/components/ui';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/shared/components/ui/tooltip';
 import { API_URL } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 
 import React from 'react';
 
@@ -14,7 +15,7 @@ interface Props {
 
 export const MainPartnerCard: React.FC<Props> = ({ image }) => {
   return (
-    <Card className={styles.mainPartnerCard}>
+    <Card className={cn(styles.mainPartnerCard, 'dark:bg-[#1F2937]')}>
       <div className={styles.mainPartnerCardHeader}>
         <div className={styles.mainPartnerCardImageContainer}>
           <TooltipProvider>
@@ -22,7 +23,7 @@ export const MainPartnerCard: React.FC<Props> = ({ image }) => {
               <TooltipTrigger asChild>
                 <img src={`${API_URL}/${image}`} alt='Логотип партнера' className={styles.mainPartnerCardImage} />
               </TooltipTrigger>
-              <TooltipContent className={styles.mainPartnerCardTooltipContent}>
+              <TooltipContent className={cn(styles.mainPartnerCardTooltipContent, 'dark:bg-[#1F2937]')}>
                 <img
                   alt='Логотип компании'
                   className={styles.mainPartnerCardTooltipImage}

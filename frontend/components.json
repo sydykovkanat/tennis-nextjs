@@ -1,4 +1,4 @@
-  {
+{
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
   "rsc": true,
@@ -7,7 +7,7 @@
     "config": "tailwind.config.ts",
     "css": "src/app/globals.css",
     "baseColor": "zinc",
-    "cssVariables": true,
+    "cssVariables": false,
     "prefix": ""
   },
   "aliases": {

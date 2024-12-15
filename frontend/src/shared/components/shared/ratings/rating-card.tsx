@@ -19,7 +19,7 @@ export const RatingCard: React.FC<Props> = ({ className, rating }) => {
   return (
     <div className={cn(className)}>
       <h3 className={styles.chapter}>{formatChapter(rating.chapter)}</h3>
-      <div className={styles.rating}>
+      <div className={cn(styles.rating, 'dark:bg-[#1F2937]')}>
         <div className={styles.ratingTitles}>
           <h3>{rating.year}</h3>
           <h3>{formatMonth(rating.month)}</h3>

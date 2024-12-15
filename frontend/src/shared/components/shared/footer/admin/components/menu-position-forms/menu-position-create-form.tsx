@@ -75,7 +75,7 @@ export const MenuPositionCreateForm: React.FC<PropsWithChildren> = ({ children }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Добавить пункт в меню положения</DialogTitle>
           <DialogDescription>Заполните форму перед добавлением.</DialogDescription>

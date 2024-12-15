@@ -3,6 +3,7 @@
 import { Confirm, Loader, SocialNetworkEditForm } from '@/shared/components/shared';
 import { Button, Card } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { selectItemDeleting } from '@/shared/lib/features/footer/footers-slice';
 import { deleteOneSocialNetwork, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { SocialNetworkFields } from '@/shared/types/footer.types';
@@ -33,7 +34,7 @@ export const SocialNetworkCard: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <Card className={styles.card}>
+    <Card className={cn(styles.card, 'dark:bg-[#1F2937]')}>
       <div className={styles.cardHeader}>
         <div className={styles.networkInfo}>
           <SocialIcon

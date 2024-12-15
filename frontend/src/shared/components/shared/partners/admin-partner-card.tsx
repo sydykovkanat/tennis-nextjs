@@ -20,7 +20,7 @@ export const AdminPartnerCard: React.FC<Props> = ({ className, partner }) => {
   const { partnersDeleting, handleDelete } = usePartners();
 
   return (
-    <Card className={cn(styles.card, className)}>
+    <Card className={cn(styles.card, 'dark:bg-[#1F2937]', className)}>
       <div className={styles.cardInner}>
         <div className={styles.cardBlock}>
           <Image src={`${API_URL}/${partner.image}`} alt={`${partner.name} logo`} width={70} height={70} />

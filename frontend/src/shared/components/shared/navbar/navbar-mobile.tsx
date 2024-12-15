@@ -1,5 +1,6 @@
 'use client';
 
+import { ThemeSwitcher } from '@/shared/components/shared';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/shared/components/ui';
 import { NAVIGATION_ITEMS } from '@/shared/constants';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
@@ -56,7 +57,7 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
       <SheetTrigger>
         <Bars3Icon className={styles.mobileMenuIconBurger} />
       </SheetTrigger>
-      <SheetContent className='w-full bg-cr-shark border-0 p-[20px] xs:max-w-[400px]'>
+      <SheetContent className='w-full bg-cr-shark dark:bg-gray-900 border-0 p-[20px] xs:max-w-[400px]'>
         <SheetTitle className={styles.mobileMenuTitle}>Заголовок диалогового окна</SheetTitle>
         <SheetDescription className={styles.mobileMenuDescription}>Описание диалогового окна</SheetDescription>
         <SheetClose asChild>
@@ -146,6 +147,9 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
               <span className={cn(styles.underlineAccent, styles.mobileMenuLiActionsText, 'text-white')}>Выйти</span>
             </li>
           )}
+          <li className={styles.themeSwitcherElement}>
+            <ThemeSwitcher />
+          </li>
         </ul>
       </SheetContent>
     </Sheet>

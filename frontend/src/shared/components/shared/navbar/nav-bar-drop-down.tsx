@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/components/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { logout } from '@/shared/lib/features/users/users-thunks';
 import { ArrowRightStartOnRectangleIcon, Cog6ToothIcon, UserCircleIcon, UserIcon } from '@heroicons/react/24/outline';
@@ -48,17 +49,17 @@ const NavBarDropDown = () => {
           <UserCircleIcon className={styles.userCircleIconNavBar} />
         </DropdownMenuTrigger>
         {dropDown && (
-          <DropdownMenuContent>
+          <DropdownMenuContent className='dark:bg-gray-900'>
             <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => setDropDown(false)}>
+            <DropdownMenuItem className='hover:dark:bg-gray-800' onClick={() => setDropDown(false)}>
               <Link prefetch={true} className={styles.navigationMenuDropDown} href='/personal-account'>
                 <UserIcon className={styles.iconMenuDropDown} />
                 Личный кабинет
               </Link>
             </DropdownMenuItem>
             {(user?.role === 'admin' && (
-              <DropdownMenuItem onClick={() => setDropDown(false)}>
+              <DropdownMenuItem className='hover:dark:bg-gray-800' onClick={() => setDropDown(false)}>
                 <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'admin'}>
                   <Cog6ToothIcon className={styles.iconMenuDropDown} />
                   Панель администратора
@@ -66,7 +67,7 @@ const NavBarDropDown = () => {
               </DropdownMenuItem>
             )) ||
               (user?.role === 'moderator' && (
-                <DropdownMenuItem onClick={() => setDropDown(false)}>
+                <DropdownMenuItem className='hover:dark:bg-gray-800' onClick={() => setDropDown(false)}>
                   <Link prefetch={true} className={styles.navigationMenuDropDown} href='/admin' id={'moderator'}>
                     <Cog6ToothIcon className={styles.iconMenuDropDown} />
                     Панель модератора
@@ -74,7 +75,10 @@ const NavBarDropDown = () => {
                 </DropdownMenuItem>
               ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} className={styles.navigationMenuDropDown}>
+            <DropdownMenuItem
+              onClick={handleLogout}
+              className={cn(styles.navigationMenuDropDown, 'hover:dark:bg-gray-800')}
+            >
               <ArrowRightStartOnRectangleIcon />
               Выйти
             </DropdownMenuItem>
