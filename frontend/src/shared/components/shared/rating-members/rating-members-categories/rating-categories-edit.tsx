@@ -9,7 +9,7 @@ import {
   DialogTrigger,
   Input,
 } from '@/shared/components/ui';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { Pencil } from 'lucide-react';
 
 import React from 'react';
 
@@ -32,11 +32,11 @@ export const RatingMembersCategoriesEdit: React.FC<Props> = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button onClick={handleOpen} className={styles.button} icon={PencilSquareIcon}>
+        <Button onClick={handleOpen} className={styles.button} icon={Pencil}>
           Изменить категории
         </Button>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent className={'dark:bg-[#1F2937]'} aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Редактировать категории рейтинга</DialogTitle>
         </DialogHeader>

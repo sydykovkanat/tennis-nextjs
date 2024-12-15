@@ -11,7 +11,7 @@ export const getCategories = async (_req: Request, res: Response, next: NextFunc
     const formattedRanks = ranks.map((item) => ({
       ...item,
       createdAt: format(item.createdAt, 'dd.MM.yyyy, hh:mm'),
-      updatedAt: format(item.updatedAt, 'dd.MM.yyyy, hh:mm')
+      updatedAt: format(item.updatedAt, 'dd.MM.yyyy, hh:mm'),
     }));
 
     return res.send(formattedRanks);

@@ -4,7 +4,7 @@ import { Loader, MainPartnerCard, MainPartnerEditForm } from '@/shared/component
 import { Button } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
-import { EditIcon } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 
 import styles from './tab-content.module.css';
 
@@ -23,7 +23,7 @@ export const MainPartner = () => {
           <div className={styles.mainPartnerEditButtonContainer}>
             <MainPartnerEditForm>
               <Button disabled={mainPartnerData.length === 0} className={styles.mainPartnerEditButton}>
-                Изменить ген.партнера <EditIcon />
+                Изменить ген.партнера <Pencil />
               </Button>
             </MainPartnerEditForm>
           </div>

@@ -2,6 +2,7 @@
 
 import { MainPartner, MenuPosition, PublicOffer, SocialNetwork } from '@/shared/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 
 import { useEffect, useState } from 'react';
 
@@ -31,7 +32,7 @@ export const AdminPanelBlockFooter = () => {
         </div>
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
-        <TabsList className={styles.tabsList}>
+        <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
           <TabsTrigger className={styles.tabsTrigger} value='social-network'>
             Социальные сети
           </TabsTrigger>

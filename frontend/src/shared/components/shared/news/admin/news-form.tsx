@@ -2,21 +2,26 @@
 
 import { Confirm, Loader, NewsEditor } from '@/shared/components/shared';
 import { useNewsForm } from '@/shared/components/shared/news/hooks/use-news-form';
-import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from '@/shared/components/ui';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+} from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectOneNews } from '@/shared/lib/features/news/news-slice';
 import { createNews, fetchOneNews, updateNews } from '@/shared/lib/features/news/news-thunks';
 import { XIcon } from 'lucide-react';
 
-
-
 import React, { FormEvent, useEffect } from 'react';
 
-
-
 import styles from './news-form.module.css';
-
 
 interface Props {
   open: boolean;
@@ -79,8 +84,8 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild/>
-      <DialogContent className={cn(styles.content)}>
+      <DialogTrigger asChild />
+      <DialogContent className={cn(styles.content, 'dark:bg-[#1F2937]')}>
         <DialogHeader>
           <DialogTitle className={cn(styles.title)}>
             {isEdit ? 'Редактировать новость' : 'Добавить новость'}
@@ -91,7 +96,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
         {oneNewsFetching ? (
           <Loader />
         ) : (
-            <form className={cn(styles.form, classname)} onSubmit={handleSubmit}>
+          <form className={cn(styles.form, classname)} onSubmit={handleSubmit}>
             <div className={cn(styles.inputBlock)}>
               <Label htmlFor='title' className={cn(styles.label)}>
                 Заголовок новости
@@ -127,7 +132,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
               <Label htmlFor='newsCover' className={cn(styles.label)}>
                 Обложка новости
               </Label>
-              <Input required={!isEdit} type='file' name='newsCover' onChange={handleFileInputChange}/>
+              <Input required={!isEdit} type='file' name='newsCover' onChange={handleFileInputChange} />
               {news.newsCover && (
                 <div className={cn(styles.newsCoverBlock)}>
                   <img

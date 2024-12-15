@@ -1,3 +1,4 @@
+import { useRankFilter } from '@/shared/components/shared/tournaments/hooks/use-rank-filter';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectTournamentCreating, selectTournamentUpdating } from '@/shared/lib/features/tournaments/tournamentsSlice';
 import {
@@ -9,15 +10,22 @@ import { Tournament, TournamentMutation } from '@/shared/types/tournament.types'
 import { GlobalError } from '@/shared/types/user.types';
 import { toast } from 'sonner';
 
-import { useState } from 'react';
-
-export const useTournamentFormLogic = (state: TournamentMutation, existingTournament?: Tournament, id?: string) => {
+export const useTournamentFormLogic = (
+  state: TournamentMutation,
+  setOpen?: (open: boolean) => void,
+  existingTournament?: Tournament,
+  id?: string,
+) => {
   const dispatch = useAppDispatch();
   const isCreating = useAppSelector(selectTournamentCreating);
   const isEditing = useAppSelector(selectTournamentUpdating);
+  const { selectedRank } = useRankFilter();
 
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    if (setOpen) {
+      setOpen(false);
+    }
+  };
 
   const handleSubmit = async () => {
     try {
@@ -28,16 +36,16 @@ export const useTournamentFormLogic = (state: TournamentMutation, existingTourna
         await dispatch(createTournament(state)).unwrap();
         toast.success('Турнир создан успешно');
       }
-      handleClose();
-      await dispatch(fetchTournaments());
+      await dispatch(fetchTournaments(selectedRank));
     } catch (error) {
-      handleClose();
       const backendError = error as GlobalError;
       toast.error(
         backendError.error || `Что-то пошло не так при ${existingTournament ? 'редактировании' : 'создании'}!`,
       );
+    } finally {
+      handleClose();
     }
   };
 
-  return { handleSubmit, open, setOpen, handleClose, isCreating, isEditing };
+  return { handleSubmit, handleClose, isCreating, isEditing };
 };

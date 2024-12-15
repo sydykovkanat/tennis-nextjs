@@ -1,13 +1,16 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectCategories, selectCategory, selectCategoryCreating, selectCategoryFetching, selectCategoryUpdating } from '@/shared/lib/features/categories/category-slice';
+import {
+  selectCategories,
+  selectCategory,
+  selectCategoryCreating,
+  selectCategoryFetching,
+  selectCategoryUpdating,
+} from '@/shared/lib/features/categories/category-slice';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
 
-
-
 import React, { useEffect, useRef, useState } from 'react';
-
 
 export const useCategoryForm = () => {
   const [category, setCategory] = useState<string>('');

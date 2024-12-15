@@ -50,7 +50,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
   return (
     <Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактирование профиля</DialogTitle>
           <DialogDescription>Заполните форму для редактирования профиля</DialogDescription>
@@ -100,10 +100,14 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value='male'>Мужской</SelectItem>
-                    <SelectItem value='female'>Женский</SelectItem>
+                <SelectContent className={'dark:bg-gray-900'}>
+                  <SelectGroup className={'dark:bg-gray-900'}>
+                    <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='male'>
+                      Мужской
+                    </SelectItem>
+                    <SelectItem className={'hover:dark:bg-gray-800'} value='female'>
+                      Женский
+                    </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

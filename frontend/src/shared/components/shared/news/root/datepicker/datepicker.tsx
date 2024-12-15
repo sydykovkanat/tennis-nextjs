@@ -1,14 +1,16 @@
 'use client';
 
-import React from 'react';
 import { useDatePicker } from '@/shared/components/shared';
 import { Button, Calendar, Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { XIcon } from 'lucide-react';
+
+import React from 'react';
+
 import styles from './datepicker.module.css';
-import { cn } from '@/shared/lib';
 
 export const DatePicker: React.FC = () => {
   const { selectedDates, handleDateSelect, handleResetDates } = useDatePicker();
@@ -17,11 +19,11 @@ export const DatePicker: React.FC = () => {
     <div className={cn(styles.datePickerBlock)}>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant={'outline'} className={cn(styles.filterSetDate, 'h-12 group')}>
+          <Button variant={'outline'} className={cn(styles.filterSetDate, 'dark:hover:bg-[#1f2937]', 'h-12 group')}>
             {selectedDates.startDate ? (
               format(selectedDates.startDate, 'PPP', { locale: ru })
             ) : (
-              <span className='text-tn-default-black'>Начало даты</span>
+              <span className='text-tn-default-black dark:text-white'>Начало даты</span>
             )}
             <ChevronDownIcon
               className='relative ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180'
@@ -42,11 +44,11 @@ export const DatePicker: React.FC = () => {
 
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant={'outline'} className={cn(styles.filterSetDate, 'h-12 group')}>
+          <Button variant={'outline'} className={cn(styles.filterSetDate, 'dark:hover:bg-[#1f2937]', 'h-12 group')}>
             {selectedDates.endDate ? (
               format(selectedDates.endDate, 'PPP', { locale: ru })
             ) : (
-              <span className='text-tn-default-black'>Конец даты</span>
+              <span className='text-tn-default-black dark:text-white'>Конец даты</span>
             )}
             <ChevronDownIcon
               className='relative ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180'
@@ -68,7 +70,7 @@ export const DatePicker: React.FC = () => {
         <Button
           variant={'outline'}
           onClick={handleResetDates}
-          className={cn(styles.filterSetDate, styles.resetButton, 'h-12')}
+          className={cn(styles.filterSetDate, styles.resetButton, 'dark:hover:bg-[#1f2937]', 'h-12')}
         >
           Сбросить
           <XIcon />

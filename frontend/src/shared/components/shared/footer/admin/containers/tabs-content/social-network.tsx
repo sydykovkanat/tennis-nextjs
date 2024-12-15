@@ -4,9 +4,9 @@ import { Loader, SocialNetworkCard, SocialNetworkCreateForm } from '@/shared/com
 import { Button } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
-import { SquaresPlusIcon } from '@heroicons/react/24/outline';
 
 import styles from './tab-content.module.css';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 export const SocialNetwork = () => {
   const socialNetworkData = useAppSelector(selectItemsData);
@@ -23,7 +23,7 @@ export const SocialNetwork = () => {
           <div className={styles.socialNetworkCreateFormContainer}>
             <SocialNetworkCreateForm>
               <Button className={styles.socialNetworkButton}>
-                Добавить социальную сеть <SquaresPlusIcon />
+                Добавить социальную сеть <Grid2X2PlusIcon />
               </Button>
             </SocialNetworkCreateForm>
           </div>

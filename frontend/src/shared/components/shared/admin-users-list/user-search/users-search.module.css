@@ -1,15 +1,15 @@
 .container {
-    @apply flex gap-4 mb-4 flex-col md:flex-row;
+  @apply flex gap-4 mb-4 flex-col md:flex-row;
 }
 
 .input {
-    @apply w-full;
+  @apply w-full;
 }
 
 .selectTrigger {
-    @apply w-full;
+  @apply w-full;
 }
 
 .buttonReset {
-    @apply h-9 ms-auto text-cr-green-900 hover:text-rose-700 dark:text-green-500;
+  @apply h-9 ms-auto text-cr-green-900 hover:text-rose-700 dark:text-green-500;
 }
