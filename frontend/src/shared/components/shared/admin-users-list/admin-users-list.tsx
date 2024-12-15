@@ -2,13 +2,23 @@
 
 import { UsersForm, UsersList, useAdminUsersList } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
+import { useAppSelector } from '@/shared/hooks/hooks';
+import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './admin-users-list.module.css';
 
 export const AdminUsersList = () => {
-  const { currentTab, isClient, userPermission, handleTabChange } = useAdminUsersList();
+  const { currentTab, isClient, userPermission, handleTabChange, setCurrentTab } = useAdminUsersList();
+  const updatedRoleUser = useAppSelector(selectCurrentUser);
+
+  useEffect(() => {
+    if (updatedRoleUser) {
+      const newTab = updatedRoleUser.role + 's';
+      setCurrentTab(newTab);
+    }
+  }, [setCurrentTab, updatedRoleUser]);
 
   if (!isClient) {
     return <div className='text-center'>Loading...</div>;
