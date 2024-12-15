@@ -36,7 +36,7 @@ export const TournamentAccordion: React.FC<Props> = ({
           <AccordionContent className={cn(styles.accordionContent, 'py-1')}>
             <div className={styles.contentWrapper}>
               {isFetching ? (
-                <Loader fixed />
+                <Loader className='my-3 mx-auto' />
               ) : tournamentList.length > 0 ? (
                 tournamentList.map((tournament) => (
                   <TournamentCard

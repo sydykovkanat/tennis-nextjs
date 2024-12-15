@@ -21,7 +21,12 @@ const emptyState: TournamentMutation = {
   tournamentYear: '',
 };
 
-export const useTournamentForm = (existingTournament?: Tournament, tournamentsLastYearExist?: boolean, id?: string) => {
+export const useTournamentForm = (
+  setOpen?: (open: boolean) => void,
+  existingTournament?: Tournament,
+  tournamentsLastYearExist?: boolean,
+  id?: string,
+) => {
   const initialState = existingTournament
     ? {
         ...existingTournament,
@@ -35,12 +40,10 @@ export const useTournamentForm = (existingTournament?: Tournament, tournamentsLa
 
   const {
     handleSubmit: submitLogic,
-    open,
-    setOpen,
     handleClose,
     isCreating,
     isEditing,
-  } = useTournamentFormLogic(state, existingTournament, id);
+  } = useTournamentFormLogic(state, setOpen, existingTournament, id);
 
   const { showWarning, isFormInvalid } = useValidation(state, tournamentsLastYearExist, isCreating, isEditing);
 
@@ -65,8 +68,6 @@ export const useTournamentForm = (existingTournament?: Tournament, tournamentsLa
     handleChange,
     fileInputChangeHandler,
     handleDateChange,
-    open,
-    setOpen,
     handleClose,
     showWarning,
     isFormInvalid,

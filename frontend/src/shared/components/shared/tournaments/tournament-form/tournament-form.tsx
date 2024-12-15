@@ -52,14 +52,14 @@ export const TournamentForm: React.FC<Props> = ({
     showWarning,
     isFormInvalid,
     handleSubmit,
-  } = useTournamentForm(existingTournament, tournamentsLastYearExist, id);
+  } = useTournamentForm(setOpen, existingTournament, tournamentsLastYearExist, id);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent aria-describedby={undefined} className={cn(styles.tournamentDialog, 'dark:bg-[#1F2937]')}>
         <DialogHeader>
-          <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'} </DialogTitle>
+          <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className={styles.formInner}>
