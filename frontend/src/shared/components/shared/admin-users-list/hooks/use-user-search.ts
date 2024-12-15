@@ -6,7 +6,7 @@ import { fetchUsers } from '@/shared/lib/features/users/users-thunks';
 import { UsersFilter } from '@/shared/types/user.types';
 import { toast } from 'sonner';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 interface UseUserSearchProps {
   filters: UsersFilter;
@@ -16,6 +16,10 @@ export const useUserSearch = ({ filters }: UseUserSearchProps) => {
   const [currentFilters, setCurrentFilters] = useState<UsersFilter>(filters);
   const { categories, categoriesFetching } = useCategory();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setCurrentFilters(filters);
+  }, [filters]);
 
   const handleFiltersChange = (event: ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
@@ -42,7 +46,7 @@ export const useUserSearch = ({ filters }: UseUserSearchProps) => {
       [name]: value,
       page: 1,
     }));
-    dispatch(fetchUsers({ ...filters, [name]: value, page: 1 }));
+    dispatch(fetchUsers({ ...currentFilters, [name]: value, page: 1 }));
   };
 
   const handleCategoryFilterChange = (category: string) => {
@@ -51,7 +55,7 @@ export const useUserSearch = ({ filters }: UseUserSearchProps) => {
       category,
       page: 1,
     }));
-    dispatch(fetchUsers({ ...filters, category, page: 1 }));
+    dispatch(fetchUsers({ ...currentFilters, category, page: 1 }));
   };
 
   const handleResetFilters = async () => {
@@ -63,7 +67,7 @@ export const useUserSearch = ({ filters }: UseUserSearchProps) => {
       role: 'user',
     });
 
-    await dispatch(fetchUsers(filters));
+    await dispatch(fetchUsers({ ...currentFilters, category: 'all', page: 1 }));
   };
 
   return {

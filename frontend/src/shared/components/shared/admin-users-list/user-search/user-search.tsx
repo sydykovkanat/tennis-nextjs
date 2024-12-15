@@ -11,9 +11,10 @@ import styles from './users-search.module.css';
 
 interface UserSearchProps {
   role: string;
+  onFiltersChange?: (filters: UsersFilter) => void;
 }
 
-export const UserSearch: React.FC<UserSearchProps> = ({ role }) => {
+export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange }) => {
   const [filters, setFilters] = useState<UsersFilter>({
     telephone: '',
     fullName: '',
@@ -30,6 +31,12 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role }) => {
     handleResetFilters,
     currentFilters,
   } = useUserSearch({ filters });
+
+  useEffect(() => {
+    if (onFiltersChange) {
+      onFiltersChange(currentFilters);
+    }
+  }, [currentFilters, onFiltersChange]);
 
   useEffect(() => {
     setFilters((prevFilters) => ({
