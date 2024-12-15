@@ -31,7 +31,16 @@ export const TournamentDatePicker: React.FC<Props> = ({ value, onChange, existin
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant='outline' className={cn(styles.button, className)}>
+        <Button
+          variant='outline'
+          className={cn(
+            styles.button,
+            'dark:bg-transparent',
+            'dark:border-gray-300',
+            'focus:dark:border-gray-300',
+            className,
+          )}
+        >
           {value ? format(getDateFromState(value) || new Date(), 'PPP', { locale: ru }) : <span>Выберите дату</span>}
         </Button>
       </PopoverTrigger>

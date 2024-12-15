@@ -1,4 +1,5 @@
 'use client';
+
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import {
   errorImgCarouselState,

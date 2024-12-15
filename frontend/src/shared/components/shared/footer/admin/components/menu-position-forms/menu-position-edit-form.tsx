@@ -106,7 +106,7 @@ export const MenuPositionEditForm: React.FC<Props> = ({ id }) => {
           <PencilSquareIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактировать пункт в меню</DialogTitle>
           <DialogDescription>Заполните форму перед обновлением.</DialogDescription>

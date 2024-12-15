@@ -70,7 +70,7 @@ export const MainPartnerEditForm: React.FC<PropsWithChildren> = ({ children }) =
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className='dark:bg-[#1F2937]'>
         <DialogHeader>
           <DialogTitle>Редактировать изображение</DialogTitle>
           <DialogDescription>Заполните форму перед обновлением.</DialogDescription>

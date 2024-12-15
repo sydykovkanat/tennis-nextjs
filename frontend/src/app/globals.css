@@ -80,11 +80,23 @@ body {
     @apply border-border;
   }
   body {
-      position: relative;
+    position: relative;
     @apply bg-background text-foreground overflow-x-hidden;
   }
   img {
     width: auto;
     height: auto;
+  }
+  span + div {
+    @apply dark:border-gray-300 focus:dark:border-[#64B32C];
+  }
+  label + button {
+    @apply dark:border-gray-300 focus:dark:border-transparent;
+  }
+  input {
+    @apply dark:border-gray-300;
+  }
+  p b, p strong {
+    @apply dark:text-[#64B32C];
   }
 }

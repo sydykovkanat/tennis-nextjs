@@ -2,6 +2,7 @@
 
 import { useUserSearch } from '@/shared/components/shared';
 import { Button, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { XIcon } from 'lucide-react';
 
 import React from 'react';
@@ -39,21 +40,27 @@ export const UserSearch = () => {
           <SelectTrigger className={styles.selectTrigger}>
             <SelectValue placeholder={'Выберите категорию…'} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={'dark:bg-gray-900'}>
             {categoriesFetching ? (
-              <SelectItem disabled value={'null'}>
+              <SelectItem className={'hover:dark:bg-gray-800'} disabled value={'null'}>
                 Загрузка…
               </SelectItem>
             ) : !categoriesFetching && categories.length === 0 ? (
-              <SelectItem disabled value={'null'}>
+              <SelectItem className={'hover:dark:bg-gray-800'} disabled value={'null'}>
                 Список категорий пуст
               </SelectItem>
             ) : (
               <>
-                <SelectItem value={'all'}>Все</SelectItem>
+                <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'all'}>
+                  Все
+                </SelectItem>
 
                 {categories.map((category) => (
-                  <SelectItem key={category._id} value={category._id}>
+                  <SelectItem
+                    className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                    key={category._id}
+                    value={category._id}
+                  >
                     {category.name}
                   </SelectItem>
                 ))}
@@ -62,7 +69,11 @@ export const UserSearch = () => {
           </SelectContent>
         </Select>
 
-        <Button variant={'outline'} onClick={handleResetFilters} className={styles.buttonReset}>
+        <Button
+          variant={'outline'}
+          onClick={handleResetFilters}
+          className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
+        >
           Сбросить
           <XIcon />
         </Button>

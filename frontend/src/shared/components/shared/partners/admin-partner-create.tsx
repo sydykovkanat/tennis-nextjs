@@ -38,7 +38,7 @@ export const AdminPartnerCreate: React.FC<Props> = ({ className, children }) => 
     <div className={cn(className)}>
       <Dialog open={open} onOpenChange={handleClose}>
         <DialogTrigger>{children}</DialogTrigger>
-        <DialogContent>
+        <DialogContent className='dark:bg-[#1F2937]'>
           <DialogHeader>
             <DialogTitle>Добавить партнера</DialogTitle>
             <DialogDescription>Заполните форму для добавления партнера</DialogDescription>

@@ -29,7 +29,7 @@ export const TournamentAccordion: React.FC<Props> = ({
       {Object.entries(tournaments).map(([month, tournamentList]) => (
         <AccordionItem key={month} value={month} className={cn(styles.accordionItem, 'border-0')}>
           <AccordionTrigger className={cn(styles.accordionTrigger, 'py-3 hover:no-underline')}>
-            <div className={styles.monthName}>
+            <div className={cn(styles.monthName, 'dark:text-[#D9EAD3]')}>
               <span>{MONTH_NAMES[Number(month) - 1]}</span>
             </div>
           </AccordionTrigger>

@@ -99,7 +99,7 @@ export const SocialNetworkEditForm: React.FC<Props> = ({ id }) => {
           <PencilSquareIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Редактировать электронную почту' : 'Редактировать социальную сеть'}

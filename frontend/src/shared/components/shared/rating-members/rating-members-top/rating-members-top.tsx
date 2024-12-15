@@ -1,4 +1,5 @@
 import { RatingMemberCard } from '@/shared/components/shared/rating-members';
+import { cn } from '@/shared/lib';
 import { RatingMember } from '@/shared/types/rating-member.types';
 
 import React from 'react';
@@ -29,7 +30,7 @@ export const RatingMembersTop: React.FC<Props> = ({
     <section className={className}>
       <div className={styles.titleWrapper}>
         {title && <h3 className={styles.mainTitle}>{title} рейтинг</h3>}
-        {additionalTitle && <h4 className={styles.topTitle}>{additionalTitle}</h4>}
+        {additionalTitle && <h4 className={cn(styles.topTitle, 'dark:text-white')}>{additionalTitle}</h4>}
         <h5 className={styles.categoryTitle}>{category}</h5>
       </div>
       <div className={styles.contentWrapper}>

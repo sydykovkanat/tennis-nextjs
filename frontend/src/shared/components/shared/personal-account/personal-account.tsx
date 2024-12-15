@@ -4,6 +4,7 @@ import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/compo
 import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import { useAppSelector } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
@@ -16,13 +17,16 @@ const PersonalAccount = () => {
   const currentUser = useAppSelector(selectCurrentUser);
   return (
     currentUser && (
-      <>
+      <div className='overflow-x-hidden'>
         <Container className={'w-full'}>
           {userCircles.map((circle, id) => (
             <GradientCircle key={id} {...circle} />
           ))}
-          <div className={styles.accountWrapper} style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}>
-            <div className={styles.accountHeader}>
+          <div
+            className={cn(styles.accountWrapper, 'dark:bg-[#1F2937]')}
+            style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
+          >
+            <div className={cn(styles.accountHeader, 'border-b-gray-700')}>
               <div>
                 <h1>Личный кабинет</h1>
                 <small>Ваша персональная информация и управление данными</small>
@@ -62,7 +66,7 @@ const PersonalAccount = () => {
             </main>
           </div>
         </Container>
-      </>
+      </div>
     )
   );
 };

@@ -1,11 +1,11 @@
 .header {
-    @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 mb-6;
+  @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 mb-6;
 }
 
 .title {
-    @apply text-2xl font-medium leading-none;
+  @apply text-2xl font-medium leading-none;
 }
 
 .subtitle {
-    @apply text-muted-foreground text-base;
+  @apply text-muted-foreground text-base;
 }
