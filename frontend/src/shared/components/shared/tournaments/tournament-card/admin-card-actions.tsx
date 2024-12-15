@@ -5,11 +5,10 @@ import { TournamentForm } from '@/shared/components/shared/tournaments';
 import { useTournamentsDelete } from '@/shared/components/shared/tournaments/hooks';
 import { Button } from '@/shared/components/ui';
 import { Tournament } from '@/shared/types/tournament.types';
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
-
 import React, { useState } from 'react';
 
 import styles from './tournament-card.module.css';
+import { Pencil, Trash } from 'lucide-react';
 
 interface Props {
   tournament: Tournament;
@@ -24,9 +23,9 @@ export const AdminCardActions: React.FC<Props> = ({ tournament, tournamentsLastY
   return (
     <div className={styles.adminCardActions}>
       <Confirm onOk={() => handleDelete(tournament._id)}>
-        <Button size='sm' disabled={isDeleting === tournament._id} data-testid='delete' icon={TrashIcon} />
+        <Button size='sm' disabled={isDeleting === tournament._id} data-testid='delete' icon={Trash} />
       </Confirm>
-      <Button size='sm' data-testid='edit' icon={PencilSquareIcon} onClick={() => setOpen(true)} />
+      <Button size='sm' data-testid='edit' icon={Pencil} onClick={() => setOpen(true)} />
       {open && (
         <TournamentForm
           existingTournament={tournament}

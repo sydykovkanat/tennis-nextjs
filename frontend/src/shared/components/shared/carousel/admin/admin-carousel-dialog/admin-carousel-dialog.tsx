@@ -12,11 +12,12 @@ import {
   Input,
 } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { PaperAirplaneIcon, PencilSquareIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
 import styles from './admin-carousel-dialog.module.css';
+import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 interface AdminCarouselDialogProps {
   className?: string;
@@ -46,10 +47,10 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
             {isAddMode ? (
               <>
                 Добавить файл
-                <SquaresPlusIcon />
+                <Grid2X2PlusIcon />
               </>
             ) : (
-              <PencilSquareIcon />
+              <Pencil />
             )}
           </Button>
         </DialogTrigger>

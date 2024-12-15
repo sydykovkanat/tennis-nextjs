@@ -7,12 +7,12 @@ import { Button, Card } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { RatingMember } from '@/shared/types/rating-member.types';
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
 import React, { useState } from 'react';
 
 import styles from './rating-member-admin-card.module.css';
+import { Pencil, Trash } from 'lucide-react';
 
 interface Props {
   ratingMember: RatingMember;
@@ -40,9 +40,9 @@ export const RatingMemberAdminCard: React.FC<Props> = ({ ratingMember, ratingMem
         <h5 className={styles.name}>{ratingMember.name}</h5>
         <div className={styles.actionsWrapper}>
           <Confirm onOk={() => handleDelete(ratingMember._id)}>
-            <Button size='sm' disabled={isDeleting === ratingMember._id} data-testid='delete' icon={TrashIcon} />
+            <Button size='sm' disabled={isDeleting === ratingMember._id} data-testid='delete' icon={Trash} />
           </Confirm>
-          <Button size='sm' data-testid='edit' icon={PencilSquareIcon} onClick={() => setOpen(true)} />
+          <Button size='sm' data-testid='edit' icon={Pencil} onClick={() => setOpen(true)} />
           {open && (
             <RatingMemberForm
               open={open}

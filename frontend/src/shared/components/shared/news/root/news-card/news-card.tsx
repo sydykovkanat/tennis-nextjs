@@ -7,13 +7,13 @@ import { CardContent, CardFooter, CardHeader } from '@/shared/components/ui/card
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import React, { memo } from 'react';
 
 import styles from './news-card.module.css';
+import { Pencil, Trash } from 'lucide-react';
 
 interface Props {
   news: News;
@@ -70,10 +70,10 @@ export const NewsCard: React.FC<Props> = React.memo(({ news, isAdmin }) => {
       {isAdmin && (
         <CardFooter className={cn(styles.newsCardFooter)}>
           <Confirm onOk={handleRemove}>
-            <Button size='lg' disabled={newsRemoving === _id} icon={TrashIcon} />
+            <Button size='lg' disabled={newsRemoving === _id} icon={Trash} />
           </Confirm>
 
-          <Button size='lg' icon={PencilSquareIcon} onClick={toggleOpen} />
+          <Button size='lg' icon={Pencil} onClick={toggleOpen} />
           {open && <NewsForm isEdit newsId={_id} open={open} setOpen={toggleOpen} />}
         </CardFooter>
       )}

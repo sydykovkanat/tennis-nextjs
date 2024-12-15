@@ -6,11 +6,11 @@ import styles from '@/shared/components/shared/personal-account/personal-account
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
 import { Button } from '../../ui/button';
+import { Pencil } from 'lucide-react';
 
 const PersonalAccount = () => {
   useFetchUser();
@@ -32,7 +32,7 @@ const PersonalAccount = () => {
                 <small>Ваша персональная информация и управление данными</small>
               </div>
               <UserEdit user={currentUser}>
-                <Button icon={PencilSquareIcon}>Редактировать</Button>
+                <Button icon={Pencil}>Редактировать</Button>
               </UserEdit>
             </div>
 

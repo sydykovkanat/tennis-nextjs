@@ -30,7 +30,6 @@ export { GradientCircle, gradientCircles, userCircles } from './gradient-circles
 export { Title } from './title/title';
 export { Category } from './category/category/category';
 export { CategoryCard } from './category/category-card/caregory-card';
-export { CategoryHeader } from '@/shared/components/shared/category/category-header/category-header';
 export { CategoryForm } from './category/category-form/category-form';
 export { useCategoryForm } from './category/hooks/use-category-form';
 export { Ratings } from './ratings/ratings';
@@ -55,7 +54,7 @@ export { MenuPositionEditForm } from './footer/admin/components/menu-position-fo
 export { AdminPartnerCard } from './partners/admin-partner-card';
 export { AdminPartnerEdit } from './partners/admin-partner-edit';
 export { AdminPartnerForm } from './partners/admin-partner-form';
-export { AdminPageHeader } from './admin-page-header/admin-page-header';
+export { AdminPageHeader } from '@/shared/components/admin/admin-page-header/admin-page-header';
 export { Confirm } from './confirm/confirm';
 export { AdminNewsPage } from './news/admin/news-page';
 export { useNewsForm } from './news/hooks/use-news-form';
