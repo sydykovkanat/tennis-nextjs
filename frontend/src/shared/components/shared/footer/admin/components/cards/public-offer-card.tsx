@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
@@ -13,7 +14,7 @@ interface Props {
 
 export const PublicOfferCard: React.FC<Props> = ({ publicOfferText }) => {
   return (
-    <Card className={styles.publicOfferCard}>
+    <Card className={cn(styles.publicOfferCard, 'dark:bg-[#1F2937]')}>
       <div className={styles.publicOfferCardHeader}>
         <div className={styles.publicOfferCardTextContainer}>
           <DocumentTextIcon className={styles.publicOfferCardIcon} />

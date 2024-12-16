@@ -1,27 +1,27 @@
 .userSearch {
-    @apply mb-4;
+  @apply mb-4;
 }
 
 .emptyMessage {
-    @apply text-center text-muted-foreground mt-10;
+  @apply text-center text-muted-foreground mt-10;
 }
 
 .tableCell {
-    @apply w-[12.5%];
+  @apply w-[12.5%];
 }
 
 .actionButtons {
-    @apply w-[160px] flex gap-2;
+  @apply w-[160px] flex gap-2;
 }
 
 .infoTipBorder {
-    @apply border border-muted-foreground;
+  @apply border border-muted-foreground;
 }
 
 .activateButton {
-    @apply p-3 text-white hover:bg-green-600 font-normal bg-green-500;
+  @apply p-3 text-white hover:bg-green-600 font-normal bg-green-500;
 }
 
 .deactivateButton {
-    @apply font-normal;
+  @apply font-normal;
 }

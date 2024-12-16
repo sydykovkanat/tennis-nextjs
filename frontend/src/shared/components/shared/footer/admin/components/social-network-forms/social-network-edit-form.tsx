@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemUpdating, selectOneSocialLink } from '@/shared/lib/features/footer/footers-slice';
 import { getFooterItems, getOneSocialNetwork, updateSocialNetwork } from '@/shared/lib/features/footer/footers-thunks';
 import { LinkDataMutation } from '@/shared/types/footer.types';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { Pencil } from 'lucide-react';
 import { toast } from 'sonner';
 
 import React, { type FormEvent, useEffect, useRef, useState } from 'react';
@@ -96,10 +96,10 @@ export const SocialNetworkEditForm: React.FC<Props> = ({ id }) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={'sm'} data-test-id='edit'>
-          <PencilSquareIcon />
+          <Pencil />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Редактировать электронную почту' : 'Редактировать социальную сеть'}

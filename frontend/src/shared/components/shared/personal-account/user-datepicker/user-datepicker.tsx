@@ -34,7 +34,10 @@ const UserDatePicker: React.FC<Props> = ({ value, onChange, label, addUserAdmin,
       </div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant='outline' className={`w-full font-normal ${addUserAdmin ? 'py-5' : 'py-6'}`}>
+          <Button
+            variant='outline'
+            className={`w-full dark:bg-transparent dark:border-gray-300 font-normal ${addUserAdmin ? 'py-5' : 'py-6'}`}
+          >
             {value ? format(parseDate(value) || new Date(), 'PPP', { locale: ru }) : <span>Дата рождения</span>}
             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
           </Button>

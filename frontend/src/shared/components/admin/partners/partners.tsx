@@ -5,7 +5,7 @@ import { AdminPageHeader, Loader } from '@/shared/components/shared';
 import { AdminPartnerCard } from '@/shared/components/shared/partners/admin-partner-card';
 import { AdminPartnerCreate } from '@/shared/components/shared/partners/admin-partner-create';
 import { Button } from '@/shared/components/ui';
-import { Plus } from 'lucide-react';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 import React, { useEffect } from 'react';
 
@@ -30,7 +30,7 @@ const PartnersPageContent: React.FC = () => {
         <>
           <AdminPageHeader title={'Партнеры'} description={'Список всех партнеров и управление партнерами'}>
             <AdminPartnerCreate>
-              <Button size={'sm'} icon={Plus}>
+              <Button icon={Grid2X2PlusIcon}>
                 Добавить партнера
               </Button>
             </AdminPartnerCreate>

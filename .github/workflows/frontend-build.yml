@@ -2,8 +2,6 @@ name: "Build Frontend"
 
 on:
   push:
-    paths:
-      - 'frontend/**'
     branches:
       - main
 
@@ -19,10 +17,37 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Install dependencies
-        working-directory: frontend
+      - name: PWD
+        run: pwd && ls -la
+
+      - name: Install backend dependencies
         run: npm ci
+        working-directory: backend
+
+      - name: Format backend
+        run: npm run format
+        working-directory: backend
+
+      - name: Seed database
+        run: npm run seed
+        working-directory: backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
+
+
+      - name: Format frontend
+        run: npm run format
+        working-directory: frontend
+
+      - name: Lint frontend
+        run: npm run lint
+        working-directory: frontend
 
       - name: Build frontend
-        working-directory: frontend
         run: npm run build
+        working-directory: frontend
+
+      - name: Restart pm2
+        run: cd /home/kanat/actions-runner/_work/tennis-nextjs/tennis-nextjs && pm2 restart 0 && pm2 restart 1

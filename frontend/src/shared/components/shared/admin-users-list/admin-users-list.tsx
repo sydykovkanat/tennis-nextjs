@@ -2,6 +2,7 @@
 
 import { UsersForm, UsersList, useAdminUsersList } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 
@@ -37,7 +38,7 @@ export const AdminUsersList = () => {
         <ScrollArea className={styles.scrollArea}>
           {userPermission === 2 && (
             <div className='hidden'>
-              <TabsList className={styles.tabsList}>
+              <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
                 <TabsTrigger value='users'>Пользователи</TabsTrigger>
               </TabsList>
             </div>
@@ -51,7 +52,6 @@ export const AdminUsersList = () => {
               </TabsTrigger>
             </TabsList>
           )}
-
           <ScrollBar orientation={'horizontal'} />
         </ScrollArea>
         {userPermission === 3 && (

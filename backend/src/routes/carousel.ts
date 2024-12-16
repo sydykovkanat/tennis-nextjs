@@ -8,8 +8,20 @@ export const carouselRouter = express.Router();
 
 carouselRouter.get('/', getCarousel);
 
-carouselRouter.post('/admin-post-image-carousel', auth, permit('admin', 'moderator'), MediaUpload.single('file'), create);
+carouselRouter.post(
+  '/admin-post-image-carousel',
+  auth,
+  permit('admin', 'moderator'),
+  MediaUpload.single('file'),
+  create
+);
 
 carouselRouter.delete('/admin-delete-image-carousel/:id', auth, permit('admin', 'moderator'), remove);
 
-carouselRouter.put('/admin-update-image-carousel/:id', auth, permit('admin', 'moderator'), MediaUpload.single('file'), update);
+carouselRouter.put(
+  '/admin-update-image-carousel/:id',
+  auth,
+  permit('admin', 'moderator'),
+  MediaUpload.single('file'),
+  update
+);

@@ -16,4 +16,10 @@ tournamentsRouter.get('/', getTournaments);
 tournamentsRouter.post('/', auth, permit('admin', 'moderator'), filesUpload.single('regulationsDoc'), createTournament);
 tournamentsRouter.delete('/:id', auth, permit('admin', 'moderator'), deleteTournament);
 tournamentsRouter.delete('/one-year/:year', auth, permit('admin', 'moderator'), deleteTournamentsByYear);
-tournamentsRouter.put('/:id', auth, permit('admin', 'moderator'), filesUpload.single('regulationsDoc'), updateTournament);
+tournamentsRouter.put(
+  '/:id',
+  auth,
+  permit('admin', 'moderator'),
+  filesUpload.single('regulationsDoc'),
+  updateTournament
+);

@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, NavbarMobile } from '@/shared/components/shared';
+import { Loader, NavbarMobile, ThemeSwitcher } from '@/shared/components/shared';
 import NavBarDropDown from '@/shared/components/shared/navbar/nav-bar-drop-down';
 import {
   NavigationMenu,
@@ -14,6 +14,7 @@ import { NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn, useAppSelector } from '@/shared/lib';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { FooterElementsData } from '@/shared/types/footer.types';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -27,6 +28,7 @@ interface Props {
 
 export const Navbar: React.FC<Props> = ({ dataItems }) => {
   const [isHydrated, setIsHydrated] = useState(false);
+  const { theme } = useTheme();
 
   const user = useAppSelector(selectUser);
   const pathname = usePathname();
@@ -36,7 +38,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
   }, []);
 
   return (
-    <div className={styles.header}>
+    <div className={cn(styles.header, 'dark:bg-gray-900')}>
       <div className={styles.container}>
         <div className={styles.headerInner}>
           <Link prefetch={true} href='/' className={styles.logoWrapper}>
@@ -68,10 +70,13 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                         <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
                       )}
                       <NavigationMenuContent>
-                        <ul className={styles.navigationMenuContent}>
+                        <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
                           {dataItems.length > 0 &&
                             dataItems[0].menuPosition.map((menuItem) => (
-                              <li key={menuItem._id} className={styles.navigationMenuList}>
+                              <li
+                                key={menuItem._id}
+                                className={cn(styles.navigationMenuList, 'hover:dark:bg-gray-800')}
+                              >
                                 <NavigationMenuLink
                                   className={styles.navigationMenuLink}
                                   href={menuItem.value}
@@ -92,16 +97,19 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
 
           <div className={styles.navigationMenu}>
             {isHydrated ? (
-              user ? (
-                <NavBarDropDown />
-              ) : (
-                <Link prefetch={true} className={cn(styles.underlineAccent, 'text-white')} href='/login'>
-                  Авторизация
-                </Link>
-              )
+              <>
+                <ThemeSwitcher />
+                {user ? (
+                  <NavBarDropDown />
+                ) : (
+                  <Link prefetch={true} className={cn(styles.underlineAccent, 'text-white')} href='/login'>
+                    Авторизация
+                  </Link>
+                )}
+              </>
             ) : (
               <div className={styles.loaderStatusAuth}>
-                <Loader theme={'light'} />
+                <Loader theme={theme === 'dark' ? 'light' : 'dark'} />
               </div>
             )}
           </div>

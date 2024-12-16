@@ -5,14 +5,9 @@ import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
 import Link from 'next/link';
 
-
-
 import React from 'react';
 
-
-
 import styles from './news-card.module.css';
-
 
 interface Props {
   news: News;

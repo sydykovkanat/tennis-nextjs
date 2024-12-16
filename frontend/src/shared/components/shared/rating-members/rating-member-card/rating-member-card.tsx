@@ -27,7 +27,6 @@ export const RatingMemberCard: React.FC<Props> = ({ ratingMember }) => {
         height={192}
         style={{ objectFit: 'cover' }}
         quality={100}
-        priority
       />
       <div className={styles.cardInfoWrapper}>
         <p className={styles.cardInfoNameWrapper}>
@@ -35,7 +34,7 @@ export const RatingMemberCard: React.FC<Props> = ({ ratingMember }) => {
           <span className={cn(styles.cardInfoNameSpan, 'text-right')}>{lastName}</span>
           {ratingMember.place === 1 && <span className={styles.cardInfoNameFirst} />}
         </p>
-        <p className={styles.cardInfoPlace}>{ratingMember.place} место</p>
+        <p className={cn(styles.cardInfoPlace, 'dark:text-white')}>{ratingMember.place} место</p>
       </div>
     </div>
   );

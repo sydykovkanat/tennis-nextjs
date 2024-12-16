@@ -19,16 +19,17 @@ import {
   SelectValue,
 } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
+import { cn } from '@/shared/lib';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
-import { PencilSquareIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
 import { toast } from 'sonner';
 
 import React, { useEffect } from 'react';
 
 import styles from './users-form.module.css';
+import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 interface UsersFromProps {
   mode: 'add' | 'edit';
@@ -126,14 +127,14 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
             {isAddMode ? (
               <>
                 Добавить пользователя
-                <SquaresPlusIcon />
+                <Grid2X2PlusIcon />
               </>
             ) : (
-              <PencilSquareIcon />
+              <Pencil />
             )}
           </Button>
         </DialogTrigger>
-        <DialogContent className={styles.dialogContent}>
+        <DialogContent className={cn(styles.dialogContent, 'dark:bg-[#1F2937]')}>
           <DialogHeader>
             <DialogTitle>{isAddMode ? 'Создание аккаунта' : 'Редактирование профиля'}</DialogTitle>
             <DialogDescription>
@@ -214,10 +215,14 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='gender'>
                       <SelectValue placeholder='Укажите пол' />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value='male'>Мужской</SelectItem>
-                        <SelectItem value='female'>Женский</SelectItem>
+                    <SelectContent className={'dark:bg-gray-900'}>
+                      <SelectGroup className={'dark:bg-gray-900'}>
+                        <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='male'>
+                          Мужской
+                        </SelectItem>
+                        <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='female'>
+                          Женский
+                        </SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -235,10 +240,14 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     <SelectTrigger className={styles.selectTrigger} id='category'>
                       <SelectValue placeholder='Выберите категорию' />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
+                    <SelectContent className={'dark:bg-gray-900'}>
+                      <SelectGroup className={'dark:bg-gray-900'}>
                         {categories.map((item) => (
-                          <SelectItem key={item._id} value={item._id}>
+                          <SelectItem
+                            className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                            key={item._id}
+                            value={item._id}
+                          >
                             {item.name}
                           </SelectItem>
                         ))}
@@ -266,11 +275,42 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                 ) : (
                   <input type='hidden' value='user' />
                 )}
+                <div>
+                  <Label htmlFor='role' className={styles.label}>
+                    Роль
+                  </Label>
+                  <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
+                    <SelectTrigger className={styles.selectTrigger} id='role'>
+                      <SelectValue placeholder='Выберите роль' />
+                    </SelectTrigger>
+                    <SelectContent className={'dark:bg-gray-900'}>
+                      <SelectGroup className={'dark:bg-gray-900'}>
+                        {isAddMode ? (
+                          <>
+                            <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'user'}>
+                              Пользователь
+                            </SelectItem>
+                            <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'moderator'}>
+                              Модератор
+                            </SelectItem>
+                          </>
+                        ) : (
+                          <>
+                            <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='user'>
+                              Пользователь
+                            </SelectItem>
+                            {userPermission === 3 && <SelectItem value='moderator'>Модератор</SelectItem>}
+                          </>
+                        )}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
               <Button
                 type='submit'
-                className={styles.buttonSubmit}
+                className={cn(styles.buttonSubmit)}
                 disabled={
                   isAddMode ? !isFormValidAdmin() || !validateEmail(newUser.email) : !validateEmail(newUser.email)
                 }

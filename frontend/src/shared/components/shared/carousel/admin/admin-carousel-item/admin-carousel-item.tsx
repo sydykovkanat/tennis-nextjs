@@ -7,11 +7,16 @@ import { API_URL } from '@/shared/constants';
 import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { photoCarouselState } from '@/shared/lib/features/carousel/carousel-slice';
 import { getCarousel } from '@/shared/lib/features/carousel/carousel-thunks';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { Trash } from 'lucide-react';
+
+
 
 import React, { useEffect } from 'react';
 
+
+
 import styles from './admin-carousel-item.module.css';
+
 
 interface CarouselItemForAdminProps {
   className?: string;
@@ -47,7 +52,7 @@ export const AdminCarouselItem: React.FC<CarouselItemForAdminProps> = ({ classNa
                 <div className={cn(styles.blockBtn)}>
                   <Confirm onOk={() => onDelete(image._id)}>
                     <Button className={cn(styles.deleteBtn, className)} data-test-id='delete-file-in-carousel'>
-                      <TrashIcon />
+                      <Trash />
                     </Button>
                   </Confirm>
 
