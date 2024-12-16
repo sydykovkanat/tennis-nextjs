@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className={cn('antialiased')} style={geistSans.style}>
         <StoreProvider>
           <NextTopLoader color={'#64B32C'} height={1} />
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute='class' defaultTheme='system'>
             {children}
           </ThemeProvider>
           <Toaster />
