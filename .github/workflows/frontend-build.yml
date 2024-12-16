@@ -32,3 +32,9 @@ jobs:
       - name: Build frontend
         working-directory: frontend
         run: npm run build
+
+      - name: Cd to runner
+        run: /home/kanat/actions-runner/_work/tennis-nextjs/tennis-nextjs
+
+      - name: Restart pm2 frontend process
+        run: pm2 restart 1
