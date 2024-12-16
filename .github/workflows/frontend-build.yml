@@ -27,7 +27,7 @@ jobs:
         working-directory: frontend
         run: npm run format
 
-      - name: Lint
+      - name: Linting
         working-directory: frontend
         run: npm run lint
 
