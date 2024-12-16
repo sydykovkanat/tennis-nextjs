@@ -21,9 +21,7 @@ jobs:
         run: pwd && ls -la
 
       - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm ci
+        run: npm ci
         working-directory: frontend
 
       - name: Format frontend
@@ -39,9 +37,7 @@ jobs:
         working-directory: frontend
 
       - name: Install backend dependencies
-        run: |
-          cd backend
-          npm ci
+        run: npm ci
         working-directory: backend
 
       - name: Format backend
