@@ -1,5 +1,3 @@
-'use client';
-
 import { Confirm } from '@/shared/components/shared';
 import { EventEdit } from '@/shared/components/shared/ratings/components/event-edit/event-edit';
 import styles from '@/shared/components/shared/ratings/rating-card.module.css';

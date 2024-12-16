@@ -1,3 +1,5 @@
+'use client';
+
 import { Loader } from '@/shared/components/shared';
 import { useRatingForm } from '@/shared/components/shared/ratings/hooks/use-rating-form';
 import {
@@ -46,10 +48,14 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
           <SelectTrigger id={'month'} className={'capitalize'}>
             <SelectValue placeholder={'Выберите месяц'} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={'dark:bg-gray-900'}>
             <SelectGroup>
               {months.map((month) => (
-                <SelectItem className={'capitalize'} key={month.value} value={month.value}>
+                <SelectItem
+                  className={'capitalize hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                  key={month.value}
+                  value={month.value}
+                >
                   {month.name}
                 </SelectItem>
               ))}
@@ -64,10 +70,14 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
           <SelectTrigger id={'chapter'} className={'capitalize'}>
             <SelectValue placeholder={'Выберите раздел'} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={'dark:bg-gray-900'}>
             <SelectGroup>
               {['male', 'female', 'mixed'].map((chapter) => (
-                <SelectItem className={'capitalize'} key={chapter} value={chapter}>
+                <SelectItem
+                  className={'capitalize hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                  key={chapter}
+                  value={chapter}
+                >
                   {chapter === 'mixed' ? 'Смешанный' : chapter === 'male' ? 'Мужской' : 'Женский'}
                 </SelectItem>
               ))}
@@ -78,7 +88,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
 
       <div>
         <Label htmlFor={'year'}>Год</Label>
-        <Input id={'year'} placeholder={'Введите год'} onChange={handleYearChange} value={ratingMutation.year} />
+        <Input id={'year'} placeholder={'Введите год (2024)'} onChange={handleYearChange} value={ratingMutation.year} />
       </div>
 
       <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-4'} size={'sm'}>

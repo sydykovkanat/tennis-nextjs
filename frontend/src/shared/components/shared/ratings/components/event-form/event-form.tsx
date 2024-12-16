@@ -41,14 +41,18 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
           <SelectTrigger id='category'>
             <SelectValue placeholder='Выберите категорию' />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={'dark:bg-gray-900'}>
             {categoriesFetching ? (
               <SelectItem value='null' disabled>
                 Загрузка…
               </SelectItem>
             ) : (
               categories.map((category) => (
-                <SelectItem key={category._id} value={category._id}>
+                <SelectItem
+                  key={category._id}
+                  value={category._id}
+                  className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                >
                   {category.name}
                 </SelectItem>
               ))
@@ -63,9 +67,13 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
           <SelectTrigger id='rating'>
             <SelectValue placeholder='Выберите рейтинг' />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={'dark:bg-gray-900'}>
             {ratings.map((rating) => (
-              <SelectItem key={rating._id} value={rating._id}>
+              <SelectItem
+                key={rating._id}
+                value={rating._id}
+                className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+              >
                 {getMonth(rating.month)} {rating.year}
               </SelectItem>
             ))}
