@@ -1,5 +1,11 @@
 .container {
-  @apply flex gap-4 mb-4 flex-col md:flex-row;
+    @apply flex gap-4 mb-4 flex-col md:grid;
+}
+
+@media (min-width: 768px) {
+    .container.withResetButton {
+        grid-template-columns: repeat(3, 1fr) 130px;
+    }
 }
 
 .input {

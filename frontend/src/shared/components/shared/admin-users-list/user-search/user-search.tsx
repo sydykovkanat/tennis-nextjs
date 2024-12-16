@@ -2,8 +2,8 @@
 
 import { useUserSearch } from '@/shared/components/shared';
 import { Button, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
-import { UsersFilter } from '@/shared/types/user.types';
 import { cn } from '@/shared/lib';
+import { UsersFilter } from '@/shared/types/user.types';
 import { XIcon } from 'lucide-react';
 
 import React, { useEffect, useState } from 'react';
@@ -52,7 +52,7 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={cn(styles.container, showResetButton ? styles.withResetButton : 'md:grid-cols-3')}>
         <Input
           placeholder={'Поиск по ФИО…'}
           value={currentFilters.fullName}
