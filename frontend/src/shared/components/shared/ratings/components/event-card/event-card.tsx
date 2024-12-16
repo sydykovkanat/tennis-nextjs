@@ -29,7 +29,7 @@ export const EventCard: React.FC<Props> = ({ event, ratings }) => {
   };
 
   return (
-    <Card id={'eventItem'} className={cn(styles.eventCard, 'dark:bg-[#1F2937] dark:border-black')}>
+    <Card id={'eventItem'} className={cn(styles.eventCard, 'dark:border-black')}>
       <CardHeader>
         <CardTitle className={styles.eventTitle}>
           Категория - <span className={styles.eventCategory}>{event.category.name}</span>

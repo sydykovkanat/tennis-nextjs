@@ -1,7 +1,7 @@
 import { Confirm, EventCard } from '@/shared/components/shared';
 import { Button, Card, ScrollArea, ScrollBar } from '@/shared/components/ui';
 import { CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectRatingsDeleting } from '@/shared/lib/features/rating/rating-slice';
 import { deleteRating } from '@/shared/lib/features/rating/rating-thunks';
 import { formatMonth } from '@/shared/lib/helpers/format-month';
@@ -32,7 +32,7 @@ export const RatingBlock: React.FC<Props> = ({ ratings }) => {
         const isDeleting = ratingsDeleting === rating._id;
 
         return (
-          <Card key={rating._id} className={styles.cardWrapper}>
+          <Card key={rating._id} className={cn(styles.cardWrapper, 'dark:bg-[#1F2937] dark:border-black')}>
             <CardHeader className={'p-2'}>
               <div className={styles.headerWrapper}>
                 <CardTitle className={styles.titleWrapper}>

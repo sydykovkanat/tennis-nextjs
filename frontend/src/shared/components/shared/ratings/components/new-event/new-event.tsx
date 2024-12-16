@@ -36,7 +36,7 @@ export const NewEvent: React.FC<Props> = ({ ratings, children }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'pb-2'}>
+      <DialogContent className={'pb-2 dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Новое событие</DialogTitle>
           <DialogDescription>
