@@ -33,7 +33,7 @@ jobs:
         working-directory: frontend
 
       - name: Seed database
-        run: npm run seed
+        run: ts-node fixtures.ts
         working-directory: frontend
 
       - name: Format frontend
