@@ -21,26 +21,26 @@ jobs:
         run: |
           cd frontend
           npm ci
-        working-directory: ./frontend
+        working-directory: frontend
 
       - name: Format frontend
         run: npm run format
-        working-directory: ./frontend
+        working-directory: frontend
 
       - name: Lint frontend
         run: npm run lint
-        working-directory: ./frontend
+        working-directory: frontend
 
       - name: Build frontend
         run: npm run build
-        working-directory: ./frontend
+        working-directory: frontend
 
       - name: Install backend dependencies
         run: |
           cd backend
           npm ci
-        working-directory: ./backend
+        working-directory: backend
 
       - name: Format backend
         run: npm run format
-        working-directory: ./backend
+        working-directory: backend
