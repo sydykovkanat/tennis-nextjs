@@ -17,9 +17,6 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Frontend directory
-        run: cd /home/kanat/actions-runner/_work/tennis-nextjs/tennis-nextjs/frontend
-
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
@@ -40,4 +37,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: frontend-build
-          path: frontend/out
+          path: frontend/.next
