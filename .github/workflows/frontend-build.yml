@@ -28,13 +28,14 @@ jobs:
         run: npm run format
         working-directory: backend
 
+      - name: Seed database
+        run: npm run seed
+        working-directory: backend
+
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
 
-      - name: Seed database
-        run: ts-node fixtures.ts
-        working-directory: frontend
 
       - name: Format frontend
         run: npm run format
