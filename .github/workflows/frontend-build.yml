@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: PWD
+        run: pwd
+
       - name: Install frontend dependencies
         run: |
           cd frontend
