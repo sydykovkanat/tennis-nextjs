@@ -33,7 +33,6 @@ export const useUsersForm = () => {
   const dispatch = useAppDispatch();
   const { handleTabChange } = useAdminUsersList();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const categories = useAppSelector(selectCategories);
   const categoriesLoading = useAppSelector(selectCategoriesFetching);
@@ -84,14 +83,11 @@ export const useUsersForm = () => {
   };
 
   const isFormValidAdmin = () => {
-    const isFilled =
+    return (
       Object.values(newUser).every((value) => value.trim() !== '') &&
-      confirmPassword.trim() !== '' &&
       newUser.telephone.length === 12 &&
-      newUser.dateOfBirth.length === 10;
-    const passwordsMatch = newUser.password === confirmPassword;
-
-    return isFilled && passwordsMatch;
+      newUser.dateOfBirth.length === 10
+    );
   };
 
   const addUserAdmin = async (event: FormEvent<HTMLFormElement>) => {
@@ -107,7 +103,6 @@ export const useUsersForm = () => {
           role: newUser.role,
         }),
       );
-      setConfirmPassword('');
       setNewUser(initialState);
       toast.success('Профиль успешно создан');
       closeRef.current?.click();
@@ -151,8 +146,6 @@ export const useUsersForm = () => {
   return {
     isDialogOpen,
     setIsDialogOpen,
-    confirmPassword,
-    setConfirmPassword,
     closeRef,
     newUser,
     setNewUser,
