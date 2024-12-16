@@ -101,16 +101,12 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
           </SelectContent>
         </Select>
 
-        <Button
-          variant={'outline'}
-          onClick={handleResetFilters}
-          className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
-        >
-          Сбросить
-          <XIcon />
-        </Button>
         {showResetButton && (
-          <Button variant={'outline'} onClick={handleResetFilters} className={styles.buttonReset}>
+          <Button
+            variant={'outline'}
+            onClick={handleResetFilters}
+            className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
+          >
             Сбросить
             <XIcon />
           </Button>

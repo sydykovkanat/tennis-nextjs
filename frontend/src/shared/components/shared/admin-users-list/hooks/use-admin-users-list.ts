@@ -7,10 +7,7 @@ import { useEffect, useState } from 'react';
 
 export const useAdminUsersList = () => {
   const userPermission = useAppSelector(selectUserPermission);
-  const [currentTab, setCurrentTab] = useState<string>(() => {
-    const savedTab = sessionStorage.getItem('listOfUsersTab');
-    return savedTab || 'users';
-  });
+  const [currentTab, setCurrentTab] = useState<string>('users');
   const [isClient, setIsClient] = useState(false);
 
   const handleTabChange = (newTab: string) => {
