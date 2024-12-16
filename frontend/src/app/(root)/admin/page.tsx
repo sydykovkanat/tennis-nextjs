@@ -5,36 +5,36 @@ import { Container } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { ADMIN_PAGES } from '@/shared/config/pages';
 import { cn } from '@/shared/lib';
-
-
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import React, { Suspense, useEffect, useState } from 'react';
 
-
-
 import styles from './admin.module.css';
 
-
 export default function Page() {
-  const [currentTab, setCurrentTab] = useState<string>('partners');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const defaultTab = 'calendar';
+  const [currentTab, setCurrentTab] = useState(searchParams.get('tab') || defaultTab);
 
   useEffect(() => {
-    const savedTab = sessionStorage.getItem('adminPanelTab');
-    if (savedTab) {
-      setCurrentTab(savedTab);
+    if (currentTab) {
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('tab', currentTab);
+      router.replace(newUrl.toString(), { scroll: false });
     }
-  }, []);
+  }, [currentTab, router]);
 
   const handleTabChange = (newTab: string) => {
     setCurrentTab(newTab);
-    sessionStorage.setItem('adminPanelTab', newTab);
   };
 
   return (
     <Suspense>
       <Container>
         <h1 className={cn(styles.title)}>Панель Администратора</h1>
-        <Tabs value={currentTab} orientation={'vertical'} defaultValue={currentTab} onValueChange={handleTabChange}>
+        <Tabs value={currentTab} orientation={'vertical'} defaultValue={defaultTab} onValueChange={handleTabChange}>
           <ScrollArea className={cn(styles.scroll)}>
             <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
               {ADMIN_PAGES.map((page, i) => (
