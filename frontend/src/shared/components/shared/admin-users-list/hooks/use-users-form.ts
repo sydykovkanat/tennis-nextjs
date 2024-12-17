@@ -13,6 +13,7 @@ import {
 } from '@/shared/lib/features/users/users-slice';
 import { addUser, fetchUsers, updateCurrentUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { UserMutation } from '@/shared/types/user.types';
+import { ValidationError } from '@/shared/types/user.types';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
@@ -106,9 +107,19 @@ export const useUsersForm = () => {
       setNewUser(initialState);
       toast.success('Профиль успешно создан');
       closeRef.current?.click();
-    } catch (error) {
-      console.log(error);
-      toast.error('не удалось обновить пользователя');
+    } catch (e) {
+      const error = e as ValidationError;
+      if (error) {
+        if (error.errors) {
+          Object.values(error.errors).forEach((error) => {
+            if (error?.message) {
+              toast.error(error.message);
+            }
+          });
+        } else {
+          toast.error(error.message || 'Произошла ошибка');
+        }
+      }
     }
   };
 
@@ -137,9 +148,8 @@ export const useUsersForm = () => {
         toast.success('Профиль успешно обвновлен');
         closeRef.current?.click();
       }
-    } catch (error) {
-      console.log(error);
-      toast.error('Не удалось обновить пользователя');
+    } catch (e) {
+      console.log(e);
     }
   };
 

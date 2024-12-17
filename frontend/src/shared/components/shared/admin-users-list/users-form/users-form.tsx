@@ -71,14 +71,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   }, [setNewUser, userPermission]);
 
   useEffect(() => {
-    if (error && error.errors) {
-      Object.values(error.errors).forEach((err) => {
-        toast.error(err.message);
-      });
-    }
-  }, [error]);
-
-  useEffect(() => {
     if (!categories) {
       dispatch(fetchCategories());
     }
@@ -110,7 +102,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error('Не удалось обвновить пользователя');
     }
   }, [id, dispatch, mode, setNewUser, currentUser]);
 
@@ -158,6 +149,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   placeholder={'0500 000 000'}
                   autoComplete={'tel'}
                   className={styles.inputField}
+                  error={error ? `${error.errors.telephone.message}` : ''}
                 />
 
                 <UsersInput
