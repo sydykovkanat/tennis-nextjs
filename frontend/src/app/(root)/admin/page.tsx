@@ -11,7 +11,8 @@ import React, { Suspense, useEffect, useState } from 'react';
 
 import styles from './admin.module.css';
 
-export default function Page({ searchParams }: { searchParams: URLSearchParams }) {
+export default function Page({ searchParams: params }: { searchParams: { [key: string]: string } }) {
+  const searchParams = new URLSearchParams(params);
   const router = useRouter();
 
   const defaultTab = 'partners';
