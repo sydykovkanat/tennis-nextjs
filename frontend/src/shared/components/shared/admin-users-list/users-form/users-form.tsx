@@ -25,7 +25,6 @@ import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
-import { toast } from 'sonner';
 
 import React, { useEffect } from 'react';
 
