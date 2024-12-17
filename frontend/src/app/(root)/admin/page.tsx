@@ -14,7 +14,7 @@ import styles from './admin.module.css';
 export default function Page({ searchParams }: { searchParams: URLSearchParams }) {
   const router = useRouter();
 
-  const defaultTab = 'calendar';
+  const defaultTab = 'partners';
   const [currentTab, setCurrentTab] = useState(searchParams.get('tab') || defaultTab);
 
   useEffect(() => {
