@@ -3,7 +3,7 @@ import { CorsOptions } from 'cors';
 import { configDotenv } from 'dotenv';
 
 const envFile = process.env['NODE_ENV'] ? `.${process.env['NODE_ENV']}.env` : '.env';
-configDotenv({ path: envFile });
+configDotenv({ path: envFile })
 
 const rootPath = __dirname;
 const corsWhitelist = [
