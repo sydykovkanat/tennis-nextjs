@@ -63,13 +63,13 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                   </Link>
                 </li>
               ))}
+
+              {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
               <li>
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
-                      {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
                         <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
-                      )}
                       <NavigationMenuContent>
                         <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
                           {dataItems.length > 0 &&
@@ -90,9 +90,11 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                         </ul>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
+
                   </NavigationMenuList>
                 </NavigationMenu>
               </li>
+              )}
             </ul>
           </div>
 

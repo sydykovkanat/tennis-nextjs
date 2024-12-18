@@ -58,14 +58,15 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
                   </Link>
                 </li>
               ))}
+
+              {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
               <li>
                 <DropdownMenu>
-                  {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
                     <DropdownMenuTrigger className={styles.dropdownTrigger}>
                       Положение
                       <ChevronUpIcon className={styles.dropdownIcon} />
                     </DropdownMenuTrigger>
-                  )}
+
                   <DropdownMenuContent className={cn(styles.dropdownContent, 'dark:bg-gray-900')}>
                     {dataItems.length > 0 &&
                       dataItems[0].menuPosition.map((menuItem) => (
@@ -81,6 +82,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </li>
+              )}
             </ul>
           </div>
 

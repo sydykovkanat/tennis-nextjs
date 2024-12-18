@@ -11,11 +11,11 @@
 }
 
 .title {
-  @apply text-3xl font-bold text-gray-800 dark:text-gray-200;
+  @apply text-3xl text-center font-bold text-gray-800 dark:text-gray-200;
 }
 
 .description {
-  @apply mt-4 text-lg text-gray-600 dark:text-gray-400;
+  @apply mt-4 text-lg text-center text-gray-600 dark:text-gray-400;
 }
 
 .button {
