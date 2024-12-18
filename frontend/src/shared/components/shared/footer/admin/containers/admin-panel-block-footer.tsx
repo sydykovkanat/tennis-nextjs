@@ -32,7 +32,7 @@ export const AdminPanelBlockFooter = () => {
         </div>
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
-        <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
+        <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]', 'w-full')}>
           <TabsTrigger className={styles.tabsTrigger} value='social-network'>
             Социальные сети
           </TabsTrigger>

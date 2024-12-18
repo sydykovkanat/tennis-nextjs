@@ -76,3 +76,12 @@ export { UserEdit } from './personal-account/user-edit/user-edit';
 export { ThemeSwitcher } from './theme-switcher/theme-switcher';
 
 export { InfoTip } from './info-tip/info-tip';
+
+export { NewRating } from './ratings/components/new-rating/new-rating';
+export { NewEvent } from './ratings/components/new-event/new-event';
+export { RatingBlock } from './ratings/components/rating-block/rating-block';
+export { EventEdit } from './ratings/components/event-edit/event-edit';
+export { EventForm } from './ratings/components/event-form/event-form';
+export { EventCard } from './ratings/components/event-card/event-card';
+
+export { AdminRatings } from './ratings/admin/admin-rating';

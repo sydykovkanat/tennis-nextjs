@@ -1,4 +1,5 @@
 import {
+  addUser,
   fetchOneUser,
   fetchUsers,
   getPermissionForUser,
@@ -79,6 +80,19 @@ export const usersSlice = createSlice({
         state.user = user;
       })
       .addCase(register.rejected, (state, { payload: error }) => {
+        state.registerError = error || null;
+        state.registerLoading = false;
+      });
+
+    builder
+      .addCase(addUser.pending, (state) => {
+        state.registerLoading = true;
+        state.registerError = null;
+      })
+      .addCase(addUser.fulfilled, (state) => {
+        state.registerLoading = false;
+      })
+      .addCase(addUser.rejected, (state, { payload: error }) => {
         state.registerError = error || null;
         state.registerLoading = false;
       });

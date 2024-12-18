@@ -2,24 +2,28 @@
 
 import { UsersForm, UsersList, useAdminUsersList } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
+import { useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
+import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 
 import React, { useEffect } from 'react';
 
 import styles from './admin-users-list.module.css';
 
 export const AdminUsersList = () => {
-  const { userPermission, currentTab, setCurrentTab, setIsClient, handleTabChange, isClient } = useAdminUsersList();
+  const { currentTab, isClient, userPermission, handleTabChange, setCurrentTab } = useAdminUsersList();
+  const updatedRoleUser = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
-    setIsClient(true);
-    const savedTab = sessionStorage.getItem('listOfUsersTab');
-    if (savedTab) {
-      setCurrentTab(savedTab);
+    if (updatedRoleUser) {
+      const newTab = updatedRoleUser.role + 's';
+      setCurrentTab(newTab);
     }
-  }, [setCurrentTab, setIsClient]);
+  }, [setCurrentTab, updatedRoleUser]);
 
-  if (!isClient) return null;
+  if (!isClient) {
+    return <div className='text-center'>Loading...</div>;
+  }
 
   return (
     <>
@@ -32,24 +36,30 @@ export const AdminUsersList = () => {
       </div>
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
-          <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
-            <TabsTrigger value='users'>Пользователи</TabsTrigger>
-            {userPermission === 3 && (
+          {userPermission === 2 && (
+            <TabsList className={cn(styles.tabsListModerators, 'dark:bg-[#1F2937]')}>
+              <TabsTrigger value='users'>Список пользователей</TabsTrigger>
+            </TabsList>
+          )}
+
+          {userPermission === 3 && (
+            <TabsList className={styles.tabsList}>
+              <TabsTrigger value='users'>Пользователи</TabsTrigger>
               <TabsTrigger key='moderators' value='moderators'>
                 Модераторы
               </TabsTrigger>
-            )}
-          </TabsList>
+            </TabsList>
+          )}
           <ScrollBar orientation={'horizontal'} />
         </ScrollArea>
-        <TabsContent value={'users'}>
-          <UsersList role={'user'} />
-        </TabsContent>
         {userPermission === 3 && (
           <TabsContent value={'moderators'}>
-            <UsersList role={'moderator'} />
+            <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
           </TabsContent>
         )}
+        <TabsContent value={'users'}>
+          <UsersList role={currentTab === 'users' ? 'user' : 'moderator'} />
+        </TabsContent>
       </Tabs>
     </>
   );

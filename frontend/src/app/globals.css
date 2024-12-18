@@ -96,7 +96,8 @@ body {
   input {
     @apply dark:border-gray-300;
   }
-  p b, p strong {
+  p b,
+  p strong {
     @apply dark:text-[#64B32C];
   }
 }

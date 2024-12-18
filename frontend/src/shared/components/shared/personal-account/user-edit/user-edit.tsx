@@ -23,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
+import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';
@@ -33,10 +34,11 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
   const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, resetUserInfo } = useUserForm({
-    user,
-    closeDialog,
-  });
+  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, resetUserInfo, isFormValid } =
+    useUserForm({
+      user,
+      closeDialog,
+    });
 
   const handleDialogOpenChange = (open: boolean) => {
     setIsDialogOpen(open);
@@ -112,7 +114,9 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
             </div>
 
             <div className={styles.buttonWrapper}>
-              <Button type={'submit'}>Сохранить</Button>
+              <Button type={'submit'} disabled={!isFormValid || !validateEmail(userInfo.email)}>
+                Сохранить
+              </Button>
 
               <DialogClose asChild>
                 <Button ref={closeRef} className={'w-full'} type={'button'} variant={'outline'}>

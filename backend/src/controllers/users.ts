@@ -175,7 +175,7 @@ export const updateProfile = async (req: RequestWithUser, res: Response, next: N
 
     await user.save();
 
-    const updatedUser = await User.findById(userId).populate('category').select('token');
+    const updatedUser = await User.findById(userId).populate('category').select('+token');
     res.json(updatedUser);
   } catch (error) {
     next(error);
