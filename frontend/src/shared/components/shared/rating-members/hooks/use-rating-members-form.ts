@@ -1,4 +1,5 @@
 import { useFormState } from '@/shared/components/shared/rating-members/hooks/use-form-state';
+import { useRatingMemberFormLogic } from '@/shared/components/shared/rating-members/hooks/use-rating-member-form-logic';
 import { useValidation } from '@/shared/components/shared/rating-members/hooks/use-validation';
 import { usePlaces } from '@/shared/lib';
 import { RatingMember, RatingMemberMutation } from '@/shared/types/rating-member.types';
@@ -16,9 +17,9 @@ const emptyState: RatingMemberMutation = {
 export const useRatingMembersForm = (
   ratingMembers: RatingMember[],
   forWhichGender: 'male' | 'female',
-  onSubmit: (ratingMember: RatingMemberMutation) => void,
   existingMember?: RatingMember,
-  isLoading?: boolean,
+  setOpen?: (open: boolean) => void,
+  id?: string,
 ) => {
   const initialState = existingMember
     ? { ...existingMember, place: existingMember.place.toString() }
@@ -30,21 +31,27 @@ export const useRatingMembersForm = (
 
   const { state, setState, handleChange, handleChangeSelect, fileInputChangeHandler } = useFormState(initialState);
 
+  const {
+    handleSubmit: submitLogic,
+    handleClose,
+    isCreating,
+    isEditing,
+  } = useRatingMemberFormLogic(state, setOpen, existingMember, id);
+
   const { isFormInvalid, existingName, maxMembersExceeded } = useValidation(
     state,
     ratingMembers,
     existingMember,
-    isLoading,
+    isCreating,
+    isEditing,
   );
 
   const places = usePlaces(forWhichGender, state.ratingType);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    onSubmit({
-      ...state,
-    });
+    await submitLogic();
 
     setState(initialState);
   };
@@ -59,5 +66,6 @@ export const useRatingMembersForm = (
     handleChangeSelect,
     fileInputChangeHandler,
     handleSubmit,
+    handleClose,
   };
 };

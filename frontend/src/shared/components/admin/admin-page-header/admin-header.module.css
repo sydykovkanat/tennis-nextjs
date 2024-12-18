@@ -1,0 +1,11 @@
+.adminPageHeader {
+    @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 mb-3;
+}
+
+.title {
+    @apply text-2xl font-medium leading-none;
+}
+
+.description {
+    @apply text-muted-foreground text-base;
+}

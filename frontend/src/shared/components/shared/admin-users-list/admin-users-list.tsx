@@ -2,6 +2,7 @@
 
 import { UsersForm, UsersList, useAdminUsersList } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 
 import React, { useEffect } from 'react';
 
@@ -31,7 +32,7 @@ export const AdminUsersList = () => {
       </div>
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
-          <TabsList className={styles.tabsList}>
+          <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
             <TabsTrigger value='users'>Пользователи</TabsTrigger>
             {userPermission === 3 && (
               <TabsTrigger key='moderators' value='moderators'>

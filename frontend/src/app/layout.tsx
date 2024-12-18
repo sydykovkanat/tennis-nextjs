@@ -1,6 +1,7 @@
 import StoreProvider from '@/app/store-provider';
 import { Toaster } from '@/shared/components/ui';
 import { geistSans } from '@/shared/fonts/geist';
+import { ThemeProvider } from '@/shared/lib';
 import { cn } from '@/shared/lib/helpers/utils';
 import type { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body className={cn('antialiased')} style={geistSans.style}>
         <StoreProvider>
           <NextTopLoader color={'#64B32C'} height={1} />
-          {children}
+          <ThemeProvider attribute='class' defaultTheme='system'>
+            {children}
+          </ThemeProvider>
           <Toaster />
         </StoreProvider>
       </body>

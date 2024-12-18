@@ -1,7 +1,7 @@
 import { RatingMembersCategoriesEdit } from '@/shared/components/shared/rating-members';
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
 import { RatingMember } from '@/shared/types/rating-member.types';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { Pencil } from 'lucide-react';
 
 import React from 'react';
 
@@ -23,7 +23,7 @@ export const CategoriesEditAction: React.FC<Props> = ({ ratingMembers }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button icon={PencilSquareIcon}>Изменить категории</Button>
+        <Button icon={Pencil}>Изменить категории</Button>
       </PopoverTrigger>
       <PopoverContent>
         <small>Для редактирования добавьте хотя бы одного участника рейтинга</small>

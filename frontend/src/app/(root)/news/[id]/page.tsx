@@ -26,7 +26,7 @@ export default function Page() {
   return (
     <Container>
       <div className={cn(styles.titleBlock)}>
-        <h1 className={cn(styles.title)}>{oneNews?.title}</h1>
+        <h1 className={cn(styles.title, 'dark:text-white')}>{oneNews?.title}</h1>
         <h2 className={cn(styles.subtitle)}>{oneNews?.subtitle}</h2>
       </div>
 
@@ -49,7 +49,10 @@ export default function Page() {
       </section>
 
       {oneNews && oneNews.content && (
-        <section className={cn(styles.content)} dangerouslySetInnerHTML={{ __html: sanitize(oneNews.content) }} />
+        <section
+          className={cn(styles.content, 'dark:text-white')}
+          dangerouslySetInnerHTML={{ __html: sanitize(oneNews.content) }}
+        />
       )}
 
       <section>

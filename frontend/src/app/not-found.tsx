@@ -13,7 +13,7 @@ export default function NotFound() {
     if (pathName !== '/404') {
       redirect('/404');
     }
-  }, []);
+  }, [pathName]);
   return (
     <div className={styles.content}>
       <div className={styles.innerContainer}>

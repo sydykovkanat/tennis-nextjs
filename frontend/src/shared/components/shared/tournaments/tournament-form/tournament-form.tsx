@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { Tournament } from '@/shared/types/tournament.types';
 
 import React, { PropsWithChildren } from 'react';
@@ -51,14 +52,14 @@ export const TournamentForm: React.FC<Props> = ({
     showWarning,
     isFormInvalid,
     handleSubmit,
-  } = useTournamentForm(existingTournament, tournamentsLastYearExist, id);
+  } = useTournamentForm(setOpen, existingTournament, tournamentsLastYearExist, id);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent aria-describedby={undefined} className={styles.tournamentDialog}>
+      <DialogContent aria-describedby={undefined} className={cn(styles.tournamentDialog, 'dark:bg-[#1F2937]')}>
         <DialogHeader>
-          <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'} </DialogTitle>
+          <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className={styles.formInner}>
@@ -123,15 +124,15 @@ export const TournamentForm: React.FC<Props> = ({
                 <SelectTrigger id='rank'>
                   <SelectValue placeholder='Укажите разряд' />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem key='male' value='male'>
+                <SelectContent className={'dark:bg-gray-900'}>
+                  <SelectGroup className={'dark:bg-gray-900'}>
+                    <SelectItem className={'focus:bg-gray-800'} key='male' value='male'>
                       Мужской
                     </SelectItem>
-                    <SelectItem key='female' value='female'>
+                    <SelectItem className={'hover:dark:bg-gray-800'} key='female' value='female'>
                       Женский
                     </SelectItem>
-                    <SelectItem key='mixed' value='mixed'>
+                    <SelectItem className={'hover:dark:bg-gray-800'} key='mixed' value='mixed'>
                       Микст
                     </SelectItem>
                   </SelectGroup>

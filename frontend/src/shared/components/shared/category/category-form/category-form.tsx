@@ -79,7 +79,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>{isEdit ? 'Редактировать категорию' : 'Добавить категорию'}</DialogTitle>
           <DialogDescription>Заполните форму перед добавлением.</DialogDescription>

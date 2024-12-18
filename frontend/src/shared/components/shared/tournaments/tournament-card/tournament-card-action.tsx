@@ -33,7 +33,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
             {text}
           </span>
         </PopoverTrigger>
-        <PopoverContent className={styles.cardPopover}>
+        <PopoverContent className={cn(styles.cardPopover, 'dark:bg-gray-900', 'dark:text-white')}>
           Этот функционал доступен только для зарегистрированных пользователей. Пожалуйста, войдите или
           зарегистрируйтесь, чтобы получить доступ.
         </PopoverContent>
@@ -42,7 +42,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
   };
 
   return (
-    <div className={styles.cardActionsWrapper}>
+    <div className={cn(styles.cardActionsWrapper, 'dark:bg-text-[#4D4D4D]')}>
       {renderActionItem(
         'Результаты Турнира',
         tournament.resultsLink && tournament.resultsLink !== '' ? tournament.resultsLink : null,

@@ -242,7 +242,7 @@ const run = async () => {
     {
       rating: thirdRating._id,
       category: futures._id,
-      link: 'https://www.google.com',
+      link: 'https://www.youtube.com',
     },
   ]);
 
