@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next dev -p 5183",
+    "dev": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8000 next dev -p 3000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start NEXT_PUBLIC_API_URL=http://178.62.238.165:8000",
     "lint": "next lint",
     "format": "prettier --write ."
   },
@@ -54,6 +55,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cross-env": "^7.0.3",
     "dompurify": "^3.2.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.16",
