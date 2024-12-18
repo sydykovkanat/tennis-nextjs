@@ -13,6 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Install tests dependencies
+        run: npm ci
+
       - name: Run Test Script
         run: ./test.sh
         working-directory: tests
