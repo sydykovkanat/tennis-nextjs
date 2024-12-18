@@ -37,7 +37,7 @@ export const AdminUsersList = () => {
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
           {userPermission === 2 && (
-            <TabsList className={cn(styles.tabsListModerators, 'dark:bg-[#1F2937] ')}>
+            <TabsList className={cn(styles.tabsListModerators, 'dark:bg-[#1F2937]')}>
               <TabsTrigger value='users'>Список пользователей</TabsTrigger>
             </TabsList>
           )}
