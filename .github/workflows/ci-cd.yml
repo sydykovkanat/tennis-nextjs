@@ -18,13 +18,43 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
+
       - name: Install tests dependencies
         run: npm ci
         working-directory: tests
 
-      - name: Run Test Script
-        run: ./tests.sh
+      - name: Run backend fixtures
+        run: npm run seed:test
+        working-directory: backend
+
+      - name: Start backend in test mode
+        run: pm2 start "npm run start:test" --name="API-tests"
+        working-directory: backend
+
+      - name: Start frontend in test mode
+        run: pm2 start "npm run start:test" --name="Frontend-tests"
+        working-directory: frontend
+
+      - name: Wait for backend to be ready
+        run: |
+          while ! nc -z localhost 5183; do
+            sleep 0.1
+          done
+        shell: bash
+
+      - name: Run tests
+        run: npx codeceptjs run --steps "$@"
         working-directory: tests
+
+      - name: Kill all test processes
+        run: pm2 kill
 
   build-frontend-backend:
     name: Build Frontend and Backend
