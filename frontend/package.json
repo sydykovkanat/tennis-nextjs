@@ -6,7 +6,7 @@
     "start:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next dev -p 5183",
     "dev": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8000 next dev -p 3000",
     "build": "next build",
-    "start": "next start NEXT_PUBLIC_API_URL=http://178.62.238.165:8000",
+    "start": "cross-env NEXT_PUBLIC_API_URL=http://178.62.238.165:8000 next start",
     "lint": "next lint",
     "format": "prettier --write ."
   },
