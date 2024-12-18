@@ -7,13 +7,13 @@ import { CardContent, CardFooter, CardHeader } from '@/shared/components/ui/card
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
+import { Pencil, Trash } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import React, { memo } from 'react';
 
 import styles from './news-card.module.css';
-import { Pencil, Trash } from 'lucide-react';
 
 interface Props {
   news: News;

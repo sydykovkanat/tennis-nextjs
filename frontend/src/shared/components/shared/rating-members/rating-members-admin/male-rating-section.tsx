@@ -3,11 +3,11 @@
 import { RatingMemberForm, RatingMembersAdminList } from '@/shared/components/shared/rating-members';
 import { Button } from '@/shared/components/ui';
 import { RatingMember } from '@/shared/types/rating-member.types';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 import React, { useState } from 'react';
 
 import styles from './rating-member-admin.module.css';
-import { Grid2X2PlusIcon } from 'lucide-react';
 
 interface Props {
   ratingMembers: RatingMember[];
