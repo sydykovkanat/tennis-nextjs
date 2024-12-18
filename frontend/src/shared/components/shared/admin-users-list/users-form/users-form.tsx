@@ -24,12 +24,11 @@ import { fetchCategories } from '@/shared/lib/features/categories/category-thunk
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
-import { toast } from 'sonner';
+import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 import React, { useEffect } from 'react';
 
 import styles from './users-form.module.css';
-import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 interface UsersFromProps {
   mode: 'add' | 'edit';
@@ -43,8 +42,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   const {
     isDialogOpen,
     setIsDialogOpen,
-    confirmPassword,
-    setConfirmPassword,
     closeRef,
     newUser,
     categories,
@@ -64,12 +61,13 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   } = useUsersForm();
 
   useEffect(() => {
-    if (error && error.errors) {
-      Object.values(error.errors).forEach((err) => {
-        toast.error(err.message);
-      });
+    if (userPermission != null && userPermission !== 3) {
+      setNewUser((prev) => ({
+        ...prev,
+        role: 'user',
+      }));
     }
-  }, [error]);
+  }, [setNewUser, userPermission]);
 
   useEffect(() => {
     if (!categories) {
@@ -103,7 +101,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error('Не удалось обновить пользователя');
     }
   }, [id, dispatch, mode, setNewUser, currentUser]);
 
@@ -151,6 +148,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   placeholder={'0500 000 000'}
                   autoComplete={'tel'}
                   className={styles.inputField}
+                  error={error ? `${error.errors.telephone.message}` : ''}
                 />
 
                 <UsersInput
@@ -174,18 +172,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                       type='password'
                       autoComplete={'new-password'}
                       className={styles.inputField}
-                    />
-
-                    <UsersInput
-                      id='confirm-password'
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      label='Подтвердите пароль'
-                      type='password'
-                      autoComplete={'current-password'}
-                      placeholder='Введите пароль еще раз'
-                      className={`${confirmPassword !== newUser.password && styles.errorMessage}`}
-                      error={confirmPassword !== newUser.password ? 'Пароли не совпадают' : ''}
                     />
                   </>
                 ) : null}
@@ -246,37 +232,31 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
-                  <Label htmlFor='role' className={styles.label}>
-                    Роль
-                  </Label>
-                  <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
-                    <SelectTrigger className={styles.selectTrigger} id='role'>
-                      <SelectValue placeholder='Выберите роль' />
-                    </SelectTrigger>
-                    <SelectContent className={'dark:bg-gray-900'}>
-                      <SelectGroup className={'dark:bg-gray-900'}>
-                        {isAddMode ? (
-                          <>
-                            <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'user'}>
-                              Пользователь
-                            </SelectItem>
-                            <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'moderator'}>
-                              Модератор
-                            </SelectItem>
-                          </>
-                        ) : (
-                          <>
-                            <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='user'>
-                              Пользователь
-                            </SelectItem>
-                            {userPermission === 3 && <SelectItem value='moderator'>Модератор</SelectItem>}
-                          </>
-                        )}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
+
+                {userPermission === 3 ? (
+                  <div>
+                    <Label htmlFor='role' className={styles.label}>
+                      Роль
+                    </Label>
+                    <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
+                      <SelectTrigger className={styles.selectTrigger} id='role'>
+                        <SelectValue placeholder='Выберите роль' />
+                      </SelectTrigger>
+                      <SelectContent className={'dark:bg-gray-900'}>
+                        <SelectGroup className={'dark:bg-gray-900'}>
+                          <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'user'}>
+                            Пользователь
+                          </SelectItem>
+                          <SelectItem className={'hover:dark:bg-gray-800 '} value={'moderator'}>
+                            Модератор
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : (
+                  <input type='hidden' value='user' />
+                )}
               </div>
 
               <Button

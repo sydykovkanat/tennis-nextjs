@@ -7,12 +7,12 @@ import { Button, Card } from '@/shared/components/ui';
 import { API_URL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { RatingMember } from '@/shared/types/rating-member.types';
+import { Pencil, Trash } from 'lucide-react';
 import Image from 'next/image';
 
 import React, { useState } from 'react';
 
 import styles from './rating-member-admin-card.module.css';
-import { Pencil, Trash } from 'lucide-react';
 
 interface Props {
   ratingMember: RatingMember;

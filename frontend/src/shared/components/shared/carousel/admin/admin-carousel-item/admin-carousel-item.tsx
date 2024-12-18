@@ -9,14 +9,9 @@ import { photoCarouselState } from '@/shared/lib/features/carousel/carousel-slic
 import { getCarousel } from '@/shared/lib/features/carousel/carousel-thunks';
 import { Trash } from 'lucide-react';
 
-
-
 import React, { useEffect } from 'react';
 
-
-
 import styles from './admin-carousel-item.module.css';
-
 
 interface CarouselItemForAdminProps {
   className?: string;

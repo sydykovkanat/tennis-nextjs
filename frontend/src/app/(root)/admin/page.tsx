@@ -5,17 +5,17 @@ import { Container } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { ADMIN_PAGES } from '@/shared/config/pages';
 import { cn } from '@/shared/lib';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import React, { Suspense, useEffect, useState } from 'react';
 
 import styles from './admin.module.css';
 
-export default function Page() {
+export default function Page({ searchParams: params }: { searchParams: { [key: string]: string } }) {
+  const searchParams = new URLSearchParams(params);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const defaultTab = 'calendar';
+  const defaultTab = 'partners';
   const [currentTab, setCurrentTab] = useState(searchParams.get('tab') || defaultTab);
 
   useEffect(() => {
