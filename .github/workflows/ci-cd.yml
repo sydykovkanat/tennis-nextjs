@@ -20,6 +20,7 @@ jobs:
 
       - name: Install tests dependencies
         run: npm ci
+        working-directory: tests
 
       - name: Run Test Script
         run: ./tests.sh
