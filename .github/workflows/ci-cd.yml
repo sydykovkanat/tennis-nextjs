@@ -1,4 +1,4 @@
-name: "Build Frontend"
+name: "CI/CD"
 
 on:
   push:
@@ -6,7 +6,20 @@ on:
       - main
 
 jobs:
-  build-frontend:
+  run-tests:
+    name: Run Tests
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Test Script
+        run: ./test.sh
+        working-directory: tests
+
+  build-frontend-backend:
+    name: Build Frontend and Backend
+    needs: run-tests
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -16,9 +29,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.18.0'
-
-      - name: PWD
-        run: pwd && ls -la
 
       - name: Install backend dependencies
         run: npm ci
@@ -35,7 +45,6 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
-
 
       - name: Format frontend
         run: npm run format
