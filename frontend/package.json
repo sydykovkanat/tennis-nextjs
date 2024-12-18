@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next dev -p 5183",
+    "start:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next start -p 5183",
     "dev": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8000 next dev -p 3000",
     "build": "next build",
+    "build:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next build",
     "start": "cross-env NEXT_PUBLIC_API_URL=http://178.62.238.165:8000 next start",
     "lint": "next lint",
     "format": "prettier --write ."
