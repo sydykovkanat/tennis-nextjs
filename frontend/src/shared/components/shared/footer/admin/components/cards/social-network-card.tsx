@@ -10,15 +10,10 @@ import { SocialNetworkFields } from '@/shared/types/footer.types';
 import { Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
-
-
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 
-
-
 import styles from './cards.module.css';
-
 
 interface Props {
   item: SocialNetworkFields;

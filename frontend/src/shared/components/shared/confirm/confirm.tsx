@@ -2,9 +2,9 @@ import { Button } from '@/shared/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { PopoverClose } from '@radix-ui/react-popover';
+import { Trash } from 'lucide-react';
 
 import React, { PropsWithChildren } from 'react';
-import { Trash } from 'lucide-react';
 
 interface Props extends PropsWithChildren {
   text?: string;

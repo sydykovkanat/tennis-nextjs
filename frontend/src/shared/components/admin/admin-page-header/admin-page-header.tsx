@@ -8,7 +8,7 @@ import React, { PropsWithChildren } from 'react';
 
 import styles from './admin-header.module.css';
 
-interface Props extends PropsWithChildren{
+interface Props extends PropsWithChildren {
   className?: string;
   title: string;
   description?: string;

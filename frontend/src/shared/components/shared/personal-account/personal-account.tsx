@@ -6,11 +6,11 @@ import styles from '@/shared/components/shared/personal-account/personal-account
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
+import { Pencil } from 'lucide-react';
 
 import React from 'react';
 
 import { Button } from '../../ui/button';
-import { Pencil } from 'lucide-react';
 
 const PersonalAccount = () => {
   useFetchUser();

@@ -21,12 +21,12 @@ import {
 } from '@/shared/lib/features/footer/footers-slice';
 import { getFooterItems, getOneMenuPosition, updateMenuPosition } from '@/shared/lib/features/footer/footers-thunks';
 import { LinkDataMutation } from '@/shared/types/footer.types';
+import { Pencil } from 'lucide-react';
 import { toast } from 'sonner';
 
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
 
 import styles from './menu-position-forms.module.css';
-import { Pencil } from 'lucide-react';
 
 interface Props {
   id: string;

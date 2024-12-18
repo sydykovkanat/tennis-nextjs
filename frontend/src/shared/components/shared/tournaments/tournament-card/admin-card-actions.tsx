@@ -5,10 +5,11 @@ import { TournamentForm } from '@/shared/components/shared/tournaments';
 import { useTournamentsDelete } from '@/shared/components/shared/tournaments/hooks';
 import { Button } from '@/shared/components/ui';
 import { Tournament } from '@/shared/types/tournament.types';
+import { Pencil, Trash } from 'lucide-react';
+
 import React, { useState } from 'react';
 
 import styles from './tournament-card.module.css';
-import { Pencil, Trash } from 'lucide-react';
 
 interface Props {
   tournament: Tournament;
