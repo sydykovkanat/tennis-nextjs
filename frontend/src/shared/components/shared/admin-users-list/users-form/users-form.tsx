@@ -242,10 +242,14 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                       <SelectTrigger className={styles.selectTrigger} id='role'>
                         <SelectValue placeholder='Выберите роль' />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value={'user'}>Пользователь</SelectItem>
-                          <SelectItem value={'moderator'}>Модератор</SelectItem>
+                      <SelectContent className={'dark:bg-gray-900'}>
+                        <SelectGroup className={'dark:bg-gray-900'}>
+                          <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'user'}>
+                            Пользователь
+                          </SelectItem>
+                          <SelectItem className={'hover:dark:bg-gray-800 '} value={'moderator'}>
+                            Модератор
+                          </SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>

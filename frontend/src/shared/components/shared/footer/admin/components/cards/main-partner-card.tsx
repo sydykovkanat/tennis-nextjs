@@ -23,7 +23,7 @@ export const MainPartnerCard: React.FC<Props> = ({ image }) => {
               <TooltipTrigger asChild>
                 <img src={`${API_URL}/${image}`} alt='Логотип партнера' className={styles.mainPartnerCardImage} />
               </TooltipTrigger>
-              <TooltipContent className={cn(styles.mainPartnerCardTooltipContent, 'dark:bg-[#1F2937]')}>
+              <TooltipContent className={cn(styles.mainPartnerCardTooltipContent, 'dark:bg-[#1F2937]', 'bg-muted')}>
                 <img
                   alt='Логотип компании'
                   className={styles.mainPartnerCardTooltipImage}

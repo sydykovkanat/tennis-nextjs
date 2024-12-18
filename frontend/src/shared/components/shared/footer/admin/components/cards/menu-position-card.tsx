@@ -11,14 +11,9 @@ import { LinkIcon } from '@heroicons/react/24/outline';
 import { Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
-
-
 import React from 'react';
 
-
-
 import styles from './cards.module.css';
-
 
 interface Props {
   item: MenuPositionFields;

@@ -1,11 +1,11 @@
 .container {
-    @apply flex gap-4 mb-4 flex-col md:grid;
+  @apply flex gap-4 mb-4 flex-col md:grid;
 }
 
 @media (min-width: 768px) {
-    .container.withResetButton {
-        grid-template-columns: repeat(3, 1fr) 130px;
-    }
+  .container.withResetButton {
+    grid-template-columns: repeat(3, 1fr) 130px;
+  }
 }
 
 .input {
@@ -19,4 +19,3 @@
 .buttonReset {
   @apply h-9 ms-auto text-cr-green-900 hover:text-rose-700 dark:text-green-500;
 }
-

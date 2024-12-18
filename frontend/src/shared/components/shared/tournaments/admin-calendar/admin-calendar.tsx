@@ -5,11 +5,11 @@ import { TournamentForm } from '@/shared/components/shared/tournaments';
 import { useTournaments } from '@/shared/components/shared/tournaments/hooks';
 import { Button } from '@/shared/components/ui';
 import { Tournaments } from '@/shared/types/tournament.types';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 import React, { useState } from 'react';
 
 import styles from './admin-calendar.module.css';
-import { Grid2X2PlusIcon } from 'lucide-react';
 
 interface Props {
   tournaments: Tournaments;
