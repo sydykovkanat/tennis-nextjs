@@ -5,7 +5,7 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTri
 import { NAVIGATION_ITEMS } from '@/shared/constants';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
-import { selectUser } from '@/shared/lib/features/users/users-slice';
+import { selectUser, selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { logout } from '@/shared/lib/features/users/users-thunks';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -23,6 +23,7 @@ interface Props {
 export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
   const pathname = usePathname();
   const user = useAppSelector(selectUser);
+  const userPermission = useAppSelector(selectUserPermission);
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenPosition, setIsOpenPosition] = useState(false);
@@ -84,7 +85,7 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
         </ul>
 
         <div className={styles.mobileMenuPosition}>
-          {footerItemsData.length > 0 && footerItemsData[0].menuPosition.length > 0 && (
+          {footerItemsData.length > 0 && footerItemsData[0].menuPosition.length > 0 && userPermission >= 1 && (
             <div onClick={toggleStatePosition} className={styles.mobileMenuPositionActive}>
               Положение
               <ChevronDownIcon

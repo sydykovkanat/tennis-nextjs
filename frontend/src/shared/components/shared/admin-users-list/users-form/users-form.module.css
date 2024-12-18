@@ -30,7 +30,7 @@
   @apply h-10 focus:border-[#80BC41];
 }
 .buttonSubmit {
-  @apply w-full h-8 sm:h-10 px-10 font-bold mb-2.5;
+  @apply w-full h-8 sm:h-10 bg-[#232A2E] px-10 font-bold mb-2.5 dark:bg-blue-50;
 }
 
 .buttonCancel {

@@ -4,7 +4,9 @@ import { Calendar, Carousel, Category, Footer, News, Partners, Rating, Top, User
 import { Container } from '@/shared/components/shared';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { ADMIN_PAGES } from '@/shared/config/pages';
-import { cn } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
+import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
+import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 import React, { Suspense, useEffect, useState } from 'react';
@@ -12,6 +14,8 @@ import React, { Suspense, useEffect, useState } from 'react';
 import styles from './admin.module.css';
 
 export default function Page({ searchParams: params }: { searchParams: { [key: string]: string } }) {
+  const userPermission = useAppSelector(selectUserPermission);
+
   const searchParams = new URLSearchParams(params);
   const router = useRouter();
 
@@ -25,6 +29,12 @@ export default function Page({ searchParams: params }: { searchParams: { [key: s
       router.replace(newUrl.toString(), { scroll: false });
     }
   }, [currentTab, router]);
+  
+  useEffect(() => {
+    if (userPermission <= 1) {
+      redirect('/404');
+    }
+  }, [userPermission]);
 
   const handleTabChange = (newTab: string) => {
     setCurrentTab(newTab);

@@ -2,6 +2,7 @@ import {
   addUser,
   fetchOneUser,
   fetchUsers,
+  getPermissionForUser,
   login,
   register,
   updateCurrentUserInfo,
@@ -63,17 +64,6 @@ export const usersSlice = createSlice({
       .addCase(login.fulfilled, (state, { payload: user }) => {
         state.loginLoading = false;
         state.user = user;
-        if (user.role === 'user') {
-          if (user.isActive) {
-            state.userPermission = 1;
-          } else {
-            state.userPermission = 0;
-          }
-        } else if (user.role === 'moderator') {
-          state.userPermission = 2;
-        } else {
-          state.userPermission = 3;
-        }
       })
       .addCase(login.rejected, (state, { payload: error }) => {
         state.loginError = error || null;
@@ -120,6 +110,10 @@ export const usersSlice = createSlice({
       .addCase(fetchUsers.rejected, (state) => {
         state.usersFetching = false;
       });
+
+    builder.addCase(getPermissionForUser.fulfilled, (state, { payload: permission }) => {
+      state.userPermission = permission;
+    });
 
     builder
       .addCase(fetchOneUser.pending, (state) => {
