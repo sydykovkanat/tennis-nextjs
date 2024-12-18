@@ -1,3 +1,8 @@
+node_modules
 .idea
+.env
 .DS_Store
 .vscode/*
+/.next/
+next-env.d.ts
+
