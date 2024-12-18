@@ -3,40 +3,72 @@
 import { useUserSearch } from '@/shared/components/shared';
 import { Button, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
+import { UsersFilter } from '@/shared/types/user.types';
 import { XIcon } from 'lucide-react';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './users-search.module.css';
 
-export const UserSearch = () => {
+interface UserSearchProps {
+  role: string;
+  onFiltersChange?: (filters: UsersFilter) => void;
+}
+
+export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange }) => {
+  const [filters, setFilters] = useState<UsersFilter>({
+    telephone: '',
+    fullName: '',
+    category: 'all',
+    page: 1,
+    role: role,
+  });
+
   const {
-    filters,
     categories,
     categoriesFetching,
     handleFiltersChange,
     handleCategoryFilterChange,
     handleResetFilters,
-  } = useUserSearch();
+    currentFilters,
+  } = useUserSearch({ filters });
+
+  useEffect(() => {
+    if (onFiltersChange) {
+      onFiltersChange(currentFilters);
+    }
+  }, [currentFilters, onFiltersChange]);
+
+  useEffect(() => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      role,
+    }));
+  }, [role]);
+
+  const showResetButton = Boolean(
+    currentFilters.telephone || currentFilters.fullName || currentFilters.category !== 'all',
+  );
+
   return (
     <>
-      <div className={styles.container}>
+      <div className={cn(styles.container, showResetButton ? styles.withResetButton : 'md:grid-cols-3')}>
         <Input
           placeholder={'Поиск по ФИО…'}
-          value={filters.fullName}
+          value={currentFilters.fullName}
           name={'fullName'}
           onChange={handleFiltersChange}
         />
 
         <Input
           placeholder={'Поиск по номеру телефона…'}
-          value={filters.telephone}
+          value={currentFilters.telephone}
           type={'tel'}
           name={'telephone'}
           onChange={handleFiltersChange}
         />
 
-        <Select value={filters.category} onValueChange={handleCategoryFilterChange}>
+        <Select value={currentFilters.category} onValueChange={handleCategoryFilterChange}>
           <SelectTrigger className={styles.selectTrigger}>
             <SelectValue placeholder={'Выберите категорию…'} />
           </SelectTrigger>
@@ -69,14 +101,16 @@ export const UserSearch = () => {
           </SelectContent>
         </Select>
 
-        <Button
-          variant={'outline'}
-          onClick={handleResetFilters}
-          className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
-        >
-          Сбросить
-          <XIcon />
-        </Button>
+        {showResetButton && (
+          <Button
+            variant={'outline'}
+            onClick={handleResetFilters}
+            className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
+          >
+            Сбросить
+            <XIcon />
+          </Button>
+        )}
       </div>
     </>
   );

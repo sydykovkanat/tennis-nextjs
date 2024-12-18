@@ -6,32 +6,34 @@ import { fetchUsers } from '@/shared/lib/features/users/users-thunks';
 import { UsersFilter } from '@/shared/types/user.types';
 import { toast } from 'sonner';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
-export const useUserSearch = () => {
-  const [filters, setFilters] = useState<UsersFilter>({
-    telephone: '',
-    fullName: '',
-    category: 'all',
-    page: 1,
-    role: 'user',
-  });
+interface UseUserSearchProps {
+  filters: UsersFilter;
+}
+
+export const useUserSearch = ({ filters }: UseUserSearchProps) => {
+  const [currentFilters, setCurrentFilters] = useState<UsersFilter>(filters);
   const { categories, categoriesFetching } = useCategory();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setCurrentFilters(filters);
+  }, [filters]);
 
   const handleFiltersChange = (event: ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     let value = event.target.value;
 
     if (name === 'fullName') {
-      if (filters.fullName?.trim() === '' && value.trim() === '') {
+      if (currentFilters.fullName?.trim() === '' && value.trim() === '') {
         toast.error('Нельзя ввести пустое поле.');
         return;
       }
     }
 
     if (name === 'telephone') {
-      if (filters.telephone?.trim() === '' && value.trim() === '') {
+      if (currentFilters.telephone?.trim() === '' && value.trim() === '') {
         toast.error('Нельзя ввести пустое поле.');
         return;
       } else {
@@ -39,25 +41,25 @@ export const useUserSearch = () => {
       }
     }
 
-    setFilters((prevState) => ({
+    setCurrentFilters((prevState) => ({
       ...prevState,
       [name]: value,
       page: 1,
     }));
-    dispatch(fetchUsers({ ...filters, [name]: value, page: 1 }));
+    dispatch(fetchUsers({ ...currentFilters, [name]: value, page: 1 }));
   };
 
   const handleCategoryFilterChange = (category: string) => {
-    setFilters((prevState) => ({
+    setCurrentFilters((prevState) => ({
       ...prevState,
       category,
       page: 1,
     }));
-    dispatch(fetchUsers({ ...filters, category, page: 1 }));
+    dispatch(fetchUsers({ ...currentFilters, category, page: 1 }));
   };
 
   const handleResetFilters = async () => {
-    setFilters({
+    setCurrentFilters({
       telephone: '',
       fullName: '',
       category: 'all',
@@ -65,16 +67,17 @@ export const useUserSearch = () => {
       role: 'user',
     });
 
-    await dispatch(fetchUsers(filters));
+    await dispatch(fetchUsers({ ...currentFilters, category: 'all', page: 1 }));
   };
 
   return {
     filters,
-    setFilters,
+    setCurrentFilters,
     categories,
     categoriesFetching,
     handleFiltersChange,
     handleCategoryFilterChange,
     handleResetFilters,
+    currentFilters,
   };
 };

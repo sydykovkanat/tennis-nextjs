@@ -3,7 +3,7 @@
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useAdminUsersList = () => {
   const userPermission = useAppSelector(selectUserPermission);
@@ -14,6 +14,14 @@ export const useAdminUsersList = () => {
     setCurrentTab(newTab);
     sessionStorage.setItem('listOfUsersTab', newTab);
   };
+
+  useEffect(() => {
+    setIsClient(true);
+    const savedTab = sessionStorage.getItem('listOfUsersTab');
+    if (savedTab) {
+      setCurrentTab(savedTab);
+    }
+  }, [setCurrentTab, setIsClient]);
 
   return {
     userPermission,

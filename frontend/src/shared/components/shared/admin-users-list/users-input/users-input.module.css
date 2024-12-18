@@ -1,13 +1,13 @@
 .wrapper {
-  @apply flex items-center justify-between mb-0.5;
+  @apply flex items-center mb-0.5 flex-col;
 }
 
 .label {
-  @apply text-base font-medium block;
+  @apply text-base font-medium block me-auto;
 }
 
 .error {
-  @apply leading-none text-red-500;
+  @apply leading-none text-red-500 me-auto;
 }
 
 .input {

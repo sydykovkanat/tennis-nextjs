@@ -13,6 +13,7 @@ import {
 } from '@/shared/lib/features/users/users-slice';
 import { addUser, fetchUsers, updateCurrentUserInfo } from '@/shared/lib/features/users/users-thunks';
 import { UserMutation } from '@/shared/types/user.types';
+import { ValidationError } from '@/shared/types/user.types';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
@@ -33,7 +34,6 @@ export const useUsersForm = () => {
   const dispatch = useAppDispatch();
   const { handleTabChange } = useAdminUsersList();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const categories = useAppSelector(selectCategories);
   const categoriesLoading = useAppSelector(selectCategoriesFetching);
@@ -84,14 +84,11 @@ export const useUsersForm = () => {
   };
 
   const isFormValidAdmin = () => {
-    const isFilled =
+    return (
       Object.values(newUser).every((value) => value.trim() !== '') &&
-      confirmPassword.trim() !== '' &&
       newUser.telephone.length === 12 &&
-      newUser.dateOfBirth.length === 10;
-    const passwordsMatch = newUser.password === confirmPassword;
-
-    return isFilled && passwordsMatch;
+      newUser.dateOfBirth.length === 10
+    );
   };
 
   const addUserAdmin = async (event: FormEvent<HTMLFormElement>) => {
@@ -107,13 +104,22 @@ export const useUsersForm = () => {
           role: newUser.role,
         }),
       );
-      setConfirmPassword('');
       setNewUser(initialState);
       toast.success('Профиль успешно создан');
       closeRef.current?.click();
-    } catch (error) {
-      console.log(error);
-      toast.error('не удалось обновить пользователя');
+    } catch (e) {
+      const error = e as ValidationError;
+      if (error) {
+        if (error.errors) {
+          Object.values(error.errors).forEach((error) => {
+            if (error?.message) {
+              toast.error(error.message);
+            }
+          });
+        } else {
+          toast.error(error.message || 'Произошла ошибка');
+        }
+      }
     }
   };
 
@@ -134,24 +140,22 @@ export const useUsersForm = () => {
         );
 
         if (newUser.role) {
-          handleTabChange(newUser.role === 'moderator' ? 'moderators' : 'users');
+          const updateRoleForTab = newUser.role === 'moderator' ? 'moderators' : 'users';
+          handleTabChange(updateRoleForTab);
         }
 
         setNewUser(initialState);
         toast.success('Профиль успешно обвновлен');
         closeRef.current?.click();
       }
-    } catch (error) {
-      console.log(error);
-      toast.error('Не удалось обновить пользователя');
+    } catch (e) {
+      console.log(e);
     }
   };
 
   return {
     isDialogOpen,
     setIsDialogOpen,
-    confirmPassword,
-    setConfirmPassword,
     closeRef,
     newUser,
     setNewUser,
