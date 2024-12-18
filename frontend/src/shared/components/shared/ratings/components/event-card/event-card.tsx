@@ -1,3 +1,5 @@
+'use client';
+
 import { Confirm } from '@/shared/components/shared';
 import { EventEdit } from '@/shared/components/shared/ratings/components/event-edit/event-edit';
 import styles from '@/shared/components/shared/ratings/rating-card.module.css';
@@ -9,6 +11,7 @@ import { deleteEvent } from '@/shared/lib/features/rating/rating-thunks';
 import { Event } from '@/shared/types/event.types';
 import { Rating } from '@/shared/types/rating.types';
 import { ArrowRight, Pencil, Trash } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import React from 'react';
@@ -20,10 +23,12 @@ interface Props {
 
 export const EventCard: React.FC<Props> = ({ event, ratings }) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleDelete = async () => {
     await dispatch(deleteEvent(event._id)).unwrap();
     toast.success('Событие успешно удалено');
+    router.refresh();
   };
 
   return (

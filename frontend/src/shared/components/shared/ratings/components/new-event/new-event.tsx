@@ -14,6 +14,7 @@ import { useAppDispatch } from '@/shared/lib';
 import { createEvent, fetchRatings } from '@/shared/lib/features/rating/rating-thunks';
 import { EventMutation } from '@/shared/types/event.types';
 import { Rating } from '@/shared/types/rating.types';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import React, { type PropsWithChildren, useRef } from 'react';
@@ -25,12 +26,14 @@ interface Props extends PropsWithChildren {
 export const NewEvent: React.FC<Props> = ({ ratings, children }) => {
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleCreateEvent = async (eventMutation: EventMutation) => {
     await dispatch(createEvent(eventMutation)).unwrap();
     await dispatch(fetchRatings()).unwrap();
     closeRef.current?.click();
     toast.success('Событие успешно добавлено');
+    router.refresh();
   };
 
   return (

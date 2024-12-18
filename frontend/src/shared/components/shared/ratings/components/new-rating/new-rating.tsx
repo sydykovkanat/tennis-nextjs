@@ -13,6 +13,7 @@ import {
 import { useAppDispatch } from '@/shared/lib';
 import { createRating } from '@/shared/lib/features/rating/rating-thunks';
 import { RatingMutation } from '@/shared/types/rating.types';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import React, { type PropsWithChildren, useRef } from 'react';
@@ -20,11 +21,13 @@ import React, { type PropsWithChildren, useRef } from 'react';
 export const NewRating: React.FC<PropsWithChildren> = ({ children }) => {
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleCreateRating = async (rating: RatingMutation) => {
     await dispatch(createRating(rating)).unwrap();
     closeRef.current?.click();
     toast.success('Рейтинг успешно добавлен');
+    router.refresh();
   };
 
   return (

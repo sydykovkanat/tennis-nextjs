@@ -14,6 +14,7 @@ import { selectEvent } from '@/shared/lib/features/rating/rating-slice';
 import { editEvent, fetchRatings, getEvent } from '@/shared/lib/features/rating/rating-thunks';
 import { EventMutation } from '@/shared/types/event.types';
 import { Rating } from '@/shared/types/rating.types';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import React, { type PropsWithChildren } from 'react';
@@ -27,6 +28,7 @@ export const EventEdit: React.FC<Props> = ({ id, ratings, children }) => {
   const [open, setOpen] = React.useState(false);
   const dispatch = useAppDispatch();
   const event = useAppSelector(selectEvent);
+  const router = useRouter();
 
   React.useEffect(() => {
     if (open) {
@@ -38,6 +40,7 @@ export const EventEdit: React.FC<Props> = ({ id, ratings, children }) => {
     await dispatch(editEvent({ id, eventMutation })).unwrap();
     await dispatch(fetchRatings()).unwrap();
     toast.success('Событие успешно отредактировано');
+    router.refresh();
   };
 
   return (

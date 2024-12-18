@@ -1,3 +1,5 @@
+'use client';
+
 import { Confirm, EventCard } from '@/shared/components/shared';
 import { Button, Card, ScrollArea, ScrollBar } from '@/shared/components/ui';
 import { CardHeader, CardTitle } from '@/shared/components/ui/card';
@@ -7,6 +9,7 @@ import { deleteRating } from '@/shared/lib/features/rating/rating-thunks';
 import { formatMonth } from '@/shared/lib/helpers/format-month';
 import { Rating } from '@/shared/types/rating.types';
 import { Trash } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import React from 'react';
@@ -20,10 +23,12 @@ interface Props {
 export const RatingBlock: React.FC<Props> = ({ ratings }) => {
   const dispatch = useAppDispatch();
   const ratingsDeleting = useAppSelector(selectRatingsDeleting);
+  const router = useRouter();
 
   const handleDelete = async (id: string) => {
     await dispatch(deleteRating(id)).unwrap();
     toast.success('Рейтинг успешно удален');
+    router.refresh();
   };
 
   return (
