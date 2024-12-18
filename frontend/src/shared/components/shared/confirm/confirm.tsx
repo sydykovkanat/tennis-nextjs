@@ -1,9 +1,10 @@
 import { Button } from '@/shared/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover';
-import { TrashIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { PopoverClose } from '@radix-ui/react-popover';
 
 import React, { PropsWithChildren } from 'react';
+import { Trash } from 'lucide-react';
 
 interface Props extends PropsWithChildren {
   text?: string;
@@ -20,7 +21,7 @@ export const Confirm: React.FC<Props> = ({
   onCancel,
   onOkText = 'Удалить',
   onCancelText = 'Отменить',
-  onOkIcon = <TrashIcon strokeWidth={1.2} />,
+  onOkIcon = <Trash strokeWidth={1.2} />,
   children,
 }) => {
   return (

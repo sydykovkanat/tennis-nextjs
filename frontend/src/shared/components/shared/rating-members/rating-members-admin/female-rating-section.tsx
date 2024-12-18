@@ -4,11 +4,11 @@ import { RatingMemberForm, RatingMembersAdminList } from '@/shared/components/sh
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { RatingMember } from '@/shared/types/rating-member.types';
-import { SquaresPlusIcon } from '@heroicons/react/24/outline';
 
 import React, { useState } from 'react';
 
 import styles from './rating-member-admin.module.css';
+import { Grid2X2PlusIcon } from 'lucide-react';
 
 interface Props {
   ratingMembers: RatingMember[];
@@ -24,7 +24,7 @@ export const FemaleRatingSection: React.FC<Props> = ({ ratingMembers, ratingWome
       <div className={styles.buttonContainer}>
         <Button
           className={cn(styles.addButton, 'mt-14')}
-          icon={SquaresPlusIcon}
+          icon={Grid2X2PlusIcon}
           onClick={() => setOpenFemaleForm(true)}
         >
           Добавить в женский рейтинг

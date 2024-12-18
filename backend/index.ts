@@ -31,8 +31,11 @@ app.use('/footers', footersRouter);
 app.use('/tournaments', tournamentsRouter);
 
 const run = async () => {
+  console.log('connecting to database...');
   await mongoose.connect(config.database);
+  console.log('connected to database');
 
+  console.log('starting server...');
   app.listen(config.port, () => {
     console.log(`Server running at http://127.0.0.1:${config.port}`);
   });
