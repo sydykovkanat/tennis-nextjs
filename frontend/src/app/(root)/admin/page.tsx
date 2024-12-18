@@ -15,6 +15,7 @@ import styles from './admin.module.css';
 
 export default function Page({ searchParams: params }: { searchParams: { [key: string]: string } }) {
   const userPermission = useAppSelector(selectUserPermission);
+
   const searchParams = new URLSearchParams(params);
   const router = useRouter();
 
