@@ -1,6 +1,5 @@
 export const { I } = inject();
 
-
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
   I.click(btn);
@@ -27,31 +26,23 @@ When('я должен быть на главной странице', () => {
   I.wait(1);
 });
 
-
 //логинка
 Given('я авторизован на сайте', () => {
   I.amOnPage('/login');
-  I.fillField('Телефон', '0555 555 555');
+  I.fillField('Телефон', '0555555555');
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
   I.seeInCurrentUrl('/');
 });
 
 //вход в админку
-Given("я должен быть в административной панели", () => {
+Given('я должен быть в административной панели', () => {
   I.click('button[aria-haspopup="menu"]');
-  I.seeElement("#admin");
-  I.click("#admin");
+  I.seeElement('#admin');
+  I.click('#admin');
 });
 
 //проверка на успешность теста в админке если у тебя тост уведомление
-When('если я вижу текст {string} то тест успешно завершен', (Msg:string) => {
+When('если я вижу текст {string} то тест успешно завершен', (Msg: string) => {
   I.see(Msg);
 });
-
-
-
-
-
-
-

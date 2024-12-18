@@ -4,11 +4,11 @@ exports.config = {
     Puppeteer: {
       url: 'http://localhost:5183',
       show: false,
-      windowSize: '1200x900'
-    }
+      windowSize: '1200x900',
+    },
   },
   include: {
-    I: './steps_file'
+    I: './steps_file',
   },
   mocha: {},
   bootstrap: null,
@@ -17,40 +17,37 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: './features/*.feature',
-    steps: [
-      './step_definitions/steps.ts',
-      './step_definitions/auth.steps.ts',
-      './step_definitions/carousel.steps.ts',
-    ]
+    steps: ['./step_definitions/steps.ts', './step_definitions/auth.steps.ts'],
   },
   plugins: {
     screenshotOnFail: {
-      enabled: true
+      enabled: true,
     },
     tryTo: {
-      enabled: true
+      enabled: true,
     },
     retryFailedStep: {
-      enabled: true
+      enabled: true,
     },
     retryTo: {
-      enabled: true
+      enabled: true,
     },
     eachElement: {
-      enabled: true
+      enabled: true,
     },
-    pauseOnFail: {}
+    pauseOnFail: {},
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: 'wait.*',
-      timeout: 0
+      timeout: 0,
     },
     {
       pattern: 'amOnPage',
-      timeout: 0
-    }
+      timeout: 0,
+    },
   ],
   tests: './*_test.ts',
-  name: 'tests'
-}
+  name: 'tests',
+};
