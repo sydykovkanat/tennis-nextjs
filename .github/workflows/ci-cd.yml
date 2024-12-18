@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Install tests dependencies
+        run: npm ci
+
       - name: Run Test Script
         run: ./tests.sh
         working-directory: tests
