@@ -42,6 +42,7 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
         <DialogTrigger asChild>
           <Button
             className={cn(className, isAddMode ? styles.btnAddFile : undefined)}
+            data-test-id={isAddMode ? '' : 'change-file-in-carousel'}
             onClick={isAddMode ? () => setAddModalOpen(true) : undefined}
           >
             {isAddMode ? (

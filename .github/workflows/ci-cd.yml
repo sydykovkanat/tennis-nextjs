@@ -1,0 +1,113 @@
+name: "CI/CD"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    name: Run Tests
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Kill all test processes
+        run: pm2 kill
+
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
+
+      - name: Install tests dependencies
+        run: npm ci
+        working-directory: tests
+
+      - name: Run backend fixtures
+        run: npm run seed:test
+        working-directory: backend
+
+      - name: Start backend in test mode
+        run: pm2 start "npm run start:test" --name="API-tests"
+        working-directory: backend
+
+      - name: Build frontend
+        run: npm run build:test
+        working-directory: frontend
+
+      - name: Start frontend in test mode
+        run: pm2 start "npm run start:test" --name="Frontend-tests"
+        working-directory: frontend
+
+      - name: Wait for backend to be ready
+        run: |
+          while ! nc -z localhost 5183; do
+            sleep 0.1
+          done
+        shell: bash
+
+      - name: Run tests
+        run: npx codeceptjs run --steps "$@"
+        working-directory: tests
+
+      - name: Kill all test processes
+        run: pm2 kill
+
+  build-frontend-backend:
+    name: Build Frontend and Backend
+    needs: run-tests
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
+
+      - name: Format backend
+        run: npm run format
+        working-directory: backend
+
+      - name: Seed database
+        run: npm run seed
+        working-directory: backend
+
+      - name: Start backend
+        run: pm2 start "ts-node index.ts" --name="Backend"
+        working-directory: backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
+
+      - name: Format frontend
+        run: npm run format
+        working-directory: frontend
+
+      - name: Lint frontend
+        run: npm run lint
+        working-directory: frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: frontend
+
+      - name: Start frontend
+        run: pm2 start "npm run start" --name="Frontend"
+        working-directory: frontend
