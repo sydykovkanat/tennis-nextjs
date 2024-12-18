@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Kill all test processes
+        run: pm2 kill
+
       - name: Install backend dependencies
         run: npm ci
         working-directory: backend
@@ -81,6 +84,10 @@ jobs:
         run: npm run seed
         working-directory: backend
 
+      - name: Start backend
+        run: pm2 start "ts-node index.ts" --name="Backend"
+        working-directory: backend
+
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
@@ -97,5 +104,6 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-      - name: Restart pm2
-        run: cd /home/kanat/actions-runner/_work/tennis-nextjs/tennis-nextjs && pm2 restart 0 && pm2 restart 1
+      - name: Start frontend
+        run: pm2 start "npm run start" --name="Frontend"
+        working-directory: frontend
