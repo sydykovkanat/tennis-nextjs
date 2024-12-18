@@ -40,6 +40,9 @@ exports.config = {
       enabled: true,
     },
     pauseOnFail: {},
+    stepTimeout: {
+      timeout: 300000,
+    },
   },
   stepTimeout: 0,
   stepTimeoutOverride: [
