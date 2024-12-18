@@ -32,6 +32,7 @@ cd ../frontend || exit 1
 echo '### Running Frontend in test mode'
 pm2 start "npm run start:test" --name="Frontend-tests"
 
+echo '### Waiting for API server to be ready'
 while ! nc -z localhost 5183; do
   sleep 0.1
 done
