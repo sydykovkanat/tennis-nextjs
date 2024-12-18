@@ -1,0 +1,27 @@
+.content {
+  @apply flex justify-center flex-col h-[100vh] items-center;
+}
+
+.inner-container {
+  @apply w-full max-w-5xl;
+}
+
+.page {
+  @apply flex flex-col items-center;
+}
+
+.title {
+  @apply text-3xl font-bold text-gray-800 dark:text-gray-200;
+}
+
+.description {
+  @apply mt-4 text-lg text-gray-600 dark:text-gray-400;
+}
+
+.button {
+  @apply mt-8 flex justify-center space-x-4;
+}
+
+.link {
+  @apply inline-flex items-center px-6 py-3 text-base font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-400;
+}

@@ -1,6 +1,6 @@
 import { NavigationItemsTypes } from '@/shared/types/footer.types';
 
-export const API_URL = 'http://178.62.238.165:8080';
+export const API_URL = 'http://localhost:8000';
 
 // 178.62.238.165
 

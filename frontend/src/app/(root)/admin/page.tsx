@@ -14,6 +14,25 @@ import styles from './admin.module.css';
 
 export default function Page() {
   const userPermission = useAppSelector(selectUserPermission);
+
+  const searchParams = new URLSearchParams(params);
+  const router = useRouter();
+
+  const defaultTab = 'partners';
+  const [currentTab, setCurrentTab] = useState(searchParams.get('tab') || defaultTab);
+
+  useEffect(() => {
+    if (currentTab) {
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('tab', currentTab);
+      router.replace(newUrl.toString(), { scroll: false });
+    }
+  }, [currentTab, router]);
+
+  const handleTabChange = (newTab: string) => {
+    setCurrentTab(newTab);
+  };
+
   useEffect(() => {
     if (userPermission <= 1) {
       redirect('/404');
@@ -23,7 +42,7 @@ export default function Page() {
     <Suspense>
       <Container>
         <h1 className={cn(styles.title)}>Панель Администратора</h1>
-        <Tabs orientation={'vertical'} defaultValue={'calendar'}>
+        <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'} defaultValue={'calendar'}>
           <ScrollArea className={cn(styles.scroll)}>
             <TabsList className={cn(styles.tabsList)}>
               {ADMIN_PAGES.map((page, i) => (
