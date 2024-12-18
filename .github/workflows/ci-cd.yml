@@ -41,6 +41,10 @@ jobs:
         run: pm2 start "npm run start:test" --name="API-tests"
         working-directory: backend
 
+      - name: Build frontend
+        run: npm run build:test
+        working-directory: frontend
+
       - name: Start frontend in test mode
         run: pm2 start "npm run start:test" --name="Frontend-tests"
         working-directory: frontend
