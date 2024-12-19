@@ -7,6 +7,7 @@ import { selectItemsData } from '@/shared/lib/features/footer/footers-slice';
 import { getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { selectUser } from '@/shared/lib/features/users/users-slice';
 import { getPermissionForUser } from '@/shared/lib/features/users/users-thunks';
+import type { Metadata } from 'next';
 
 import React, { useEffect } from 'react';
 

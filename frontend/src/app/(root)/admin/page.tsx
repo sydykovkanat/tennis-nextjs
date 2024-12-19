@@ -29,7 +29,7 @@ export default function Page({ searchParams: params }: { searchParams: { [key: s
       router.replace(newUrl.toString(), { scroll: false });
     }
   }, [currentTab, router]);
-  
+
   useEffect(() => {
     if (userPermission <= 1) {
       redirect('/404');
