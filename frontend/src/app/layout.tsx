@@ -12,10 +12,17 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | KSLT',
-    default: 'KSLT',
+    template: '%s | КСЛТ',
+    default: 'КСЛТ — Кыргызстанское сообщество любителей тенниса',
   },
-  description: 'Кыргызстанское сообщество любителей тенниса!',
+  description: 'КСЛТ — Сообщество любителей тенниса в Кыргызстане, новости, турниры и события.',
+  keywords: 'Кыргызстан теннис, турниры по теннису Кыргызстан, КСЛТ',
+  openGraph: {
+    title: 'КСЛТ — Кыргызстанское сообщество любителей тенниса',
+    description: 'КСЛТ — Сообщество любителей тенниса в Кыргызстане, новости, турниры и события.',
+    images: 'https://tennis.kg/kslt.svg',
+    type: 'website',
+  },
   icons: [
     {
       rel: 'icon',
@@ -30,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='ru'>
       <body className={cn('antialiased')} style={geistSans.style}>
         <StoreProvider>
           <NextTopLoader color={'#64B32C'} height={1} />
