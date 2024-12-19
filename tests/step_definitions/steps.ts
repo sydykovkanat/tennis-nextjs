@@ -10,7 +10,7 @@ When('ввожу в поле {string} значение {string}', (field: string
   I.fillField(field, value);
 });
 
-//выбрать что то из селекта
+//выбрать что-то из селекта
 When('в поле {string} выбираю {string}', (select: string, value: string) => {
   I.selectOption(`//*[contains(text(), '${select}')]/following-sibling::select`, value);
 });
