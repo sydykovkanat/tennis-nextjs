@@ -5,6 +5,7 @@ import { Button } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
 import { Grid2X2PlusIcon } from 'lucide-react';
+
 import { useEffect, useState } from 'react';
 
 import styles from './tab-content.module.css';

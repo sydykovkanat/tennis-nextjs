@@ -1,10 +1,25 @@
 import { fetchNews } from '@/actions/news';
 import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
-import Loading from '@/app/(root)/news/loading';
 import { Container, NewsTitle } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { NewsResponse } from '@/shared/types/news.types';
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Loading from '@/app/(root)/news/loading';
+
+export const metadata: Metadata = {
+  title: 'Свежие новости — Главные события мира тенниса в Кыргызстане',
+  description:
+    'Читайте последние новости о турнирах, достижениях спортсменов и других событиях теннисного мира в Кыргызстане.',
+  keywords: 'Новости тенниса в Кыргызстане, Свежие новости о теннисе, Турниры в Кыргызстане, Блог о теннисе',
+  openGraph: {
+    title: 'Свежие новости — Главные события мира тенниса в Кыргызстане',
+    description:
+      'Читайте последние новости о турнирах, достижениях спортсменов и других событиях теннисного мира в Кыргызстане.',
+    images: 'https://tennis.kg/kslt.svg',
+    type: 'website',
+  },
+};
 
 interface Props {
   searchParams?: { [key: string]: string | null };

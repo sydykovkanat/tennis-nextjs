@@ -1,32 +1,31 @@
-
 .wrapper {
-    @apply grid gap-4 grid-cols-1
+  @apply grid gap-4 grid-cols-1;
 }
 
 .headerWrapper {
-    @apply flex  justify-between p-0;
+  @apply flex  justify-between p-0;
 }
 
 .titleWrapper {
-    @apply w-80 flex items-center;
+  @apply w-80 flex items-center;
 }
 
 .cardWrapper {
-    @apply relative p-4 bg-gray-100 dark:bg-gray-800 rounded-lg;
+  @apply relative p-4 bg-gray-100 dark:bg-gray-800 rounded-lg;
 }
 
 .events {
-    @apply flex items-center gap-4 rounded-xl;
+  @apply flex items-center gap-4 rounded-xl;
 }
 
 .textGray {
-    @apply block text-center text-muted-foreground;
+  @apply block text-center text-muted-foreground;
 }
 
 .deleteBlock {
-    @apply flex justify-end gap-2 mb-2
+  @apply flex justify-end gap-2 mb-2;
 }
 
 .scroll {
-    @apply hidden;
+  @apply hidden;
 }

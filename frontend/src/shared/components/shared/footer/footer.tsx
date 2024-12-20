@@ -60,28 +60,28 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
               ))}
 
               {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
-              <li>
-                <DropdownMenu>
+                <li>
+                  <DropdownMenu>
                     <DropdownMenuTrigger className={styles.dropdownTrigger}>
                       Положение
                       <ChevronUpIcon className={styles.dropdownIcon} />
                     </DropdownMenuTrigger>
 
-                  <DropdownMenuContent className={cn(styles.dropdownContent, 'dark:bg-gray-900')}>
-                    {dataItems.length > 0 &&
-                      dataItems[0].menuPosition.map((menuItem) => (
-                        <DropdownMenuItem
-                          key={menuItem._id}
-                          className={cn(styles.dropdownItem, 'hover:dark:bg-gray-800')}
-                        >
-                          <a href={menuItem.value} target='_blank' className={styles.dropdownLink}>
-                            {menuItem.name}
-                          </a>
-                        </DropdownMenuItem>
-                      ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </li>
+                    <DropdownMenuContent className={cn(styles.dropdownContent, 'dark:bg-gray-900')}>
+                      {dataItems.length > 0 &&
+                        dataItems[0].menuPosition.map((menuItem) => (
+                          <DropdownMenuItem
+                            key={menuItem._id}
+                            className={cn(styles.dropdownItem, 'hover:dark:bg-gray-800')}
+                          >
+                            <a href={menuItem.value} target='_blank' className={styles.dropdownLink}>
+                              {menuItem.name}
+                            </a>
+                          </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </li>
               )}
             </ul>
           </div>
