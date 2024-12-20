@@ -30,7 +30,7 @@ export const getRewards = async (req: Request, res: Response, next: NextFunction
     const dateFormat = 'dd.MM.yyyy';
     const { userId } = req.query;
 
-    const rewards = await Reward.find().where('userId').equals(userId).sort({ createdAt: -1 }).lean();
+    const rewards = await Reward.find().where('user').equals(userId).sort({ createdAt: -1 }).lean();
     if (rewards.length === 0) return res.status(404).send({ error: 'На данный момент у вас нету наград!' });
 
     const formattedRewards = rewards.map((item) => ({

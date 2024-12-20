@@ -15,6 +15,7 @@ import { Tournament } from './src/model/Tournament';
 import { tournamentsFixtures } from './src/utils/fixtures/tournamentsFixtures';
 import { mainRatingsFixtures } from './src/utils/fixtures/mainRatingsFixtures';
 import { generateUsers } from './src/utils/fixtures/generateUsers';
+import { Reward } from './src/model/Reward';
 
 const run = async () => {
   await mongoose.connect(config.database);
@@ -84,7 +85,7 @@ const run = async () => {
 
   await generateUsers(masters, proMasters, futures);
 
-  await User.create(
+  const [john, alice] = await User.create(
     {
       category: masters._id,
       fullName: 'John Doe',
@@ -106,6 +107,80 @@ const run = async () => {
       email: 'alice@gmail.com',
       token: randomUUID(),
     }
+  );
+
+  await Reward.create({
+      user: john,
+      createdAt: '2024-12-02T16:15:36.700+00:00',
+      updatedAt: '2024-12-03T16:15:36.700+00:00',
+      tournament: 'Winter Gold Cup',
+      place: 1,
+      nomination: 'Лучшая техника',
+      icon: 'cup',
+    },
+    {
+      user: john,
+      createdAt: '2024-12-01T16:15:36.700+00:00',
+      updatedAt: '2024-12-02T16:15:36.700+00:00',
+      tournament: 'Spring Silver League',
+      place: 2,
+      nomination: 'Лучший игрок',
+      icon: 'medal',
+    },
+    {
+      user: john,
+      createdAt: '2024-11-30T16:15:36.700+00:00',
+      updatedAt: '2024-12-01T16:15:36.700+00:00',
+      tournament: 'Summer Bronze Cup',
+      place: 3,
+      nomination: 'Лучший тренер',
+      icon: 'cup',
+    },
+    {
+      user: john,
+      createdAt: '2024-11-29T16:15:36.700+00:00',
+      updatedAt: '2024-11-30T16:15:36.700+00:00',
+      tournament: 'Autumn Platinum Series',
+      place: 1,
+      nomination: 'Лучшая стратегия',
+      icon: 'cup',
+    },
+    {
+      user: john,
+      createdAt: '2024-11-28T16:15:36.700+00:00',
+      updatedAt: '2024-11-29T16:15:36.700+00:00',
+      tournament: 'Winter Gold Cup',
+      place: 3,
+      nomination: 'Лучший лидер',
+      icon: 'cup',
+    },
+    {
+      user: alice,
+      createdAt: '2024-12-02T16:15:36.700+00:00',
+      updatedAt: '2024-12-03T16:15:36.700+00:00',
+      tournament: 'Winter Gold Cup',
+      place: 2,
+      nomination: 'Лучший лидер',
+      icon: 'medal',
+    },
+    {
+      user: alice,
+      createdAt: '2024-12-01T16:15:36.700+00:00',
+      updatedAt: '2024-12-02T16:15:36.700+00:00',
+      tournament: 'Spring Silver League',
+      place: 3,
+      nomination: 'Лучшая стратегия',
+      icon: 'cup',
+    },
+    {
+      user: alice,
+      createdAt: '2024-11-30T16:15:36.700+00:00',
+      updatedAt: '2024-12-01T16:15:36.700+00:00',
+      tournament: 'Summer Bronze Cup',
+      place: 1,
+      nomination: 'Лучший игрок',
+      icon: 'cup',
+    },
   );
 
   await RatingMember.create(mainRatingsFixtures);
