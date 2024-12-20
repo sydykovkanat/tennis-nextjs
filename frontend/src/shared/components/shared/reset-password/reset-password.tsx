@@ -1,12 +1,14 @@
 'use client';
 
 import { Loader } from '@/shared/components/shared';
-import { useResetPassword } from '@/shared/components/shared/reset-password/hooks/use-reset-password';
+import { useResetPassword } from '@/shared/components/shared/reset-password/use-reset-password';
+import { cn } from '@/shared/lib';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
 import { Button, Input } from '../../ui';
+import styles from './reset-password.module.css';
 
 const ResetPassword: React.FC = () => {
   const { resetPasswordLoading, passwords, passwordMatch, handleChange, handleSubmit } = useResetPassword();
@@ -14,15 +16,15 @@ const ResetPassword: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <section
-        className='w-full py-10 mx-auto px-6 xs:max-w-[545px] xs:py-12 xs:px-10 rounded-3xl dark:border dark:border-green-400'
+        className={cn(styles.SectionWrapper, 'dark:bg-gray-900')}
         style={{ boxShadow: '0px 4px 100px 0px #00000017' }}
       >
         <div className='mb-3'>
-          <h1 className='font-bold text-[28px]'>Сброс пароля.</h1>
-          <p className='text-sm text-black/75 dark:text-white'>Пожалуйста, введите ваш новый пароль для сброса.</p>
+          <h1 className={styles.BoldText}>Сброс пароля</h1>
+          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите ваш новый пароль для сброса.</p>
         </div>
 
-        <div className={'space-y-3 mb-5'}>
+        <div className={styles.DivWrapper}>
           <Input
             id='password'
             value={passwords.password}
@@ -39,7 +41,9 @@ const ResetPassword: React.FC = () => {
             onChange={handleChange}
             label='Подтвердите пароль'
             placeholder='Введите пароль еще раз'
-            className={`${passwords.confirmPassword !== passwords.password && 'ring-red-500 ring-1 focus-visible:ring-red-500'} h-12 focus-visible:ring-[#80BC41]`}
+            className={cn(styles.InputStyle, {
+              'ring-red-500 ring-1 focus-visible:ring-red-500': passwords.confirmPassword !== passwords.password,
+            })}
             type='password'
             autoComplete='current-password'
             error={passwordMatch ? 'Пароли не совпадают' : ''}
@@ -49,7 +53,7 @@ const ResetPassword: React.FC = () => {
         <Button
           disabled={passwordMatch || !passwords.password || resetPasswordLoading}
           type={'submit'}
-          className={'w-full h-14 bg-[#232A2E] flex justify-between px-10 font-bold mb-2.5 dark:bg-white'}
+          className={cn(styles.Button, 'dark:bg-white')}
         >
           Сбросить
           {resetPasswordLoading ? (

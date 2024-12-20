@@ -1,11 +1,14 @@
 'use client';
 
 import { Loader } from '@/shared/components/shared';
-import { useForgotPassword } from '@/shared/components/shared/forgot-password/hooks/use-forgot-password';
+import { useForgotPassword } from '@/shared/components/shared/forgot-password/use-forgot-password';
 import { Button, Input } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
+
+import styles from './forgot-password.module.css';
 
 const ForgotPassword: React.FC = () => {
   const { forgotPasswordLoading, email, handleChange, handleSubmit, disabled, timer } = useForgotPassword();
@@ -13,15 +16,15 @@ const ForgotPassword: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <section
-        className='w-full py-10 mx-auto px-6 xs:max-w-[545px] xs:py-12 xs:px-10 rounded-3xl dark:border dark:border-green-400'
+        className={cn(styles.SectionWrapper, 'dark:bg-gray-900')}
         style={{ boxShadow: '0px 4px 100px 0px #00000017' }}
       >
         <div className='mb-3'>
-          <h1 className='font-bold text-[28px]'>Сброс пароля.</h1>
-          <p className='text-sm text-black/75 dark:text-white'>Пожалуйста, введите вашу почту для сброса пароля.</p>
+          <h1 className={styles.BoldText}>Сброс пароля</h1>
+          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите вашу почту для сброса пароля.</p>
         </div>
 
-        <div className={'space-y-3 mb-5'}>
+        <div className={styles.DivWrapper}>
           <Input
             id='email'
             value={email}
@@ -36,7 +39,9 @@ const ForgotPassword: React.FC = () => {
         <Button
           disabled={email.length === 0 || forgotPasswordLoading || disabled}
           type={'submit'}
-          className={`dark:bg-white w-full h-14 bg-[#232A2E] flex justify-between px-10 font-bold mb-2.5 ${disabled && 'pointer-events-none'}`}
+          className={cn(styles.Button, 'dark:bg-white', {
+            'pointer-events-none': disabled,
+          })}
         >
           {timer > 0 ? `Запросить код заново (${timer})` : 'Отправить ссылку на сброс пароля'}
           {forgotPasswordLoading ? (
