@@ -1,5 +1,6 @@
 import type { HydratedDocument, Model } from 'mongoose';
 import type { Request } from 'express';
+import { Reward } from './reward';
 
 export interface UserFields {
   fullName: string;
@@ -7,6 +8,7 @@ export interface UserFields {
   dateOfBirth: string;
   gender: 'male' | 'female';
   category: string;
+  rewards: Reward[];
   avatar: string | null;
   password: string;
   token: string;

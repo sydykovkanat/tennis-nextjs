@@ -27,6 +27,7 @@ const run = async () => {
     await db.dropCollection('carousels');
     await db.dropCollection('news');
     await db.dropCollection('ratings');
+    await db.dropCollection('rewards');
     await db.dropCollection('ratingmembers');
     await db.dropCollection('tournaments');
     await db.dropCollection('footers');

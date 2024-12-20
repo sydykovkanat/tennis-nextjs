@@ -12,6 +12,7 @@ import { ratingsRouter } from './src/routes/ratings';
 import { usersRouter } from './src/routes/users';
 import { footersRouter } from './src/routes/footers';
 import { tournamentsRouter } from './src/routes/tournament';
+import { rewardsRouter } from './src/routes/rewards';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/users', usersRouter);
 app.use('/ratingMembers', ratingMembersRouter);
 app.use('/carousel', carouselRouter);
 app.use('/news', newsRouter);
+app.use('/rewards', rewardsRouter);
 app.use('/categories', categoriesRouter);
 app.use('/partners', partnersRouter);
 app.use('/ratings', ratingsRouter);

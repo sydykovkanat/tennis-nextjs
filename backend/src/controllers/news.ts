@@ -150,8 +150,8 @@ export const updateNews = async (req: Request, res: Response, next: NextFunction
     };
 
     const updatedNews = await News.findByIdAndUpdate(id, newsData, { new: true, runValidators: true });
+    if (!updatedNews) return res.status(404).send({ error: 'Новость не найдена или ошибка при сохранении!'});
 
-    if (!updatedNews) return res.status(404).send({ error: 'News not found or failed to update!' });
     return res.send(updatedNews);
   } catch (e) {
     if (e instanceof Error.ValidationError) {
