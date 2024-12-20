@@ -1,5 +1,18 @@
 import { getRatings } from '@/actions/ratings';
 import { Container, MainTitles, Ratings } from '@/shared/components/shared';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Рейтинг членов теннисного спорта — Лидеры тенниса Кыргызстана',
+  description: 'Рейтинг членов КСЛТ - следите за актуальными датами рейтингов и турниров.',
+  keywords: 'Рейтинг членов КСЛТ, Рейтинг по теннису в Кыргызстане, КСЛТ рейтинг',
+  openGraph: {
+    title: 'Рейтинг членов теннисного спорта — Лидеры тенниса Кыргызстана',
+    description: 'Рейтинг членов КСЛТ - следите за актуальными датами рейтингов и турниров.',
+    images: 'https://tennis.kg/kslt.svg',
+    type: 'website',
+  },
+};
 
 export default async function Page() {
   const ratings = await getRatings();

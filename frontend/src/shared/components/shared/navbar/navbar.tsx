@@ -65,35 +65,34 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
               ))}
 
               {dataItems.length > 0 && dataItems[0].menuPosition.length > 0 && userPermission >= 1 && (
-              <li>
-                <NavigationMenu>
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
+                <li>
+                  <NavigationMenu>
+                    <NavigationMenuList>
+                      <NavigationMenuItem>
                         <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
-                          {dataItems.length > 0 &&
-                            dataItems[0].menuPosition.map((menuItem) => (
-                              <li
-                                key={menuItem._id}
-                                className={cn(styles.navigationMenuList, 'hover:dark:bg-gray-800')}
-                              >
-                                <NavigationMenuLink
-                                  className={styles.navigationMenuLink}
-                                  href={menuItem.value}
-                                  target='_blank'
+                        <NavigationMenuContent>
+                          <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
+                            {dataItems.length > 0 &&
+                              dataItems[0].menuPosition.map((menuItem) => (
+                                <li
+                                  key={menuItem._id}
+                                  className={cn(styles.navigationMenuList, 'hover:dark:bg-gray-800')}
                                 >
-                                  {menuItem.name}
-                                </NavigationMenuLink>
-                              </li>
-                            ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-
-                  </NavigationMenuList>
-                </NavigationMenu>
-              </li>
+                                  <NavigationMenuLink
+                                    className={styles.navigationMenuLink}
+                                    href={menuItem.value}
+                                    target='_blank'
+                                  >
+                                    {menuItem.name}
+                                  </NavigationMenuLink>
+                                </li>
+                              ))}
+                          </ul>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
+                </li>
               )}
             </ul>
           </div>
