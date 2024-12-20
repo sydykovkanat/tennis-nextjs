@@ -2,6 +2,7 @@ import {
   addUser,
   fetchOneUser,
   fetchUsers,
+  forgotPassword,
   getPermissionForUser,
   login,
   register,
@@ -25,6 +26,10 @@ interface UsersState {
   userPermission: number;
   usersPages: number;
   currentPage: number;
+  forgotPasswordLoading: boolean;
+  forgotPasswordError: GlobalError | null;
+  resetPasswordLoading: boolean;
+  resetPasswordError: GlobalError | null;
 }
 
 const initialState: UsersState = {
@@ -41,6 +46,10 @@ const initialState: UsersState = {
   userPermission: 0,
   usersPages: 0,
   currentPage: 1,
+  forgotPasswordLoading: false,
+  forgotPasswordError: null,
+  resetPasswordError: null,
+  resetPasswordLoading: false,
 };
 
 export const usersSlice = createSlice({
@@ -153,6 +162,19 @@ export const usersSlice = createSlice({
         state.usersUpdatingError = payload || null;
         state.usersUpdating = false;
       });
+
+    builder
+      .addCase(forgotPassword.pending, (state) => {
+        state.forgotPasswordError = null;
+        state.forgotPasswordLoading = true;
+      })
+      .addCase(forgotPassword.fulfilled, (state) => {
+        state.forgotPasswordLoading = false;
+      })
+      .addCase(forgotPassword.rejected, (state, { payload: error }) => {
+        state.forgotPasswordError = error || null;
+        state.forgotPasswordLoading = false;
+      });
   },
   selectors: {
     selectUser: (state) => state.user,
@@ -167,6 +189,10 @@ export const usersSlice = createSlice({
     selectUpdatingError: (state) => state.usersUpdatingError,
     selectUsersListPages: (state) => state.usersPages,
     selectCurrentPage: (state) => state.currentPage,
+    selectForgotPasswordLoading: (state) => state.forgotPasswordLoading,
+    selectForgotPasswordError: (state) => state.forgotPasswordError,
+    selectResetPasswordLoading: (state) => state.resetPasswordLoading,
+    selectResetPasswordError: (state) => state.resetPasswordError,
   },
 });
 
@@ -183,5 +209,9 @@ export const {
   selectUpdatingError,
   selectUsersListPages,
   selectCurrentPage,
+  selectForgotPasswordLoading,
+  selectForgotPasswordError,
+  selectResetPasswordLoading,
+  selectResetPasswordError,
 } = usersSlice.selectors;
 export const { unsetUser, setCurrentPage } = usersSlice.actions;
