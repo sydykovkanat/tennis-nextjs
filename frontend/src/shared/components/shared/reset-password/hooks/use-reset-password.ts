@@ -1,16 +1,15 @@
 'use client';
 
-import { resetPassword } from '@/features/users/usersThunks';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectResetPasswordError, selectResetPasswordLoading } from '@/shared/lib/features/users/users-slice';
+import { resetPassword } from '@/shared/lib/features/users/users-thunks';
+import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { type ChangeEvent, type FormEvent, useState } from 'react';
 
-// import { useNavigate, useParams } from 'react-router-dom';
-
 export const useResetPassword = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { token } = useParams() as { token: string };
   const resetPasswordLoading = useAppSelector(selectResetPasswordLoading);
@@ -33,7 +32,7 @@ export const useResetPassword = () => {
 
       await dispatch(resetPassword({ password: passwords.password, token })).unwrap();
       toast.success('Пароль успешно изменен.');
-      navigate('/login');
+      router.push('/login');
     } catch (error) {
       console.error(error);
       toast.error(resetPasswordError?.error || 'Что-то пошло не так.');

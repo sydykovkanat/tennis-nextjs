@@ -1,14 +1,14 @@
 import { Container } from '@/shared/components/shared';
 import dynamic from 'next/dynamic';
 
-const ForgotPassword = dynamic(() => import('@/shared/components/shared/forgot-password/forgot-password'), {
+const ResetPassword = dynamic(() => import('@/shared/components/shared/reset-password/reset-password'), {
   ssr: false,
 });
 
 export default function Page() {
   return (
     <Container>
-      <ForgotPassword />
+      <ResetPassword />
     </Container>
   );
 }

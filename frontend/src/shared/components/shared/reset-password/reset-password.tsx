@@ -1,12 +1,14 @@
-import { Loader } from '@/components/Loader/Loader';
-import { Button } from '@/components/ui/button';
-import { UsersInput } from '@/features/users/components/UsersInput/UsersInput';
-import { useResetPassword } from '@/features/users/hooks/resetPassword';
+'use client';
+
+import { Loader } from '@/shared/components/shared';
+import { useResetPassword } from '@/shared/components/shared/reset-password/hooks/use-reset-password';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
-export const ResetPassword: React.FC = () => {
+import { Button, Input } from '../../ui';
+
+const ResetPassword: React.FC = () => {
   const { resetPasswordLoading, passwords, passwordMatch, handleChange, handleSubmit } = useResetPassword();
 
   return (
@@ -21,7 +23,7 @@ export const ResetPassword: React.FC = () => {
         </div>
 
         <div className={'space-y-3 mb-5'}>
-          <UsersInput
+          <Input
             id='password'
             value={passwords.password}
             onChange={handleChange}
@@ -31,7 +33,7 @@ export const ResetPassword: React.FC = () => {
             autoComplete='new-password'
           />
 
-          <UsersInput
+          <Input
             id='confirmPassword'
             value={passwords.confirmPassword}
             onChange={handleChange}
@@ -60,3 +62,5 @@ export const ResetPassword: React.FC = () => {
     </form>
   );
 };
+
+export default ResetPassword;
