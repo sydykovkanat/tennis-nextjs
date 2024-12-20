@@ -111,3 +111,6 @@ jobs:
       - name: Start frontend
         run: pm2 start "npm run start" --name="Frontend"
         working-directory: frontend
+
+      - name: PM2 Save
+        run: pm2 save
