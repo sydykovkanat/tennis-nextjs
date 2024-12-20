@@ -22,6 +22,7 @@ import { XIcon } from 'lucide-react';
 import React, { FormEvent, useEffect } from 'react';
 
 import styles from './news-form.module.css';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   open: boolean;
@@ -45,6 +46,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
   } = useNewsForm();
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectOneNews);
+  const router = useRouter();
 
   useEffect(() => {
     if (newsId) {
@@ -70,9 +72,11 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
       if (isEdit && newsId) {
         await dispatch(updateNews({ newsId, newsMutation: news })).unwrap();
         toast.success('Новость успешно обновлена!');
+        router.refresh();
       } else {
         await dispatch(createNews(news)).unwrap();
         toast.success('Новость успешно добавлена!');
+        router.refresh();
       }
 
       setOpen(false);
