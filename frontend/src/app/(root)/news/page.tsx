@@ -26,14 +26,11 @@ interface Props {
 }
 
 const NewsPage = async ({ searchParams }: Props) => {
-  let queryObj;
-  if (searchParams) {
-    queryObj = {
-      page: searchParams.page || 1,
-      startDate: searchParams.startDate || '',
-      endDate: searchParams.endDate || '',
-    };
-  }
+  const queryObj = {
+    page: searchParams?.page || '1',
+    startDate: searchParams?.startDate || '',
+    endDate: searchParams?.endDate || '',
+  };
 
   const validateQuery = queryObj && deleteEmptyQueryStrings(queryObj);
   const data = { query: validateQuery };
