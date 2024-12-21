@@ -2,14 +2,13 @@
 
 import { UserEdit } from '@/shared/components/shared';
 import { useDialog, useFetchUser } from '@/shared/components/shared/personal-account/hooks';
-import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import { Button } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { Pencil } from 'lucide-react';
-
 import React from 'react';
+import styles from './personal-data.module.css';
 
 export const PersonalData = () => {
   const { open, setOpen } = useDialog();
@@ -22,10 +21,10 @@ export const PersonalData = () => {
         <main className={cn(styles.mainWrapper)}>
           <div className={cn(styles.fullNameDiv)}>
             <h2 className={cn(styles.fullName)}>{currentUser.fullName}</h2>
-            <span className={cn(styles.greenText)}>{currentUser.category.name}</span>
+            <span className={cn(styles.category)}>{currentUser.category.name}</span>
           </div>
 
-          <div className={cn(styles.divWrapper, 'mb-5')}>
+          <div className={cn(styles.divWrapper)}>
             <div className={cn(styles.textWrapper)}>
               <h3 className={cn(styles.title)}>Почта</h3>
               <span className={cn(styles.subtitle)}>{currentUser.email}</span>
@@ -47,13 +46,11 @@ export const PersonalData = () => {
             </div>
           </div>
 
-          <div className={cn('flex justify-between')}>
+          <div className={cn(styles.actionsWrapper)}>
             <Button
               icon={Pencil}
               onClick={() => setOpen(true)}
-              className={cn(
-                'text-inherit bg-transparent border border-black rounded-lg dark:text-white dark:border-white hover:text-white dark:hover:bg-inherit',
-              )}
+              className={cn(styles.editButton, 'dark:text-white dark:border-white dark:hover:bg-inherit')}
             >
               Редактировать
             </Button>

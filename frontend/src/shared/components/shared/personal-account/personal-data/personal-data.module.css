@@ -1,0 +1,43 @@
+.accountWrapper {
+    @apply bg-white p-[25px] sm:p-[40px] rounded-lg;
+}
+
+.fullName {
+    @apply text-xl font-medium;
+}
+
+.fullNameDiv {
+    @apply mb-3 flex flex-col;
+}
+
+.category {
+    @apply text-cr-green-700;
+}
+
+.title {
+    @apply font-medium w-full sm:w-1/3;
+}
+
+.divWrapper {
+    @apply space-y-2 flex flex-col mb-5;
+}
+
+.mainWrapper {
+    @apply flex flex-col max-w-2xl;
+}
+
+.textWrapper {
+    @apply flex flex-wrap;
+}
+
+.subtitle {
+    @apply text-muted-foreground w-full sm:w-2/3 break-words;
+}
+
+.actionsWrapper {
+    @apply flex flex-col xs:flex-row xs:justify-between
+}
+
+.editButton {
+    @apply text-inherit bg-transparent border border-black rounded-lg hover:text-white;
+}

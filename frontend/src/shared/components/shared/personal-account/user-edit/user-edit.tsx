@@ -1,7 +1,6 @@
 'use client';
 
 import { useUserForm } from '@/shared/components/shared/personal-account/hooks';
-import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import UserDatePicker from '@/shared/components/shared/personal-account/user-datepicker/user-datepicker';
 import {
   Button,
@@ -25,6 +24,7 @@ import {
 } from '@/shared/components/ui/dialog';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 import { User } from '@/shared/types/user.types';
+import styles from './edit.module.css';
 
 import React, { PropsWithChildren } from 'react';
 

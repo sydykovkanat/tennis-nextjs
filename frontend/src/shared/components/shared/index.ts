@@ -75,6 +75,7 @@ export { useUserSearch } from './admin-users-list/hooks/use-user-search';
 export { UserEdit } from './personal-account/user-edit/user-edit';
 export { ThemeSwitcher } from './theme-switcher/theme-switcher';
 export { PersonalData } from './personal-account/personal-data/personal-data';
+export { Rewards } from './personal-account/rewards/rewards';
 
 export { InfoTip } from './info-tip/info-tip';
 

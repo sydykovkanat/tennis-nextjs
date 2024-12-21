@@ -1,10 +1,12 @@
 'use client';
 
-import { Container, GradientCircle, PersonalData, userCircles } from '@/shared/components/shared';
+import { Container, GradientCircle, PersonalData, Rewards, userCircles } from '@/shared/components/shared';
 import { ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 
 import React, { useEffect, useState } from 'react';
+
+import styles from './personal-account.module.css';
 
 const PersonalAccount = () => {
   const [currentTab, setCurrentTab] = useState<string>('personalData');
@@ -22,33 +24,32 @@ const PersonalAccount = () => {
   };
 
   return (
-    <Container className={'w-full'}>
+    <Container>
       {userCircles.map((circle, id) => (
         <GradientCircle key={id} {...circle} />
       ))}
-      <div
-        className={cn('bg-white p-[25px] sm:p-[40px] rounded-lg dark:bg-[#1F2937]')}
-        style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
-      >
-        <div className={cn()}>
-          <h1 className={cn('text-xl xs:text-2xl font-medium leading-none border-b pb-2 mb-4')}>Личный кабинет</h1>
 
-          <Tabs value={currentTab} orientation={'vertical'} defaultValue={currentTab} onValueChange={handleTabChange}>
-            <ScrollArea className={cn('max-w-max pb-3')}>
-              <TabsList className={cn('flex items-center gap-1 bg-zinc-200/30 border dark:bg-[#1F2937]')}>
-                <TabsTrigger value='personalData'>Мои данные</TabsTrigger>
-                <TabsTrigger value='rewards'>Награды</TabsTrigger>
-              </TabsList>
-            </ScrollArea>
+      <h1 className={cn(styles.title)}>Личный кабинет</h1>
+      <div className={cn(styles.box, 'dark:bg-[#1F2937]')}>
+        <Tabs value={currentTab} orientation={'vertical'} defaultValue={currentTab} onValueChange={handleTabChange}>
+          <ScrollArea className={cn(styles.tabsScroll)}>
+            <TabsList className={cn(styles.tabsList, 'dark:border-b-cr-green-700')}>
+              <TabsTrigger value='personalData' className={cn(styles.tabsTrigger, 'dark:text-white')}>
+                Мои данные
+              </TabsTrigger>
+              <TabsTrigger value='rewards' className={cn(styles.tabsTrigger, 'dark:text-white')}>
+                Награды
+              </TabsTrigger>
+            </TabsList>
+          </ScrollArea>
 
-            <TabsContent value={'personalData'}>
-              <PersonalData />
-            </TabsContent>
-            <TabsContent value={'rewards'}>
-              <div>Hello world!</div>
-            </TabsContent>
-          </Tabs>
-        </div>
+          <TabsContent value={'personalData'}>
+            <PersonalData />
+          </TabsContent>
+          <TabsContent value={'rewards'}>
+            <Rewards />
+          </TabsContent>
+        </Tabs>
       </div>
     </Container>
   );
