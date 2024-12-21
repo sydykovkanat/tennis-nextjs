@@ -27,6 +27,7 @@ export const RatingMemberCard: React.FC<Props> = ({ ratingMember }) => {
         height={192}
         style={{ objectFit: 'cover' }}
         quality={100}
+        loading={'lazy'}
       />
       <div className={styles.cardInfoWrapper}>
         <p className={styles.cardInfoNameWrapper}>

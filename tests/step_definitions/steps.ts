@@ -33,6 +33,7 @@ Given('я авторизован на сайте', () => {
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
   I.seeInCurrentUrl('/');
+  I.wait(3);
 });
 
 //вход в админку
@@ -40,6 +41,7 @@ Given('я должен быть в административной панели
   I.click('button[aria-haspopup="menu"]');
   I.seeElement('#admin');
   I.click('#admin');
+  I.wait(3);
 });
 
 //проверка на успешность теста в админке если у тебя тост уведомление
