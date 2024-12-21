@@ -37,7 +37,7 @@
   @apply space-y-2 flex flex-col;
 }
 .mainWrapper {
-  @apply mt-2 flex flex-col max-w-2xl;
+  @apply flex flex-col max-w-2xl;
 }
 
 .textWrapper {

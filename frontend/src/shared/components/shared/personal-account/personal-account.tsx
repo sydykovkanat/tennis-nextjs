@@ -1,73 +1,56 @@
 'use client';
 
-import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/components/shared';
-import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
-import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
-import { useAppSelector } from '@/shared/hooks/hooks';
+import { Container, GradientCircle, PersonalData, userCircles } from '@/shared/components/shared';
+import { ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
-import { Pencil } from 'lucide-react';
 
-import React from 'react';
-
-import { Button } from '../../ui/button';
+import React, { useEffect, useState } from 'react';
 
 const PersonalAccount = () => {
-  useFetchUser();
-  const currentUser = useAppSelector(selectCurrentUser);
+  const [currentTab, setCurrentTab] = useState<string>('personalData');
+
+  useEffect(() => {
+    const savedTab = sessionStorage.getItem('personalAccount');
+    if (savedTab) {
+      setCurrentTab(savedTab);
+    }
+  }, []);
+
+  const handleTabChange = (newTab: string) => {
+    setCurrentTab(newTab);
+    sessionStorage.setItem('personalAccount', newTab);
+  };
+
   return (
-    currentUser && (
-      <div className='overflow-x-hidden'>
-        <Container className={'w-full'}>
-          {userCircles.map((circle, id) => (
-            <GradientCircle key={id} {...circle} />
-          ))}
-          <div
-            className={cn(styles.accountWrapper, 'dark:bg-[#1F2937]')}
-            style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
-          >
-            <div className={cn(styles.accountHeader, 'border-b-gray-700')}>
-              <div>
-                <h1>Личный кабинет</h1>
-                <small>Ваша персональная информация и управление данными</small>
-              </div>
-              <UserEdit user={currentUser}>
-                <Button icon={Pencil}>Редактировать</Button>
-              </UserEdit>
-            </div>
+    <Container className={'w-full'}>
+      {userCircles.map((circle, id) => (
+        <GradientCircle key={id} {...circle} />
+      ))}
+      <div
+        className={cn('bg-white p-[25px] sm:p-[40px] rounded-lg dark:bg-[#1F2937]')}
+        style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
+      >
+        <div className={cn()}>
+          <h1 className={cn('text-xl xs:text-2xl font-medium leading-none border-b pb-2 mb-4')}>Личный кабинет</h1>
 
-            <main className={styles.mainWrapper}>
-              <div className={styles.fullNameDiv}>
-                <h2 className={styles.fullName}>{currentUser.fullName}</h2>
-                <span className={styles.greenText}>{currentUser.category.name}</span>
-              </div>
+          <Tabs value={currentTab} orientation={'vertical'} defaultValue={currentTab} onValueChange={handleTabChange}>
+            <ScrollArea className={cn('max-w-max pb-3')}>
+              <TabsList className={cn('flex items-center gap-1 bg-zinc-200/30 border dark:bg-[#1F2937]')}>
+                <TabsTrigger value='personalData'>Мои данные</TabsTrigger>
+                <TabsTrigger value='rewards'>Награды</TabsTrigger>
+              </TabsList>
+            </ScrollArea>
 
-              <div className={styles.divWrapper}>
-                <div className={styles.textWrapper}>
-                  <h3 className={styles.title}>Почта</h3>
-                  <span className={styles.subtitle}>{currentUser.email}</span>
-                </div>
-
-                <div className={styles.textWrapper}>
-                  <h3 className={styles.title}>Телефон</h3>
-                  <span className={styles.subtitle}>{currentUser.telephone}</span>
-                </div>
-
-                <div className={styles.textWrapper}>
-                  <h3 className={styles.title}>Дата рождения</h3>
-                  <span className={styles.subtitle}>{currentUser.dateOfBirth}</span>
-                </div>
-
-                <div className={styles.textWrapper}>
-                  <h3 className={styles.title}>Пол</h3>
-                  <span className={styles.subtitle}>{currentUser.gender === 'male' ? 'Мужской' : 'Женский'}</span>
-                </div>
-              </div>
-            </main>
-          </div>
-        </Container>
+            <TabsContent value={'personalData'}>
+              <PersonalData />
+            </TabsContent>
+            <TabsContent value={'rewards'}>
+              <div>Hello world!</div>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
-    )
+    </Container>
   );
 };
 

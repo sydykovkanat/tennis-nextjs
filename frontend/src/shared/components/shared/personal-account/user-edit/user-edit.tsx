@@ -1,6 +1,6 @@
 'use client';
 
-import { useDialog, useUserForm } from '@/shared/components/shared/personal-account/hooks';
+import { useUserForm } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import UserDatePicker from '@/shared/components/shared/personal-account/user-datepicker/user-datepicker';
 import {
@@ -30,25 +30,18 @@ import React, { PropsWithChildren } from 'react';
 
 interface Props {
   user: User;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
-  const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, resetUserInfo, isFormValid } =
-    useUserForm({
-      user,
-      closeDialog,
-    });
-
-  const handleDialogOpenChange = (open: boolean) => {
-    setIsDialogOpen(open);
-    if (open) {
-      resetUserInfo();
-    }
-  };
+export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user, open, setOpen }) => {
+  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, isFormValid } = useUserForm({
+    user,
+    closeDialog: () => setOpen(false),
+  });
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
@@ -119,7 +112,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               </Button>
 
               <DialogClose asChild>
-                <Button ref={closeRef} className={'w-full'} type={'button'} variant={'outline'}>
+                <Button className={'w-full'} type={'button'} variant={'outline'}>
                   Отменить
                 </Button>
               </DialogClose>
