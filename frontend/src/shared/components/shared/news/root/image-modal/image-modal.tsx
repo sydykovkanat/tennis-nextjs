@@ -35,8 +35,8 @@ export const ImageModal: React.FC<Props> = ({ images, open, onClose, initialInde
                 src={API_URL + '/' + img}
                 alt={`Image ${i}`}
                 className={cn(styles.image)}
-                width={1920}
-                height={1080}
+                width={1400}
+                height={720}
               />
             </CarouselItem>
           ))}

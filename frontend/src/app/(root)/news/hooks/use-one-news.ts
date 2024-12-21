@@ -1,3 +1,5 @@
+'use client';
+
 import { fetchNewsByLimit, fetchOneNews } from '@/actions/news';
 import { News } from '@/shared/types/news.types';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -7,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 export const useOneNews = () => {
   const { id } = useParams<{ id: string }>();
-  const [oneNews, setOneNews] = useState<News>();
+  const [oneNews, setOneNews] = useState<News | null>(null);
   const [news, setNews] = useState<News[]>([]);
   const [emblaRef] = useEmblaCarousel({ dragFree: true, loop: true });
   const [initialIndex, setInitialIndex] = useState<number>(0);
@@ -24,6 +26,7 @@ export const useOneNews = () => {
 
     void fetchData();
   }, [id]);
+
   return {
     emblaRef,
     oneNews,

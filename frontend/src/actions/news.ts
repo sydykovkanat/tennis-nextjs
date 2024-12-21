@@ -3,17 +3,8 @@ import { News, NewsResponse } from '@/shared/types/news.types';
 import { Filters } from '@/shared/types/root.types';
 
 export const fetchNews = async ({ data }: { data: Filters }) => {
-  let query = '';
-  try {
-    if (data?.query) {
-      query = toQueryParams(data.query);
-    }
-    const { data: news } = await axiosApi.get<NewsResponse>(`/news/${query}`);
-    return news;
-  } catch (error) {
-    console.error('Error fetching news: ', error);
-    throw error;
-  }
+  const query = data?.query ? toQueryParams(data.query) : '';
+  return (await axiosApi.get<NewsResponse>(`/news/${query}`)).data;
 };
 
 export const fetchOneNews = async (id: string) => {
