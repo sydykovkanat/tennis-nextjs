@@ -39,7 +39,6 @@ const NewsPage = async ({ searchParams }: Props) => {
   const data = { query: validateQuery };
   const newsResponse: NewsResponse = await fetchNews({ data });
   const news = newsResponse.data;
-  await new Promise((res) => setTimeout(res, 5000));
 
   return (
     <Suspense fallback={<Loading />}>
