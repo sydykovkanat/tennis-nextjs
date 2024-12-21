@@ -5,7 +5,7 @@ import { selectUser } from '@/shared/lib/features/users/users-slice';
 import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const UserCabinet = dynamic(() => import('@/shared/components/shared/personal-account/personal-account'), {
   ssr: false,
@@ -14,8 +14,11 @@ const UserCabinet = dynamic(() => import('@/shared/components/shared/personal-ac
 export default function Page() {
   const user = useAppSelector(selectUser);
 
-  if (!user) {
-    redirect('/404');
-  }
+  useEffect(() => {
+    if (!user) {
+      redirect('/404');
+    }
+  }, [user]);
+
   return <UserCabinet />;
 }
