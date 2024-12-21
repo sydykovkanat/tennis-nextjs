@@ -47,4 +47,6 @@ const NewsPage = async ({ searchParams }: Props) => {
   );
 };
 
+export const dynamic = 'force-dynamic';
+
 export default NewsPage;
