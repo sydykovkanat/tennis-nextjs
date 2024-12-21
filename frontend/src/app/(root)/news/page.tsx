@@ -1,11 +1,11 @@
 import { fetchNews } from '@/actions/news';
 import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
+import Loading from '@/app/(root)/news/loading';
 import { Container, NewsTitle } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { NewsResponse } from '@/shared/types/news.types';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import Loading from '@/app/(root)/news/loading';
 
 export const metadata: Metadata = {
   title: 'Свежие новости — Главные события мира тенниса в Кыргызстане',
@@ -39,6 +39,7 @@ const NewsPage = async ({ searchParams }: Props) => {
   const data = { query: validateQuery };
   const newsResponse: NewsResponse = await fetchNews({ data });
   const news = newsResponse.data;
+  await new Promise((res) => setTimeout(res, 5000));
 
   return (
     <Suspense fallback={<Loading />}>
