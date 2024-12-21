@@ -33,6 +33,7 @@ Given('я авторизован на сайте', () => {
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
   I.seeInCurrentUrl('/');
+  I.wait(3);
 });
 
 //вход в админку
