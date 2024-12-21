@@ -10,7 +10,7 @@ When('ввожу в поле {string} значение {string}', (field: string
   I.fillField(field, value);
 });
 
-//выбрать что то из селекта
+//выбрать что-то из селекта
 When('в поле {string} выбираю {string}', (select: string, value: string) => {
   I.selectOption(`//*[contains(text(), '${select}')]/following-sibling::select`, value);
 });
@@ -33,6 +33,7 @@ Given('я авторизован на сайте', () => {
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
   I.seeInCurrentUrl('/');
+  I.wait(3);
 });
 
 //вход в админку
@@ -40,6 +41,7 @@ Given('я должен быть в административной панели
   I.click('button[aria-haspopup="menu"]');
   I.seeElement('#admin');
   I.click('#admin');
+  I.wait(5);
 });
 
 //проверка на успешность теста в админке если у тебя тост уведомление
