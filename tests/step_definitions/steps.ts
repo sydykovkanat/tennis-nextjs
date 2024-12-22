@@ -2,6 +2,7 @@ export const { I } = inject();
 
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
+  I.wait(5);
   I.click(btn);
 });
 
@@ -41,6 +42,7 @@ Given('я должен быть в административной панели
   I.click('button[aria-haspopup="menu"]');
   I.seeElement('#admin');
   I.click('#admin');
+  I.wait(3);
 });
 
 //проверка на успешность теста в админке если у тебя тост уведомление
