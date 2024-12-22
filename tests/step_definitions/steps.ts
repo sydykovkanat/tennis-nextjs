@@ -1,5 +1,18 @@
 export const { I } = inject();
 
+const pageMap: Record<string, string> = {
+  register: '/register',
+  login: '/login',
+  calendar: '/calendar',
+  rating: '/rating',
+  news: '/news',
+};
+
+//переход по страницам
+Given('я нахожусь на странице {string}', (page: string) => {
+  I.amOnPage(pageMap[page]);
+});
+
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
   I.wait(5);

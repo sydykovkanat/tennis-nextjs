@@ -2,10 +2,6 @@ import { I } from './steps';
 
 // Общие шаги
 
-Given('я нахожусь на странице календаря', () => {
-  I.amOnPage('/calendar');
-});
-
 Given('я вижу карточку с текстом {string}', (tournamentName: string) => {
   I.seeElement(`[data-testid="${tournamentName}"]`);
 });

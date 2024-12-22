@@ -27,6 +27,7 @@ exports.config = {
       './step_definitions/partner.steps.ts',
       './step_definitions/top-ratings.steps.ts',
       './step_definitions/tournaments.steps.ts',
+      './step_definitions/users.steps.ts',
     ],
   },
   plugins: {
