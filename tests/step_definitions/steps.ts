@@ -2,6 +2,7 @@ export const { I } = inject();
 
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
+  I.wait(3);
   I.click(btn);
 });
 
@@ -29,6 +30,7 @@ When('я должен быть на главной странице', () => {
 //логинка
 Given('я авторизован на сайте', () => {
   I.amOnPage('/login');
+  I.wait(5);
   I.fillField('Телефон', '0555555555');
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
@@ -37,6 +39,7 @@ Given('я авторизован на сайте', () => {
 
 //вход в админку
 Given('я должен быть в административной панели', () => {
+  I.wait(5);
   I.click('button[aria-haspopup="menu"]');
   I.seeElement('#admin');
   I.click('#admin');
