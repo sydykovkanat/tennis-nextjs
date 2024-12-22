@@ -2,6 +2,7 @@ export const { I } = inject();
 
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
+  I.wait(5);
   I.click(btn);
 });
 
