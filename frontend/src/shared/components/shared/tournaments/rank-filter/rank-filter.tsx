@@ -24,7 +24,7 @@ export const RankFilter: React.FC<Props> = ({ className }) => {
             value={value}
             className={cn(
               styles.tabsTriggers,
-              'hover:bg-transparent dark:text-white leading-7 data-[state=active]:shadow-none data-[state=active]:text-tn-green',
+              'hover:bg-transparent dark:text-white leading-7 data-[state=active]:shadow-none data-[state=active]:text-tn-green dark:data-[state=active]:text-tn-green rounded-none',
             )}
           >
             {label}
