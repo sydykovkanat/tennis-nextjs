@@ -89,7 +89,7 @@ jobs:
       - name: Start backend and frontend
         run: |
           echo "### Start backend... ###"
-          pm2 start 0
+          pm2 restart 0
         working-directory: backend
 
       - name: Wait for backend to be ready
@@ -103,7 +103,7 @@ jobs:
       - name: Start frontend
         run: |
           echo "### Start frontend... ###"
-          pm2 start 1
+          pm2 restart 1
         working-directory: frontend
 
       - name: Wait for frontend to be ready
