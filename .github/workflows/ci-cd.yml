@@ -1,4 +1,4 @@
-name: "CI/CD"
+name: "CI-CD"
 
 on:
   push:
@@ -17,9 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.18.0'
-
-      - name: Kill all test processes
-        run: pm2 delete 3 && pm2 delete 4
 
       - name: Install backend dependencies
         run: npm ci
