@@ -91,11 +91,17 @@ jobs:
           echo "### Extracting node_modules... ###"
           tar -xzf node_modules.tar.gz
 
+      - name: Seed test database
+        run: |
+          echo "### Start seed test database... ###"
+          cd backend
+          npm run seed:test
+
       - name: Start backend tests with pm2
         run: |
           echo "### Starting backend tests with pm2... ###"
           cd backend
-          npm run start:test
+          pm2 start "npm run start:test" --name "Backend tests"
 
       - name: Wait for backend to be ready
         run: |
@@ -109,7 +115,7 @@ jobs:
         run: |
           echo "### Starting frontend tests with pm2... ###"
           cd frontend
-          pm2 start "npm run start" --name "Frontend tests"
+          pm2 start "npm run start:test" --name "Frontend tests"
 
       - name: Wait for frontend to be ready
         run: |
