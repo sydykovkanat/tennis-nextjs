@@ -90,7 +90,7 @@ jobs:
         run: |
           cd backend
           echo "### Starting Backend"
-          pm2-runtime start npm --name "Backend" -- run start
+          pm2 start npm --name "Backend" -- run start
 
       - name: Wait for Backend to be Ready
         run: |
@@ -108,4 +108,4 @@ jobs:
           npm run build
           
           echo "### Starting frontend..."
-          pm2-runtime start npm --name "Frontend" -- run start
+          pm2 start npm --name "Frontend" -- run start
