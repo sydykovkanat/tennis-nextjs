@@ -136,3 +136,13 @@ jobs:
           cd frontend
           echo "### Starting Main Frontend"
           pm2 start npm --name "Frontend" -- run start
+
+  cleanup:
+    name: Cleanup on Failure
+    runs-on: self-hosted
+    if: failure()
+    steps:
+      - name: Kill all PM2 processes
+        run: |
+          echo "### Cleaning up PM2 processes due to failure..."
+          pm2 kill
