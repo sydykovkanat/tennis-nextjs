@@ -19,7 +19,7 @@ jobs:
           node-version: '20.18.0'
 
       - name: Kill all test processes
-        run: pm2 kill
+        run: pm2 kill 3 && pm2 kill 4
 
       - name: Install backend dependencies
         run: npm ci
@@ -67,7 +67,7 @@ jobs:
         working-directory: tests
 
       - name: Kill all test processes
-        run: pm2 kill
+        run: pm2 kill 3 && pm2 kill 4
 
   build-frontend-backend:
     name: Build Frontend and Backend
@@ -115,4 +115,4 @@ jobs:
           path: frontend/build
 
       - name: Restart all PM2 processes
-        run: pm2 restart all
+        run: pm2 restart 1 && pm2 restart 2
