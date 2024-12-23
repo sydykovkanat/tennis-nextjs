@@ -30,7 +30,7 @@ jobs:
         run: |
           pm2 start "npm run start" --name="Backend"
           echo "Waiting for backend to be ready..."
-          until curl --silent --fail http://localhost:8000; do
+          until curl --silent --fail http://178.62.238.165:8000; do
             echo "Backend is not ready yet. Retrying in 5 seconds..."
             sleep 5
           done
@@ -62,7 +62,7 @@ jobs:
         run: |
           pm2 start "npm run start" --name="Frontend"
           echo "Waiting for frontend to be ready..."
-          until curl --silent --fail http://localhost:3000; do
+          until curl --silent --fail http://178.62.238.165:3000; do
             echo "Frontend is not ready yet. Retrying in 5 seconds..."
             sleep 5
           done
