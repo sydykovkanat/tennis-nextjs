@@ -115,8 +115,11 @@ jobs:
 
       - name: Run CodeceptJS Tests
         run: |
-          echo "### Running CodeceptJS Tests"
           cd tests
+          echo "### Install Test dependencies"
+          npm i
+
+          echo "### Running CodeceptJS Tests"
           npx codeceptjs run --steps
 
       - name: Start Main Backend
