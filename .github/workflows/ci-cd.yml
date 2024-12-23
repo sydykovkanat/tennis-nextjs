@@ -16,22 +16,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '22.12.0'
 
       - name: Install backend dependencies
         run: |
           npm install
         working-directory: backend
-
-      - name: Create archive of backend folder
-        run: |
-          tar -czf backend.tar.gz -C backend .
-        
-      - name: Save backend archive as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-artifact
-          path: backend.tar.gz
 
   frontend-setup:
     name: Frontend Setup
@@ -44,105 +34,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '22.12.0'
 
       - name: Install frontend dependencies
         run: |
           npm install
         working-directory: frontend
-
-      - name: Create archive of frontend folder
-        run: |
-          tar -czf frontend.tar.gz -C frontend .
-        
-      - name: Save frontend archive as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-artifact
-          path: frontend.tar.gz
-
-  starting:
-    name: Starting Backend and Frontend
-    needs: [backend-setup, frontend-setup]
-    runs-on: self-hosted
-    steps:
-      - name: Download backend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-artifact
-          path: backend
-
-      - name: Download frontend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-artifact
-          path: frontend
-
-      - name: Unpack backend archive
-        run: |
-          tar -xzf backend/backend.tar.gz -C backend
-
-      - name: Unpack frontend archive
-        run: |
-          tar -xzf frontend/frontend.tar.gz -C frontend
-
-      - name: Start Backend for Test
-        run: |
-          cd backend
-          
-          echo "### Seed databse..."
-          npm run seed
-          
-          echo "### Starting Backend for Test"
-          pm2 start npm --name "Backend Test" -- run start:test
-
-      - name: Wait for Backend Test to be Ready
-        run: |
-          echo "Waiting for backend test to be ready..."
-          while ! nc -z localhost 8010; do
-            echo "Backend is not ready yet. Retrying in 5 seconds..."
-            sleep 5
-          done
-          echo "Backend test is up and running!"
-
-      - name: Build Frontend for Test
-        run: |
-          cd frontend
-          echo "### Building Frontend for Test"
-          npm run build:test
-
-      - name: Start Frontend for Test
-        run: |
-          cd frontend
-          echo "### Starting Frontend for Test"
-          pm2 start npm --name "Frontend Test" -- run start:test
-
-      - name: Run CodeceptJS Tests
-        run: |
-          cd tests
-          echo "### Install Test dependencies"
-          npm ci
-
-          echo "### Running CodeceptJS Tests"
-          npx codeceptjs run --steps
-
-      - name: Start Main Backend
-        run: |
-          echo "### Starting Main Backend"
-          pm2 start npm --name "Backend" -- run start
-
-      - name: Start Main Frontend
-        run: |
-          cd frontend
-          echo "### Starting Main Frontend"
-          pm2 start npm --name "Frontend" -- run start
-
-  cleanup:
-    name: Cleanup on Failure
-    runs-on: self-hosted
-    if: failure()
-    steps:
-      - name: Kill all PM2 processes
-        run: |
-          echo "### Cleaning up PM2 processes due to failure..."
-          pm2 kill
