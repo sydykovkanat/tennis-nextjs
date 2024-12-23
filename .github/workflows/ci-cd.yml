@@ -91,7 +91,7 @@ jobs:
           echo "### Extracting node_modules... ###"
           tar -xzf node_modules.tar.gz
 
-      - name: Seed test databse
+      - name: Seed test database
         run: |
           echo "### Start seed test database... ###"
           cd backend
