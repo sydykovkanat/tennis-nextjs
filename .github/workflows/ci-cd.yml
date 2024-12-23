@@ -1,13 +1,12 @@
 name: "CI-CD"
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  backend-setup:
-    name: Backend Setup
+  Setup:
+    name: CI/CD Pipeline
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -16,123 +15,111 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '22.12.0'
 
       - name: Install backend dependencies
         run: |
-          npm install
+          echo "### Installing backend dependencies... ###"
+          npm ci
         working-directory: backend
-
-      - name: Create archive of backend folder
-        run: |
-          tar -czf backend.tar.gz -C backend .
-        
-      - name: Save backend archive as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-artifact
-          path: backend.tar.gz
-
-  frontend-setup:
-    name: Frontend Setup
-    needs: backend-setup
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
 
       - name: Install frontend dependencies
         run: |
-          npm install
+          echo "### Installing frontend dependencies... ###"
+          npm ci
         working-directory: frontend
 
-      - name: Create archive of frontend folder
+      - name: Install tests dependencies
         run: |
-          tar -czf frontend.tar.gz -C frontend .
-        
-      - name: Save frontend archive as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-artifact
-          path: frontend.tar.gz
+          echo "### Installing test dependencies... ###"
+          npm ci
+        working-directory: tests
 
-  starting:
-    name: Starting Backend and Frontend
-    needs: [backend-setup, frontend-setup]
-    runs-on: self-hosted
-    steps:
-      - name: Download backend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-artifact
-          path: backend
-
-      - name: Download frontend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-artifact
-          path: frontend
-
-      - name: Unpack backend archive
+      - name: Seed test database
         run: |
-          tar -xzf backend/backend.tar.gz -C backend
+          echo "### Start seed test database... ###"
+          npm run seed:test
+        working-directory: backend
 
-      - name: Unpack frontend archive
+      - name: Start backend tests with pm2
         run: |
-          tar -xzf frontend/frontend.tar.gz -C frontend
+          echo "### Starting backend tests with pm2... ###"
+          pm2 start 2
+        working-directory: backend
 
-      - name: Start Backend for Test
+      - name: Wait for backend to be ready
         run: |
-          cd backend
-          
-          echo "### Seed databse..."
-          npm run seed
-          
-          echo "### Starting Backend for Test"
-          pm2 start npm --name "Backend Test" -- run start:test
-
-      - name: Wait for Backend Test to be Ready
-        run: |
-          echo "Waiting for backend test to be ready..."
+          echo "### Waiting for backend to be ready... ###"
           while ! nc -z localhost 8010; do
             echo "Backend is not ready yet. Retrying in 5 seconds..."
             sleep 5
           done
-          echo "Backend test is up and running!"
 
-      - name: Build Frontend for Test
+      - name: Build frontend for tests
         run: |
-          cd frontend
-          echo "### Building Frontend for Test"
+          echo "### Build test frontend"
           npm run build:test
+        working-directory: frontend
 
-      - name: Start Frontend for Test
+      - name: Start frontend tests with pm2
         run: |
-          cd frontend
-          echo "### Starting Frontend for Test"
-          pm2 start npm --name "Frontend Test" -- run start:test
+          echo "### Starting frontend tests with pm2... ###"
+          pm2 start 3
+        working-directory: frontend
 
-      - name: Run CodeceptJS Tests
+      - name: Wait for frontend to be ready
         run: |
-          cd tests
-          echo "### Install Test dependencies"
-          npm ci
+          echo "### Waiting for frontend to be ready... ###"
+          while ! nc -z localhost 5183; do
+            echo "Frontend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
 
-          echo "### Running CodeceptJS Tests"
+      - name: Run tests
+        run: |
+          echo "### Start tests... ###"
           npx codeceptjs run --steps
+        working-directory: tests
 
-      - name: Start Main Backend
+      - name: Stop test processes
         run: |
-          echo "### Starting Main Backend"
-          pm2 start npm --name "Backend" -- run start
+          echo "### Stop test pm2 process... ###"
+          pm2 stop 2 3
 
-      - name: Start Main Frontend
+      - name: Restart backend and frontend
         run: |
-          cd frontend
-          echo "### Starting Main Frontend"
-          pm2 start npm --name "Frontend" -- run start
+          echo "### Restart backend... ###"
+          pm2 restart 0
+        working-directory: backend
+
+      - name: Wait for backend to be ready
+        run: |
+          echo "### Waiting for backend to be ready... ###"
+          while ! nc -z localhost 8000; do
+            echo "Backend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Build frontend
+        run: |
+          echo "### Build frontend... ###"
+          npm run build
+        working-directory: frontend
+
+      - name: Restart frontend
+        run: |
+          echo "### Restart frontend... ###"
+          pm2 restart 1
+        working-directory: frontend
+
+      - name: Wait for frontend to be ready
+        run: |
+          echo "### Waiting for frontend to be ready... ###"
+          while ! nc -z localhost 3000; do
+            echo "Frontend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Finish♥️♥️♥️
+        run: |
+          echo "♥️♥️♥️ Поздравляю тебя милый мой! У тебя все получилось ♥️♥️♥️"
