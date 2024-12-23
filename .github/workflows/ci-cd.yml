@@ -111,6 +111,11 @@ jobs:
             sleep 5
           done
 
+      - name: Build frontend for tests
+        run: |
+          echo "### Build test frontend"
+          npm run build:test
+
       - name: Start frontend tests with pm2
         run: |
           echo "### Starting frontend tests with pm2... ###"
