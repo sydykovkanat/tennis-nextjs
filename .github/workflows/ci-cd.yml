@@ -44,7 +44,7 @@ jobs:
       - name: Start backend tests with pm2
         run: |
           echo "### Starting backend tests with pm2... ###"
-          pm2 start "npm run start:test" --name "Backend tests"
+          pm2 start 2
         working-directory: backend
 
       - name: Wait for backend to be ready
@@ -64,7 +64,7 @@ jobs:
       - name: Start frontend tests with pm2
         run: |
           echo "### Starting frontend tests with pm2... ###"
-          pm2 start "npm run start:test" --name "Frontend tests"
+          pm2 start 3
         working-directory: frontend
 
       - name: Wait for frontend to be ready
@@ -80,3 +80,40 @@ jobs:
           echo "### Start tests... ###"
           npx codeceptjs run --steps
         working-directory: tests
+
+      - name: Stop test processes
+        run: |
+          echo "### Stop test pm2 process... ###"
+          pm2 stop 2 3
+
+      - name: Start backend and frontend
+        run: |
+          echo "### Start backend... ###"
+          pm2 start 0
+        working-directory: backend
+
+      - name: Wait for backend to be ready
+        run: |
+          echo "### Waiting for backend to be ready... ###"
+          while ! nc -z localhost 8000; do
+            echo "Backend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Start frontend
+        run: |
+          echo "### Start frontend... ###"
+          pm2 start 1
+        working-directory: frontend
+
+      - name: Wait for frontend to be ready
+        run: |
+          echo "### Waiting for frontend to be ready... ###"
+          while ! nc -z localhost 3000; do
+            echo "Frontend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Finish♥️♥️♥️
+        run: |
+          echo "♥️♥️♥️ Поздравляю тебя милый мой! У тебя все получилось ♥️♥️♥️"
