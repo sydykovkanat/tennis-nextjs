@@ -62,6 +62,17 @@ jobs:
           npm ci
         working-directory: tests
 
+      - name: Archive node_modules directories
+        run: |
+          echo "### Archiving node_modules directories... ###"
+          tar -czf node_modules.tar.gz backend/node_modules frontend/node_modules tests/node_modules
+
+      - name: Save node_modules artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: node-modules
+          path: node_modules.tar.gz
+
   tests:
     name: Auto Tests
     runs-on: self-hosted
@@ -69,6 +80,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Download node_modules artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: node-modules
+
+      - name: Extract node_modules
+        run: |
+          echo "### Extracting node_modules... ###"
+          tar -xzf node_modules.tar.gz
 
       - name: Start backend tests with pm2
         run: |
@@ -97,17 +118,6 @@ jobs:
             echo "Frontend is not ready yet. Retrying in 5 seconds..."
             sleep 5
           done
-
-      - name: Archive node_modules directories
-        run: |
-          echo "### Archiving node_modules directories... ###"
-          tar -czf node_modules.tar.gz backend/node_modules frontend/node_modules tests/node_modules
-
-      - name: Save artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-modules
-          path: node_modules.tar.gz
 
       - name: Placeholder step (for future integration)
         run: |
