@@ -35,7 +35,7 @@ jobs:
         working-directory: backend
 
       - name: Start backend in test mode
-        run: pm2 start "npm run start:test" --name="Backend tests"
+        run: pm2 start 2
         working-directory: backend
 
       - name: Build frontend
@@ -43,7 +43,7 @@ jobs:
         working-directory: frontend
 
       - name: Start frontend in test mode
-        run: pm2 start "npm run start:test" --name="Frontend tests"
+        run: pm2 start 3
         working-directory: frontend
 
       - name: Wait for test backend to be ready
@@ -65,7 +65,7 @@ jobs:
         working-directory: tests
 
       - name: Kill all test processes
-        run: pm2 delete 2 && pm2 delete 3
+        run: pm2 stop 2 && pm2 stop 3
 
   build-frontend-backend:
     name: Build Frontend and Backend
