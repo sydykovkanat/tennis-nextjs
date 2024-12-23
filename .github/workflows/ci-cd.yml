@@ -86,9 +86,9 @@ jobs:
           echo "### Stop test pm2 process... ###"
           pm2 stop 2 3
 
-      - name: Start backend and frontend
+      - name: Restart backend and frontend
         run: |
-          echo "### Start backend... ###"
+          echo "### Restart backend... ###"
           pm2 restart 0
         working-directory: backend
 
@@ -100,9 +100,9 @@ jobs:
             sleep 5
           done
 
-      - name: Start frontend
+      - name: Restart frontend
         run: |
-          echo "### Start frontend... ###"
+          echo "### Restart frontend... ###"
           pm2 restart 1
         working-directory: frontend
 
