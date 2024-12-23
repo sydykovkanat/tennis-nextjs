@@ -79,10 +79,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.18.0'
+          
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
 
       - name: Seed database
         run: npm run seed
         working-directory: backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
 
       - name: Format frontend
         run: npm run format
