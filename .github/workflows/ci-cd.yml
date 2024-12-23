@@ -38,6 +38,9 @@ jobs:
         shell: bash
         working-directory: backend
 
+      - name: PM2 Save Process
+        run: pm2 save
+
   setup-frontend:
     name: Build and Start Frontend
     needs: setup-backend
@@ -70,3 +73,6 @@ jobs:
           echo "Frontend is up and running!"
         shell: bash
         working-directory: frontend
+        
+      - name: PM2 Save Process
+        run: pm2 save
