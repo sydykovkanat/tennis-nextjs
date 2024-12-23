@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.18.0'
-          
+
       - name: Install backend dependencies
         run: npm ci
         working-directory: backend
@@ -28,10 +28,6 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: frontend
-
-      - name: Build frontend (Next.js)
-        run: npm run build
         working-directory: frontend
 
       - name: Save frontend build as artifact
@@ -68,11 +64,26 @@ jobs:
         working-directory: deployment/backend
 
       - name: Start backend
-        run: pm2 start "npm run start" --name="Backend"
+        run: |
+          pm2 start "npm run start" --name="Backend"
+          sleep 10
+          pm2 show Backend
+        working-directory: deployment/backend
+
+      - name: Wait for backend to be ready
+        run: |
+          until curl --silent --fail http://localhost:3000; do
+            echo "Waiting for backend to start..."
+            sleep 5
+          done
         working-directory: deployment/backend
 
       - name: Install frontend dependencies
         run: npm ci
+        working-directory: deployment/frontend
+
+      - name: Build frontend (Next.js)
+        run: npm run build
         working-directory: deployment/frontend
 
       - name: Start frontend (Next.js)
