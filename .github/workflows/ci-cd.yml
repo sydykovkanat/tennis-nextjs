@@ -23,11 +23,15 @@ jobs:
           npm install
         working-directory: backend
 
-      - name: Save backend as artifact
+      - name: Create archive of backend folder
+        run: |
+          tar -czf backend.tar.gz -C backend .
+        
+      - name: Save backend archive as artifact
         uses: actions/upload-artifact@v3
         with:
           name: backend-artifact
-          path: backend
+          path: backend.tar.gz
 
   frontend-setup:
     name: Frontend Setup
@@ -47,11 +51,15 @@ jobs:
           npm install
         working-directory: frontend
 
-      - name: Save frontend as artifact
+      - name: Create archive of frontend folder
+        run: |
+          tar -czf frontend.tar.gz -C frontend .
+        
+      - name: Save frontend archive as artifact
         uses: actions/upload-artifact@v3
         with:
           name: frontend-artifact
-          path: frontend
+          path: frontend.tar.gz
 
   starting:
     name: Starting Backend and Frontend
@@ -69,6 +77,17 @@ jobs:
         with:
           name: frontend-artifact
           path: frontend
+
+      - name: Unpack backend archive
+        run: |
+          tar -xzf backend/backend.tar.gz -C backend
+
+      - name: Unpack frontend archive
+        run: |
+          tar -xzf frontend/frontend.tar.gz -C frontend
+
+      - name: Install pm2
+        run: npm install -g pm2
 
       - name: Start Backend
         run: |
