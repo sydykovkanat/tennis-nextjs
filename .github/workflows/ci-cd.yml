@@ -5,8 +5,8 @@ on:
       - main
 
 jobs:
-  setup:
-    name: Setup Dependencies and Caching
+  Setup:
+    name: CI/CD Pipeline
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -17,29 +17,11 @@ jobs:
         with:
           node-version: '22.12.0'
 
-      - name: Cache backend dependencies
-        uses: actions/cache@v4.2.0
-        with:
-          path: backend/node_modules
-          key: ${{ runner.os }}-backend-node-${{ hashFiles('backend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-backend-node-
-          enableCrossOsArchive: true
-
       - name: Install backend dependencies
         run: |
           echo "### Installing backend dependencies... ###"
           npm ci
         working-directory: backend
-
-      - name: Cache frontend dependencies
-        uses: actions/cache@v4.2.0
-        with:
-          path: frontend/node_modules
-          key: ${{ runner.os }}-frontend-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-frontend-node-
-          enableCrossOsArchive: true
 
       - name: Install frontend dependencies
         run: |
@@ -47,61 +29,23 @@ jobs:
           npm ci
         working-directory: frontend
 
-      - name: Cache tests dependencies
-        uses: actions/cache@v4.2.0
-        with:
-          path: tests/node_modules
-          key: ${{ runner.os }}-tests-node-${{ hashFiles('tests/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-tests-node-
-          enableCrossOsArchive: true
-
       - name: Install tests dependencies
         run: |
           echo "### Installing test dependencies... ###"
           npm ci
         working-directory: tests
 
-      - name: Archive node_modules directories
-        run: |
-          echo "### Archiving node_modules directories... ###"
-          tar -czf node_modules.tar.gz backend/node_modules frontend/node_modules tests/node_modules
-
-      - name: Save node_modules artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-modules
-          path: node_modules.tar.gz
-
-  tests:
-    name: Auto Tests
-    runs-on: self-hosted
-    needs: setup
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Download node_modules artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: node-modules
-
-      - name: Extract node_modules
-        run: |
-          echo "### Extracting node_modules... ###"
-          tar -xzf node_modules.tar.gz
-
       - name: Seed test database
         run: |
           echo "### Start seed test database... ###"
-          cd backend
           npm run seed:test
+        working-directory: backend
 
       - name: Start backend tests with pm2
         run: |
           echo "### Starting backend tests with pm2... ###"
-          cd backend
           pm2 start "npm run start:test" --name "Backend tests"
+        working-directory: backend
 
       - name: Wait for backend to be ready
         run: |
@@ -115,12 +59,13 @@ jobs:
         run: |
           echo "### Build test frontend"
           npm run build:test
+        working-directory: frontend
 
       - name: Start frontend tests with pm2
         run: |
           echo "### Starting frontend tests with pm2... ###"
-          cd frontend
           pm2 start "npm run start:test" --name "Frontend tests"
+        working-directory: frontend
 
       - name: Wait for frontend to be ready
         run: |
@@ -132,6 +77,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd tests
           echo "### Start tests... ###"
           npx codeceptjs run --steps
+        working-directory: tests
