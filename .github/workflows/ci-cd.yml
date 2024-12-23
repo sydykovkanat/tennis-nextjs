@@ -35,7 +35,7 @@ jobs:
             sleep 5
           done
           echo "Backend is up and running!"
-          shell: bash
+        shell: bash
         working-directory: backend
 
   setup-frontend:
@@ -68,5 +68,5 @@ jobs:
             sleep 5
           done
           echo "Frontend is up and running!"
-          shell: bash
+        shell: bash
         working-directory: frontend
