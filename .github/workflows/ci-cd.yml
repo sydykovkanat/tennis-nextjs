@@ -100,6 +100,12 @@ jobs:
             sleep 5
           done
 
+      - name: Build frontend
+        run: |
+          echo "### Build frontend... ###"
+          npm run build
+        working-directory: frontend
+
       - name: Restart frontend
         run: |
           echo "### Restart frontend... ###"
