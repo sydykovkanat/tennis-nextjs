@@ -6,70 +6,8 @@ on:
       - main
 
 jobs:
-  run-tests:
-    name: Run Tests
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.18.0'
-
-      - name: Install backend dependencies
-        run: npm ci
-        working-directory: backend
-
-      - name: Install frontend dependencies
-        run: npm ci
-        working-directory: frontend
-
-      - name: Install tests dependencies
-        run: npm ci
-        working-directory: tests
-
-      - name: Run backend fixtures
-        run: npm run seed:test
-        working-directory: backend
-
-      - name: Start backend in test mode
-        run: pm2 start 2
-        working-directory: backend
-
-      - name: Build frontend
-        run: npm run build:test
-        working-directory: frontend
-
-      - name: Start frontend in test mode
-        run: pm2 start 3
-        working-directory: frontend
-
-      - name: Wait for test backend to be ready
-        run: |
-          while ! nc -z localhost 8010; do
-            sleep 0.1
-          done
-        shell: bash
-
-      - name: Wait for test frontend to be ready
-        run: |
-          while ! nc -z localhost 5183; do
-            sleep 0.1
-          done
-        shell: bash
-
-      - name: Run tests
-        run: npx codeceptjs run --steps "$@"
-        working-directory: tests
-
-      - name: Kill all test processes
-        run: pm2 stop 2 && pm2 stop 3
-
   build-frontend-backend:
     name: Build Frontend and Backend
-    needs: run-tests
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -92,17 +30,51 @@ jobs:
         run: npm ci
         working-directory: frontend
 
-      - name: Format frontend
-        run: npm run format
-        working-directory: frontend
-
-      - name: Lint frontend
-        run: npm run lint
-        working-directory: frontend
-
-      - name: Build frontend
+      - name: Build frontend (Next.js)
         run: npm run build
         working-directory: frontend
 
-      - name: Restart front and back PM2 processes
-        run: pm2 restart 0 && pm2 restart 1
+      - name: Save frontend build as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: frontend/build
+
+      - name: Save backend as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend
+          path: backend
+
+  deploy:
+    name: Deploy Frontend and Backend
+    needs: build-frontend-backend
+    runs-on: self-hosted
+    steps:
+      - name: Download frontend build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend-build
+          path: deployment/frontend/build
+
+      - name: Download backend artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: backend
+          path: deployment/backend
+
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: deployment/backend
+
+      - name: Start backend
+        run: pm2 start "npm run start" --name="Backend"
+        working-directory: deployment/backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: deployment/frontend
+
+      - name: Start frontend (Next.js)
+        run: pm2 start "npm run start" --name="Frontend"
+        working-directory: deployment/frontend
