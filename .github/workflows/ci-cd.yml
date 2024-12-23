@@ -8,7 +8,7 @@ on:
 jobs:
   backend-setup:
     name: Backend Setup
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
   frontend-setup:
     name: Frontend Setup
     needs: backend-setup
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -64,7 +64,7 @@ jobs:
   starting:
     name: Starting Backend and Frontend
     needs: [backend-setup, frontend-setup]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Download backend artifact
         uses: actions/download-artifact@v3
