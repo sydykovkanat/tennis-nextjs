@@ -89,6 +89,10 @@ jobs:
       - name: Start Backend for Test
         run: |
           cd backend
+          
+          echo "### Seed databse..."
+          npm run seed
+          
           echo "### Starting Backend for Test"
           pm2 start npm --name "Backend Test" -- run start:test
 
@@ -115,8 +119,11 @@ jobs:
 
       - name: Run CodeceptJS Tests
         run: |
-          echo "### Running CodeceptJS Tests"
           cd tests
+          echo "### Install Test dependencies"
+          npm ci
+
+          echo "### Running CodeceptJS Tests"
           npx codeceptjs run --steps
 
       - name: Start Main Backend
