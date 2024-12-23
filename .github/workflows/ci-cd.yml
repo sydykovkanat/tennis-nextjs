@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  build-frontend-backend:
-    name: Build Frontend and Backend
+  setup-backend:
+    name: Setup and Start Backend
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -26,66 +26,40 @@ jobs:
         run: npm run seed
         working-directory: backend
 
+      - name: Start backend
+        run: |
+          pm2 start "npm run start" --name="Backend"
+          echo "Waiting for backend to be ready..."
+          until curl --silent --fail http://localhost:3000; do
+            echo "Backend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+          echo "Backend is up and running!"
+        working-directory: backend
+
+  setup-frontend:
+    name: Build and Start Frontend
+    needs: setup-backend
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
 
-      - name: Save frontend build as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: frontend-build
-          path: frontend/build
-
-      - name: Save backend as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: backend
-          path: backend
-
-  deploy:
-    name: Deploy Frontend and Backend
-    needs: build-frontend-backend
-    runs-on: self-hosted
-    steps:
-      - name: Download frontend build artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: frontend-build
-          path: deployment/frontend/build
-
-      - name: Download backend artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: backend
-          path: deployment/backend
-
-      - name: Install backend dependencies
-        run: npm ci
-        working-directory: deployment/backend
-
-      - name: Start backend
-        run: |
-          pm2 start "npm run start" --name="Backend"
-          sleep 10
-          pm2 show Backend
-        working-directory: deployment/backend
-
-      - name: Wait for backend to be ready
-        run: |
-          until curl --silent --fail http://localhost:3000; do
-            echo "Waiting for backend to start..."
-            sleep 5
-          done
-        working-directory: deployment/backend
-
-      - name: Install frontend dependencies
-        run: npm ci
-        working-directory: deployment/frontend
-
       - name: Build frontend (Next.js)
         run: npm run build
-        working-directory: deployment/frontend
+        working-directory: frontend
 
-      - name: Start frontend (Next.js)
-        run: pm2 start "npm run start" --name="Frontend"
-        working-directory: deployment/frontend
+      - name: Start frontend
+        run: |
+          pm2 start "npm run start" --name="Frontend"
+          echo "Frontend is up and running!"
+        working-directory: frontend
