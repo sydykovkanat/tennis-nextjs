@@ -1,13 +1,11 @@
 name: "CI-CD"
-
 on:
   push:
     branches:
       - main
-
 jobs:
-  backend-setup:
-    name: Backend Setup
+  setup:
+    name: Setup
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -17,24 +15,29 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.12.0'
+
+      - name: Cache backend dependencies
+        uses: actions/cache@v4.2.0
+        with:
+          path: backend/node_modules
+          key: ${{ runner.os }}-backend-node-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-backend-node-
+          enableCrossOsArchive: true
 
       - name: Install backend dependencies
         run: |
           npm install
         working-directory: backend
 
-  frontend-setup:
-    name: Frontend Setup
-    needs: backend-setup
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Cache frontend dependencies
+        uses: actions/cache@v4.2.0
         with:
-          node-version: '22.12.0'
+          path: frontend/node_modules
+          key: ${{ runner.os }}-frontend-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-node-
+          enableCrossOsArchive: true
 
       - name: Install frontend dependencies
         run: |
