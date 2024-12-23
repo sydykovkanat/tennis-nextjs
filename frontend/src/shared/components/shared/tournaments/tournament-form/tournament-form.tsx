@@ -1,5 +1,4 @@
-import { Confirm, WarningMessage } from '@/shared/components/shared';
-import { TournamentDatePicker } from '@/shared/components/shared/tournaments';
+import { Confirm, CustomDatepicker, WarningMessage } from '@/shared/components/shared';
 import { useTournamentForm } from '@/shared/components/shared/tournaments/hooks';
 import {
   Button,
@@ -18,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
+import { CURRENT_YEAR_FULL, NEXT_YEAR, PREVIOUS_YEAR } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { Tournament } from '@/shared/types/tournament.types';
 
@@ -91,11 +91,17 @@ export const TournamentForm: React.FC<Props> = ({
             />
 
             <div className={styles.fieldWrapper}>
-              <Label htmlFor='eventDate'>Дата проведения</Label>
-              <TournamentDatePicker
+              <CustomDatepicker
+                mode={'calendar'}
                 value={state.eventDate}
                 onChange={(date) => handleDateChange(date)}
-                existingTournament={existingTournament}
+                label={'Дата проведения'}
+                fromYear={
+                  existingTournament && Number(existingTournament.tournamentYear) === PREVIOUS_YEAR
+                    ? PREVIOUS_YEAR
+                    : CURRENT_YEAR_FULL
+                }
+                toYear={NEXT_YEAR}
               />
 
               {existingTournament && Number(state.tournamentYear) !== Number(existingTournament.tournamentYear) && (
@@ -183,12 +189,12 @@ export const TournamentForm: React.FC<Props> = ({
             <WarningMessage message='При создании турнира на следующий год, если есть турниры за прошлый год, они будут автоматически удалены. Это действие необратимо.' />
           )}
 
-          <div className={styles.fieldWrapper}>
+          <div className={cn(styles.fieldWrapper, 'mt-3')}>
             <Button type='submit' disabled={isFormInvalid}>
               {existingTournament ? 'Редактировать' : 'Сохранить'}
             </Button>
             <DialogClose asChild>
-              <Button type='button' variant='secondary' onClick={handleClose}>
+              <Button type='button' onClick={handleClose} variant='outline'>
                 Отмена
               </Button>
             </DialogClose>

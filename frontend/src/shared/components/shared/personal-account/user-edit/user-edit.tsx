@@ -1,8 +1,8 @@
 'use client';
 
+import { CustomDatepicker } from '@/shared/components/shared';
 import { useDialog, useUserForm } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
-import UserDatePicker from '@/shared/components/shared/personal-account/user-datepicker/user-datepicker';
 import {
   Button,
   Input,
@@ -23,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
+import { CURRENT_YEAR_FULL } from '@/shared/constants';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 import { User } from '@/shared/types/user.types';
 
@@ -53,7 +54,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактирование профиля</DialogTitle>
-          <DialogDescription>Заполните форму для редактирования профиля</DialogDescription>
+          <DialogDescription className={'pb-5'}>Заполните форму для редактирования профиля</DialogDescription>
 
           <form onSubmit={handleSubmit} className={styles.formWrapper}>
             <Input
@@ -86,16 +87,18 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               className={styles.inputField}
             />
 
-            <UserDatePicker
+            <CustomDatepicker
+              mode={'users'}
               value={userInfo.dateOfBirth}
               onChange={(date) => handleDateChange(date)}
               label={'Дата рождения'}
+              fromYear={1930}
+              toYear={CURRENT_YEAR_FULL}
+              buttonClassName={'py-6'}
             />
 
             <div>
-              <Label htmlFor='gender' className={'text-base text-left font-medium block'}>
-                Пол
-              </Label>
+              <Label htmlFor='gender'>Пол</Label>
               <Select value={userInfo.gender} onValueChange={(value) => updateField('gender', value)}>
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />

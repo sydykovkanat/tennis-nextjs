@@ -1,5 +1,5 @@
 .button {
-  @apply w-full pl-3 font-normal justify-start;
+  @apply w-full font-normal justify-start;
 }
 
 .popoverContent {

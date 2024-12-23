@@ -3,7 +3,7 @@
 }
 
 .dialogContent {
-  @apply py-4 max-h-[80dvh] overflow-y-auto;
+  @apply py-7 max-h-[80dvh] overflow-y-auto;
 }
 
 .dialogDescription {
@@ -11,7 +11,7 @@
 }
 
 .blockForm {
-  @apply space-y-3 mb-8;
+  @apply space-y-2 mb-8;
 }
 
 .inputField {

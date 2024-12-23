@@ -2,9 +2,9 @@
 
 import { formatTelephone } from '@/shared/lib';
 import { RegisterMutation } from '@/shared/types/auth.types';
+import { format } from 'date-fns';
 
 import { ChangeEvent, useState } from 'react';
-import { DateValue } from 'react-aria-components';
 
 export const useRegisterForm = (initialState: RegisterMutation) => {
   const [registerMutation, setRegisterMutation] = useState<RegisterMutation>(initialState);
@@ -27,11 +27,11 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
     }));
   };
 
-  const dateChange = (date: DateValue | null) => {
+  const handleDateChange = (date: Date | undefined) => {
     if (!date) return;
     setRegisterMutation((prev) => ({
       ...prev,
-      dateOfBirth: date.toString(),
+      dateOfBirth: format(date, 'yyyy-MM-dd'),
     }));
   };
 
@@ -65,7 +65,7 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
     registerMutation,
     handleChange,
     isFormValid,
-    dateChange,
+    handleDateChange,
     handleSelectChange,
     handleAgree,
     isAgree,

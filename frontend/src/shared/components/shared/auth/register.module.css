@@ -18,8 +18,12 @@
   @apply mb-7;
 }
 
-.dateField {
-  @apply space-y-0.5 mb-4;
+.datepicker {
+  @apply mb-4;
+}
+
+.datepickerButton {
+  @apply py-6 mt-1;
 }
 
 .dateInput {

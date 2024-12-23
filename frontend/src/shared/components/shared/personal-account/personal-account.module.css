@@ -56,7 +56,11 @@
 
 .formWrapper {
   @apply flex flex-col gap-1.5;
+
+  & label {
+    @apply text-base font-medium;
+  }
 }
 .buttonWrapper {
-  @apply flex flex-col gap-1 mt-1;
+  @apply flex flex-col gap-1 mt-5;
 }

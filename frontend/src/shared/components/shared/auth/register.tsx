@@ -1,5 +1,6 @@
 'use client';
 
+import { CustomDatepicker } from '@/shared/components/shared';
 import { useRegister, useRegisterForm, useRegisterSelectors } from '@/shared/components/shared/auth/hooks';
 import {
   Button,
@@ -12,16 +13,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
+import { CURRENT_YEAR_FULL } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 import { RegisterMutation } from '@/shared/types/auth.types';
 import { Category } from '@/shared/types/category.types';
-import { parseDate } from '@internationalized/date';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
 import React, { useEffect } from 'react';
-import { DateField, DateInput, DateSegment, Label } from 'react-aria-components';
+import { Label } from 'react-aria-components';
 
 import styles from './register.module.css';
 
@@ -41,7 +42,7 @@ const initialState: RegisterMutation = {
 };
 
 export const Register: React.FC<Props> = ({ className, categories }) => {
-  const { registerMutation, isFormValid, handleChange, dateChange, handleSelectChange, handleAgree, isAgree } =
+  const { registerMutation, isFormValid, handleChange, handleDateChange, handleSelectChange, handleAgree, isAgree } =
     useRegisterForm(initialState);
   const { registerLoading, registerError } = useRegisterSelectors();
   const { handleRegister } = useRegister();
@@ -98,17 +99,16 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         onChange={handleChange}
       />
 
-      <DateField
-        id={'dateOfBirth'}
-        value={registerMutation.dateOfBirth ? parseDate(registerMutation.dateOfBirth) : null}
-        onChange={dateChange}
-        className={styles.dateField}
-      >
-        <Label htmlFor={'dateOfBirth'}>Дата рождения</Label>
-        <DateInput className={styles.dateInput}>
-          {(segment) => <DateSegment segment={segment} className={styles.dateSegment} />}
-        </DateInput>
-      </DateField>
+      <CustomDatepicker
+        mode={'users'}
+        value={registerMutation.dateOfBirth}
+        onChange={(date) => handleDateChange(date)}
+        label={'Дата рождения'}
+        fromYear={1930}
+        toYear={CURRENT_YEAR_FULL}
+        className={styles.datepicker}
+        buttonClassName={styles.datepickerButton}
+      />
 
       <Input
         label={'ФИО'}

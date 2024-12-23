@@ -58,7 +58,7 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
 
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
-      const formattedDate = format(date, 'dd.MM.yyyy');
+      const formattedDate = format(date, 'yyyy-MM-dd');
       updateField('dateOfBirth', formattedDate);
     }
   };
