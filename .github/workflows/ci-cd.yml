@@ -46,16 +46,16 @@ jobs:
         run: pm2 start "npm run start:test" --name="Frontend tests"
         working-directory: frontend
 
-      - name: Wait for backend to be ready
+      - name: Wait for test backend to be ready
         run: |
           while ! nc -z localhost 5183; do
             sleep 0.1
           done
         shell: bash
 
-      - name: Wait for frontend to be ready
+      - name: Wait for test frontend to be ready
         run: |
-          while ! nc -z localhost 3000; do
+          while ! nc -z localhost 5183; do
             sleep 0.1
           done
         shell: bash
