@@ -77,6 +77,9 @@ export { ThemeSwitcher } from './theme-switcher/theme-switcher';
 export { PersonalData } from './personal-account/personal-data/personal-data';
 export { Rewards } from './personal-account/rewards/rewards';
 export { UseRewards } from './personal-account/hooks/use-rewards';
+export { Cup } from './personal-account/rewards/components/Cup';
+export { Medal } from './personal-account/rewards/components/Medal';
+export { RewardItem } from './personal-account/rewards/components/reward-item/reward-item';
 
 export { InfoTip } from './info-tip/info-tip';
 

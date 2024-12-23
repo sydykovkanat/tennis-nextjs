@@ -30,27 +30,26 @@ const PersonalAccount = () => {
       ))}
 
       <h1 className={cn(styles.title)}>Личный кабинет</h1>
-      <div className={cn(styles.box, 'dark:bg-[#1F2937]')}>
-        <Tabs value={currentTab} orientation={'vertical'} defaultValue={currentTab} onValueChange={handleTabChange}>
-          <ScrollArea className={cn(styles.tabsScroll)}>
-            <TabsList className={cn(styles.tabsList, 'dark:border-b-cr-green-700')}>
-              <TabsTrigger value='personalData' className={cn(styles.tabsTrigger, 'dark:text-white')}>
-                Мои данные
-              </TabsTrigger>
-              <TabsTrigger value='rewards' className={cn(styles.tabsTrigger, 'dark:text-white')}>
-                Награды
-              </TabsTrigger>
-            </TabsList>
-          </ScrollArea>
-
+      <Tabs value={currentTab} orientation={'vertical'} defaultValue={currentTab} onValueChange={handleTabChange}>
+        <ScrollArea className={cn(styles.tabsScroll)}>
+          <TabsList className={cn(styles.tabsList)}>
+            <TabsTrigger value='personalData' className={cn(styles.tabsTrigger, 'dark:text-white')}>
+              Мои данные
+            </TabsTrigger>
+            <TabsTrigger value='rewards' className={cn(styles.tabsTrigger, 'dark:text-white')}>
+              Награды
+            </TabsTrigger>
+          </TabsList>
+        </ScrollArea>
+        <div className={cn(styles.box, 'dark:bg-[#1F2937]')}>
           <TabsContent value={'personalData'}>
             <PersonalData />
           </TabsContent>
           <TabsContent value={'rewards'}>
             <Rewards />
           </TabsContent>
-        </Tabs>
-      </div>
+        </div>
+      </Tabs>
     </Container>
   );
 };

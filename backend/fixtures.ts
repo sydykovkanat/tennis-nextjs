@@ -109,7 +109,8 @@ const run = async () => {
     }
   );
 
-  await Reward.create({
+  await Reward.create(
+    {
       user: john,
       createdAt: '2024-12-02T16:15:36.700+00:00',
       updatedAt: '2024-12-03T16:15:36.700+00:00',
@@ -180,8 +181,58 @@ const run = async () => {
       place: 1,
       nomination: 'Лучший игрок',
       icon: 'cup',
-    },
+    }
   );
+
+  for (let i = 0; i < 7; i++) {
+    await Reward.create(
+      {
+        user: john,
+        createdAt: '2024-12-02T16:15:36.700+00:00',
+        updatedAt: '2024-12-03T16:15:36.700+00:00',
+        tournament: 'Winter Gold Cup',
+        place: 1,
+        nomination: 'Лучшая техника',
+        icon: 'cup',
+      },
+      {
+        user: john,
+        createdAt: '2024-12-01T16:15:36.700+00:00',
+        updatedAt: '2024-12-02T16:15:36.700+00:00',
+        tournament: 'Spring Silver League',
+        place: 2,
+        nomination: 'Лучший игрок',
+        icon: 'medal',
+      },
+      {
+        user: john,
+        createdAt: '2024-11-30T16:15:36.700+00:00',
+        updatedAt: '2024-12-01T16:15:36.700+00:00',
+        tournament: 'Summer Bronze Cup',
+        place: 3,
+        nomination: 'Лучший тренер',
+        icon: 'cup',
+      },
+      {
+        user: john,
+        createdAt: '2024-11-29T16:15:36.700+00:00',
+        updatedAt: '2024-11-30T16:15:36.700+00:00',
+        tournament: 'Autumn Platinum Series',
+        place: 1,
+        nomination: 'Лучшая стратегия',
+        icon: 'cup',
+      },
+      {
+        user: john,
+        createdAt: '2024-11-28T16:15:36.700+00:00',
+        updatedAt: '2024-11-29T16:15:36.700+00:00',
+        tournament: 'Winter Gold Cup',
+        place: 3,
+        nomination: 'Лучший лидер',
+        icon: 'cup',
+      }
+    );
+  }
 
   await RatingMember.create(mainRatingsFixtures);
 

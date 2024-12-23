@@ -1,9 +1,9 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { deleteEmptyQueryStrings } from '@/shared/lib';
-import { fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
+import { cn, deleteEmptyQueryStrings } from '@/shared/lib';
 import { selectRewards, selectRewardsFetching } from '@/shared/lib/features/rewards/rewards-slice';
+import { fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { Filters, Query } from '@/shared/types/root.types';
 
@@ -26,5 +26,7 @@ export const UseRewards = () => {
     }
   }, [dispatch, rewards, currentUser]);
 
-  return { rewards, rewardsFetching };
+  const getIconClass = (place: number) => cn(place > 1 ? 'text-[#F9DD54]' : 'text-[#F9AC2F]', 'cursor-pointer');
+
+  return { rewards, rewardsFetching, getIconClass };
 };

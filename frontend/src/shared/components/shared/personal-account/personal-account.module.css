@@ -7,15 +7,15 @@
 }
 
 .title {
-  @apply text-3xl font-medium leading-none mb-6
+  @apply text-3xl text-center xs:text-start font-medium leading-none mb-6
 }
 
 .tabsList {
-  @apply flex items-center gap-1 bg-transparent text-black border-b rounded-none p-0;
+  @apply flex items-center justify-around xs:justify-start xs:gap-5 bg-transparent text-black border-b rounded-none p-0;
 }
 
 .tabsScroll {
-  @apply max-w-max pb-3;
+  @apply xs:max-w-max pb-3;
 }
 
 .tabsTrigger {
