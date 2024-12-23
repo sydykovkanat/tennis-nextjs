@@ -18,7 +18,7 @@ export default async function HomePage() {
         <GradientCircle key={id} {...circle} />
       ))}
       <Container>
-        <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
+        <MainTitles title={'ыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
         <Carousel />
       </Container>
       <Partners />
