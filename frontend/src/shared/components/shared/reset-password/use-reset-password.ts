@@ -21,7 +21,7 @@ export const useResetPassword = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
-    setPasswords({ ...passwords, [id]: value });
+    setPasswords({ ...passwords, [id]: value.trim() });
   };
 
   const passwordMatch = passwords.password !== passwords.confirmPassword;

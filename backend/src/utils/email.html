@@ -7,28 +7,26 @@
   />
 </head>
 <body style="font-family: 'Nunito', sans-serif">
-  <div style="width: 500px; background: #1f1f1f; color: #fff; padding: 30px; border-radius: 20px">
-    <div style="display: flex; gap: 20px">
-      <img
-        width="150"
-        height="150"
-        src="https://instagram.ffru5-1.fna.fbcdn.net/v/t51.2885-19/328958020_1154025051883818_995490559695565872_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.ffru5-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=apac0iV8uWAQ7kNvgFNZCjd&_nc_gid=16a0f097e9f5415e84e5754f67bb4146&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AYAnij0QTnr7Mryv88WvjttiD5T6l312kPvaL08-ShuyWg&oe=67347645&_nc_sid=8b3546"
-        alt="kslt logo"
-      />
+<div style="width: 500px; background: #1f1f1f; color: #fff; padding: 30px; border-radius: 20px">
+  <div style="display: flex; gap: 20px">
+          <img
+            width="130px"
+            src="https://i.imgur.com/UCKAvXf.jpeg"
+            alt="kslt logo"
+          />
+    <h1 style="padding-bottom: 0; margin-bottom: 0; line-height: 1; color: #fff; margin-left: 20px">
+      Привет
+      <span style="display: block; font-size: 20px">{{username}}</span>
+    </h1>
+  </div>
 
-      <h1 style="padding-bottom: 0; margin-bottom: 0; line-height: 1; color: #fff; margin-left: 20px">
-        Привет
-        <span style="display: block; font-size: 20px">{{username}}</span>
-      </h1>
-    </div>
+  <p style="font-size: 14px; color: #fff">
+    Запрос на сброс пароля был отправлен на вашу почту. Если это были не вы, пожалуйста, проигнорируйте это письмо.
+  </p>
 
-    <p style="font-size: 14px; color: #fff">
-      Запрос на сброс пароля был отправлен на вашу почту. Если это были не вы, пожалуйста, проигнорируйте это письмо.
-    </p>
-
-    <a style="display: block" href="{{link}}">
-      <button
-        style="
+  <a style="display: block" href="{{link}}">
+    <button
+      style="
           background: #8c30f5;
           color: #fff;
           font-weight: 700;
@@ -37,16 +35,16 @@
           border-radius: 5px;
           cursor: pointer;
         "
-      >
-        Сбросить пароль
-      </button>
-    </a>
+    >
+      Сбросить пароль
+    </button>
+  </a>
 
-    <p style="font-size: 14px; margin-top: 20px">
-      Если у вас возникли проблемы с кнопкой, скопируйте и вставьте в адресную строку браузера следующую ссылку:
-      <a href="{{link}}" style="display: block; color: #64b32c">{{link}}</a>
-    </p>
+  <p style="font-size: 14px; margin-top: 20px">
+    Если у вас возникли проблемы с кнопкой, скопируйте и вставьте в адресную строку браузера следующую ссылку:
+    <a href="{{link}}" style="display: block; color: #64b32c">{{link}}</a>
+  </p>
 
-    <p style="margin-bottom: 0; color: #6b7280">С уважением, команда KSLT.</p>
-  </div>
+  <p style="margin-bottom: 0; color: #6b7280">С уважением, команда KSLT.</p>
+</div>
 </body>

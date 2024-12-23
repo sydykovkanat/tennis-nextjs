@@ -47,6 +47,7 @@ export const useForgotPassword = () => {
 
       await dispatch(forgotPassword(email)).unwrap();
       toast.success('Ссылка для сброса пароля отправлена на вашу почту.');
+      setEmail('');
       setDisabled(true);
     } catch (error) {
       console.error(error);
