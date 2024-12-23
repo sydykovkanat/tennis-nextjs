@@ -25,6 +25,12 @@ jobs:
         run: npm ci
         working-directory: backend
 
+      - name: Upload Backend Node Modules
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-node-modules
+          path: backend/node_modules
+
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
@@ -76,20 +82,14 @@ jobs:
         with:
           node-version: '20.18.0'
 
-      - name: Install backend dependencies
-        run: npm ci
-        working-directory: backend
-
-      - name: Format backend
-        run: npm run format
-        working-directory: backend
+      - name: Download Backend Node Modules
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-node-modules
+          path: backend/node_modules
 
       - name: Seed database
         run: npm run seed
-        working-directory: backend
-
-      - name: Start backend
-        run: pm2 start "ts-node index.ts" --name="Backend"
         working-directory: backend
 
       - name: Install frontend dependencies
@@ -108,9 +108,11 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-      - name: Start frontend
-        run: pm2 start "npm run start" --name="Frontend"
-        working-directory: frontend
+      - name: Upload Frontend Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: frontend/build
 
-      - name: PM2 Save
-        run: pm2 save
+      - name: Restart all PM2 processes
+        run: pm2 restart all
