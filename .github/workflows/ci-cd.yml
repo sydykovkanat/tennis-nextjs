@@ -125,6 +125,8 @@ jobs:
             sleep 5
           done
 
-      - name: Placeholder step (for future integration)
+      - name: Run tests
         run: |
-          echo "### Tests passed. Ready to proceed with deployment. ###"
+          cd tests
+          echo "### Start tests... ###"
+          npx codeceptjs run --steps
