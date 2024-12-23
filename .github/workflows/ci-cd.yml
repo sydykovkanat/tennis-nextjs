@@ -48,7 +48,7 @@ jobs:
 
       - name: Wait for test backend to be ready
         run: |
-          while ! nc -z localhost 5183; do
+          while ! nc -z localhost 8010; do
             sleep 0.1
           done
         shell: bash
@@ -96,5 +96,5 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-      - name: Restart all PM2 processes
-        run: pm2 restart 1 && pm2 restart 0
+      - name: Restart front and back PM2 processes
+        run: pm2 restart 0 && pm2 restart 1
