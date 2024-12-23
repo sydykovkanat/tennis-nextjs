@@ -13,38 +13,32 @@ import {
   Input,
   Label,
 } from '@/shared/components/ui';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import {
-  selectItemUpdating,
-  selectItemsData,
-  selectMenuPositionLink,
-} from '@/shared/lib/features/footer/footers-slice';
-import { getFooterItems, getOneMenuPosition, updateMenuPosition } from '@/shared/lib/features/footer/footers-thunks';
-import { LinkDataMutation } from '@/shared/types/footer.types';
+import { getOneMenuPosition } from '@/shared/lib/features/footer/footers-thunks';
 import { Pencil } from 'lucide-react';
-import { toast } from 'sonner';
 
-import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './menu-position-forms.module.css';
+import { useMenuPosition } from './use-menu-position';
 
 interface Props {
   id: string;
 }
 
 export const MenuPositionEditForm: React.FC<Props> = ({ id }) => {
-  const dispatch = useAppDispatch();
-  const menuPositionData = useAppSelector(selectItemsData);
-  const oneMenuPositionData = useAppSelector(selectMenuPositionLink);
-  const menuPositionUpdating = useAppSelector(selectItemUpdating);
-  const [menuPosition, setMenuPosition] = useState<LinkDataMutation>({
-    name: '',
-    value: '',
-  });
-  const [open, setOpen] = useState(false);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const blockedMenu = menuPositionData?.[0]?.menuPosition?.map((item) => item.name.toLowerCase()) ?? [];
-  const isBlocked = blockedMenu.includes(menuPosition.name.toLowerCase());
+  const {
+    dispatch,
+    menuPosition,
+    open,
+    setOpen,
+    setMenuPosition,
+    inputChangeHandler,
+    closeRef,
+    isBlocked,
+    oneMenuPositionData,
+    menuPositionUpdating,
+    handleSubmit,
+  } = useMenuPosition(id);
 
   useEffect(() => {
     if (open) {
@@ -61,43 +55,7 @@ export const MenuPositionEditForm: React.FC<Props> = ({ id }) => {
         value: menu.value,
       }));
     }
-  }, [open, oneMenuPositionData]);
-
-  useEffect(() => {
-    if (!open) {
-      setMenuPosition({
-        name: '',
-        value: '',
-      });
-    }
-  }, [open]);
-
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setMenuPosition((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event: FormEvent) => {
-    try {
-      event.preventDefault();
-      if (menuPosition.name.trim().length !== 0 && menuPosition.value.trim().length !== 0 && !isBlocked) {
-        closeRef.current?.click();
-        await dispatch(updateMenuPosition({ id, data: menuPosition })).unwrap();
-        await dispatch(getFooterItems()).unwrap();
-        setMenuPosition({
-          name: '',
-          value: '',
-        });
-        toast.success('Пункт в меню успешно обновлен.');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('Ошибка при обновление пункта в меню.');
-    }
-  };
+  }, [open, oneMenuPositionData, setMenuPosition]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

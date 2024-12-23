@@ -13,64 +13,15 @@ import {
   Input,
   Label,
 } from '@/shared/components/ui';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemCreating, selectItemsData } from '@/shared/lib/features/footer/footers-slice';
-import { createMenuPosition, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
-import { LinkDataMutation } from '@/shared/types/footer.types';
-import { toast } from 'sonner';
 
-import React, { FormEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import styles from './menu-position-forms.module.css';
+import { useMenuPosition } from './use-menu-position';
 
 export const MenuPositionCreateForm: React.FC<PropsWithChildren> = ({ children }) => {
-  const dispatch = useAppDispatch();
-  const menuPositionData = useAppSelector(selectItemsData);
-  const menuPositionCreating = useAppSelector(selectItemCreating);
-  const [menuPosition, setMenuPosition] = useState<LinkDataMutation>({
-    name: '',
-    value: '',
-  });
-  const [open, setOpen] = useState(false);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const blockedMenu = menuPositionData?.[0]?.menuPosition?.map((item) => item.name.toLowerCase()) ?? [];
-  const isBlocked = blockedMenu.includes(menuPosition.name.toLowerCase());
-
-  useEffect(() => {
-    if (!open) {
-      setMenuPosition({
-        name: '',
-        value: '',
-      });
-    }
-  }, [open]);
-
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setMenuPosition((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event: FormEvent) => {
-    try {
-      event.preventDefault();
-      if (menuPosition.name.trim().length !== 0 && menuPosition.value.trim().length !== 0 && !isBlocked) {
-        closeRef.current?.click();
-        await dispatch(createMenuPosition(menuPosition)).unwrap();
-        await dispatch(getFooterItems()).unwrap();
-        setMenuPosition({
-          name: '',
-          value: '',
-        });
-        toast.success('Пункт в меню успешно добавлен.');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('Ошибка при добавление пункта в меню.');
-    }
-  };
+  const { menuPositionCreating, menuPosition, open, setOpen, inputChangeHandler, handleSubmit, closeRef, isBlocked } =
+    useMenuPosition();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
