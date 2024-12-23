@@ -1,4 +1,4 @@
-name: "CICD"
+name: "CI/CD"
 
 on:
   push:
@@ -18,9 +18,18 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Kill all test processes
+        run: pm2 delete 3 && pm2 delete 4
+
       - name: Install backend dependencies
         run: npm ci
         working-directory: backend
+
+      - name: Upload Backend Node Modules
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-node-modules
+          path: backend/node_modules
 
       - name: Install frontend dependencies
         run: npm ci
@@ -35,7 +44,7 @@ jobs:
         working-directory: backend
 
       - name: Start backend in test mode
-        run: pm2 start "npm run start:test" --name="Backend Tests"
+        run: pm2 start "npm run start:test" --name="API-tests"
         working-directory: backend
 
       - name: Build frontend
@@ -43,7 +52,7 @@ jobs:
         working-directory: frontend
 
       - name: Start frontend in test mode
-        run: pm2 start "npm run start:test" --name="Frontend Tests"
+        run: pm2 start "npm run start:test" --name="Frontend-tests"
         working-directory: frontend
 
       - name: Wait for backend to be ready
@@ -53,19 +62,12 @@ jobs:
           done
         shell: bash
 
-      - name: Wait for frontend to be ready
-        run: |
-          while ! nc -z localhost 3000; do
-            sleep 0.1
-          done
-        shell: bash
-
       - name: Run tests
         run: npx codeceptjs run --steps "$@"
         working-directory: tests
 
       - name: Kill all test processes
-        run: pm2 delete 2 && pm2 delete 3
+        run: pm2 delete 3 && pm2 delete 4
 
   build-frontend-backend:
     name: Build Frontend and Backend
@@ -80,9 +82,19 @@ jobs:
         with:
           node-version: '20.18.0'
 
+      - name: Download Backend Node Modules
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-node-modules
+          path: backend/node_modules
+
       - name: Seed database
         run: npm run seed
         working-directory: backend
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
 
       - name: Format frontend
         run: npm run format
@@ -96,5 +108,11 @@ jobs:
         run: npm run build
         working-directory: frontend
 
+      - name: Upload Frontend Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: frontend/build
+
       - name: Restart all PM2 processes
-        run: pm2 restart 1 && pm2 restart 0
+        run: pm2 restart 1 && pm2 restart 2
