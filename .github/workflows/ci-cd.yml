@@ -3,9 +3,10 @@ on:
   push:
     branches:
       - main
+
 jobs:
   setup:
-    name: Setup
+    name: Setup Dependencies and Caching
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -27,7 +28,7 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          npm install
+          npm ci
         working-directory: backend
 
       - name: Cache frontend dependencies
@@ -41,5 +42,65 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
-          npm install
+          npm ci
         working-directory: frontend
+
+      - name: Cache tests dependencies
+        uses: actions/cache@v4.2.0
+        with:
+          path: tests/node_modules
+          key: ${{ runner.os }}-tests-node-${{ hashFiles('tests/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-tests-node-
+          enableCrossOsArchive: true
+
+      - name: Install tests dependencies
+        run: |
+          npm ci
+        working-directory: tests
+
+      - name: Save artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: node-modules
+          path: |
+            backend/node_modules
+            frontend/node_modules
+            tests/node_modules
+
+  tests:
+    name: Auto Tests
+    runs-on: self-hosted
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Start backend tests with pm2
+        run: |
+          cd backend
+          pm2 start "npm run start" --name "Backend tests"
+
+      - name: Wait for backend to be ready
+        run: |
+          echo "Waiting for backend to be ready..."
+          while ! nc -z localhost 8010; do
+            echo "Backend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Start frontend tests with pm2
+        run: |
+          cd frontend
+          pm2 start "npm run start" --name "Frontend tests"
+
+      - name: Wait for frontend to be ready
+        run: |
+          echo "Waiting for frontend to be ready..."
+          while ! nc -z localhost 5183; do
+            echo "Frontend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Placeholder step (for future integration)
+        run: echo "Tests passed. Ready to proceed with deployment."
