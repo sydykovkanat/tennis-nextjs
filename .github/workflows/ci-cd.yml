@@ -6,73 +6,85 @@ on:
       - main
 
 jobs:
-  setup-backend:
-    name: Setup and Start Backend
-    runs-on: self-hosted
+  backend-setup:
+    name: Backend Setup
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.18.0'
+          node-version: '20'
 
       - name: Install backend dependencies
-        run: npm ci
-        working-directory: backend
-
-      - name: Seed database
-        run: npm run seed
-        working-directory: backend
-
-      - name: Start backend
         run: |
-          pm2 start "npm run start" --name="Backend"
+          npm install
+        working-directory: backend
+
+      - name: Save backend as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-artifact
+          path: backend
+
+  frontend-setup:
+    name: Frontend Setup
+    needs: backend-setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: |
+          npm install
+        working-directory: frontend
+
+      - name: Save frontend as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-artifact
+          path: frontend
+
+  starting:
+    name: Starting Backend and Frontend
+    needs: [backend-setup, frontend-setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download backend artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-artifact
+          path: backend
+
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend-artifact
+          path: frontend
+
+      - name: Start Backend
+        run: |
+          cd backend
+          pm2 start "ts-node index.ts" --name "Backend"
+
+      - name: Wait for Backend to be Ready
+        run: |
           echo "Waiting for backend to be ready..."
           while ! nc -z localhost 8000; do
             echo "Backend is not ready yet. Retrying in 5 seconds..."
             sleep 5
           done
           echo "Backend is up and running!"
-        shell: bash
-        working-directory: backend
 
-      - name: PM2 Save Process
-        run: pm2 save
-
-  setup-frontend:
-    name: Build and Start Frontend
-    needs: setup-backend
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.18.0'
-
-      - name: Install frontend dependencies
-        run: npm ci
-        working-directory: frontend
-
-      - name: Build frontend (Next.js)
-        run: npm run build
-        working-directory: frontend
-
-      - name: Start frontend
+      - name: Start Frontend
         run: |
-          pm2 start "npm run start" --name="Frontend"
-          echo "Waiting for frontend to be ready..."
-          while ! nc -z localhost 3000; do
-            echo "Frontend is not ready yet. Retrying in 5 seconds..."
-            sleep 5
-          done
-          echo "Frontend is up and running!"
-        shell: bash
-        working-directory: frontend
-        
-      - name: PM2 Save Process
-        run: pm2 save
+          cd frontend
+          pm2 start "npm run start" --name "Frontend"
