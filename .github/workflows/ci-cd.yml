@@ -86,7 +86,7 @@ jobs:
           echo "### Starting backend tests with pm2... ###"
           cd backend
 #          pm2 start "npm run start" --name "Backend tests"
-          npm run start
+          npm run start:test
 
       - name: Wait for backend to be ready
         run: |
