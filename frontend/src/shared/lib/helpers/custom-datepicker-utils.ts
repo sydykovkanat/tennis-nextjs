@@ -14,10 +14,6 @@ export const parseTournamentDate = (dateString: string): Date | undefined => {
   return undefined;
 };
 
-export const getPlaceholder = (mode: 'calendar' | 'users'): string => {
-  return mode === 'users' ? 'Дата рождения' : 'Выберите дату';
-};
-
 export const getParser = (mode: 'calendar' | 'users') => {
   return mode === 'users' ? parseUserDate : parseTournamentDate;
 };

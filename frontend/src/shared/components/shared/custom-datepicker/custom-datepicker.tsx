@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Calendar, Label, Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
-import { cn, getParser, getPlaceholder } from '@/shared/lib';
+import { cn, getParser } from '@/shared/lib';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
@@ -48,7 +48,11 @@ export const CustomDatepicker: React.FC<Props> = ({
               buttonClassName,
             )}
           >
-            {value ? format(parseDate(value) || new Date(), 'PPP', { locale: ru }) : getPlaceholder(mode)}
+            {value ? (
+              format(parseDate(value) || new Date(), 'PPP', { locale: ru })
+            ) : (
+              <span className={'text-muted-foreground'}>Выберите дату</span>
+            )}
           </Button>
         </PopoverTrigger>
         <PopoverContent align='start' className={styles.popoverContent} side={'top'}>

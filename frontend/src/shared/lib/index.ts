@@ -13,5 +13,4 @@ export { translateRank } from './helpers/tournament-utils';
 export { ThemeProvider } from './hooks/theme-provider';
 export { parseUserDate } from './helpers/custom-datepicker-utils';
 export { parseTournamentDate } from './helpers/custom-datepicker-utils';
-export { getPlaceholder } from './helpers/custom-datepicker-utils';
 export { getParser } from './helpers/custom-datepicker-utils';
