@@ -2,15 +2,13 @@
 
 import { Loader, MainPartnerCard, MainPartnerEditForm } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
-import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
 import { Pencil } from 'lucide-react';
 
 import styles from './tab-content.module.css';
+import { useTabsContent } from './use-tabs-content';
 
 export const MainPartner = () => {
-  const mainPartnerData = useAppSelector(selectItemsData);
-  const mainPartnerFetching = useAppSelector(selectItemsFetching);
+  const { mainPartnerData, mainPartnerFetching } = useTabsContent();
 
   return (
     <div className={styles.mainPartnerContainer}>

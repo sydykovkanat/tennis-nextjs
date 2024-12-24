@@ -1,7 +1,7 @@
+import styles from '@/app/(root)/news/news.module.css';
 import { CustomPagination, DatePicker, NewsCard } from '@/shared/components/shared';
 import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
-import styles from '@/app/(root)/news/news.module.css';
 
 interface Props {
   news: News[];

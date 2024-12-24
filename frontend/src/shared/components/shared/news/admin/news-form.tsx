@@ -18,11 +18,11 @@ import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectOneNews } from '@/shared/lib/features/news/news-slice';
 import { createNews, fetchOneNews, updateNews } from '@/shared/lib/features/news/news-thunks';
 import { XIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import React, { FormEvent, useEffect } from 'react';
 
 import styles from './news-form.module.css';
-import { useRouter } from 'next/navigation';
 
 interface Props {
   open: boolean;
