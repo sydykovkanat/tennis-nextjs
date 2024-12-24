@@ -5,6 +5,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -60,6 +61,7 @@ export const TournamentForm: React.FC<Props> = ({
       <DialogContent aria-describedby={undefined} className={cn(styles.tournamentDialog, 'dark:bg-[#1F2937]')}>
         <DialogHeader>
           <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'}</DialogTitle>
+          <DialogDescription>Заполните форму перед созданием турнира</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className={styles.formInner}>
@@ -189,7 +191,7 @@ export const TournamentForm: React.FC<Props> = ({
             <WarningMessage message='При создании турнира на следующий год, если есть турниры за прошлый год, они будут автоматически удалены. Это действие необратимо.' />
           )}
 
-          <div className={cn(styles.fieldWrapper, 'mt-3')}>
+          <div className={cn(styles.fieldWrapper, 'mt-2')}>
             <Button type='submit' disabled={isFormInvalid}>
               {existingTournament ? 'Редактировать' : 'Сохранить'}
             </Button>

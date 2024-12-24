@@ -11,19 +11,19 @@
 }
 
 .loginBtn {
-  @apply flex justify-between w-full h-14 mb-2.5;
+  @apply w-full h-12 mb-2.5 mt-5;
 }
 
 .forgotBtn {
-  @apply text-tn-dark-green block text-right mb-8;
+  @apply text-tn-dark-green block text-right mb-6;
 }
 
 .createBtn {
-  @apply bg-[#D9EBC6] text-tn-dark-green rounded-xl shadow-none h-12 w-full hover:bg-tn-green-secondary;
+  @apply bg-[#D9EBC6] text-tn-dark-green shadow-none h-12 w-full hover:bg-tn-green-secondary;
 }
 
 .title {
-  @apply text-[28px] leading-10 font-bold mb-2;
+  @apply text-[28px] leading-8 font-bold mb-2;
 }
 
 .subtitle {

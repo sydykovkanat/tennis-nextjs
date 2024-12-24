@@ -1,7 +1,11 @@
 .button {
-  @apply w-full font-normal justify-start;
+  @apply w-full font-normal justify-start hover:bg-transparent bg-transparent;
 }
 
 .popoverContent {
   @apply w-full p-0;
+}
+
+.datepickerPlaceholder {
+  @apply text-muted-foreground;
 }

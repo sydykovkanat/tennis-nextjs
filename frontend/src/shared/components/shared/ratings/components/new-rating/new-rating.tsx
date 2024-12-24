@@ -36,7 +36,7 @@ export const NewRating: React.FC<PropsWithChildren> = ({ children }) => {
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Новый рейтинг</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className={'pb-2'}>
             Введите данные для создания нового рейтинга. После создания, рейтинг будет доступен для просмотра на
             странице Рейтинг
           </DialogDescription>

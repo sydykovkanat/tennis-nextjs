@@ -5,6 +5,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -64,6 +65,7 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
           <DialogTitle>
             {`${existingMember ? 'Редактировать' : 'Добавить'} участника ${dialogTitle} рейтинга`}
           </DialogTitle>
+          <DialogDescription>{`Заполните форму перед ${existingMember ? 'редактированием' : 'созданием'} участника ${dialogTitle} рейтинга`}</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className={styles.formContainer}>
@@ -166,7 +168,7 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
               {existingMember ? 'Редактировать' : 'Сохранить'}
             </Button>
             <DialogClose asChild>
-              <Button type='button' variant='secondary' onClick={handleClose}>
+              <Button type='button' variant='outline' onClick={handleClose}>
                 Отмена
               </Button>
             </DialogClose>

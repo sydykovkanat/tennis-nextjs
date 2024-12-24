@@ -4,7 +4,6 @@ import { useLogin, useLoginForm, useLoginSelectors } from '@/shared/components/s
 import { Button, Input } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { LoginMutation } from '@/shared/types/auth.types';
-import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
 import React from 'react';
@@ -34,7 +33,7 @@ const Login: React.FC<Props> = ({ className }) => {
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Добро пожаловать</h1>
 
-      <p className={styles.subtitle}>Введите свой логин и пароль для входа в личный кабинет</p>
+      <p className={styles.subtitle}>Введите свой логин и пароль для входа</p>
 
       <Input
         error={loginError?.error}
@@ -56,12 +55,7 @@ const Login: React.FC<Props> = ({ className }) => {
         onChange={handleChange}
       />
 
-      <Button
-        loading={loginLoading}
-        icon={ArrowRightIcon}
-        className={cn(styles.loginBtn)}
-        disabled={!isFormValid || loginLoading}
-      >
+      <Button loading={loginLoading} className={cn(styles.loginBtn)} disabled={!isFormValid || loginLoading}>
         Войти
       </Button>
 

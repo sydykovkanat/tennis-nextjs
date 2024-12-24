@@ -16,7 +16,7 @@ export const Partners: React.FC<Props> = async ({ className }) => {
 
   return (
     <>
-      <Title variant={'h1'} className={cn(styles.mainTitle)}>
+      <Title variant={'h3'} className={cn(styles.mainTitle)}>
         Наши Партнеры
       </Title>
       <section className={styles.container}>

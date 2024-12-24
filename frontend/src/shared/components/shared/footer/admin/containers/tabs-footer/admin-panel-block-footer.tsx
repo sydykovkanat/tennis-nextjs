@@ -16,7 +16,7 @@ export const AdminPanelBlockFooter = () => {
       <div className={styles.header}>
         <div>
           <h2 className={styles.title}>Подвал сайта</h2>
-          <small className={styles.subtitle}>Элементы управления контентом и его созданием.</small>
+          <small className={styles.subtitle}>Элементы управления контентом и его созданием</small>
         </div>
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>

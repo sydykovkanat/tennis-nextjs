@@ -41,7 +41,6 @@ export const CustomDatepicker: React.FC<Props> = ({
             variant='outline'
             className={cn(
               styles.button,
-              'bg-transparent',
               'dark:bg-transparent',
               'dark:border-gray-300',
               'focus:dark:border-gray-300',
@@ -51,7 +50,7 @@ export const CustomDatepicker: React.FC<Props> = ({
             {value ? (
               format(parseDate(value) || new Date(), 'PPP', { locale: ru })
             ) : (
-              <span className={'text-muted-foreground'}>Выберите дату</span>
+              <span className={styles.datepickerPlaceholder}>Выберите дату</span>
             )}
           </Button>
         </PopoverTrigger>

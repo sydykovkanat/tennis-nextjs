@@ -11,7 +11,7 @@
 }
 
 .title {
-  @apply text-[28px] leading-10 font-bold mb-2;
+  @apply text-[28px] leading-8 font-bold mb-2;
 }
 
 .subtitle {
@@ -39,7 +39,7 @@
 }
 
 .selectContainer {
-  @apply mb-4;
+  @apply mb-5;
 }
 
 .checkboxContainer {
@@ -59,7 +59,7 @@
 }
 
 .registerBtn {
-  @apply flex justify-between w-full h-14 mb-1;
+  @apply  w-full h-12 mb-5;
 }
 
 .isAlreadyRegistered {
