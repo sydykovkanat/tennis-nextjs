@@ -42,11 +42,11 @@ const ForgotPassword: React.FC = () => {
           className={cn(styles.Button, 'dark:bg-white', {
             'pointer-events-none': disabled,
           })}
-          icon={ArrowRightIcon}
-          iconClassName={'hidden xs:block'}
+          icon={timer === 0 && !forgotPasswordLoading ? ArrowRightIcon : undefined}
+          iconClassName={'ml-6 mt-[2px]'}
         >
-          {timer > 0 ? `Запросить код заново (${timer})` : 'Отправить ссылку на сброс пароля'}
-          {forgotPasswordLoading && <Loader className={'text-muted'} />}
+          {timer > 0 ? `Запросить код заново (${timer})` : 'Отправить ссылку'}
+          {forgotPasswordLoading && <Loader className={'text-muted ml-6 '} />}
         </Button>
       </section>
     </form>
