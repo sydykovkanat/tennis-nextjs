@@ -4,24 +4,12 @@ import { MainPartner, MenuPosition, PublicOffer, SocialNetwork } from '@/shared/
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 
-import { useEffect, useState } from 'react';
-
+import { ListTabsName } from '../../constants';
 import styles from './admin-panel-block-footer.module.css';
+import { useFooterTabs } from './use-footer-tabs';
 
 export const AdminPanelBlockFooter = () => {
-  const [footerTab, setFooterTab] = useState<string>('social-network');
-
-  useEffect(() => {
-    const savedFooterTab = sessionStorage.getItem('footerTab');
-    if (savedFooterTab) {
-      setFooterTab(savedFooterTab);
-    }
-  }, []);
-
-  const handleFooterTabChange = (newTab: string) => {
-    setFooterTab(newTab);
-    sessionStorage.setItem('footerTab', newTab);
-  };
+  const { footerTab, handleFooterTabChange } = useFooterTabs();
 
   return (
     <>
@@ -32,19 +20,12 @@ export const AdminPanelBlockFooter = () => {
         </div>
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
-        <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]', 'w-full')}>
-          <TabsTrigger className={styles.tabsTrigger} value='social-network'>
-            Социальные сети
-          </TabsTrigger>
-          <TabsTrigger className={styles.tabsTrigger} value='menu-position'>
-            Меню положение
-          </TabsTrigger>
-          <TabsTrigger className={styles.tabsTrigger} value='public-offer'>
-            Публичная оферта
-          </TabsTrigger>
-          <TabsTrigger className={styles.tabsTrigger} value='main-partner'>
-            Ген.партнер
-          </TabsTrigger>
+        <TabsList style={{ width: '100%' }} className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
+          {ListTabsName.map((item, id) => (
+            <TabsTrigger key={id} className={styles.tabsTrigger} value={item.value}>
+              {item.name}
+            </TabsTrigger>
+          ))}
         </TabsList>
         <TabsContent value='social-network'>
           <SocialNetwork />

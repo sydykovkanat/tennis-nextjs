@@ -5,6 +5,7 @@ import { Container, NewsTitle } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { NewsResponse } from '@/shared/types/news.types';
 import type { Metadata } from 'next';
+
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
