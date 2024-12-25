@@ -2,8 +2,10 @@ import { fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
 import { Reward } from '@/shared/types/reward.types';
 import { createSlice } from '@reduxjs/toolkit';
 
+
 interface RewardsState {
   items: Reward[];
+  pages: number;
   item: Reward | null;
   createRewardLoading: boolean;
   fetchRewardsLoading: boolean;
@@ -14,6 +16,7 @@ interface RewardsState {
 
 const initialState: RewardsState = {
   items: [],
+  pages: 1,
   item: null,
   createRewardLoading: false,
   fetchRewardsLoading: false,
@@ -31,8 +34,9 @@ export const rewardsSlice = createSlice({
       .addCase(fetchRewards.pending, (state) => {
         state.fetchRewardsLoading = true;
       })
-      .addCase(fetchRewards.fulfilled, (state, { payload: rewards }) => {
-        state.items = rewards;
+      .addCase(fetchRewards.fulfilled, (state, { payload }) => {
+        state.items = payload.data;
+        state.pages = payload.pages;
         state.fetchRewardsLoading = false;
       })
       .addCase(fetchRewards.rejected, (state) => {
@@ -41,10 +45,11 @@ export const rewardsSlice = createSlice({
   },
   selectors: {
     selectRewards: (state) => state.items,
+    selectRewardsPages: (state) => state.pages,
     selectRewardsFetching: (state) => state.fetchRewardsLoading,
   },
 });
 
 export const rewardsReducer = rewardsSlice.reducer;
 
-export const { selectRewards, selectRewardsFetching } = rewardsSlice.selectors;
+export const { selectRewards, selectRewardsPages, selectRewardsFetching } = rewardsSlice.selectors;

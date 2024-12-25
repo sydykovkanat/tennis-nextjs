@@ -91,10 +91,18 @@ export const useUsersForm = () => {
     );
   };
 
-  const addUserAdmin = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     try {
-      await dispatch(addUser(newUser)).unwrap();
+      if (newUser.id) {
+        await dispatch(updateCurrentUserInfo(newUser)).unwrap();
+        toast.success('Профиль успешно обновлен!');
+      } else {
+        await dispatch(addUser(newUser)).unwrap();
+        toast.success('Профиль успешно создан');
+      }
+
       await dispatch(
         fetchUsers({
           fullName: '',
@@ -104,8 +112,13 @@ export const useUsersForm = () => {
           role: newUser.role,
         }),
       );
+
+      if (newUser.role) {
+        const updateRoleForTab = newUser.role === 'moderator' ? 'moderators' : 'users';
+        handleTabChange(updateRoleForTab);
+      }
+
       setNewUser(initialState);
-      toast.success('Профиль успешно создан');
       closeRef.current?.click();
     } catch (e) {
       const error = e as ValidationError;
@@ -119,39 +132,12 @@ export const useUsersForm = () => {
         } else {
           toast.error(error.message || 'Произошла ошибка');
         }
+      } else {
+        console.error(e);
       }
     }
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    try {
-      event.preventDefault();
-      if (newUser) {
-        await dispatch(updateCurrentUserInfo(newUser)).unwrap();
-
-        await dispatch(
-          fetchUsers({
-            fullName: '',
-            telephone: '',
-            category: 'all',
-            page: 1,
-            role: newUser.role,
-          }),
-        );
-
-        if (newUser.role) {
-          const updateRoleForTab = newUser.role === 'moderator' ? 'moderators' : 'users';
-          handleTabChange(updateRoleForTab);
-        }
-
-        setNewUser(initialState);
-        toast.success('Профиль успешно обвновлен');
-        closeRef.current?.click();
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return {
     isDialogOpen,
@@ -170,7 +156,6 @@ export const useUsersForm = () => {
     isFormValidAdmin,
     initialState,
     dispatch,
-    addUserAdmin,
     handleSubmit,
     loadingUpdateUser,
     errorUpdateUser,

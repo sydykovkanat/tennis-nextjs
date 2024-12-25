@@ -7,3 +7,11 @@ export interface Reward extends Base {
   nomination?: string;
   icon?: string;
 }
+
+export interface RewardResponse {
+  page: number;
+  limit: number;
+  total: number;
+  pages: number;
+  data: Reward[];
+}

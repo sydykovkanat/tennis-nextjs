@@ -1,27 +1,22 @@
 'use client';
 
-import { Container, GradientCircle, PersonalData, Rewards, userCircles } from '@/shared/components/shared';
+import {
+  Container,
+  GradientCircle,
+  PersonalData,
+  Rewards,
+  useTabsWithRewards,
+  userCircles,
+} from '@/shared/components/shared';
 import { ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import styles from './personal-account.module.css';
 
 const PersonalAccount = () => {
-  const [currentTab, setCurrentTab] = useState<string>('personalData');
-
-  useEffect(() => {
-    const savedTab = sessionStorage.getItem('personalAccount');
-    if (savedTab) {
-      setCurrentTab(savedTab);
-    }
-  }, []);
-
-  const handleTabChange = (newTab: string) => {
-    setCurrentTab(newTab);
-    sessionStorage.setItem('personalAccount', newTab);
-  };
+  const { currentTab, handleTabChange } = useTabsWithRewards();
 
   return (
     <Container>

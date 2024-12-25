@@ -1,6 +1,7 @@
 'use client';
 
-import { Loader, UsersDatePicker, UsersInput, useUsersForm } from '@/shared/components/shared';
+import { useTabsWithRewards, useUsersForm } from '@/shared/components/shared';
+import { Form } from '@/shared/components/shared/admin-users-list/users-form/form';
 import {
   Button,
   Dialog,
@@ -10,20 +11,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Label,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  ScrollArea,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from '@/shared/components/ui';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
-import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 import React, { useEffect } from 'react';
@@ -39,26 +37,8 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   const isAddMode = mode === 'add';
   const userPermission = useAppSelector(selectUserPermission);
 
-  const {
-    isDialogOpen,
-    setIsDialogOpen,
-    closeRef,
-    newUser,
-    categories,
-    categoriesLoading,
-    loading,
-    handleDateChange,
-    handleChange,
-    handleSelectChange,
-    isFormValidAdmin,
-    error,
-    dispatch,
-    addUserAdmin,
-    setNewUser,
-    handleSubmit,
-    loadingUpdateUser,
-    currentUser,
-  } = useUsersForm();
+  const { isDialogOpen, setIsDialogOpen, categories, dispatch, setNewUser } = useUsersForm();
+  const { currentTab, handleTabChange } = useTabsWithRewards();
 
   useEffect(() => {
     if (userPermission != null && userPermission !== 3) {
@@ -82,27 +62,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
       }
     }
   }, [dispatch, isDialogOpen, id]);
-
-  useEffect(() => {
-    try {
-      if (mode === 'edit' && id) {
-        if (currentUser) {
-          setNewUser({
-            id: currentUser._id,
-            fullName: currentUser.fullName || '',
-            telephone: currentUser.telephone || '',
-            email: currentUser.email || '',
-            role: currentUser.role || '',
-            gender: currentUser.gender || '',
-            dateOfBirth: currentUser.dateOfBirth || '',
-            category: currentUser.category?._id || '',
-          });
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [id, dispatch, mode, setNewUser, currentUser]);
 
   return (
     <>
@@ -128,153 +87,35 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
             <DialogDescription>
               {isAddMode ? 'Заполните форму для создания аккаунта.' : 'Заполните форму для редактирования профиля'}
             </DialogDescription>
-            <form onSubmit={isAddMode ? addUserAdmin : handleSubmit}>
-              <div className={styles.blockForm}>
-                <UsersInput
-                  id='fullName'
-                  value={newUser.fullName}
-                  onChange={handleChange}
-                  label='ФИО'
-                  placeholder='Введите ваше полное ФИО'
-                  autoComplete={'name'}
-                  className={styles.inputField}
-                />
-
-                <UsersInput
-                  id='telephone'
-                  value={newUser.telephone}
-                  onChange={handleChange}
-                  label='Номер телефона'
-                  placeholder={'0500 000 000'}
-                  autoComplete={'tel'}
-                  className={styles.inputField}
-                  error={error ? `${error.errors.telephone.message}` : ''}
-                />
-
-                <UsersInput
-                  id='email'
-                  value={newUser.email}
-                  onChange={handleChange}
-                  label='Почта'
-                  placeholder={'example@gmail.com'}
-                  autoComplete={'email'}
-                  className={styles.inputField}
-                />
-
-                {isAddMode ? (
-                  <>
-                    <UsersInput
-                      id='password'
-                      value={newUser.password}
-                      onChange={handleChange}
-                      label='Пароль'
-                      placeholder='Введите пароль'
-                      type='password'
-                      autoComplete={'new-password'}
-                      className={styles.inputField}
-                    />
-                  </>
-                ) : null}
-
-                <UsersDatePicker
-                  value={newUser.dateOfBirth}
-                  onChange={(date) => handleDateChange(date)}
-                  label={'Дата рождения'}
-                  className={styles.inputField}
-                  addUserAdmin={true}
-                />
-
-                <div className='pt-5'>
-                  <Label htmlFor='gender' className={styles.label}>
-                    Пол
-                  </Label>
-                  <Select value={newUser.gender} onValueChange={(value) => handleSelectChange(value, 'gender')}>
-                    <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='gender'>
-                      <SelectValue placeholder='Укажите пол' />
-                    </SelectTrigger>
-                    <SelectContent className={'dark:bg-gray-900'}>
-                      <SelectGroup className={'dark:bg-gray-900'}>
-                        <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='male'>
-                          Мужской
-                        </SelectItem>
-                        <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='female'>
-                          Женский
-                        </SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor='category' className={styles.label}>
-                    Категория
-                  </Label>
-                  <Select
-                    disabled={categoriesLoading || categories.length === 0}
-                    value={newUser.category}
-                    onValueChange={(value) => handleSelectChange(value, 'category')}
-                  >
-                    <SelectTrigger className={styles.selectTrigger} id='category'>
-                      <SelectValue placeholder='Выберите категорию' />
-                    </SelectTrigger>
-                    <SelectContent className={'dark:bg-gray-900'}>
-                      <SelectGroup className={'dark:bg-gray-900'}>
-                        {categories.map((item) => (
-                          <SelectItem
-                            className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
-                            key={item._id}
-                            value={item._id}
-                          >
-                            {item.name}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {userPermission === 3 ? (
-                  <div>
-                    <Label htmlFor='role' className={styles.label}>
-                      Роль
-                    </Label>
-                    <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
-                      <SelectTrigger className={styles.selectTrigger} id='role'>
-                        <SelectValue placeholder='Выберите роль' />
-                      </SelectTrigger>
-                      <SelectContent className={'dark:bg-gray-900'}>
-                        <SelectGroup className={'dark:bg-gray-900'}>
-                          <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'user'}>
-                            Пользователь
-                          </SelectItem>
-                          <SelectItem className={'hover:dark:bg-gray-800 '} value={'moderator'}>
-                            Модератор
-                          </SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                ) : (
-                  <input type='hidden' value='user' />
-                )}
-              </div>
-
-              <Button
-                type='submit'
-                className={cn(styles.buttonSubmit)}
-                disabled={
-                  isAddMode ? !isFormValidAdmin() || !validateEmail(newUser.email) : !validateEmail(newUser.email)
-                }
+            {isAddMode ? (
+              <Form userPermission={userPermission} isAdd />
+            ) : (
+              <Tabs
+                value={currentTab}
+                orientation={'vertical'}
+                defaultValue={currentTab}
+                onValueChange={handleTabChange}
               >
-                {isAddMode ? <> Добавить {loading && <Loader />}</> : <> Сохранить {loadingUpdateUser && <Loader />}</>}
-              </Button>
+                <ScrollArea>
+                  <TabsList>
+                    <TabsTrigger value='personalData'>Персональные данные</TabsTrigger>
+                    <TabsTrigger value='rewards'>Награды</TabsTrigger>
+                  </TabsList>
+                </ScrollArea>
+                <div className={cn(styles.box, 'dark:bg-[#1F2937]')}>
+                  <TabsContent value={'personalData'}>
+                    <Form userPermission={userPermission} id={id} />
+                  </TabsContent>
+                  <TabsContent value={'rewards'}>Rewards</TabsContent>
+                </div>
+              </Tabs>
+            )}
 
-              <DialogClose asChild>
-                <Button ref={closeRef} className={styles.buttonCancel} type={'button'} variant={'outline'}>
-                  Отменить
-                </Button>
-              </DialogClose>
-            </form>
+            <DialogClose asChild>
+              <Button className={styles.buttonCancel} type={'button'} variant={'outline'}>
+                Отменить
+              </Button>
+            </DialogClose>
           </DialogHeader>
         </DialogContent>
       </Dialog>

@@ -1,12 +1,12 @@
 'use client';
 
-import { Loader, RewardItem, UseRewards } from '@/shared/components/shared';
+import { CustomPagination, Loader, RewardItem, useRewards } from '@/shared/components/shared';
 import { cn } from '@/shared/lib';
 
 import styles from './rewards.module.css';
 
 export const Rewards = () => {
-  const { rewards, rewardsFetching } = UseRewards();
+  const { rewards, rewardsFetching } = useRewards();
 
   return (
     <div>
@@ -20,6 +20,7 @@ export const Rewards = () => {
               <RewardItem reward={reward} key={reward._id} />
             ))}
           </div>
+          {<CustomPagination total={1} />}
         </>
       )}
     </div>

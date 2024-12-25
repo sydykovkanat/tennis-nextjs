@@ -1,4 +1,4 @@
-import { Cup, Medal, UseRewards } from '@/shared/components/shared';
+import { Cup, Medal, useRewards } from '@/shared/components/shared';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { Reward } from '@/shared/types/reward.types';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const RewardItem: React.FC<Props> = ({ reward }) => {
-  const { getIconClass } = UseRewards();
+  const { getIconClass } = useRewards();
 
   return (
     <Popover>

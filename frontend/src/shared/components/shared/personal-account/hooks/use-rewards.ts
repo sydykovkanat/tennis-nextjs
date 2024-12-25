@@ -9,7 +9,7 @@ import { Filters, Query } from '@/shared/types/root.types';
 
 import { useEffect } from 'react';
 
-export const UseRewards = () => {
+export const useRewards = () => {
   const dispatch = useAppDispatch();
   const rewards = useAppSelector(selectRewards);
   const rewardsFetching = useAppSelector(selectRewardsFetching);
