@@ -20,7 +20,7 @@ export const usersRouter = express.Router();
 
 usersRouter.get('/get-users', auth, permit('admin', 'moderator'), getUsers);
 usersRouter.get('/:id', auth, getOneUser);
-usersRouter.get('/:id/permission', auth, getPermissionLevel);
+usersRouter.get('/:id/permission', getPermissionLevel);
 usersRouter.post('/', register);
 usersRouter.post('/add-user', auth, permit('admin', 'moderator'), addUser);
 usersRouter.post('/sessions', login);
