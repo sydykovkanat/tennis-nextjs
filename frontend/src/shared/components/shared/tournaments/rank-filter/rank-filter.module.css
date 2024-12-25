@@ -4,6 +4,7 @@
 
 .tabsTriggers {
   @apply dark:text-white
+  data-[state=active]:bg-transparent
   data-[state=active]:border-tn-green
   border-b-2 border-b-transparent bg-transparent
   hover:text-tn-green dark:hover:text-tn-green;
