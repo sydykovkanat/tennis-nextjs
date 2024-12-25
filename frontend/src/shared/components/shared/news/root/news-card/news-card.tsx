@@ -27,7 +27,7 @@ const CardImage = memo(
         ref={ref}
         src={src ? src : ''}
         alt={alt ? alt : ''}
-        className={cn('h-[300px] max-h-[300px] object-cover w-full mb-6 rounded-md', className)}
+        className={cn('h-[300px] max-h-[300px] object-cover w-full mb-6 rounded-lg', className)}
         {...props}
         width={500}
         height={500}
@@ -60,11 +60,13 @@ export const NewsCard: React.FC<Props> = React.memo(({ news, isAdmin }) => {
           <CardImage src={`${API_URL}/${newsCover}`} alt={title} />
         </CardHeader>
         <CardContent className={cn(styles.newsCardContent)}>
-          <div className='me-auto'>
-            <h4 className={cn(styles.newsCardSubtitle, 'dark:text-white')}>{subtitle}</h4>
-            <h3 className={cn(styles.newsCardTitle, 'dark:text-white')}>{title}</h3>
+          <div className='w-full flex justify-between items-start gap-3'>
+            <h4 className={cn(styles.newsCardSubtitle, 'dark:text-white')} title={subtitle}>
+              {subtitle}
+            </h4>
+            <span className={cn(styles.newsCardCreatedAt, 'dark:text-[#64B32C]')}>{createdAt}</span>
           </div>
-          <span className={cn(styles.newsCardCreatedAt, 'dark:text-[#64B32C]')}>{createdAt}</span>
+          <h3 className={cn(styles.newsCardTitle, 'dark:text-white')}>{title}</h3>
         </CardContent>
       </Link>
       {isAdmin && (

@@ -1,5 +1,5 @@
 import { getTournaments } from '@/actions/tournaments';
-import { Container, TournamentCalendar } from '@/shared/components/shared';
+import { Container, GradientCircle, TournamentCalendar, gradientCircles } from '@/shared/components/shared';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -24,6 +24,9 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <Container>
+      {gradientCircles.map((circle, id) => (
+        <GradientCircle key={id} {...circle} />
+      ))}
       <TournamentCalendar tournaments={tournaments} />
     </Container>
   );
