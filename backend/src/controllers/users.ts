@@ -62,13 +62,35 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const user = await User.findOne({ telephone: req.body.telephone }).populate('category').select('+password');
 
-    if (!user) return res.status(400).send({ error: 'Username not found!' });
+    if (!user)
+      return res.status(400).send({
+        error: {
+          messageTelephone: 'Username not found!',
+        },
+      });
 
-    if (!req.body.password) return res.status(400).send({ error: 'Password is required!' });
+    if (!req.body.password)
+      return res.status(400).send({
+        error: {
+          messagePassword: 'Password is required!',
+        },
+      });
 
     const isMatch = await user.checkPassword(req.body.password);
 
-    if (!isMatch) return res.status(400).send({ error: 'Телефон или пароль не верный!' });
+    if (!isMatch)
+      return res.status(400).send({
+        error: {
+          messageMatching: 'Пароль не верный!',
+        },
+      });
+
+    if (!user.isActive)
+      return res.status(400).send({
+        error: {
+          messageIsActive: 'Ваш аккаунт заблокирован, чтобы связаться напишите по номеру',
+        },
+      });
 
     user.generateToken();
     await user.save();

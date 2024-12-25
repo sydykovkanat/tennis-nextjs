@@ -1,7 +1,7 @@
+import styles from '@/app/(root)/news/news.module.css';
 import { Container, DatePicker, NewsTitle } from '@/shared/components/shared';
 import { Skeleton } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import styles from '@/app/(root)/news/news.module.css';
 
 import React from 'react';
 

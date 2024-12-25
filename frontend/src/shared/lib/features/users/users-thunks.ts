@@ -75,10 +75,21 @@ export const fetchUsers = createAsyncThunk<UsersResponse, UsersFilter>('users/fe
   return response;
 });
 
-export const getPermissionForUser = createAsyncThunk<number, string>('users/get-permission', async (id) => {
-  const { data: response } = await axiosApi.get<UserPermissionLevel>(`/users/${id}/permission`);
-  return response.permissionLevel;
-});
+export const getPermissionForUser = createAsyncThunk<number, string, { state: RootState }>(
+  'users/get-permission',
+  async (id, { getState, dispatch }) => {
+    const { data: response } = await axiosApi.get<UserPermissionLevel>(`/users/${id}/permission`);
+
+    if (response.permissionLevel === 0) {
+      const token = getState().users.user?.token;
+      await axiosApi.delete('/users/sessions', { headers: { Authorization: `Bearer ${token}` } });
+      dispatch(unsetUser());
+
+      toast.error('Ваш аккаунт заблокирован.');
+    }
+    return response.permissionLevel;
+  },
+);
 
 export const addUser = createAsyncThunk<void, UserMutation, { rejectValue: ValidationError }>(
   'users/add-user',

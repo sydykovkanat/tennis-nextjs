@@ -20,9 +20,7 @@ export default function NotFound() {
       <div className={styles.innerContainer}>
         <div className={styles.page}>
           <h2 className={cn(styles.title, 'dark:text-white')}>Страница не найдена</h2>
-          <p className={cn(styles.description)}>
-            Страница, которую вы ищете, не существует или была перемещена
-          </p>
+          <p className={cn(styles.description)}>Страница, которую вы ищете, не существует или была перемещена</p>
         </div>
         <div className={styles.button}>
           <Link href={'/'} className={styles.link}>

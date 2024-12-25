@@ -27,7 +27,7 @@ export default function Page() {
     <>
       {!oneNews ? (
         <Container className={'d-flex'}>
-          <Loader  className={'mx-auto'}/>
+          <Loader className={'mx-auto'} />
         </Container>
       ) : (
         <Container>
