@@ -38,7 +38,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
           </TableHeader>
           <TableBody>
             {users.map((user) => (
-              <TableRow className={'hover:dark:bg-gray-800'} key={user._id}>
+              <TableRow className={'hover:dark:bg-gray-800'} key={user._id} data-testid={`${user.fullName}`}>
                 <TableCell className={styles.tableCell}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.fullName}</TableCell>
                 <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
@@ -56,13 +56,19 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                           className={styles.deactivateButton}
                           variant='destructive'
                           onClick={() => toggleActive(user._id)}
+                          data-testid='deactivate'
                         >
                           <XMarkIcon className={'size-4'} />
                         </Button>
                       </InfoTip>
                     ) : (
                       <InfoTip text={'Активировать'} className={styles.infoTipBorder} delay={300}>
-                        <Button size={'icon'} className={styles.activateButton} onClick={() => toggleActive(user._id)}>
+                        <Button
+                          size={'icon'}
+                          className={styles.activateButton}
+                          onClick={() => toggleActive(user._id)}
+                          data-testid='activate'
+                        >
                           <CheckIcon className={'size-4'} />
                         </Button>
                       </InfoTip>
