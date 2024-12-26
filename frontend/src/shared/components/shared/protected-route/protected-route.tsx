@@ -8,12 +8,12 @@ interface Props extends React.PropsWithChildren {
 
 const ProtectedRoute: React<Props> = ({ isAllowed, children }) => {
   useEffect(() => {
-    if (isAllowed) {
-      return children
+    if (!isAllowed) {
+      return redirect('/404');
     }
-  }, [])
+  }, [isAllowed]);
 
-  return redirect('/404');
+  return isAllowed && children;
 };
 
 export default ProtectedRoute;

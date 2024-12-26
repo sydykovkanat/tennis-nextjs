@@ -1,6 +1,5 @@
 'use client';
 
-import ProtectedRoute from '@/shared/components/shared/protected-route/protected-route';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import dynamic from 'next/dynamic';
@@ -8,6 +7,10 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 const UserCabinet = dynamic(() => import('@/shared/components/shared/personal-account/personal-account'), {
+  ssr: false,
+});
+
+const ProtectedRoute = dynamic(() => import('@/shared/components/shared/protected-route/protected-route'), {
   ssr: false,
 });
 

@@ -65,14 +65,14 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     if (!user)
       return res.status(400).send({
         error: {
-          messageTelephone: 'Username not found!',
+          messageTelephone: 'Номер телефона не найден!',
         },
       });
 
     if (!req.body.password)
       return res.status(400).send({
         error: {
-          messagePassword: 'Password is required!',
+          messagePassword: 'Пароль обязателен!',
         },
       });
 
