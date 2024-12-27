@@ -25,3 +25,11 @@
 .newsCardCreatedAt {
   @apply text-cr-green-900 text-sm dark:text-[#64B32C] !important;
 }
+
+.newsCardTitle {
+  @apply text-cr-black font-semibold text-lg !important;
+}
+
+.newsCardCreatedAt {
+  @apply text-cr-green-900 text-sm !important;
+}
