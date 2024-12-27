@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
 interface Props extends React.PropsWithChildren {
   isAllowed: boolean;
