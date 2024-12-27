@@ -7,7 +7,7 @@ export interface RewardFields {
   tournament: string;
   place: number;
   nomination?: string;
-  icon?:'cup' | 'medal';
+  icon: 'cup' | 'medal' | 'racket';
 }
 
 export interface Reward extends RewardFields {

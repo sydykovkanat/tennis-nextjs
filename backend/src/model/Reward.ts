@@ -29,6 +29,7 @@ const RewardSchema = new Schema<RewardFields>(
     icon: {
       type: String,
       enum: ['cup', 'medal'],
+      default: 'cup'
     },
   },
   { timestamps: true }

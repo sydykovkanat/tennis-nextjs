@@ -5,7 +5,7 @@ export interface Reward extends Base {
   tournament: string;
   place: number;
   nomination?: string;
-  icon?: string;
+  icon: string;
 }
 
 export interface RewardResponse {
@@ -14,4 +14,12 @@ export interface RewardResponse {
   total: number;
   pages: number;
   data: Reward[];
+}
+
+export interface RewardMutation {
+  user: string;
+  tournament: string;
+  place: number;
+  nomination: string;
+  icon: string;
 }

@@ -77,10 +77,13 @@ export { ThemeSwitcher } from './theme-switcher/theme-switcher';
 export { PersonalData } from './personal-account/personal-data/personal-data';
 export { Rewards } from './personal-account/rewards/rewards';
 export { useRewards } from './personal-account/hooks/use-rewards';
-export { Cup } from './personal-account/rewards/components/Cup';
-export { Medal } from './personal-account/rewards/components/Medal';
+export { Cup } from './personal-account/rewards/components/icons/Cup';
+export { Medal } from './personal-account/rewards/components/icons/Medal';
+export { IconComponent } from './personal-account/rewards/components/icons/icon-component';
 export { RewardItem } from './personal-account/rewards/components/reward-item/reward-item';
 export { useTabsWithRewards } from './personal-account/hooks/use-tabs-with-rewards';
+export { RewardForm } from './personal-account/rewards/components/rewards-form/reward-form';
+export { useRewardForm } from './personal-account/hooks/use-reward-form';
 
 export { InfoTip } from './info-tip/info-tip';
 

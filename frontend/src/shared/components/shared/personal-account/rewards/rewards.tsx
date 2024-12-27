@@ -20,7 +20,7 @@ export const Rewards = () => {
               <RewardItem reward={reward} key={reward._id} />
             ))}
           </div>
-          {<CustomPagination total={1} />}
+          {<CustomPagination total={5} />}
         </>
       )}
     </div>

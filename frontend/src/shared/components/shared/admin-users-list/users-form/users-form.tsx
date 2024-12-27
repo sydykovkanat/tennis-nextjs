@@ -1,5 +1,6 @@
 'use client';
 
+import { Rewards } from '@/shared/components/admin';
 import { useTabsWithRewards, useUsersForm } from '@/shared/components/shared';
 import { Form } from '@/shared/components/shared/admin-users-list/users-form/form';
 import {
@@ -37,7 +38,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
   const isAddMode = mode === 'add';
   const userPermission = useAppSelector(selectUserPermission);
 
-  const { isDialogOpen, setIsDialogOpen, categories, dispatch, setNewUser } = useUsersForm();
+  const { isDialogOpen, setIsDialogOpen, categories, dispatch, setNewUser, currentUser } = useUsersForm();
   const { currentTab, handleTabChange } = useTabsWithRewards();
 
   useEffect(() => {
@@ -106,7 +107,8 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   <TabsContent value={'personalData'}>
                     <Form userPermission={userPermission} id={id} />
                   </TabsContent>
-                  <TabsContent value={'rewards'}>Rewards</TabsContent>
+
+                  <TabsContent value={'rewards'}>{currentUser && <Rewards id={currentUser._id} />}</TabsContent>
                 </div>
               </Tabs>
             )}

@@ -1,4 +1,6 @@
-import { Cup, Medal, useRewards } from '@/shared/components/shared';
+'use client';
+
+import { IconComponent } from '@/shared/components/shared';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { Reward } from '@/shared/types/reward.types';
@@ -12,17 +14,11 @@ interface Props {
 }
 
 export const RewardItem: React.FC<Props> = ({ reward }) => {
-  const { getIconClass } = useRewards();
-
   return (
     <Popover>
       <PopoverTrigger className={cn(styles.popoverTrigger)}>
         <div className={cn(styles.reward)}>
-          {reward.icon === 'medal' ? (
-            <Medal className={getIconClass(reward.place)} />
-          ) : (
-            <Cup className={getIconClass(reward.place)} />
-          )}
+          <IconComponent name={reward.icon} place={reward.place} />
           <p className={cn(styles.place)}>{reward.place.toString()} место</p>
         </div>
       </PopoverTrigger>
