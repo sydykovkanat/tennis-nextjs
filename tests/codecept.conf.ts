@@ -31,6 +31,7 @@ exports.config = {
       './step_definitions/rating.steps.ts',
       './step_definitions/users.steps.ts',
       './step_definitions/categories.steps.ts',
+      './step_definitions/footers.steps.ts',
     ],
   },
   plugins: {
