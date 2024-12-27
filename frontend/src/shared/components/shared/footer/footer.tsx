@@ -1,3 +1,5 @@
+'use client';
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/shared/components/ui';
 import { API_URL, CURRENT_YEAR_FULL, NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn, useAppSelector } from '@/shared/lib';
