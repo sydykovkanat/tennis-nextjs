@@ -18,6 +18,8 @@ interface Props {
   fromYear: number;
   toYear: number;
   buttonClassName?: string;
+  error?: string;
+  onBlur?: () => void;
 }
 
 export const CustomDatepicker: React.FC<Props> = ({
@@ -29,12 +31,16 @@ export const CustomDatepicker: React.FC<Props> = ({
   fromYear,
   toYear,
   buttonClassName,
+  error,
+  onBlur,
 }) => {
   const parseDate = getParser(mode);
 
   return (
     <div className={className}>
-      <Label>{label}</Label>
+      <Label className={styles.label}>
+        {label} <small className={styles.error}>{error}</small>
+      </Label>
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -54,7 +60,7 @@ export const CustomDatepicker: React.FC<Props> = ({
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent align='start' className={styles.popoverContent} side={'top'}>
+        <PopoverContent align='start' className={styles.popoverContent} side='top' onBlur={onBlur}>
           <Calendar
             mode='single'
             initialFocus

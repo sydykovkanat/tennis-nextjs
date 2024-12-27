@@ -5,3 +5,11 @@
 .fieldContainer {
   @apply flex flex-col gap-2 pt-1;
 }
+
+.label {
+  @apply justify-between flex items-center text-sm font-medium;
+}
+
+.error {
+  @apply text-red-600;
+}

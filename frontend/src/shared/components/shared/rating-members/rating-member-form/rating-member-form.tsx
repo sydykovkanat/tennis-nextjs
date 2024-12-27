@@ -1,4 +1,4 @@
-import { ErrorMessage, WarningMessage } from '@/shared/components/shared';
+import { WarningMessage } from '@/shared/components/shared';
 import { useRatingMembersForm } from '@/shared/components/shared/rating-members/hooks';
 import {
   Button,
@@ -56,6 +56,10 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
     handleClose,
   } = useRatingMembersForm(ratingMembers, forWhichGender, existingMember, setOpen, id);
   const { dialogTitle } = getGenderTitles(forWhichGender);
+  const errorNameMessage =
+    (!existingMember && existingName) || (existingMember && existingMember.name !== state.name && existingName)
+      ? 'Имя уже занято!'
+      : undefined;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -78,11 +82,8 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
                 value={state.name}
                 label='Имя'
                 onChange={handleChange}
+                error={errorNameMessage}
               />
-              {((!existingMember && existingName) ||
-                (existingMember && existingMember.name !== state.name && existingName)) && (
-                <ErrorMessage>Имя уже занято!</ErrorMessage>
-              )}
             </div>
 
             {forWhichGender === 'male' && (
@@ -108,6 +109,12 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
 
             <div className={styles.fieldContainer}>
               <Label htmlFor='place'>Место</Label>
+              <Label htmlFor='place' className={styles.label}>
+                Место
+                {forWhichGender === 'male' && !state.ratingType && (
+                  <small className={styles.error}>Сначала выберите топ</small>
+                )}
+              </Label>
               <Select
                 required
                 name='place'
@@ -134,7 +141,6 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              {forWhichGender === 'male' && !state.ratingType && <ErrorMessage>Сначала выберите топ</ErrorMessage>}
             </div>
 
             <Input

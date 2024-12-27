@@ -21,11 +21,10 @@ import {
 } from '@/shared/components/ui';
 import { CURRENT_YEAR_FULL } from '@/shared/constants';
 import { useAppSelector } from '@/shared/hooks/hooks';
-import { cn } from '@/shared/lib';
+import { cn, validateEmail } from '@/shared/lib';
 import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { fetchOneUser } from '@/shared/lib/features/users/users-thunks';
-import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 import { Grid2X2PlusIcon, Pencil } from 'lucide-react';
 
 import React, { useEffect } from 'react';

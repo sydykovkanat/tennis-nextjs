@@ -14,3 +14,5 @@ export { ThemeProvider } from './hooks/theme-provider';
 export { parseUserDate } from './helpers/custom-datepicker-utils';
 export { parseTournamentDate } from './helpers/custom-datepicker-utils';
 export { getParser } from './helpers/custom-datepicker-utils';
+export { validateEmail } from './helpers/validateEmail';
+export { validateRegisterForm } from './helpers/validateRegisterForm';

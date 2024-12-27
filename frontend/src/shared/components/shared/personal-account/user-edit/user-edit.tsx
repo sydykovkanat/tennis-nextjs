@@ -24,7 +24,7 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
 import { CURRENT_YEAR_FULL } from '@/shared/constants';
-import { validateEmail } from '@/shared/lib/helpers/validateEmail';
+import { validateEmail } from '@/shared/lib';
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';

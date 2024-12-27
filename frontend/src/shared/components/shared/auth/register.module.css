@@ -48,10 +48,6 @@
   & label {
     @apply flex items-center font-normal text-base;
   }
-
-  &:last-of-type {
-    @apply mb-8;
-  }
 }
 
 .checkbox {
@@ -59,9 +55,17 @@
 }
 
 .registerBtn {
-  @apply  w-full h-12 mb-5;
+  @apply  w-full h-12 mb-5 mt-8;
 }
 
 .isAlreadyRegistered {
   @apply text-muted-foreground block text-center underline hover:text-primary;
+}
+
+.label {
+  @apply justify-between flex items-center text-sm font-medium;
+}
+
+.error {
+  @apply text-red-600;
 }

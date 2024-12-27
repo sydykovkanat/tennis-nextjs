@@ -41,8 +41,17 @@ const initialState: RegisterMutation = {
 };
 
 export const Register: React.FC<Props> = ({ className, categories }) => {
-  const { registerMutation, isFormValid, handleChange, handleDateChange, handleSelectChange, handleAgree, isAgree } =
-    useRegisterForm(initialState);
+  const {
+    registerMutation,
+    isFormValid,
+    isAgree,
+    handleChange,
+    handleBlur,
+    handleAgree,
+    handleDateChange,
+    handleSelectChange,
+    formErrors,
+  } = useRegisterForm(initialState);
   const { registerLoading, registerError } = useRegisterSelectors();
   const { handleRegister } = useRegister();
 
@@ -78,14 +87,19 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         placeholder={'0555 555 555'}
         value={registerMutation.telephone}
         onChange={handleChange}
+        onBlur={() => handleBlur('telephone')}
+        error={formErrors.telephone}
       />
 
       <Input
         label={'Почта'}
         id={'email'}
+        type={'email'}
         placeholder={'Введите почту'}
         value={registerMutation.email}
         onChange={handleChange}
+        onBlur={() => handleBlur('email')}
+        error={formErrors.email}
       />
 
       <Input
@@ -96,33 +110,41 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         placeholder={'Введите пароль'}
         value={registerMutation.password}
         onChange={handleChange}
+        onBlur={() => handleBlur('password')}
+        error={formErrors.password}
       />
 
       <CustomDatepicker
         mode={'users'}
         value={registerMutation.dateOfBirth}
-        onChange={(date) => handleDateChange(date)}
+        onChange={handleDateChange}
         label={'Дата рождения'}
         fromYear={1930}
         toYear={CURRENT_YEAR_FULL}
         className={styles.datepicker}
         buttonClassName={styles.datepickerButton}
+        error={formErrors.dateOfBirth}
+        onBlur={() => handleBlur('dateOfBirth')}
       />
 
       <Input
         label={'ФИО'}
         id={'fullName'}
-        type={'fullName'}
         autoComplete={'on'}
         placeholder={'Введите ваше ФИО'}
         value={registerMutation.fullName}
         onChange={handleChange}
+        onBlur={() => handleBlur('fullName')}
+        error={formErrors.fullName}
       />
 
       <div className={styles.selectContainer}>
-        <Label htmlFor='gender'>Пол</Label>
+        <Label htmlFor='gender' className={styles.label}>
+          Пол
+          {formErrors.gender && <small className={styles.error}>{formErrors.gender}</small>}
+        </Label>
         <Select onValueChange={(v) => handleSelectChange('gender', v)} value={registerMutation.gender}>
-          <SelectTrigger className={styles.selectTrigger} id='gender'>
+          <SelectTrigger className={styles.selectTrigger} id='gender' onBlur={() => handleBlur('gender')}>
             <SelectValue placeholder='Выберите ваш пол' />
           </SelectTrigger>
           <SelectContent className={'dark:bg-gray-900'}>
@@ -138,19 +160,18 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
       </div>
 
       <div className={styles.selectContainer}>
-        <Label htmlFor='category'>Категория</Label>
+        <Label htmlFor='category' className={styles.label}>
+          Категория
+          {formErrors.category && <small className={styles.error}>{formErrors.category}</small>}
+        </Label>
         <Select onValueChange={(v) => handleSelectChange('category', v)} value={registerMutation.category}>
-          <SelectTrigger className={styles.selectTrigger} id='category'>
+          <SelectTrigger className={styles.selectTrigger} id='category' onBlur={() => handleBlur('category')}>
             <SelectValue placeholder='Выберите вашу категорию' />
           </SelectTrigger>
           <SelectContent className={'dark:bg-gray-900'}>
             <SelectGroup className={'dark:bg-gray-900'}>
               {categories.map((item) => (
-                <SelectItem
-                  className={'hover:dark:bg-gray-800  focus:dark:bg-gray-800'}
-                  key={item._id}
-                  value={item._id}
-                >
+                <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={item._id} value={item._id}>
                   {item.name}
                 </SelectItem>
               ))}
@@ -168,6 +189,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         />
         <Label htmlFor='rules'>Ознакомился с правилами КСЛТ</Label>
       </div>
+      {formErrors.rules && <small className={cn(styles.error, 'mb-2')}>{formErrors.rules}</small>}
 
       <div className={styles.checkboxContainer}>
         <Checkbox
@@ -178,6 +200,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         />
         <Label htmlFor='personalData'>Даю согласие на обработку персональных данных</Label>
       </div>
+      {formErrors.personalData && <small className={cn(styles.error, 'mb-2')}>{formErrors.personalData}</small>}
 
       <Button className={cn(styles.registerBtn)} disabled={!isFormValid || registerLoading}>
         Зарегистрироваться
