@@ -4,7 +4,6 @@ import { Loader } from '@/shared/components/shared';
 import { useForgotPassword } from '@/shared/components/shared/forgot-password/use-forgot-password';
 import { Button, Input } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
@@ -21,7 +20,7 @@ const ForgotPassword: React.FC = () => {
       >
         <div className='mb-3'>
           <h1 className={styles.BoldText}>Сброс пароля</h1>
-          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите вашу почту для сброса пароля.</p>
+          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите вашу почту для сброса пароля</p>
         </div>
 
         <div className={styles.DivWrapper}>
@@ -42,7 +41,6 @@ const ForgotPassword: React.FC = () => {
           className={cn(styles.Button, 'dark:bg-white', {
             'pointer-events-none': disabled,
           })}
-          icon={timer === 0 && !forgotPasswordLoading ? ArrowRightIcon : undefined}
           iconClassName={'ml-6 mt-[2px]'}
         >
           {timer > 0 ? `Запросить код заново (${timer})` : 'Отправить ссылку'}
