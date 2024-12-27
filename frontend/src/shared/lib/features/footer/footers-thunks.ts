@@ -1,12 +1,13 @@
 import { RootState } from '@/shared/hooks/hooks';
 import { axiosApi } from '@/shared/lib';
 import {
-  FooterElementsData,
-  LinkDataMutation,
-  MenuOnePositionField,
-  SocialOneNetworkField,
+    FooterElementsData,
+    LinkDataMutation, MainLogoMutation,
+    MenuOnePositionField,
+    SocialOneNetworkField,
 } from '@/shared/types/footer.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import {isAxiosError} from 'axios';
 
 export const getFooterItems = createAsyncThunk<FooterElementsData[], void, { state: RootState }>(
   'footers/getFooterItems',
@@ -95,4 +96,26 @@ export const updateMainPartnerImage = createAsyncThunk<void, { mainPartnerImageL
 
     await axiosApi.patch('footers/update-main-partner-image', formData);
   },
+);
+
+export const createMainLogo = createAsyncThunk(
+    'footers/createMainLogo',
+    async (newLogo: MainLogoMutation, { rejectWithValue }) => {
+        try {
+            const formData = new FormData();
+            if (newLogo.logo) {
+                formData.append('logo', newLogo.logo);
+            }
+
+            await axiosApi.post('footers/create-main-logo', formData);
+        } catch (error) {
+            if (isAxiosError(error) && error.response && error.response.status === 400) {
+                return rejectWithValue(error.response.data);
+            }
+            if (isAxiosError(error) && error.response && error.response.status === 401) {
+                return rejectWithValue(error.response.data);
+            }
+        }
+
+    }
 );

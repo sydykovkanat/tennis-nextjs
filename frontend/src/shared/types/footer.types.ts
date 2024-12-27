@@ -48,6 +48,10 @@ export interface MenuOnePositionField {
   ];
 }
 
+export interface MainLogo {
+  logo: string;
+}
+
 export interface LinkDataMutation {
   name: string;
   value: string;
@@ -55,4 +59,8 @@ export interface LinkDataMutation {
 
 export interface SocialNetworkIconsValue {
   name: string;
+}
+
+export interface MainLogoMutation {
+  logo: string | null;
 }

@@ -3,7 +3,7 @@ import { auth } from '../middleware/auth';
 import { permit } from '../middleware/permit';
 import {
   createFooterMenuPosition,
-  createFooterSocialNetwork,
+  createFooterSocialNetwork, createMainLogo,
   deleteOneFooterMenuPosition,
   deleteOneFooterSocialNetwork,
   getFooterItems,
@@ -43,3 +43,5 @@ footersRouter.patch(
   imagesUpload.single('mainPartnerImage'),
   updateMainPartnerImage
 );
+
+footersRouter.post('/create-main-logo', auth, permit('admin', 'moderator'), createMainLogo);

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import Footer from '../model/Footer';
 import { clearImages } from '../utils/multer';
+import {LogoFields} from "../types/footer";
 
 export const getFooterItems = async (_: Request, res: Response, next: NextFunction) => {
   try {
@@ -235,6 +236,30 @@ export const updateMainPartnerImage = async (req: Request, res: Response, next: 
 
     return res.send(updatedMainPartnerImageLink);
   } catch (error) {
+    return next(error);
+  }
+};
+
+
+export const createMainLogo = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const logo = req.file ? req.file.filename : null;
+
+    if (!logo) {
+      return res.status(400).send({ error: 'Field logo is required!' });
+    }
+
+    const mainLogo = await Footer.findOneAndUpdate(
+        {},
+        { $push: { mainLogo: { logo } } },
+        { new: true, upsert: true }
+    );
+
+    return res.send(mainLogo);
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      return res.status(400).send(error);
+    }
     return next(error);
   }
 };

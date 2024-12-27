@@ -1,6 +1,6 @@
 'use client';
 
-import { MainPartner, MenuPosition, PublicOffer, SocialNetwork } from '@/shared/components/shared';
+import {MainLogo, MainPartner, MenuPosition, PublicOffer, SocialNetwork} from '@/shared/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 
@@ -38,6 +38,9 @@ export const AdminPanelBlockFooter = () => {
         </TabsContent>
         <TabsContent value='main-partner'>
           <MainPartner />
+        </TabsContent>
+        <TabsContent value='main-logo'>
+          <MainLogo />
         </TabsContent>
       </Tabs>
     </>

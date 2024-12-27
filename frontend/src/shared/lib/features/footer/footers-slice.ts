@@ -1,4 +1,5 @@
 import {
+  createMainLogo,
   createMenuPosition,
   createSocialNetwork,
   deleteMenuPosition,
@@ -11,7 +12,7 @@ import {
   updatePublicOffer,
   updateSocialNetwork,
 } from '@/shared/lib/features/footer/footers-thunks';
-import { FooterElementsData, MenuOnePositionField, SocialOneNetworkField } from '@/shared/types/footer.types';
+import {FooterElementsData, MainLogo, MenuOnePositionField, SocialOneNetworkField} from '@/shared/types/footer.types';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface FootersState {
@@ -23,6 +24,9 @@ interface FootersState {
   itemCreating: boolean;
   itemDeleting: string | null;
   itemUpdating: boolean;
+  logo: MainLogo | null;
+  logoLoading:boolean
+  logoError:boolean
 }
 
 const initialState: FootersState = {
@@ -34,6 +38,9 @@ const initialState: FootersState = {
   itemCreating: false,
   itemDeleting: null,
   itemUpdating: false,
+  logo: null,
+  logoLoading: false,
+  logoError: false,
 };
 
 export const footersSlice = createSlice({
@@ -155,6 +162,19 @@ export const footersSlice = createSlice({
     builder.addCase(updateMainPartnerImage.rejected, (state) => {
       state.itemUpdating = false;
     });
+
+    builder.addCase(createMainLogo.pending, (state) => {
+      state.logoLoading = true;
+      state.logoError = false;
+    });
+    builder.addCase(createMainLogo.fulfilled, (state,{ payload: data }) => {
+      state.logo = data;
+      state.logoLoading = false;
+    });
+    builder.addCase(createMainLogo.rejected, (state) => {
+      state.logoLoading = false;
+      state.logoError = true;
+    });
   },
   selectors: {
     selectItemsData: (state) => state.itemsData,
@@ -164,6 +184,8 @@ export const footersSlice = createSlice({
     selectItemCreating: (state) => state.itemCreating,
     selectItemDeleting: (state) => state.itemDeleting,
     selectItemUpdating: (state) => state.itemUpdating,
+    selectMainLogo: (state) => state.logo,
+    selectMainLogoLoading: (state) => state.logoLoading,
   },
 });
 
@@ -176,4 +198,6 @@ export const {
   selectItemCreating,
   selectItemDeleting,
   selectItemUpdating,
+  selectMainLogo,
+  selectMainLogoLoading
 } = footersSlice.selectors;
