@@ -9,7 +9,7 @@ export const sendMail = async (user: UserFields, token: string) => {
   const filePath = path.join(__dirname, 'src/utils/email.html');
   const source = fs.readFileSync(filePath, 'utf-8').toString();
   const template = handlebars.compile(source);
-  const resetUrl = `http://localhost:5173/reset-password/${token}`;
+  const resetUrl = `http://localhost:3000/reset-password/${token}`;
   const replacements = {
     username: user.fullName,
     link: resetUrl,

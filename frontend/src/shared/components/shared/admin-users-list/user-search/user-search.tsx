@@ -69,7 +69,7 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
         />
 
         <Select value={currentFilters.category} onValueChange={handleCategoryFilterChange}>
-          <SelectTrigger className={styles.selectTrigger}>
+          <SelectTrigger className={styles.selectTrigger} data-testid={'category-filter'}>
             <SelectValue placeholder={'Выберите категорию…'} />
           </SelectTrigger>
           <SelectContent className={'dark:bg-gray-900'}>
