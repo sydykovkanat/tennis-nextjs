@@ -51,6 +51,10 @@ export interface ValidationError {
 
 export interface GlobalError {
   error: string;
+  messageIsActive?: string;
+  messageTelephone?: string;
+  messageMatching?: string;
+  messagePassword?: string;
 }
 
 export interface UsersResponse {
