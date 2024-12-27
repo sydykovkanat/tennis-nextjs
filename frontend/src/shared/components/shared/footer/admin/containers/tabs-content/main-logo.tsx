@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {cn} from '@/shared/lib';
-import { MainLogoForm} from '@/shared/components/shared';
+import {MainLogoCards, MainLogoForm} from '@/shared/components/shared';
 import styles from './tab-content.module.css';
 
 
@@ -12,6 +12,9 @@ export const MainLogo = () => {
             <header className={cn(styles.headerMainLogoContainer)}>
                 <MainLogoForm/>
             </header>
+            <div>
+                <MainLogoCards/>
+            </div>
         </div>
     );
 };

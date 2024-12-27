@@ -14,7 +14,7 @@ export const useMainLogoForm = () => {
     const [isAddModalOpen, setAddModalOpen] = useState(false);
     const [newLogo, setNewLogo] = useState<MainLogoMutation>(emptyState);
     const dispatch = useAppDispatch();
-    const mainLogo = useAppSelector(selectMainLogo);
+
 
     const onChangeFileInputLogo = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = event.target;

@@ -4,6 +4,7 @@ export interface FooterElementsData {
   menuPosition: MenuPositionFields[];
   publicOffer: string;
   socialNetwork: SocialNetworkFields[];
+  mainLogo: MainLogo[];
 }
 
 export interface SocialNetworkFields {
@@ -49,6 +50,7 @@ export interface MenuOnePositionField {
 }
 
 export interface MainLogo {
+  _id:string
   logo: string;
 }
 

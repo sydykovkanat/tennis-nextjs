@@ -167,8 +167,7 @@ export const footersSlice = createSlice({
       state.logoLoading = true;
       state.logoError = false;
     });
-    builder.addCase(createMainLogo.fulfilled, (state,{ payload: data }) => {
-      state.logo = data;
+    builder.addCase(createMainLogo.fulfilled, (state) => {
       state.logoLoading = false;
     });
     builder.addCase(createMainLogo.rejected, (state) => {
@@ -184,7 +183,6 @@ export const footersSlice = createSlice({
     selectItemCreating: (state) => state.itemCreating,
     selectItemDeleting: (state) => state.itemDeleting,
     selectItemUpdating: (state) => state.itemUpdating,
-    selectMainLogo: (state) => state.logo,
     selectMainLogoLoading: (state) => state.logoLoading,
   },
 });
@@ -198,6 +196,5 @@ export const {
   selectItemCreating,
   selectItemDeleting,
   selectItemUpdating,
-  selectMainLogo,
-  selectMainLogoLoading
+  selectMainLogoLoading,
 } = footersSlice.selectors;
