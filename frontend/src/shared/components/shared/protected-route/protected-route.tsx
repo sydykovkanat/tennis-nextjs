@@ -3,10 +3,10 @@ import { redirect } from 'next/navigation';
 import React, {useEffect} from 'react';
 
 interface Props extends React.PropsWithChildren {
-  isAllowed: boolean | null;
+  isAllowed: boolean;
 }
 
-const ProtectedRoute: React<Props> = ({ isAllowed, children }) => {
+const ProtectedRoute: React.FC<Props> = ({ isAllowed, children }) => {
   useEffect(() => {
     if (!isAllowed) {
       return redirect('/404');

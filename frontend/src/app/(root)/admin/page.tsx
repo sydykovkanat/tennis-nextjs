@@ -2,7 +2,6 @@
 
 import { Calendar, Carousel, Category, Footer, News, Partners, Rating, Top, Users } from '@/shared/components/admin';
 import { Container } from '@/shared/components/shared';
-import ProtectedRoute from '@/shared/components/shared/protected-route/protected-route';
 import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { ADMIN_PAGES } from '@/shared/config/pages';
 import { cn, useAppSelector } from '@/shared/lib';
@@ -12,6 +11,11 @@ import { useRouter } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
 
 import styles from './admin.module.css';
+import dynamic from "next/dynamic";
+
+const ProtectedRoute = dynamic(() => import('@/shared/components/shared/protected-route/protected-route'), {
+  ssr: false,
+});
 
 export default function Page({ searchParams: params }: { searchParams: { [key: string]: string } }) {
   const userPermission = useAppSelector(selectUserPermission);
