@@ -1,27 +1,27 @@
 .newsCard {
-  @apply h-full w-full flex flex-col;
+  @apply h-full w-full flex flex-col border-none shadow-none bg-transparent !important;
 }
 
 .newsLink {
-  @apply no-underline h-full;
+  @apply no-underline h-full !important;
 }
 
 .newsCardContent {
-  @apply flex flex-wrap mt-auto items-start p-6 pt-0;
+  @apply flex flex-wrap mt-auto items-start p-0 !important;
 }
 
 .newsCardFooter {
-  @apply flex flex-wrap justify-between items-center border-t pt-2;
+  @apply flex flex-wrap justify-between items-center border-t pt-2 !important;
 }
 
 .newsCardSubtitle {
-  @apply text-tn-default-black text-[16px];
+  @apply text-tn-default-black text-[16px] leading-none truncate !important;
 }
 
 .newsCardTitle {
-  @apply text-cr-black font-bold text-lg;
+  @apply text-cr-black font-semibold text-lg !important;
 }
 
 .newsCardCreatedAt {
-  @apply text-cr-green-900 font-medium text-sm;
+  @apply text-cr-green-900 text-sm !important;
 }

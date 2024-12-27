@@ -1,13 +1,5 @@
 import { I } from './steps';
 
-Given('я нахожусь на странице регистрации', () => {
-  I.amOnPage('/register');
-});
-
-Given('я нахожусь на странице логина', () => {
-  I.amOnPage('/login');
-});
-
 When('ввожу в поле c датой рождения значение {string}', (value: string) => {
   I.click(`[id="dateOfBirth"]`);
   I.fillField('[id="dateOfBirth"]', value);

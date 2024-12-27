@@ -113,6 +113,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
           <Button
             className={isAddMode ? styles.dialogTriggerButton : 'font-normal'}
             size={isAddMode ? 'default' : 'icon'}
+            data-testid='edit'
           >
             {isAddMode ? (
               <>
