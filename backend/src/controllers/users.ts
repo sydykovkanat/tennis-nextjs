@@ -24,7 +24,13 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
     const newUser = await User.findById(user._id).populate('category');
 
-    return res.send(newUser);
+    if (newUser) {
+      newUser.generateToken()
+      await newUser.save();
+      return res.send(newUser);
+    }
+
+    return res.status(400).send('Неудалось зарегистрироваться.');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) return res.status(400).send(error);
 
