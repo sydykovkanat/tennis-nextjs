@@ -1,5 +1,5 @@
 import { getRatings } from '@/actions/ratings';
-import { Container, GradientCircle, MainTitles, Ratings, gradientCircles } from '@/shared/components/shared';
+import { Container, MainTitles, Ratings } from '@/shared/components/shared';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,14 +14,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 10;
+
 export default async function Page() {
   const ratings = await getRatings();
 
   return (
     <Container>
-      {gradientCircles.map((circle, id) => (
-        <GradientCircle key={id} {...circle} />
-      ))}
       <MainTitles
         title={'Рейтинг членов КСЛТ'}
         subtitle={

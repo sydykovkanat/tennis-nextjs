@@ -63,3 +63,8 @@ When('если я вижу текст {string} то тест успешно за
   I.wait(1);
   I.see(Msg);
 });
+
+When('если я не вижу текст {string} то тест успешно завершен', (Msg: string) => {
+  I.wait(1);
+  I.dontSee(Msg);
+});

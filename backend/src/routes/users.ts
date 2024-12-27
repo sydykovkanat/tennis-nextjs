@@ -19,7 +19,7 @@ import { permit } from '../middleware/permit';
 export const usersRouter = express.Router();
 
 usersRouter.get('/get-users', auth, permit('admin', 'moderator'), getUsers);
-usersRouter.get('/:id', auth, getOneUser);
+usersRouter.get('/:id', getOneUser);
 usersRouter.get('/:id/permission', getPermissionLevel);
 usersRouter.post('/', register);
 usersRouter.post('/add-user', auth, permit('admin', 'moderator'), addUser);

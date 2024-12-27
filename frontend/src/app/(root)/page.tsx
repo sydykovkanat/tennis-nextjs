@@ -11,6 +11,8 @@ import {
 
 import React from 'react';
 
+export const revalidate = 10;
+
 export default async function HomePage() {
   return (
     <div className='overflow-x-hidden'>

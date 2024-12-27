@@ -1,7 +1,7 @@
 import { fetchNews } from '@/actions/news';
 import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
 import Loading from '@/app/(root)/news/loading';
-import { Container, GradientCircle, NewsTitle, gradientCircles } from '@/shared/components/shared';
+import { Container, NewsTitle } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { NewsResponse } from '@/shared/types/news.types';
 import type { Metadata } from 'next';
@@ -26,6 +26,8 @@ interface Props {
   searchParams?: { [key: string]: string | null };
 }
 
+export const revalidate = 10;
+
 const NewsPage = async ({ searchParams }: Props) => {
   const queryObj = {
     page: searchParams?.page || '1',
@@ -41,9 +43,6 @@ const NewsPage = async ({ searchParams }: Props) => {
   return (
     <Suspense fallback={<Loading />}>
       <Container>
-        {gradientCircles.map((circle, id) => (
-          <GradientCircle key={id} {...circle} />
-        ))}
         <NewsTitle />
         {renderNewsContent({ news: news, pages: newsResponse.pages })}
       </Container>
