@@ -6,8 +6,9 @@ import { cn } from '@/shared/lib';
 import { LoginMutation } from '@/shared/types/auth.types';
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './login.module.css';
 
@@ -30,6 +31,12 @@ const Login: React.FC<Props> = ({ className }) => {
     await handleLogin(loginMutation);
   };
 
+  useEffect(() => {
+    if (loginError?.error.messageIsActive) {
+      toast.error(loginError.error.messageIsActive);
+    }
+  }, [loginError]);
+
   return (
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Добро пожаловать</h1>
@@ -37,7 +44,7 @@ const Login: React.FC<Props> = ({ className }) => {
       <p className={styles.subtitle}>Введите свой логин и пароль для входа в личный кабинет</p>
 
       <Input
-        error={loginError?.error}
+        error={loginError?.error.messageTelephone}
         label={'Телефон'}
         id={'telephone'}
         placeholder={'0555 555 555'}
@@ -46,7 +53,7 @@ const Login: React.FC<Props> = ({ className }) => {
       />
 
       <Input
-        error={loginError?.error}
+        error={loginError?.error.messagePassword || loginError?.error.messageMatching}
         label={'Пароль'}
         id={'password'}
         type={'password'}
