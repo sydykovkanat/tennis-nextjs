@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 10;
+
 export default async function Page() {
   const ratings = await getRatings();
 

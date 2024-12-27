@@ -13,6 +13,8 @@ import React from 'react';
 import carouselStyles from './carousel.module.css';
 import styles from './one-news.module.css';
 
+export const revalidate = 10;
+
 export default function Page() {
   const { emblaRef, oneNews, initialIndex, setInitialIndex, news } = useOneNews();
   const { open, toggleOpen } = useDialogState();

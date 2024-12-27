@@ -1,8 +1,21 @@
 export const { I } = inject();
 
+const pageMap: Record<string, string> = {
+  register: '/register',
+  login: '/login',
+  calendar: '/calendar',
+  rating: '/rating',
+  news: '/news',
+};
+
+//переход по страницам
+Given('я нахожусь на странице {string}', (page: string) => {
+  I.amOnPage(pageMap[page]);
+});
+
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
-  I.wait(5);
+  I.wait(3);
   I.click(btn);
 });
 
@@ -30,24 +43,28 @@ When('я должен быть на главной странице', () => {
 //логинка
 Given('я авторизован на сайте', () => {
   I.amOnPage('/login');
-  I.wait(10);
+  I.wait(4);
   I.fillField('Телефон', '0555555555');
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
   I.seeInCurrentUrl('/');
-  I.wait(3);
 });
 
 //вход в админку
 Given('я должен быть в административной панели', () => {
-  I.wait(5);
+  I.wait(3);
   I.click('button[aria-haspopup="menu"]');
   I.seeElement('#admin');
   I.click('#admin');
-  I.wait(3);
 });
 
 //проверка на успешность теста в админке если у тебя тост уведомление
 When('если я вижу текст {string} то тест успешно завершен', (Msg: string) => {
+  I.wait(1);
   I.see(Msg);
+});
+
+When('если я не вижу текст {string} то тест успешно завершен', (Msg: string) => {
+  I.wait(1);
+  I.dontSee(Msg);
 });

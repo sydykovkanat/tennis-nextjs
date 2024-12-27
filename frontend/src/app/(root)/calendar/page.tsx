@@ -18,6 +18,8 @@ interface Props {
   searchParams: { rank?: string };
 }
 
+export const revalidate = 10;
+
 export default async function Page({ searchParams }: Props) {
   const rank = searchParams.rank || 'all';
   const tournaments = await getTournaments(rank);

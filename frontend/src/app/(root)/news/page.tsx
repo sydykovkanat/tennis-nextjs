@@ -26,6 +26,8 @@ interface Props {
   searchParams?: { [key: string]: string | null };
 }
 
+export const revalidate = 10;
+
 const NewsPage = async ({ searchParams }: Props) => {
   const queryObj = {
     page: searchParams?.page || '1',
