@@ -4,7 +4,6 @@ import { useAppDispatch } from '@/shared/hooks/hooks';
 import { login } from '@/shared/lib/features/users/users-thunks';
 import { LoginMutation } from '@/shared/types/auth.types';
 import { useRouter } from 'next/navigation';
-import { toast } from 'sonner';
 
 export const useLogin = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +17,6 @@ export const useLogin = () => {
       });
     } catch (error) {
       console.error(error);
-      toast.error('Ошибка входа. Проверьте данные и попробуйте снова.');
     }
   };
 

@@ -134,7 +134,7 @@ export const TournamentForm: React.FC<Props> = ({
                 </SelectTrigger>
                 <SelectContent className={'dark:bg-gray-900'}>
                   <SelectGroup className={'dark:bg-gray-900'}>
-                    <SelectItem className={'focus:bg-gray-800'} key='male' value='male'>
+                    <SelectItem className={'focus:dark:bg-gray-800'} key='male' value='male'>
                       Мужской
                     </SelectItem>
                     <SelectItem className={'hover:dark:bg-gray-800'} key='female' value='female'>

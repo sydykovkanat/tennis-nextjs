@@ -15,7 +15,15 @@
 }
 
 .newsCardSubtitle {
-  @apply text-tn-default-black text-[16px] leading-none truncate !important;
+  @apply text-tn-default-black text-[16px] dark:text-white leading-none truncate !important;
+}
+
+.newsCardTitle {
+  @apply text-cr-black font-semibold dark:text-white text-lg !important;
+}
+
+.newsCardCreatedAt {
+  @apply text-cr-green-900 text-sm dark:text-[#64B32C] !important;
 }
 
 .newsCardTitle {

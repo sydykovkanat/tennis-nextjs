@@ -20,7 +20,7 @@ export const AdminPanelBlockFooter = () => {
         </div>
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
-        <TabsList style={{ width: '100%' }} className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
+        <TabsList className={cn(styles.tabsList)}>
           {ListTabsName.map((item, id) => (
             <TabsTrigger key={id} className={styles.tabsTrigger} value={item.value}>
               {item.name}
