@@ -2,22 +2,19 @@
 
 import { Loader, SocialNetworkCard, SocialNetworkCreateForm } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
-import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
 import { Grid2X2PlusIcon } from 'lucide-react';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import styles from './tab-content.module.css';
+import { useTabsContent } from './use-tabs-content';
 
 export const SocialNetwork = () => {
-  const [isClient, setIsClient] = useState(false);
-  const socialNetworkData = useAppSelector(selectItemsData);
-  const socialNetworkFetching = useAppSelector(selectItemsFetching);
+  const { socialNetworkData, socialNetworkFetching, setIsClient, isClient } = useTabsContent();
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
+  }, [setIsClient]);
 
   return (
     <>
@@ -48,7 +45,9 @@ export const SocialNetwork = () => {
               ) : (
                 <div className={styles.socialNetworkCardContainer}>
                   {socialNetworkData.length > 0 &&
-                    socialNetworkData[0].socialNetwork.map((item) => <SocialNetworkCard key={item._id} item={item} />)}
+                    socialNetworkData[0].socialNetwork.map((item) => (
+                      <SocialNetworkCard key={item._id} socialItem={item} />
+                    ))}
                 </div>
               )}
             </>

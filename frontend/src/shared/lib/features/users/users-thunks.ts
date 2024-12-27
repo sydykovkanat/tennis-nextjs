@@ -149,3 +149,33 @@ export const updateCurrentUserInfo = createAsyncThunk<User, UserMutation, { reje
 export const updateIsActive = createAsyncThunk<void, string>('users/toggle-active', async (id: string) => {
   await axiosApi.patch(`/users/${id}/toggleActive`);
 });
+
+export const forgotPassword = createAsyncThunk<void, string, { rejectValue: GlobalError }>(
+  'users/forgotPassword',
+  async (email, { rejectWithValue }) => {
+    try {
+      await axiosApi.post('/users/forgot-password', { email });
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        return rejectWithValue(error.response.data);
+      }
+
+      throw error;
+    }
+  },
+);
+
+export const resetPassword = createAsyncThunk<void, { password: string; token: string }, { rejectValue: GlobalError }>(
+  'users/resetPassword',
+  async ({ password, token }, { rejectWithValue }) => {
+    try {
+      await axiosApi.post(`/users/reset-password/${token}`, { password });
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        return rejectWithValue(error.response.data);
+      }
+
+      throw error;
+    }
+  },
+);

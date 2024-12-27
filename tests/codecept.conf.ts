@@ -28,6 +28,9 @@ exports.config = {
       './step_definitions/top-ratings.steps.ts',
       './step_definitions/tournaments.steps.ts',
       './step_definitions/carousel.steps.ts',
+      './step_definitions/rating.steps.ts',
+      './step_definitions/users.steps.ts',
+      './step_definitions/footers.steps.ts',
     ],
   },
   plugins: {

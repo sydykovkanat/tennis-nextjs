@@ -39,7 +39,7 @@ export { SocialNetwork } from './footer/admin/containers/tabs-content/social-net
 export { PublicOffer } from './footer/admin/containers/tabs-content/public-offer';
 export { MenuPosition } from './footer/admin/containers/tabs-content/menu-position';
 export { MainPartner } from './footer/admin/containers/tabs-content/main-partner';
-export { AdminPanelBlockFooter } from './footer/admin/containers/admin-panel-block-footer';
+export { AdminPanelBlockFooter } from './footer/admin/containers/tabs-footer/admin-panel-block-footer';
 export { MainPartnerEditForm } from './footer/admin/components/main-partner-form/main-partner-edit-form';
 export { MainPartnerCard } from './footer/admin/components/cards/main-partner-card';
 export { MenuPositionCreateForm } from './footer/admin/components/menu-position-forms/menu-position-create-form';

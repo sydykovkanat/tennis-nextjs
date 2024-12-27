@@ -2,58 +2,44 @@
 
 import { Confirm, Loader, SocialNetworkEditForm } from '@/shared/components/shared';
 import { Button, Card } from '@/shared/components/ui';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { cn } from '@/shared/lib';
-import { selectItemDeleting } from '@/shared/lib/features/footer/footers-slice';
-import { deleteOneSocialNetwork, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
 import { SocialNetworkFields } from '@/shared/types/footer.types';
 import { Trash } from 'lucide-react';
-import { toast } from 'sonner';
 
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 import styles from './cards.module.css';
+import { useCards } from './use-cards';
 
 interface Props {
-  item: SocialNetworkFields;
+  socialItem: SocialNetworkFields;
 }
 
-export const SocialNetworkCard: React.FC<Props> = ({ item }) => {
-  const dispatch = useAppDispatch();
-  const socialNetworkDeleting = useAppSelector(selectItemDeleting);
-
-  const handleDelete = async () => {
-    try {
-      await dispatch(deleteOneSocialNetwork(item._id)).unwrap();
-      await dispatch(getFooterItems());
-    } catch (error) {
-      console.error(error);
-      toast.error('Что-то пошло не так, попробуйте еще раз.');
-    }
-  };
+export const SocialNetworkCard: React.FC<Props> = ({ socialItem }) => {
+  const { handleDelete, socialNetworkDeleting } = useCards([socialItem, undefined]);
 
   return (
     <Card className={cn(styles.card, 'dark:bg-[#1F2937]')}>
       <div className={styles.cardHeader}>
         <div className={styles.networkInfo}>
           <SocialIcon
-            network={item.name}
+            network={socialItem.name}
             bgColor='#393F43'
             fgColor='#fff'
             className={styles.networkIcon}
             style={{ height: 30, width: 30, marginRight: '8px' }}
           />
-          <h3 className={styles.networkName}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h3>
+          <h3 className={styles.networkName}>{socialItem.name.charAt(0).toUpperCase() + socialItem.name.slice(1)}</h3>
         </div>
 
         <div className={styles.actions}>
           <Confirm onOk={handleDelete}>
             <Button disabled={Boolean(socialNetworkDeleting)} size={'sm'} data-test-id='delete'>
-              {socialNetworkDeleting === item._id ? <Loader /> : <Trash />}
+              {socialNetworkDeleting === socialItem._id ? <Loader /> : <Trash />}
             </Button>
           </Confirm>
-          <SocialNetworkEditForm id={item._id} />
+          <SocialNetworkEditForm id={socialItem._id} />
         </div>
       </div>
     </Card>

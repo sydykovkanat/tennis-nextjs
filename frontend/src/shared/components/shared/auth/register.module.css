@@ -55,7 +55,7 @@
 }
 
 .registerBtn {
-  @apply flex justify-between w-full h-14 mb-1;
+  @apply flex justify-between w-full h-14 mb-5;
 }
 
 .isAlreadyRegistered {
