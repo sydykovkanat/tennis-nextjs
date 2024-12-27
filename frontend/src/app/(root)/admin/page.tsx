@@ -6,12 +6,12 @@ import { ScrollArea, ScrollBar, Tabs, TabsContent, TabsList, TabsTrigger } from 
 import { ADMIN_PAGES } from '@/shared/config/pages';
 import { cn, useAppSelector } from '@/shared/lib';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 
 import React, { Suspense, useEffect, useState } from 'react';
 
 import styles from './admin.module.css';
-import dynamic from "next/dynamic";
 
 const ProtectedRoute = dynamic(() => import('@/shared/components/shared/protected-route/protected-route'), {
   ssr: false,

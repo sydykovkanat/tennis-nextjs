@@ -64,9 +64,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     if (!user)
       return res.status(400).send({
-        error: {
-          messageTelephone: 'Номер телефона не найден!',
-        },
+        messageTelephone: 'Номер телефона не найден!',
       });
 
     if (!req.body.password)
@@ -80,16 +78,12 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     if (!isMatch)
       return res.status(400).send({
-        error: {
-          messageMatching: 'Пароль не верный!',
-        },
+        messageMatching: 'Пароль не верный!',
       });
 
     if (!user.isActive)
       return res.status(400).send({
-        error: {
-          messageIsActive: 'Ваш аккаунт временно заблокирован. Для уточнения причины обратитесь, пожалуйста, в администрацию КСЛТ.',
-        },
+        messageIsActive: 'Ваш аккаунт временно заблокирован. Для уточнения причины обратитесь, пожалуйста, в администрацию КСЛТ.',
       });
 
     user.generateToken();
