@@ -44,4 +44,4 @@ footersRouter.patch(
   updateMainPartnerImage
 );
 
-footersRouter.post('/create-main-logo', auth, permit('admin', 'moderator'), createMainLogo);
+footersRouter.post('/create-main-logo', auth, permit('admin', 'moderator'),imagesUpload.single('logo'), createMainLogo);

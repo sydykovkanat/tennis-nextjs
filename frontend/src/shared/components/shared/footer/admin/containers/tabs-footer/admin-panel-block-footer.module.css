@@ -11,7 +11,7 @@
 }
 
 .tabsList {
-  @apply grid w-full bg-zinc-200/30 border h-auto md:h-10 mb-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 dark:bg-[#1F2937] !important;
+  @apply grid w-full bg-zinc-200/30 border h-auto md:h-10 mb-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-5 dark:bg-[#1F2937] !important;
 }
 
 .tabsTrigger {
