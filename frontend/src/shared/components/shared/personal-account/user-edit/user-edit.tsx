@@ -35,11 +35,20 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
   const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, resetUserInfo, isFormValid } =
-    useUserForm({
-      user,
-      closeDialog,
-    });
+  const {
+    userInfo,
+    validateAndSetField,
+    handleChange,
+    handleSubmit,
+    resetUserInfo,
+    handleDateChange,
+    isFormValid,
+    formErrors,
+    handleBlur,
+  } = useUserForm({
+    user,
+    closeDialog,
+  });
 
   const handleDialogOpenChange = (open: boolean) => {
     setIsDialogOpen(open);
@@ -65,6 +74,8 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               placeholder='Введите ваше полное ФИО'
               autoComplete='name'
               className={styles.inputField}
+              onBlur={() => handleBlur('fullName')}
+              error={formErrors.fullName}
             />
 
             <Input
@@ -75,6 +86,8 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               placeholder={'example@gmail.com'}
               autoComplete={'email'}
               className={styles.inputField}
+              onBlur={() => handleBlur('email')}
+              error={formErrors.email}
             />
 
             <Input
@@ -85,6 +98,8 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               placeholder={'0555 555 555'}
               autoComplete={'tel'}
               className={styles.inputField}
+              onBlur={() => handleBlur('telephone')}
+              error={formErrors.telephone}
             />
 
             <CustomDatepicker
@@ -99,7 +114,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
 
             <div>
               <Label htmlFor='gender'>Пол</Label>
-              <Select value={userInfo.gender} onValueChange={(value) => updateField('gender', value)}>
+              <Select value={userInfo.gender} onValueChange={(value) => validateAndSetField('gender', value)}>
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />
                 </SelectTrigger>

@@ -49,7 +49,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
     handleBlur,
     handleAgree,
     handleDateChange,
-    handleSelectChange,
+    validateAndSetField,
     formErrors,
   } = useRegisterForm(initialState);
   const { registerLoading, registerError } = useRegisterSelectors();
@@ -143,7 +143,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           Пол
           {formErrors.gender && <small className={styles.error}>{formErrors.gender}</small>}
         </Label>
-        <Select onValueChange={(v) => handleSelectChange('gender', v)} value={registerMutation.gender}>
+        <Select onValueChange={(v) => validateAndSetField('gender', v)} value={registerMutation.gender}>
           <SelectTrigger className={styles.selectTrigger} id='gender' onBlur={() => handleBlur('gender')}>
             <SelectValue placeholder='Выберите ваш пол' />
           </SelectTrigger>
@@ -164,7 +164,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           Категория
           {formErrors.category && <small className={styles.error}>{formErrors.category}</small>}
         </Label>
-        <Select onValueChange={(v) => handleSelectChange('category', v)} value={registerMutation.category}>
+        <Select onValueChange={(v) => validateAndSetField('category', v)} value={registerMutation.category}>
           <SelectTrigger className={styles.selectTrigger} id='category' onBlur={() => handleBlur('category')}>
             <SelectValue placeholder='Выберите вашу категорию' />
           </SelectTrigger>

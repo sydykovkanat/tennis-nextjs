@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/shared/hooks/hooks';
-import { formatTelephone } from '@/shared/lib';
+import { formatTelephone, validateUserForm } from '@/shared/lib';
 import { fetchOneUser, updateUserInfo } from '@/shared/lib/features/users/users-thunks';
-import { User } from '@/shared/types/user.types';
+import { User, UserUpdateInfo } from '@/shared/types/user.types';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
@@ -12,7 +12,7 @@ interface UseUserFormProps {
   closeDialog: () => void;
 }
 
-const initialState = {
+const initialState: UserUpdateInfo = {
   telephone: '',
   fullName: '',
   gender: '',
@@ -21,8 +21,10 @@ const initialState = {
 };
 
 export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
-  const [userInfo, setUserInfo] = useState(initialState);
+  const [userInfo, setUserInfo] = useState<UserUpdateInfo>(initialState);
   const dispatch = useAppDispatch();
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isTouched, setIsTouched] = useState<Record<string, boolean>>({});
 
   const resetUserInfo = useCallback(() => {
     setUserInfo({
@@ -39,32 +41,70 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     resetUserInfo();
   }, [user, resetUserInfo]);
 
-  const updateField = (field: string, value: string) => {
-    setUserInfo((prev) => ({ ...prev, [field]: value }));
+  const validateAndSetField = (id: string, value: string) => {
+    const error = validateUserForm(id, value);
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [id]: error,
+    }));
+
+    setUserInfo((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleBlur = (id: string) => {
+    setIsTouched((prev) => ({
+      ...prev,
+      [id]: true,
+    }));
+
+    const error = validateUserForm(id, userInfo[id as keyof UserUpdateInfo] || '');
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [id]: error,
+    }));
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
 
-    if (id === 'telephone') {
-      const formattedPhone = formatTelephone(value);
+    const formattedValue =
+      id === 'telephone'
+        ? formatTelephone(value.trim())
+        : id === 'fullName'
+          ? value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '')
+          : value.trim();
 
-      setUserInfo((prev) => ({ ...prev, telephone: formattedPhone }));
-      return;
+    setUserInfo((prev) => ({
+      ...prev,
+      [id]: formattedValue,
+    }));
+
+    if (isTouched[id]) {
+      validateAndSetField(id, formattedValue);
     }
-
-    updateField(id, value);
   };
 
   const handleDateChange = (date: Date | undefined) => {
-    if (date) {
-      const formattedDate = format(date, 'yyyy-MM-dd');
-      updateField('dateOfBirth', formattedDate);
-    }
+    const formattedDate = date ? format(date, 'yyyy-MM-dd') : '';
+
+    setUserInfo((prev) => ({
+      ...prev,
+      dateOfBirth: formattedDate,
+    }));
   };
 
   const isFormValid =
-    userInfo.fullName && userInfo.email && userInfo.telephone && userInfo.dateOfBirth && userInfo.gender;
+    userInfo.telephone.length === 12 &&
+    userInfo.fullName &&
+    userInfo.email &&
+    userInfo.dateOfBirth &&
+    userInfo.gender &&
+    !Object.values(formErrors).some((error) => error);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -76,5 +116,15 @@ export const useUserForm = ({ user, closeDialog }: UseUserFormProps) => {
     }
   };
 
-  return { userInfo, updateField, handleChange, handleSubmit, resetUserInfo, handleDateChange, isFormValid };
+  return {
+    userInfo,
+    validateAndSetField,
+    handleChange,
+    handleSubmit,
+    resetUserInfo,
+    handleDateChange,
+    isFormValid,
+    formErrors,
+    handleBlur,
+  };
 };

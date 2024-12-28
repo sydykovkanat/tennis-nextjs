@@ -1,6 +1,6 @@
 'use client';
 
-import { formatTelephone, validateRegisterForm } from '@/shared/lib';
+import { formatTelephone, validateUserForm } from '@/shared/lib';
 import { RegisterMutation } from '@/shared/types/auth.types';
 import { format } from 'date-fns';
 
@@ -16,7 +16,7 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
   const [isTouched, setIsTouched] = useState<Record<string, boolean>>({});
 
   const validateAndSetField = (id: string, value: string) => {
-    const error = validateRegisterForm(id, value);
+    const error = validateUserForm(id, value);
 
     setFormErrors((prev) => ({
       ...prev,
@@ -39,7 +39,7 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
 
     setFormErrors((prev) => ({
       ...prev,
-      [type]: validateRegisterForm(type, newValue),
+      [type]: validateUserForm(type, newValue),
     }));
   };
 
@@ -69,7 +69,7 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
       [id]: true,
     }));
 
-    const error = validateRegisterForm(id, registerMutation[id as keyof RegisterMutation] || '');
+    const error = validateUserForm(id, registerMutation[id as keyof RegisterMutation] || '');
 
     setFormErrors((prev) => ({
       ...prev,
@@ -87,19 +87,7 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
 
     setFormErrors((prev) => ({
       ...prev,
-      dateOfBirth: validateRegisterForm('dateOfBirth', formattedDate),
-    }));
-  };
-
-  const handleSelectChange = (id: string, value: string) => {
-    setRegisterMutation((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-
-    setFormErrors((prev) => ({
-      ...prev,
-      [id]: validateRegisterForm(id, value),
+      dateOfBirth: validateUserForm('dateOfBirth', formattedDate),
     }));
   };
 
@@ -124,7 +112,7 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
     handleBlur,
     handleAgree,
     handleDateChange,
-    handleSelectChange,
+    validateAndSetField,
     formErrors,
   };
 };

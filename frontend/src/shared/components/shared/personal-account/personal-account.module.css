@@ -62,5 +62,9 @@
   }
 }
 .buttonWrapper {
-  @apply flex flex-col gap-1 mt-5;
+  @apply flex flex-col gap-2 mt-6;
+
+  & button {
+    @apply h-12;
+  }
 }

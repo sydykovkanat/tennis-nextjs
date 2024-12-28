@@ -1,6 +1,6 @@
 import { validateEmail } from '@/shared/lib';
 
-export const validateRegisterForm = (id: string, value: string | boolean) => {
+export const validateUserForm = (id: string, value: string | boolean) => {
   let error = '';
   switch (id) {
     case 'rules':

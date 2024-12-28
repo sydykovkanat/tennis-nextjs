@@ -1,6 +1,6 @@
 'use client';
 
-import { formatTelephone, validateRegisterForm } from '@/shared/lib';
+import { formatTelephone, validateUserForm } from '@/shared/lib';
 import { LoginMutation } from '@/shared/types/auth.types';
 
 import { ChangeEvent, useState } from 'react';
@@ -11,7 +11,7 @@ export const useLoginForm = (initialState: LoginMutation) => {
   const [isTouched, setIsTouched] = useState<Record<string, boolean>>({});
 
   const validateAndSetField = (id: string, value: string) => {
-    const error = validateRegisterForm(id, value);
+    const error = validateUserForm(id, value);
 
     setFormErrors((prev) => ({
       ...prev,
@@ -45,7 +45,7 @@ export const useLoginForm = (initialState: LoginMutation) => {
       [id]: true,
     }));
 
-    const error = validateRegisterForm(id, loginMutation[id as keyof LoginMutation] || '');
+    const error = validateUserForm(id, loginMutation[id as keyof LoginMutation] || '');
 
     setFormErrors((prev) => ({
       ...prev,
