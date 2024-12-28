@@ -63,7 +63,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактирование профиля</DialogTitle>
-          <DialogDescription className={'pb-5'}>Заполните форму для редактирования профиля</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму для редактирования профиля</DialogDescription>
 
           <form onSubmit={handleSubmit} className={styles.formWrapper}>
             <Input

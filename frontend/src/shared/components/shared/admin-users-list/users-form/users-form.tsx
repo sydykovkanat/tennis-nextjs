@@ -127,7 +127,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
         <DialogContent className={cn(styles.dialogContent, 'dark:bg-[#1F2937]')}>
           <DialogHeader>
             <DialogTitle>{isAddMode ? 'Создание аккаунта' : 'Редактирование профиля'}</DialogTitle>
-            <DialogDescription className={'pb-5'}>
+            <DialogDescription className={'pb-3'}>
               {isAddMode ? 'Заполните форму для создания аккаунта' : 'Заполните форму для редактирования профиля'}
             </DialogDescription>
             <form onSubmit={isAddMode ? addUserAdmin : handleSubmit}>

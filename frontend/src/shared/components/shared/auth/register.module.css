@@ -15,7 +15,7 @@
 }
 
 .subtitle {
-  @apply text-sm sm:text-base text-black/75 mb-7;
+  @apply text-sm sm:text-base text-black/75 mb-6;
 }
 
 .datepicker {

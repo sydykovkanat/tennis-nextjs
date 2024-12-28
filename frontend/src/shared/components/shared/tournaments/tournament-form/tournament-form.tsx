@@ -184,7 +184,7 @@ export const TournamentForm: React.FC<Props> = ({
             <WarningMessage message='При создании турнира на следующий год, если есть турниры за прошлый год, они будут автоматически удалены. Это действие необратимо.' />
           )}
 
-          <div className={cn(styles.fieldWrapper, 'mt-2')}>
+          <div className={cn(styles.fieldWrapper, 'mt-1')}>
             <Button type='submit' disabled={isFormInvalid}>
               {existingTournament ? 'Редактировать' : 'Сохранить'}
             </Button>

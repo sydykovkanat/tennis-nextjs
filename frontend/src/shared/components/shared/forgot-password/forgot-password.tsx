@@ -18,7 +18,7 @@ const ForgotPassword: React.FC = () => {
         className={cn(styles.SectionWrapper, 'dark:bg-gray-900')}
         style={{ boxShadow: '0px 4px 100px 0px #00000017' }}
       >
-        <div className='mb-3'>
+        <div className='mb-2'>
           <h1 className={styles.BoldText}>Сброс пароля</h1>
           <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите вашу почту для сброса пароля</p>
         </div>
