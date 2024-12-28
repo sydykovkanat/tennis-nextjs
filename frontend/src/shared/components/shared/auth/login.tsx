@@ -31,8 +31,8 @@ const Login: React.FC<Props> = ({ className }) => {
   };
 
   useEffect(() => {
-    if (loginError?.error.messageIsActive) {
-      toast.error(loginError.error.messageIsActive);
+    if (loginError?.messageIsActive) {
+      toast.error(loginError.messageIsActive);
     }
   }, [loginError]);
 
@@ -43,7 +43,7 @@ const Login: React.FC<Props> = ({ className }) => {
       <p className={styles.subtitle}>Введите свой логин и пароль для входа</p>
 
       <Input
-        error={loginError?.error.messageTelephone}
+        error={loginError?.messageTelephone}
         label={'Телефон'}
         id={'telephone'}
         placeholder={'0555 555 555'}
@@ -52,7 +52,7 @@ const Login: React.FC<Props> = ({ className }) => {
       />
 
       <Input
-        error={loginError?.error.messagePassword || loginError?.error.messageMatching}
+        error={loginError?.messagePassword || loginError?.messageMatching}
         label={'Пароль'}
         id={'password'}
         type={'password'}
