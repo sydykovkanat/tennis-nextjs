@@ -79,13 +79,6 @@ export const TournamentForm: React.FC<Props> = ({
               required
               id='participants'
               name='participants'
-              type='number'
-              onInput={(event: React.ChangeEvent<HTMLInputElement>) => {
-                const value = event.target.value;
-                if (!/^\d+$/.test(value) || parseInt(value, 10) < 1) {
-                  event.target.value = value.slice(0, -1);
-                }
-              }}
               placeholder='Введите кол-во участников'
               value={state.participants}
               label='Количество участников'

@@ -144,7 +144,11 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           {formErrors.gender && <small className={styles.error}>{formErrors.gender}</small>}
         </Label>
         <Select onValueChange={(v) => validateAndSetField('gender', v)} value={registerMutation.gender}>
-          <SelectTrigger className={styles.selectTrigger} id='gender' onBlur={() => handleBlur('gender')}>
+          <SelectTrigger
+            className={cn(styles.selectTrigger, formErrors.gender && 'border-red-600 focus:ring-red-600 focus:ring-0')}
+            id='gender'
+            onBlur={() => handleBlur('gender')}
+          >
             <SelectValue placeholder='Выберите ваш пол' />
           </SelectTrigger>
           <SelectContent className={'dark:bg-gray-900'}>
@@ -165,7 +169,14 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           {formErrors.category && <small className={styles.error}>{formErrors.category}</small>}
         </Label>
         <Select onValueChange={(v) => validateAndSetField('category', v)} value={registerMutation.category}>
-          <SelectTrigger className={styles.selectTrigger} id='category' onBlur={() => handleBlur('category')}>
+          <SelectTrigger
+            className={cn(
+              styles.selectTrigger,
+              formErrors.category && 'border-red-600 focus:ring-red-600 focus:ring-0',
+            )}
+            id='category'
+            onBlur={() => handleBlur('category')}
+          >
             <SelectValue placeholder='Выберите вашу категорию' />
           </SelectTrigger>
           <SelectContent className={'dark:bg-gray-900'}>
@@ -185,7 +196,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           checked={isAgree.rules}
           onCheckedChange={() => handleAgree('rules')}
           id={'rules'}
-          className={styles.checkbox}
+          className={cn(styles.checkbox, formErrors.rules && 'border-red-600')}
         />
         <Label htmlFor='rules'>Ознакомился с правилами КСЛТ</Label>
       </div>
@@ -196,7 +207,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           checked={isAgree.personalData}
           onCheckedChange={() => handleAgree('personalData')}
           id={'personalData'}
-          className={styles.checkbox}
+          className={cn(styles.checkbox, formErrors.personalData && 'border-red-600')}
         />
         <Label htmlFor='personalData'>Даю согласие на обработку персональных данных</Label>
       </div>

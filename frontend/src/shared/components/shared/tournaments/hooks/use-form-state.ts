@@ -16,9 +16,16 @@ export const useFormState = (initialState: TournamentMutation) => {
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
+
+    const formattedValue = id === 'participants' ? value.replace(/[^0-9]/g, '') : value;
+
+    const validatedValue =
+      id === 'participants' && formattedValue !== '' && parseInt(formattedValue, 10) < 1 ? '1' : formattedValue;
+
     setState((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value,
+      [id]: validatedValue,
     }));
   };
 

@@ -2,6 +2,7 @@
 
 import { CustomPagination, InfoTip, UserSearch, UsersForm, useUsersList } from '@/shared/components/shared';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
+import { formatDateToDisplay } from '@/shared/lib';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
@@ -44,7 +45,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                 <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
                 <TableCell className={styles.tableCell}>{user.email}</TableCell>
                 <TableCell className={styles.tableCell}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
-                <TableCell className={styles.tableCell}>{user.dateOfBirth}</TableCell>
+                <TableCell className={styles.tableCell}>{formatDateToDisplay(user.dateOfBirth)}</TableCell>
                 <TableCell className={styles.tableCell}>{user.category.name}</TableCell>
                 <TableCell className={styles.actionButtons}>
                   <UsersForm mode={'edit'} id={user._id} />

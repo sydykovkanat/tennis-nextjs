@@ -51,6 +51,7 @@ export const CustomDatepicker: React.FC<Props> = ({
               'dark:border-gray-300',
               'focus:dark:border-gray-300',
               buttonClassName,
+              error && 'border-red-600',
             )}
           >
             {value ? (
