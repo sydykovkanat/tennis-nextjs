@@ -8,6 +8,7 @@ import { selectCategoryDeleting } from '@/shared/lib/features/categories/categor
 import { removeCategory } from '@/shared/lib/features/categories/category-thunks';
 import { Category } from '@/shared/types/category.types';
 import { Pencil, Trash } from 'lucide-react';
+import { toast } from 'sonner';
 
 import React from 'react';
 
@@ -24,6 +25,7 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
 
   const handleRemove = async () => {
     await dispatch(removeCategory(category._id)).unwrap();
+    toast.success('Категория успешно удалена!');
   };
 
   return (
@@ -36,11 +38,11 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
 
         <div className={cn(styles.actionsBlock)}>
           <Confirm onOk={handleRemove}>
-            <Button size={'sm'} icon={Trash}>
+            <Button size={'sm'} icon={Trash} aria-label={'delete-category'}>
               {categoryRemoving === category._id && <Loader size={'sm'} absolute />}
             </Button>
           </Confirm>
-          <Button size={'sm'} icon={Pencil} onClick={() => setOpen(true)} />
+          <Button size={'sm'} icon={Pencil} onClick={() => setOpen(true)} aria-label={'edit-category'} />
           {open && <CategoryForm open={open} setOpen={setOpen} isEdit categoryId={category._id} />}
         </div>
       </CardContent>
