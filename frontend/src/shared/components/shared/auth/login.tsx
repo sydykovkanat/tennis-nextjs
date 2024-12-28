@@ -21,7 +21,7 @@ const initialState: LoginMutation = {
 };
 
 const Login: React.FC<Props> = ({ className }) => {
-  const { loginMutation, handleChange, isFormValid } = useLoginForm(initialState);
+  const { loginMutation, handleChange, isFormValid, handleBlur, formErrors } = useLoginForm(initialState);
   const { loginError, loginLoading } = useLoginSelectors();
   const { handleLogin } = useLogin();
 
@@ -43,16 +43,17 @@ const Login: React.FC<Props> = ({ className }) => {
       <p className={styles.subtitle}>Введите свой логин и пароль для входа</p>
 
       <Input
-        error={loginError?.messageTelephone}
+        error={loginError?.messageTelephone || formErrors.telephone}
         label={'Телефон'}
         id={'telephone'}
         placeholder={'0555 555 555'}
         value={loginMutation.telephone}
         onChange={handleChange}
+        onBlur={() => handleBlur('telephone')}
       />
 
       <Input
-        error={loginError?.messagePassword || loginError?.messageMatching}
+        error={loginError?.messagePassword || loginError?.messageMatching || formErrors.password}
         label={'Пароль'}
         id={'password'}
         type={'password'}
@@ -60,6 +61,7 @@ const Login: React.FC<Props> = ({ className }) => {
         placeholder={'Введите пароль'}
         value={loginMutation.password}
         onChange={handleChange}
+        onBlur={() => handleBlur('password')}
       />
 
       <Button loading={loginLoading} className={cn(styles.loginBtn)} disabled={!isFormValid || loginLoading}>

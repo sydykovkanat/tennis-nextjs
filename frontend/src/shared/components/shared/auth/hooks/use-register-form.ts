@@ -17,18 +17,35 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
 
   const validateAndSetField = (id: string, value: string) => {
     const error = validateRegisterForm(id, value);
-    setFormErrors((prev) => ({ ...prev, [id]: error }));
-    setRegisterMutation((prev) => ({ ...prev, [id]: value }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [id]: error,
+    }));
+
+    setRegisterMutation((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
   };
 
   const handleAgree = (type: 'rules' | 'personalData') => {
     const newValue = !isAgree[type];
-    setIsAgree((prev) => ({ ...prev, [type]: newValue }));
-    setFormErrors((prev) => ({ ...prev, [type]: validateRegisterForm(type, newValue) }));
+
+    setIsAgree((prev) => ({
+      ...prev,
+      [type]: newValue,
+    }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [type]: validateRegisterForm(type, newValue),
+    }));
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
+
     const formattedValue =
       id === 'telephone'
         ? formatTelephone(value.trim())
@@ -36,7 +53,10 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
           ? value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '')
           : value.trim();
 
-    setRegisterMutation((prev) => ({ ...prev, [id]: formattedValue }));
+    setRegisterMutation((prev) => ({
+      ...prev,
+      [id]: formattedValue,
+    }));
 
     if (isTouched[id]) {
       validateAndSetField(id, formattedValue);
@@ -44,20 +64,43 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
   };
 
   const handleBlur = (id: string) => {
-    setIsTouched((prev) => ({ ...prev, [id]: true }));
+    setIsTouched((prev) => ({
+      ...prev,
+      [id]: true,
+    }));
+
     const error = validateRegisterForm(id, registerMutation[id as keyof RegisterMutation] || '');
-    setFormErrors((prev) => ({ ...prev, [id]: error }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [id]: error,
+    }));
   };
 
   const handleDateChange = (date: Date | undefined) => {
     const formattedDate = date ? format(date, 'yyyy-MM-dd') : '';
-    setRegisterMutation((prev) => ({ ...prev, dateOfBirth: formattedDate }));
-    setFormErrors((prev) => ({ ...prev, dateOfBirth: validateRegisterForm('dateOfBirth', formattedDate) }));
+
+    setRegisterMutation((prev) => ({
+      ...prev,
+      dateOfBirth: formattedDate,
+    }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      dateOfBirth: validateRegisterForm('dateOfBirth', formattedDate),
+    }));
   };
 
   const handleSelectChange = (id: string, value: string) => {
-    setRegisterMutation((prev) => ({ ...prev, [id]: value }));
-    setFormErrors((prev) => ({ ...prev, [id]: validateRegisterForm(id, value) }));
+    setRegisterMutation((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [id]: validateRegisterForm(id, value),
+    }));
   };
 
   const isFormValid = Boolean(
