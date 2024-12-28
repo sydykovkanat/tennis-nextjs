@@ -29,7 +29,7 @@ export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) =
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактировать публичную оферту</DialogTitle>
-          <DialogDescription>Заполните форму перед обновлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               <Label htmlFor={'public-offer'}>Ссылка на оферту</Label>
@@ -43,7 +43,7 @@ export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) =
               />
             </div>
             <div className={styles.formActions}>
-              <Button disabled={publicOffer.trim().length === 0} size={'sm'}>
+              <Button disabled={publicOffer.trim().length === 0}>
                 Сохранить {publicOfferUpdating && <Loader size={'sm'} theme={'light'} />}
               </Button>
               <DialogClose ref={closeRef} asChild>

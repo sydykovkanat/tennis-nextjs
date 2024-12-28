@@ -58,7 +58,7 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
         <DialogContent className={'dark:bg-[#1F2937]'}>
           <DialogHeader>
             <DialogTitle> {isAddMode ? 'Добавить файл' : 'Добавить файл'} </DialogTitle>
-            <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
+            <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
             <form
               onSubmit={(e) => (isAddMode ? handleImageUpload(e) : id && onUpdateImage(id, e))}
               className={cn(styles.form)}

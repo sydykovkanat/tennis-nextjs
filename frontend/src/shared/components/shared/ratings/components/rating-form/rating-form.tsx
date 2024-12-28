@@ -91,7 +91,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
         <Input id={'year'} placeholder={'Введите год (2024)'} onChange={handleYearChange} value={ratingMutation.year} />
       </div>
 
-      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-4'} size={'sm'}>
+      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-7'}>
         Добавить {ratingsCreating && <Loader theme={'light'} />}
       </Button>
     </form>

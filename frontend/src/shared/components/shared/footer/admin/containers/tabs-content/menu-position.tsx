@@ -30,9 +30,9 @@ export const MenuPosition = () => {
           {(!menuPositionFetching && menuPositionData.length === 0) ||
           (menuPositionData.length > 0 && menuPositionData[0].menuPosition.length === 0) ? (
             <small className={styles.menuPositionNoItemsMessage}>
-              Пунктов в меню не найдено.
+              Пунктов в меню не найдено
               <MenuPositionCreateForm>
-                <button className={styles.menuPositionAddButton}>Добавить пункт в меню.</button>
+                <button className={styles.menuPositionAddButton}>Добавить пункт в меню</button>
               </MenuPositionCreateForm>
             </small>
           ) : (

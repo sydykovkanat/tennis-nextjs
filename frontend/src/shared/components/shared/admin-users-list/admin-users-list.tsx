@@ -30,7 +30,7 @@ export const AdminUsersList = () => {
       <div className={styles.header}>
         <div>
           <h2 className={styles.headerTitle}>Пользователи</h2>
-          <small className={styles.headerSubtitle}>Список всех пользователей и управление пользователями.</small>
+          <small className={styles.headerSubtitle}>Список всех пользователей и управление пользователями</small>
         </div>
         <UsersForm mode={'add'} />
       </div>

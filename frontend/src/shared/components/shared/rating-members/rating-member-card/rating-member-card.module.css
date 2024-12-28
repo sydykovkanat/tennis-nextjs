@@ -24,7 +24,7 @@
 }
 
 .cardInfoNameFirst {
-  @apply hidden lg:block absolute left-1/2 -translate-x-1/2 bottom-[-1px] w-[49px] h-[1px] rounded-full bg-tn-green;
+  @apply hidden lg:block absolute left-1/2 -translate-x-1/2 bottom-[-1px] w-[49px] h-[0.1px] rounded-full border-[0.3px] border-tn-green;
 }
 
 .cardInfoPlace {

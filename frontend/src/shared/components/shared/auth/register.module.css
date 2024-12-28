@@ -11,15 +11,19 @@
 }
 
 .title {
-  @apply text-[28px] leading-10 font-bold mb-2;
+  @apply text-[28px] leading-8 font-bold mb-2;
 }
 
 .subtitle {
-  @apply mb-7;
+  @apply text-sm sm:text-base text-black/75 mb-6;
 }
 
-.dateField {
-  @apply space-y-0.5 mb-4;
+.datepicker {
+  @apply mb-4;
+}
+
+.datepickerButton {
+  @apply py-6 mt-1;
 }
 
 .dateInput {
@@ -35,7 +39,7 @@
 }
 
 .selectContainer {
-  @apply mb-4;
+  @apply mb-5;
 }
 
 .checkboxContainer {
@@ -44,10 +48,6 @@
   & label {
     @apply flex items-center font-normal text-base;
   }
-
-  &:last-of-type {
-    @apply mb-8;
-  }
 }
 
 .checkbox {
@@ -55,9 +55,17 @@
 }
 
 .registerBtn {
-  @apply flex justify-between w-full h-14 mb-5;
+  @apply  w-full h-12 mb-5 mt-8;
 }
 
 .isAlreadyRegistered {
   @apply text-muted-foreground block text-center underline hover:text-primary;
+}
+
+.label {
+  @apply justify-between flex items-center text-sm font-medium;
+}
+
+.error {
+  @apply text-red-600;
 }

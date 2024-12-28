@@ -12,8 +12,12 @@ import {
   DialogTrigger,
   Input,
   Label,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@/shared/components/ui';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
 
 import React, { PropsWithChildren } from 'react';
 import { SocialIcon } from 'react-social-icons';
@@ -43,11 +47,11 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Добавить электронную почту' : 'Добавить социальную сеть'}
           </DialogTitle>
-          <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               {isBlocked && (
-                <small className={styles.errorMessage}>Социальная сеть {socialNetwork.name} уже существует.</small>
+                <small className={styles.errorMessage}>Социальная сеть {socialNetwork.name} уже существует</small>
               )}
               <Select
                 value={socialNetwork.name}
@@ -93,7 +97,6 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
                 disabled={
                   socialNetwork.name.trim().length === 0 || socialNetwork.value.trim().length === 0 || isBlocked
                 }
-                size={'sm'}
               >
                 Добавить {socialNetworkCreating && <Loader size={'sm'} theme={'light'} />}
               </Button>

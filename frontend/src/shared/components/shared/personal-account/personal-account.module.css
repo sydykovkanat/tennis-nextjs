@@ -18,6 +18,10 @@
   line-height: 1.5;
 }
 
+.headerTitleContainer {
+  @apply flex flex-col gap-2;
+}
+
 .fullName {
   @apply text-xl dark:text-black font-medium;
 }
@@ -37,7 +41,7 @@
   @apply space-y-2 flex flex-col;
 }
 .mainWrapper {
-  @apply mt-2 flex flex-col max-w-2xl;
+  @apply mt-3 flex flex-col max-w-2xl;
 }
 
 .textWrapper {
@@ -56,7 +60,15 @@
 
 .formWrapper {
   @apply flex flex-col gap-1.5;
+
+  & label {
+    @apply text-base font-medium;
+  }
 }
 .buttonWrapper {
-  @apply flex flex-col gap-1 mt-1;
+  @apply flex flex-col gap-2 mt-5;
+
+  & button {
+    @apply h-12;
+  }
 }

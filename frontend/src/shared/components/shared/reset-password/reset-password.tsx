@@ -3,7 +3,6 @@
 import { Loader } from '@/shared/components/shared';
 import { useResetPassword } from '@/shared/components/shared/reset-password/use-reset-password';
 import { cn } from '@/shared/lib';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
 
@@ -19,9 +18,9 @@ const ResetPassword: React.FC = () => {
         className={cn(styles.SectionWrapper, 'dark:bg-gray-900')}
         style={{ boxShadow: '0px 4px 100px 0px #00000017' }}
       >
-        <div className='mb-3'>
+        <div className='mb-5'>
           <h1 className={styles.BoldText}>Сброс пароля</h1>
-          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите ваш новый пароль для сброса.</p>
+          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите ваш новый пароль для сброса</p>
         </div>
 
         <div className={styles.DivWrapper}>
@@ -41,9 +40,7 @@ const ResetPassword: React.FC = () => {
             onChange={handleChange}
             label='Подтвердите пароль'
             placeholder='Введите пароль еще раз'
-            className={cn(styles.InputStyle, {
-              'ring-red-500 ring-1 focus-visible:ring-red-500': passwords.confirmPassword !== passwords.password,
-            })}
+            className={cn(styles.InputStyle)}
             type='password'
             autoComplete='current-password'
             error={passwordMatch ? 'Пароли не совпадают' : ''}
@@ -56,11 +53,7 @@ const ResetPassword: React.FC = () => {
           className={cn(styles.Button, 'dark:bg-white')}
         >
           Сбросить
-          {resetPasswordLoading ? (
-            <Loader className={'text-muted'} />
-          ) : (
-            <ArrowRightIcon style={{ width: 20, height: 20 }} />
-          )}
+          {resetPasswordLoading && <Loader className={'text-muted'} />}
         </Button>
       </section>
     </form>

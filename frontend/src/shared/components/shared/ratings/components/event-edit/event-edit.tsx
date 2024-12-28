@@ -50,7 +50,7 @@ export const EventEdit: React.FC<Props> = ({ id, ratings, children }) => {
         <DialogHeader>
           <DialogTitle>Редактирование события</DialogTitle>
 
-          <DialogDescription>
+          <DialogDescription className={'pb-2'}>
             Введите данные для редактирования события. После редактирования, событие будет доступно для просмотра на
             странице Рейтинг
           </DialogDescription>

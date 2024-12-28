@@ -67,12 +67,12 @@ export const MenuPositionEditForm: React.FC<Props> = ({ id }) => {
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактировать пункт в меню</DialogTitle>
-          <DialogDescription>Заполните форму перед обновлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               {isBlocked && (
                 <small className={styles.errorMessage}>
-                  Пункт в меню положения `{menuPosition.name}` уже существует.
+                  Пункт в меню положения `{menuPosition.name}` уже существует
                 </small>
               )}
               <Label htmlFor={'menu-position-name'}>Название пункта в меню</Label>
@@ -96,7 +96,6 @@ export const MenuPositionEditForm: React.FC<Props> = ({ id }) => {
             <div className={styles.formActions}>
               <Button
                 disabled={menuPosition.name.trim().length === 0 || menuPosition.value.trim().length === 0 || isBlocked}
-                size={'sm'}
               >
                 Сохранить {menuPositionUpdating && <Loader size={'sm'} theme={'light'} />}
               </Button>

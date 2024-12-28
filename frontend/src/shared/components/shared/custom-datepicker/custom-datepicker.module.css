@@ -1,0 +1,19 @@
+.label {
+  @apply justify-between flex items-center text-sm font-medium;
+}
+
+.error {
+  @apply text-red-600;
+}
+
+.button {
+  @apply w-full font-normal justify-start hover:bg-transparent bg-transparent;
+}
+
+.popoverContent {
+  @apply w-full p-0;
+}
+
+.datepickerPlaceholder {
+  @apply text-muted-foreground;
+}

@@ -73,6 +73,14 @@ export interface UsersFilter {
   role?: string;
 }
 
+export interface UserUpdateInfo {
+  telephone: string;
+  fullName: string;
+  gender: string;
+  email: string;
+  dateOfBirth: string;
+}
+
 export type RegisterMutationWithoutCoupleFields = Omit<RegisterMutation, 'password' | 'category'>;
 
 export interface UserPermissionLevel {

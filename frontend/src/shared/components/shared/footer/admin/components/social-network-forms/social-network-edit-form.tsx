@@ -68,7 +68,7 @@ export const SocialNetworkEditForm: React.FC<Props> = ({ id }) => {
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Редактировать электронную почту' : 'Редактировать социальную сеть'}
           </DialogTitle>
-          <DialogDescription>Заполните форму перед обновлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <Label htmlFor={'social-network'}>
@@ -86,10 +86,7 @@ export const SocialNetworkEditForm: React.FC<Props> = ({ id }) => {
               />
             </div>
             <div className={styles.formActions}>
-              <Button
-                disabled={socialNetwork.name.trim().length === 0 || socialNetwork.value.trim().length === 0}
-                size={'sm'}
-              >
+              <Button disabled={socialNetwork.name.trim().length === 0 || socialNetwork.value.trim().length === 0}>
                 Сохранить {socialNetworkUpdating && <Loader size={'sm'} theme={'light'} />}
               </Button>
               <DialogClose ref={closeRef} asChild>

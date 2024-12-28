@@ -18,11 +18,13 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>(
     fullName: {
       type: String,
       required: true,
+      trim: true,
     },
     telephone: {
       type: String,
       required: true,
       unique: true,
+      trim: true,
 
       validate: {
         validator: async function (value: string): Promise<boolean> {
@@ -49,6 +51,7 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>(
       type: String,
       select: false,
       required: true,
+      trim: true,
     },
     token: {
       type: String,
@@ -63,6 +66,7 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>(
     email: {
       type: String,
       required: true,
+      trim: true,
     },
     isActive: {
       type: Boolean,

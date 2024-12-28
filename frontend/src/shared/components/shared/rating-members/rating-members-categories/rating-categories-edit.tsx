@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -39,6 +40,7 @@ export const RatingMembersCategoriesEdit: React.FC<Props> = ({
       <DialogContent className={'dark:bg-[#1F2937]'} aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Редактировать категории рейтинга</DialogTitle>
+          <DialogDescription>Заполните форму редактированием категорий</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className={styles.formInner}>
@@ -77,7 +79,7 @@ export const RatingMembersCategoriesEdit: React.FC<Props> = ({
               Сохранить
             </Button>
             <DialogClose asChild>
-              <Button type='button' variant='secondary' onClick={handleClose}>
+              <Button type='button' variant='outline' onClick={handleClose}>
                 Отмена
               </Button>
             </DialogClose>
