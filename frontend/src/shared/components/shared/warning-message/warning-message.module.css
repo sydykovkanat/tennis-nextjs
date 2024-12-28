@@ -1,7 +1,15 @@
 .messageContainer {
-  @apply flex items-start gap-3 p-1 mb-2 border-l-4 border-yellow-500 bg-yellow-50 rounded-md text-yellow-800;
+  @apply flex items-start gap-3 p-1 mb-2 border-l-4 rounded-md;
 }
 
 .messageIcon {
   @apply w-5 h-5 shrink-0;
+}
+
+.warningWarning {
+  @apply border-yellow-500 bg-yellow-100 text-yellow-800;
+}
+
+.warningError {
+  @apply border-red-500 bg-red-100 text-red-800;
 }

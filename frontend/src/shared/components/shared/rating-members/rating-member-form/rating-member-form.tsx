@@ -108,7 +108,6 @@ export const RatingMemberForm: React.FC<RatingMembersProps> = ({
             )}
 
             <div className={styles.fieldContainer}>
-              <Label htmlFor='place'>Место</Label>
               <Label htmlFor='place' className={styles.label}>
                 Место
                 {forWhichGender === 'male' && !state.ratingType && (

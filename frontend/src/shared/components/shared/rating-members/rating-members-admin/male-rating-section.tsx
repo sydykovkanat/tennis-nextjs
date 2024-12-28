@@ -14,12 +14,14 @@ interface Props {
   ratingMenMembersTop8: RatingMember[];
   ratingMenMembersTop3: RatingMember[];
   duplicatePlaces: { mensTop8: boolean; mensTop3: boolean; womensTop3: boolean };
+  fewMembersWarning: { mensTop8: boolean; mensTop3: boolean; womensTop3: boolean };
 }
 export const MaleRatingSection: React.FC<Props> = ({
   ratingMembers,
   ratingMenMembersTop8,
   ratingMenMembersTop3,
   duplicatePlaces,
+  fewMembersWarning,
 }) => {
   const [openMaleForm, setOpenMaleForm] = useState(false);
   return (
@@ -46,6 +48,7 @@ export const MaleRatingSection: React.FC<Props> = ({
         category={ratingMembers[0]?.mensRatingCategoryTop8 || 'Здесь будет категория'}
         hasDuplicatePlaces={duplicatePlaces.mensTop8}
         className={styles.adminList}
+        fewMembersWarning={fewMembersWarning.mensTop8}
       />
       <RatingMembersAdminList
         ratingMembers={ratingMenMembersTop3}
@@ -53,6 +56,7 @@ export const MaleRatingSection: React.FC<Props> = ({
         title='Топ-3 мужского'
         category={ratingMembers[0]?.mensRatingCategoryTop3 || 'Здесь будет категория'}
         hasDuplicatePlaces={duplicatePlaces.mensTop3}
+        fewMembersWarning={fewMembersWarning.mensTop3}
       />
     </div>
   );
