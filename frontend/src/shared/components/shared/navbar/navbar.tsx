@@ -24,7 +24,7 @@ import {
 } from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-cards/use-main-logo-cards';
 import {selectCurrentLogo} from '@/shared/lib/features/footer/footers-slice';
 import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
-import {fetchCurrentLogo} from "@/shared/lib/features/footer/footers-thunks";
+import {fetchCurrentLogo} from '@/shared/lib/features/footer/footers-thunks';
 interface Props {
   dataItems: FooterElementsData[];
 }

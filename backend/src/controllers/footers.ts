@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import Footer from '../model/Footer';
 import { clearImages } from '../utils/multer';
-import {LogoFields} from "../types/footer";
 
 export const getFooterItems = async (_: Request, res: Response, next: NextFunction) => {
   try {
