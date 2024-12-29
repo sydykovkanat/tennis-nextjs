@@ -33,7 +33,7 @@ export const AdminCarouselItem: React.FC<CarouselItemForAdminProps> = ({ classNa
       <div className={cn(styles.containerCarouselItem)}>
         {loadingCarousel ? (
           <div>
-            <Loader />
+            <Loader />x
           </div>
         ) : (
           carousel.map((image) => (

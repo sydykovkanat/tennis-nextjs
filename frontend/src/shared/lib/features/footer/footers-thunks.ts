@@ -119,3 +119,38 @@ export const createMainLogo = createAsyncThunk(
 
     }
 );
+
+
+export const postCurrentLogo = createAsyncThunk(
+    'footers/postCurrentLogo',
+    async (id:string, {rejectWithValue}) => {
+        try {
+            const response = await axiosApi.post('footers/set-current-logo', { logoId: id });
+            return response.data;
+        } catch (error) {
+            if (isAxiosError(error) && error.response && error.response.status === 400) {
+                return rejectWithValue(error.response.data);
+            }
+            if (isAxiosError(error) && error.response && error.response.status === 401) {
+                return rejectWithValue(error.response.data);
+            }
+        }
+    }
+);
+
+export const fetchCurrentLogo = createAsyncThunk(
+    'logo/fetchCurrentLogo',
+    async (_,{rejectWithValue}) => {
+        try {
+            const response = await axiosApi.get('footers/get-current-logo');
+            return response.data;
+        } catch (error) {
+            if (isAxiosError(error) && error.response && error.response.status === 400) {
+                return rejectWithValue(error.response.data);
+            }
+            if (isAxiosError(error) && error.response && error.response.status === 401) {
+                return rejectWithValue(error.response.data);
+            }
+        }
+    }
+);

@@ -5,10 +5,10 @@ import {
   createFooterMenuPosition,
   createFooterSocialNetwork, createMainLogo,
   deleteOneFooterMenuPosition,
-  deleteOneFooterSocialNetwork,
+  deleteOneFooterSocialNetwork, getCurrentLogo,
   getFooterItems,
   getOneFooterMenuPosition,
-  getOneFooterSocialNetwork,
+  getOneFooterSocialNetwork, setCurrentLogo,
   updateFooterMenuPosition,
   updateFooterSocialNetwork,
   updateMainPartnerImage,
@@ -45,3 +45,5 @@ footersRouter.patch(
 );
 
 footersRouter.post('/create-main-logo', auth, permit('admin', 'moderator'),imagesUpload.single('logo'), createMainLogo);
+footersRouter.post('/set-current-logo', auth, permit('admin', 'moderator'), setCurrentLogo);
+footersRouter.get('/get-current-logo', auth, permit('admin', 'moderator'), getCurrentLogo);

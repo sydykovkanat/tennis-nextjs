@@ -263,3 +263,38 @@ export const createMainLogo = async (req: Request, res: Response, next: NextFunc
     return next(error);
   }
 };
+
+export const getCurrentLogo = async (req: Request, res: Response) => {
+  try {
+    const footer = await Footer.findOne({});
+    if (!footer || !footer.currentLogo) {
+      return res.status(404).send({ error: 'Текущий логотип не найден' });
+    }
+    return res.send(footer.currentLogo);
+  } catch (error) {
+    console.error('Ошибка получения логотипа:', error);
+    return res.status(500).send({ error: 'Ошибка получения текущего логотипа' });
+  }
+};
+
+export const setCurrentLogo = async (req: Request, res: Response) => {
+  try {
+    const { logoId } = req.body;
+    if (!logoId) {
+      return res.status(400).send({ error: 'Логотип не указан' });
+    }
+
+    const updatedFooter = await Footer.findOneAndUpdate(
+        {},
+        { $set: { currentLogo: logoId } },
+        { new: true, upsert: true }
+    );
+
+    return res.send(updatedFooter.currentLogo);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ error: 'Ошибка обновления логотипа' });
+  }
+};
+
+

@@ -5,7 +5,7 @@ export interface LinksMediaFields {
 }
 
 export interface LogoFields {
- logo: string
+ logo: string;
 }
 
 export interface FooterFields {
@@ -14,4 +14,5 @@ export interface FooterFields {
   publicOffer: string;
   mainPartnerImage: string | null;
   mainLogo: LogoFields[];
+  currentLogo: string;
 }

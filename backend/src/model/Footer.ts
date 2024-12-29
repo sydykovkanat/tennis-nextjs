@@ -53,7 +53,11 @@ const FooterSchema = new mongoose.Schema<FooterFields>({
   },
   mainLogo: {
     type: [MainLogo],
-  }
+  },
+  currentLogo: {
+    type: String,
+    default: null,
+  },
 });
 
 FooterSchema.set('validateBeforeSave', false);

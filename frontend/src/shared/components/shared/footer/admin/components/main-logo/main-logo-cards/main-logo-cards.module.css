@@ -1,3 +1,10 @@
 .containerMainLogoItem {
     @apply grid md:grid-cols-2 lg:grid-cols-3 gap-3;
 }
+
+.image {
+    @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px];
+}
+.cardMainLogo {
+    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full;
+}

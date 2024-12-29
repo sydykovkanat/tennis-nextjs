@@ -15,12 +15,13 @@ import {useMainLogoForm} from '@/shared/components/shared/footer/admin/component
 import {Pencil} from 'lucide-react';
 import styles from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog.module.css';
 import {PaperAirplaneIcon} from '@heroicons/react/24/outline';
+import {Loader} from '@/shared/components/shared';
 interface AdminMainLogoDialogProps {
     className?: string;
 }
 
 export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
-    const  {isAddModalOpen, setAddModalOpen, handleImageUpload, onChangeFileInputLogo} = useMainLogoForm();
+    const  {isAddModalOpen, setAddModalOpen, handleImageUpload, onChangeFileInputLogo, loading} = useMainLogoForm();
     return (
         <>
           <Dialog open={isAddModalOpen} onOpenChange={setAddModalOpen}>
@@ -29,7 +30,7 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
                       className={cn(className)}
                       onClick={() => setAddModalOpen(true)}
                   >
-                      Добавить файл
+                      Добавить лого
                       <Pencil />
                   </Button>
               </DialogTrigger>
@@ -50,13 +51,13 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
                               onChange={onChangeFileInputLogo}
                               accept='image/*'
                           />
-                          <Button
-                              type='submit'
-                              className='mt-0'
-                          >
+
+                          {loading ? (
+                              <Loader/>
+                          ) :  <Button type='submit' className='mt-0'>
                               Добавить лого
                               <PaperAirplaneIcon/>
-                          </Button>
+                          </Button>}
                       </form>
                   </DialogHeader>
               </DialogContent>

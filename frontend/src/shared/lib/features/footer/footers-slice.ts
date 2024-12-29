@@ -3,7 +3,7 @@ import {
   createMenuPosition,
   createSocialNetwork,
   deleteMenuPosition,
-  deleteOneSocialNetwork,
+  deleteOneSocialNetwork, fetchCurrentLogo,
   getFooterItems,
   getOneMenuPosition,
   getOneSocialNetwork,
@@ -27,6 +27,7 @@ interface FootersState {
   logo: MainLogo | null;
   logoLoading:boolean
   logoError:boolean
+  currentLogo: string | null;
 }
 
 const initialState: FootersState = {
@@ -41,6 +42,7 @@ const initialState: FootersState = {
   logo: null,
   logoLoading: false,
   logoError: false,
+  currentLogo: null,
 };
 
 export const footersSlice = createSlice({
@@ -174,6 +176,19 @@ export const footersSlice = createSlice({
       state.logoLoading = false;
       state.logoError = true;
     });
+
+    builder.addCase(fetchCurrentLogo.pending, (state) => {
+      state.logoLoading = true;
+      state.logoError = false;
+    });
+    builder.addCase(fetchCurrentLogo.fulfilled, (state, { payload: logoId }) => {
+      state.logoLoading = false;
+      state.currentLogo = logoId;
+    });
+    builder.addCase(fetchCurrentLogo.rejected, (state) => {
+      state.logoLoading = false;
+      state.logoError = true;
+    });
   },
   selectors: {
     selectItemsData: (state) => state.itemsData,
@@ -184,6 +199,7 @@ export const footersSlice = createSlice({
     selectItemDeleting: (state) => state.itemDeleting,
     selectItemUpdating: (state) => state.itemUpdating,
     selectMainLogoLoading: (state) => state.logoLoading,
+    selectCurrentLogo: (state) => state.currentLogo,
   },
 });
 
@@ -197,4 +213,5 @@ export const {
   selectItemDeleting,
   selectItemUpdating,
   selectMainLogoLoading,
+  selectCurrentLogo,
 } = footersSlice.selectors;

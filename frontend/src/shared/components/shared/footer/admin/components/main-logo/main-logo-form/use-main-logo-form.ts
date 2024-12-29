@@ -3,7 +3,7 @@ import {MainLogoMutation} from '@/shared/types/footer.types';
 import {toast} from 'sonner';
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/hooks';
 import {createMainLogo, getFooterItems} from '@/shared/lib/features/footer/footers-thunks';
-import {selectMainLogo} from '@/shared/lib/features/footer/footers-slice';
+import {selectMainLogoLoading} from '@/shared/lib/features/footer/footers-slice';
 
 const emptyState: MainLogoMutation  = {
     logo: null,
@@ -14,6 +14,7 @@ export const useMainLogoForm = () => {
     const [isAddModalOpen, setAddModalOpen] = useState(false);
     const [newLogo, setNewLogo] = useState<MainLogoMutation>(emptyState);
     const dispatch = useAppDispatch();
+    const loading = useAppSelector(selectMainLogoLoading);
 
 
     const onChangeFileInputLogo = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +50,7 @@ export const useMainLogoForm = () => {
         setAddModalOpen,
         onChangeFileInputLogo,
         newLogo,
-        handleImageUpload
+        handleImageUpload,
+        loading,
     };
 };
