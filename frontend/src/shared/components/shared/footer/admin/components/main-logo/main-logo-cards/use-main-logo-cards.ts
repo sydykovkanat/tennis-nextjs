@@ -1,18 +1,26 @@
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/hooks';
-import {selectItemsData, selectItemsFetching} from '@/shared/lib/features/footer/footers-slice';
+import {selectErrorLogo, selectItemsData, selectItemsFetching} from '@/shared/lib/features/footer/footers-slice';
 import {useEffect, useState} from 'react';
 import {MainLogo} from '@/shared/types/footer.types';
-import {fetchCurrentLogo, postCurrentLogo} from '@/shared/lib/features/footer/footers-thunks';
+import {
+    fetchCurrentLogo,
+    fetchDeleteLogo,
+    getFooterItems,
+    postCurrentLogo
+} from '@/shared/lib/features/footer/footers-thunks';
 import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
+import {toast} from 'sonner';
 
 
 export const useMainLogoCards = () => {
     const dispatch = useAppDispatch();
     const itemData = useAppSelector(selectItemsData);
     const itemsLoading = useAppSelector(selectItemsFetching);
+    const logoError = useAppSelector(selectErrorLogo);
     const [activeLogoId, setActiveLogoId] = useState<string | null>(null);
     const [logos, setLogos] = useState<MainLogo[]>([]);
     const { setCurrentLogo } = useNavbarLogo();
+
 
 
     useEffect(() => {
@@ -25,10 +33,25 @@ export const useMainLogoCards = () => {
             setCurrentLogo(logo);
            await dispatch(postCurrentLogo(id)).unwrap();
            await dispatch(fetchCurrentLogo());
+           toast.success(' Логотип успешно заменен ');
         } catch (error) {
+            toast.error('Ошибка при обновлении логотипа');
             console.error('Ошибка при обновлении логотипа:', error);
         }
     };
+
+    const handleDeleteLogo = async (id: string) => {
+        try {
+            await dispatch(fetchDeleteLogo({ id })).unwrap();
+            await dispatch(getFooterItems()).unwrap();
+            toast.success('Логотип успешно удален');
+        } catch (error) {
+            console.log(logoError);
+            console.error('Ошибка при удаление логотипа:', error);
+            toast.error('Ошибка при удаление логотипа');
+        }
+    };
+
 
     return {
         logos,
@@ -37,5 +60,6 @@ export const useMainLogoCards = () => {
         setLogos,
         activeLogoId,
         setActiveLogoId,
+        handleDeleteLogo,
     };
 };

@@ -7,12 +7,12 @@ import {
     useMainLogoCards
 } from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-cards/use-main-logo-cards';
 import {API_URL} from '@/shared/constants';
-import {Loader} from '@/shared/components/shared';
+import {Confirm, Loader} from '@/shared/components/shared';
 import {Button} from '@/shared/components/ui';
 import {Trash} from 'lucide-react';
 
 export const MainLogoCards = () => {
-    const { logos, itemsLoading, handleLogoClick, activeLogoId } = useMainLogoCards();
+    const { logos, itemsLoading, handleLogoClick, activeLogoId, handleDeleteLogo } = useMainLogoCards();
 
     return (
         <div className={cn(styles.containerMainLogoItem)}>
@@ -27,9 +27,12 @@ export const MainLogoCards = () => {
                         />
                     </div>
 
-                    <div className={cn(styles.btnDelete)}>
-                        <Button> <Trash/> </Button>
-                    </div>
+                    <Confirm onOk={() => handleDeleteLogo(logo._id)}>
+                        <div className={cn(styles.btnDelete)}>
+                            <Button> <Trash/> </Button>
+                        </div>
+                    </Confirm>
+
                 </div>
 
             ))}

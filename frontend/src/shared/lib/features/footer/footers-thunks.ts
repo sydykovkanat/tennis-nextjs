@@ -8,6 +8,7 @@ import {
 } from '@/shared/types/footer.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {isAxiosError} from 'axios';
+import {GlobalError} from '@/shared/types/user.types';
 
 export const getFooterItems = createAsyncThunk<FooterElementsData[], void, { state: RootState }>(
   'footers/getFooterItems',
@@ -143,6 +144,23 @@ export const fetchCurrentLogo = createAsyncThunk(
     async (_,{rejectWithValue}) => {
         try {
             const response = await axiosApi.get('footers/get-current-logo');
+            return response.data;
+        } catch (error) {
+            if (isAxiosError(error) && error.response && error.response.status === 400) {
+                return rejectWithValue(error.response.data);
+            }
+            if (isAxiosError(error) && error.response && error.response.status === 401) {
+                return rejectWithValue(error.response.data);
+            }
+        }
+    }
+);
+
+export const fetchDeleteLogo = createAsyncThunk<void, { id: string},{ rejectValue: GlobalError }>(
+    'logo/fetchDeleteLogo',
+    async ({ id }, { rejectWithValue }) => {
+        try {
+            const response = await axiosApi.delete(`footers/delete-logo/${id}`);
             return response.data;
         } catch (error) {
             if (isAxiosError(error) && error.response && error.response.status === 400) {

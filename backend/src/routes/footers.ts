@@ -3,7 +3,7 @@ import { auth } from '../middleware/auth';
 import { permit } from '../middleware/permit';
 import {
   createFooterMenuPosition,
-  createFooterSocialNetwork, createMainLogo,
+  createFooterSocialNetwork, createMainLogo, deleteLogo,
   deleteOneFooterMenuPosition,
   deleteOneFooterSocialNetwork, getCurrentLogo,
   getFooterItems,
@@ -47,3 +47,4 @@ footersRouter.patch(
 footersRouter.post('/create-main-logo', auth, permit('admin', 'moderator'),imagesUpload.single('logo'), createMainLogo);
 footersRouter.post('/set-current-logo', auth, permit('admin', 'moderator'), setCurrentLogo);
 footersRouter.get('/get-current-logo', auth, permit('admin', 'moderator'), getCurrentLogo);
+footersRouter.delete('/delete-logo/:id', auth, permit('admin', 'moderator'), deleteLogo);

@@ -296,4 +296,28 @@ export const setCurrentLogo = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteLogo = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
 
+    if (!id) {
+      return res.status(400).send({ error: 'ID логотипа не указан' });
+    }
+
+
+    const updatedFooter = await Footer.findOneAndUpdate(
+        {},
+        { $pull: { mainLogo: { _id: id } } },
+        { new: true }
+    );
+
+    if (!updatedFooter) {
+      return res.status(404).send({ error: 'Логотип или запись Footer не найдены' });
+    }
+
+    return res.send({ message: 'Логотип успешно удален', updatedFooter });
+  } catch (error) {
+    console.error('Ошибка удаления логотипа:', error);
+    return res.status(500).send({ error: 'Ошибка удаления логотипа' });
+  }
+};
