@@ -3,8 +3,17 @@
 }
 
 .image {
-    @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px];
+    @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px] cursor-pointer transition-all duration-300 ease-in-out;
 }
+
+.image:hover {
+    @apply shadow-lg ring-2 dark:bg-[#1F2937] scale-105;
+}
+
 .cardMainLogo {
-    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full;
+    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full bg-white shadow-md transition-all duration-300 ease-in-out;
+}
+
+.btnDelete {
+    @apply ms-auto items-center me-4;
 }

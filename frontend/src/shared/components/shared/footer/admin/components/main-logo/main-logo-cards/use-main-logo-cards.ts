@@ -10,6 +10,7 @@ export const useMainLogoCards = () => {
     const dispatch = useAppDispatch();
     const itemData = useAppSelector(selectItemsData);
     const itemsLoading = useAppSelector(selectItemsFetching);
+    const [activeLogoId, setActiveLogoId] = useState<string | null>(null);
     const [logos, setLogos] = useState<MainLogo[]>([]);
     const { setCurrentLogo } = useNavbarLogo();
 
@@ -20,9 +21,10 @@ export const useMainLogoCards = () => {
 
     const handleLogoClick = async (id: string, logo:string) => {
         try {
+            setActiveLogoId(id);
             setCurrentLogo(logo);
-           dispatch(postCurrentLogo(id)).unwrap();
-           dispatch(fetchCurrentLogo());
+           await dispatch(postCurrentLogo(id)).unwrap();
+           await dispatch(fetchCurrentLogo());
         } catch (error) {
             console.error('Ошибка при обновлении логотипа:', error);
         }
@@ -33,5 +35,7 @@ export const useMainLogoCards = () => {
         itemsLoading,
         handleLogoClick,
         setLogos,
+        activeLogoId,
+        setActiveLogoId,
     };
 };
