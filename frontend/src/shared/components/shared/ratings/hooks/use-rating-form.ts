@@ -1,7 +1,6 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
+import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectRatingsCreating } from '@/shared/lib/features/rating/rating-slice';
 import { RatingMutation } from '@/shared/types/rating.types';
 
@@ -9,18 +8,12 @@ import React from 'react';
 
 const initialState: RatingMutation = {
   year: '',
-  month: '',
   chapter: '',
 };
 
 export const useRatingForm = (onSubmit: (rating: RatingMutation) => void) => {
   const [ratingMutation, setRatingMutation] = React.useState<RatingMutation>(initialState);
-  const dispatch = useAppDispatch();
   const ratingsCreating = useAppSelector(selectRatingsCreating);
-
-  React.useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
   const handleYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -48,7 +41,7 @@ export const useRatingForm = (onSubmit: (rating: RatingMutation) => void) => {
     setRatingMutation(initialState);
   };
 
-  const isFormValid = ratingMutation.year.length === 4 && ratingMutation.month && ratingMutation.chapter;
+  const isFormValid = ratingMutation.year.length === 4 && ratingMutation.chapter;
 
   return {
     ratingMutation,

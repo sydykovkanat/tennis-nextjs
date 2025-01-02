@@ -6,7 +6,6 @@ import { CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectRatingsDeleting } from '@/shared/lib/features/rating/rating-slice';
 import { deleteRating } from '@/shared/lib/features/rating/rating-thunks';
-import { formatMonth } from '@/shared/lib/helpers/format-month';
 import { Rating } from '@/shared/types/rating.types';
 import { Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -44,9 +43,7 @@ export const RatingBlock: React.FC<Props> = ({ ratings }) => {
           >
             <CardHeader className={'p-2'}>
               <div className={styles.headerWrapper}>
-                <CardTitle className={styles.titleWrapper}>
-                  {rating.year} - {formatMonth(rating.month)}
-                </CardTitle>
+                <CardTitle className={styles.titleWrapper}>{rating.year} Год</CardTitle>
                 <div className={styles.deleteBlock}>
                   <Confirm onOk={() => handleDelete(rating._id)}>
                     <Button aria-label={'deleteRating'} icon={Trash} size={'icon'} loading={isDeleting} />

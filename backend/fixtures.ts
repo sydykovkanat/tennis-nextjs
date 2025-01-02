@@ -129,17 +129,14 @@ const run = async () => {
   const [firstRating, secondRating, thirdRating] = await Rating.create([
     {
       chapter: 'male',
-      month: 'january',
       year: 2024,
     },
     {
       chapter: 'female',
-      month: 'november',
       year: 2022,
     },
     {
       chapter: 'mixed',
-      month: 'april',
       year: 2023,
     },
   ]);
@@ -186,62 +183,62 @@ const run = async () => {
   const events = await Event.create([
     {
       rating: firstRating._id,
-      category: masters._id,
+      category: 'Masters',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
-      category: proMasters._id,
+      category: 'ProMasters',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
-      category: proMasters._id,
+      category: 'ProMasters',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
-      category: futures._id,
+      category: 'Futures',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
-      category: masters._id,
+      category: 'Futures',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
-      category: masters._id,
+      category: 'Futures',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
-      category: proMasters._id,
+      category: 'ProMasters',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
-      category: futures._id,
+      category: 'Futures',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
-      category: masters._id,
+      category: 'Masters',
       link: 'https://www.google.com',
     },
     {
       rating: thirdRating._id,
-      category: masters._id,
+      category: 'Masters',
       link: 'https://www.google.com',
     },
     {
       rating: thirdRating._id,
-      category: proMasters._id,
+      category: 'ProMasters',
       link: 'https://www.google.com',
     },
     {
       rating: thirdRating._id,
-      category: futures._id,
+      category: 'ProMasters',
       link: 'https://www.youtube.com',
     },
   ]);

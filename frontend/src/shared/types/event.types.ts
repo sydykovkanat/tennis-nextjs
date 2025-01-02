@@ -1,9 +1,8 @@
-import { Category } from '@/shared/types/category.types';
 import { Rating } from '@/shared/types/rating.types';
 
 export interface Event {
   _id: string;
-  category: Category;
+  category: string;
   gender: 'male' | 'female';
   link: string;
   rating: Rating;

@@ -1,6 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
-import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
+import { useAppSelector } from '@/shared/lib';
 import { selectEventFetching } from '@/shared/lib/features/rating/rating-slice';
 import { Event, EventMutation } from '@/shared/types/event.types';
 
@@ -18,9 +16,6 @@ const initialState: EventMutation = {
 };
 
 export const useEvent = ({ event, onSubmit }: UseEventProps) => {
-  const dispatch = useAppDispatch();
-  const categories = useAppSelector(selectCategories);
-  const categoriesFetching = useAppSelector(selectCategoriesFetching);
   const eventFetching = useAppSelector(selectEventFetching);
 
   const [eventMutation, setEventMutation] = React.useState<EventMutation>(initialState);
@@ -29,17 +24,13 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
     if (event) {
       setEventMutation({
         rating: event.rating._id,
-        category: event.category._id,
+        category: event.category,
         link: event.link,
       });
     } else {
       setEventMutation(initialState);
     }
   }, [event]);
-
-  React.useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -60,8 +51,6 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
 
   return {
     eventMutation,
-    categories,
-    categoriesFetching,
     eventFetching,
     handleChange,
     handleSelectChange,

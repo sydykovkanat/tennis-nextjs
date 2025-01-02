@@ -19,18 +19,8 @@ const EventSchema = new Schema(
       },
     },
     category: {
-      type: Schema.Types.ObjectId,
-      ref: 'Category',
+      type: String,
       required: true,
-
-      validate: {
-        validator: async (value: string) => {
-          const category = await mongoose.model('Category').findById(value);
-          return !!category;
-        },
-
-        message: 'Category does not exist',
-      },
     },
     link: {
       type: String,
