@@ -39,7 +39,7 @@ export const RatingBlock: React.FC<Props> = ({ ratings }) => {
           <Card
             key={rating._id}
             className={cn(styles.cardWrapper, 'dark:bg-[#1F2937] dark:border-black')}
-            data-testid={rating.month}
+            data-testid={rating.year}
           >
             <CardHeader className={'p-2'}>
               <div className={styles.headerWrapper}>
