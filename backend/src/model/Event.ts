@@ -22,6 +22,10 @@ const EventSchema = new Schema(
       type: String,
       required: true,
     },
+    rank: {
+      type: String,
+      required: true,
+    },
     link: {
       type: String,
       required: true,

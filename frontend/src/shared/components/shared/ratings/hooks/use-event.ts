@@ -12,6 +12,7 @@ interface UseEventProps {
 const initialState: EventMutation = {
   rating: '',
   category: '',
+  rank: '',
   link: '',
 };
 
@@ -25,6 +26,7 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
       setEventMutation({
         rating: event.rating._id,
         category: event.category,
+        rank: event.rank,
         link: event.link,
       });
     } else {
@@ -47,7 +49,9 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
     setEventMutation(initialState);
   };
 
-  const isFormValid = Boolean(eventMutation.rating && eventMutation.category && eventMutation.link);
+  const isFormValid = Boolean(
+    eventMutation.rating && eventMutation.category && eventMutation.link && eventMutation.rank,
+  );
 
   return {
     eventMutation,

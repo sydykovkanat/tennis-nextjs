@@ -184,61 +184,73 @@ const run = async () => {
     {
       rating: firstRating._id,
       category: 'Masters',
+      rank: 'II',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
       category: 'ProMasters',
+      rank: 'III',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
       category: 'ProMasters',
+      rank: 'III',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
       category: 'Futures',
+      rank: 'I',
       link: 'https://www.google.com',
     },
     {
       rating: firstRating._id,
       category: 'Futures',
+      rank: 'I',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
       category: 'Futures',
+      rank: 'I',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
       category: 'ProMasters',
+      rank: 'III',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
       category: 'Futures',
+      rank: 'I',
       link: 'https://www.google.com',
     },
     {
       rating: secondRating._id,
       category: 'Masters',
+      rank: 'I',
       link: 'https://www.google.com',
     },
     {
       rating: thirdRating._id,
       category: 'Masters',
+      rank: 'III',
       link: 'https://www.google.com',
     },
     {
       rating: thirdRating._id,
       category: 'ProMasters',
+      rank: 'I',
       link: 'https://www.google.com',
     },
     {
       rating: thirdRating._id,
       category: 'ProMasters',
+      rank: 'II',
       link: 'https://www.youtube.com',
     },
   ]);

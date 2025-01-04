@@ -32,6 +32,10 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
         <Label htmlFor='category'>Категория</Label>
         <Input id='category' placeholder={'Введите Категорию'} onChange={handleChange} value={eventMutation.category} />
       </div>
+      <div>
+        <Label htmlFor='category'>Разряд</Label>
+        <Input id='rank' placeholder={'Введите Разряд'} onChange={handleChange} value={eventMutation.rank} />
+      </div>
 
       <div>
         <Label htmlFor='rating'>Рейтинг</Label>

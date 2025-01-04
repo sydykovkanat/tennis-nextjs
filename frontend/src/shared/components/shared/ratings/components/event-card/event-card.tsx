@@ -37,7 +37,9 @@ export const EventCard: React.FC<Props> = ({ event, ratings }) => {
         <CardTitle className={styles.eventTitle}>
           Категория - <span className={styles.eventCategory}>{event.category}</span>
         </CardTitle>
-
+        <div className={'mt-2'}>
+          <span className={cn(styles.eventCategory)}>{event.rank}</span> - разряд
+        </div>
         <CardDescription className={cn(styles.eventDescription, 'group')}>
           <a
             id={'openRatingButton'}
