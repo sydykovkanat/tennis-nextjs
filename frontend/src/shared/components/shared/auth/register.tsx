@@ -79,7 +79,7 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Создать аккаунт</h1>
 
-      <p className={styles.subtitle}>Пожалуйста, заполните все данные для создания аккаунта</p>
+      <p className={cn(styles.subtitle, 'dark:text-white')}>Пожалуйста, заполните все данные для создания аккаунта</p>
 
       <Input
         label={'Телефон'}
@@ -123,8 +123,6 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         toYear={CURRENT_YEAR_FULL}
         className={styles.datepicker}
         buttonClassName={styles.datepickerButton}
-        error={formErrors.dateOfBirth}
-        onBlur={() => handleBlur('dateOfBirth')}
       />
 
       <Input

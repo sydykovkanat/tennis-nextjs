@@ -40,7 +40,7 @@ const Login: React.FC<Props> = ({ className }) => {
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Добро пожаловать</h1>
 
-      <p className={styles.subtitle}>Введите свой логин и пароль для входа</p>
+      <p className={cn(styles.subtitle, 'dark:text-white')}>Введите свой логин и пароль для входа</p>
 
       <Input
         error={loginError?.messageTelephone || formErrors.telephone}
