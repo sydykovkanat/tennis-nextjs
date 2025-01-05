@@ -10,7 +10,8 @@ import React from 'react';
 import styles from './forgot-password.module.css';
 
 const ForgotPassword: React.FC = () => {
-  const { forgotPasswordLoading, email, handleChange, handleSubmit, disabled, timer } = useForgotPassword();
+  const { forgotPasswordLoading, email, formError, handleChange, handleBlur, handleSubmit, disabled, timer } =
+    useForgotPassword();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -32,11 +33,13 @@ const ForgotPassword: React.FC = () => {
             placeholder='Введите вашу почту'
             type='email'
             autoComplete='email'
+            onBlur={() => handleBlur()}
+            error={formError}
           />
         </div>
 
         <Button
-          disabled={email.length === 0 || forgotPasswordLoading || disabled}
+          disabled={email.length === 0 || forgotPasswordLoading || disabled || formError.length !== 0}
           type={'submit'}
           className={cn(styles.Button, 'dark:bg-white', {
             'pointer-events-none': disabled,

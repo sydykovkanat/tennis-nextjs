@@ -20,7 +20,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <Label
             htmlFor={id}
-            className={cn('justify-between flex items-center text-sm font-medium text-foreground', labelClassName)}
+            className={cn(
+              'justify-between flex flex-col xs:flex-row xs:items-center text-sm font-medium text-foreground',
+              labelClassName,
+            )}
           >
             {label}
             <small className={'text-red-600'}>{error}</small>
