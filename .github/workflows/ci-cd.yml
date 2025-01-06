@@ -114,7 +114,7 @@ jobs:
       - name: Restart frontend
         run: |
           echo "### Restart frontend... ###"
-          pm2 restart 6
+          pm2 restart 3
         working-directory: frontend
 
       - name: Wait for frontend to be ready
