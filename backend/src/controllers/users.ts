@@ -24,7 +24,13 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
     const newUser = await User.findById(user._id).populate('category');
 
-    return res.send(newUser);
+    if (newUser) {
+      newUser.generateToken()
+      await newUser.save();
+      return res.send(newUser);
+    }
+
+    return res.status(400).send('Неудалось зарегистрироваться.');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) return res.status(400).send(error);
 
@@ -62,13 +68,29 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const user = await User.findOne({ telephone: req.body.telephone }).populate('category').select('+password');
 
-    if (!user) return res.status(400).send({ error: 'Username not found!' });
+    if (!user)
+      return res.status(400).send({
+        messageTelephone: 'Номер телефона не найден!',
+      });
 
-    if (!req.body.password) return res.status(400).send({ error: 'Password is required!' });
+    if (!req.body.password)
+      return res.status(400).send({
+        error: {
+          messagePassword: 'Пароль обязателен!',
+        },
+      });
 
     const isMatch = await user.checkPassword(req.body.password);
 
-    if (!isMatch) return res.status(400).send({ error: 'Телефон или пароль не верный!' });
+    if (!isMatch)
+      return res.status(400).send({
+        messageMatching: 'Пароль не верный!',
+      });
+
+    if (!user.isActive)
+      return res.status(400).send({
+        messageIsActive: 'Ваш аккаунт временно заблокирован. Для уточнения причины обратитесь, пожалуйста, в администрацию КСЛТ.',
+      });
 
     user.generateToken();
     await user.save();

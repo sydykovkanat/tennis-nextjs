@@ -1,35 +1,35 @@
 .newsContainer {
-  @apply grid gap-5 justify-center items-center sm:grid-cols-2 lmd:grid-cols-3 xl:grid-cols-4 mb-6;
+  @apply grid gap-x-5 gap-y-7 lg:gap-y-14 justify-center items-center sm:grid-cols-2 lmd:grid-cols-3 xl:grid-cols-4 mb-6 !important;
 }
 
 .skeletonCard {
-  @apply w-full min-w-[280px] rounded-lg;
+  @apply w-full min-w-[280px] rounded-lg !important;
 }
 
 .skeletonCardContent {
-  @apply w-full;
+  @apply w-full !important;
 }
 
 .skeletonCardImageBlock {
-  @apply p-0;
+  @apply p-0 !important;
 }
 
 .skeletonImage {
-  @apply h-[300px] object-cover mb-5 min-w-full rounded-md;
+  @apply h-[300px] object-cover mb-5 min-w-full rounded-md !important;
 }
 
 .skeletonCardTextBlock {
-  @apply flex flex-wrap mt-auto items-start p-6 pt-0;
+  @apply flex flex-wrap mt-auto items-start p-6 pt-0 !important;
 }
 
 .skeletonCardTextContent {
-  @apply me-auto w-full pb-12;
+  @apply me-auto w-full pb-12 !important;
 }
 
 .skeletonCardText {
-  @apply dark:text-white h-3 mb-2;
+  @apply dark:text-white h-3 mb-2 !important;
 }
 
 .skeletonCreatedAt {
-  @apply dark:text-white h-4 w-[30%];
+  @apply dark:text-white h-4 w-[30%] !important;
 }

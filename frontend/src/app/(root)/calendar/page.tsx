@@ -1,5 +1,5 @@
 import { getTournaments } from '@/actions/tournaments';
-import { Container, GradientCircle, TournamentCalendar, gradientCircles } from '@/shared/components/shared';
+import { Container, TournamentCalendar } from '@/shared/components/shared';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -18,15 +18,14 @@ interface Props {
   searchParams: { rank?: string };
 }
 
+export const revalidate = 10;
+
 export default async function Page({ searchParams }: Props) {
   const rank = searchParams.rank || 'all';
   const tournaments = await getTournaments(rank);
 
   return (
     <Container>
-      {gradientCircles.map((circle, id) => (
-        <GradientCircle key={id} {...circle} />
-      ))}
       <TournamentCalendar tournaments={tournaments} />
     </Container>
   );

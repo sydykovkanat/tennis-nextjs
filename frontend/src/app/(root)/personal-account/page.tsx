@@ -1,9 +1,8 @@
 'use client';
 
 import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectUser } from '@/shared/lib/features/users/users-slice';
+import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import dynamic from 'next/dynamic';
-import { redirect } from 'next/navigation';
 
 import React from 'react';
 
@@ -11,11 +10,16 @@ const UserCabinet = dynamic(() => import('@/shared/components/shared/personal-ac
   ssr: false,
 });
 
-export default function Page() {
-  const user = useAppSelector(selectUser);
+const ProtectedRoute = dynamic(() => import('@/shared/components/shared/protected-route/protected-route'), {
+  ssr: false,
+});
 
-  if (!user) {
-    redirect('/404');
-  }
-  return <UserCabinet />;
+export default function Page() {
+  const userPermission = useAppSelector(selectUserPermission);
+
+  return (
+    <ProtectedRoute isAllowed={userPermission >= 1}>
+      <UserCabinet />
+    </ProtectedRoute>
+  );
 }
