@@ -30,7 +30,9 @@ const PartnersPageContent: React.FC = () => {
         <>
           <AdminPageHeader title={'Партнеры'} description={'Список всех партнеров и управление партнерами'}>
             <AdminPartnerCreate>
-              <Button icon={Grid2X2PlusIcon}>Добавить партнера</Button>
+              <Button icon={Grid2X2PlusIcon} className={'w-full xs:w-max'}>
+                Добавить партнера
+              </Button>
             </AdminPartnerCreate>
           </AdminPageHeader>
           <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-3'>

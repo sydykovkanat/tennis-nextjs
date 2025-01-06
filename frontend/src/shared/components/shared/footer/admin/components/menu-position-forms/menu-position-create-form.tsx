@@ -29,12 +29,12 @@ export const MenuPositionCreateForm: React.FC<PropsWithChildren> = ({ children }
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Добавить пункт в меню положения</DialogTitle>
-          <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               {isBlocked && (
                 <small className={styles.errorMessage}>
-                  Пункт в меню положения `{menuPosition.name}` уже существует.
+                  Пункт в меню положения `{menuPosition.name}` уже существует
                 </small>
               )}
               <Label htmlFor='menu-position-name'>Название пункта в меню</Label>
@@ -58,7 +58,6 @@ export const MenuPositionCreateForm: React.FC<PropsWithChildren> = ({ children }
             <div className={styles.formActions}>
               <Button
                 disabled={menuPosition.name.trim().length === 0 || menuPosition.value.trim().length === 0 || isBlocked}
-                size='sm'
               >
                 Добавить {menuPositionCreating && <Loader size='sm' theme='light' />}
               </Button>

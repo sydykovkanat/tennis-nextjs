@@ -1,6 +1,6 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { useAppDispatch, useAppSelector, validateUserForm } from '@/shared/lib';
 import { selectForgotPasswordError, selectForgotPasswordLoading } from '@/shared/lib/features/users/users-slice';
 import { forgotPassword } from '@/shared/lib/features/users/users-thunks';
 import { toast } from 'sonner';
@@ -14,10 +14,23 @@ export const useForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [formError, setFormError] = useState('');
+  const [isTouched, setIsTouched] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setEmail(value);
+    const trimmedValue = value.trim();
+
+    setEmail(trimmedValue);
+
+    if (isTouched) {
+      setFormError(validateUserForm('email', trimmedValue));
+    }
+  };
+
+  const handleBlur = () => {
+    setIsTouched(true);
+    setFormError(validateUserForm('email', email));
   };
 
   useEffect(() => {
@@ -49,6 +62,8 @@ export const useForgotPassword = () => {
       toast.success('Ссылка для сброса пароля отправлена на вашу почту.');
       setEmail('');
       setDisabled(true);
+      setFormError('');
+      setIsTouched(false);
     } catch (error) {
       console.error(error);
       toast.error(forgotError?.error || 'Что-то пошло не так.');
@@ -59,7 +74,9 @@ export const useForgotPassword = () => {
     forgotError,
     forgotPasswordLoading,
     email,
+    formError,
     handleChange,
+    handleBlur,
     handleSubmit,
     disabled,
     timer,

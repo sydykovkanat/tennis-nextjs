@@ -8,11 +8,18 @@ import styles from './warning-message.module.css';
 interface Props {
   message: string;
   className?: string;
+  variant?: 'error' | 'warning';
 }
 
-export const WarningMessage: React.FC<Props> = ({ message, className }) => {
+export const WarningMessage: React.FC<Props> = ({ message, className, variant = 'warning' }) => {
+  const variantClasses = {
+    error: styles.warningError,
+    warning: styles.warningWarning,
+  };
+  const variantClass = variantClasses[variant];
+
   return (
-    <div className={cn(styles.messageContainer, className)}>
+    <div className={cn(styles.messageContainer, variantClass, className)}>
       <ExclamationCircleIcon className={styles.messageIcon} />
       <small>
         <strong>Предупреждение:</strong> {message}

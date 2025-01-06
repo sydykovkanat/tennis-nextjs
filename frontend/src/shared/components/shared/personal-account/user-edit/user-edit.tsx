@@ -1,8 +1,8 @@
 'use client';
 
+import { CustomDatepicker } from '@/shared/components/shared';
 import { useDialog, useUserForm } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
-import UserDatePicker from '@/shared/components/shared/personal-account/user-datepicker/user-datepicker';
 import {
   Button,
   Input,
@@ -23,7 +23,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
-import { validateEmail } from '@/shared/lib/helpers/validateEmail';
+import { CURRENT_YEAR_FULL } from '@/shared/constants';
+import { validateEmail } from '@/shared/lib';
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';
@@ -34,11 +35,20 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
   const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
-  const { userInfo, updateField, handleChange, handleDateChange, handleSubmit, resetUserInfo, isFormValid } =
-    useUserForm({
-      user,
-      closeDialog,
-    });
+  const {
+    userInfo,
+    validateAndSetField,
+    handleChange,
+    handleSubmit,
+    resetUserInfo,
+    handleDateChange,
+    isFormValid,
+    formErrors,
+    handleBlur,
+  } = useUserForm({
+    user,
+    closeDialog,
+  });
 
   const handleDialogOpenChange = (open: boolean) => {
     setIsDialogOpen(open);
@@ -53,7 +63,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактирование профиля</DialogTitle>
-          <DialogDescription>Заполните форму для редактирования профиля</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму для редактирования профиля</DialogDescription>
 
           <form onSubmit={handleSubmit} className={styles.formWrapper}>
             <Input
@@ -64,6 +74,8 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               placeholder='Введите ваше полное ФИО'
               autoComplete='name'
               className={styles.inputField}
+              onBlur={() => handleBlur('fullName')}
+              error={formErrors.fullName}
             />
 
             <Input
@@ -74,6 +86,8 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               placeholder={'example@gmail.com'}
               autoComplete={'email'}
               className={styles.inputField}
+              onBlur={() => handleBlur('email')}
+              error={formErrors.email}
             />
 
             <Input
@@ -84,19 +98,23 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               placeholder={'0555 555 555'}
               autoComplete={'tel'}
               className={styles.inputField}
+              onBlur={() => handleBlur('telephone')}
+              error={formErrors.telephone}
             />
 
-            <UserDatePicker
+            <CustomDatepicker
+              mode={'users'}
               value={userInfo.dateOfBirth}
               onChange={(date) => handleDateChange(date)}
               label={'Дата рождения'}
+              fromYear={1930}
+              toYear={CURRENT_YEAR_FULL}
+              buttonClassName={'py-6'}
             />
 
             <div>
-              <Label htmlFor='gender' className={'text-base text-left font-medium block'}>
-                Пол
-              </Label>
-              <Select value={userInfo.gender} onValueChange={(value) => updateField('gender', value)}>
+              <Label htmlFor='gender'>Пол</Label>
+              <Select value={userInfo.gender} onValueChange={(value) => validateAndSetField('gender', value)}>
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />
                 </SelectTrigger>
