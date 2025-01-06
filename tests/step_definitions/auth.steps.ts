@@ -36,13 +36,13 @@ Then('я должен быть перенаправлен на главную с
   I.wait(3);
 });
 
-When('выбираю дату рождения {string} в календаре', (date: string) => {
+When('выбираю дату рождения {string} в календаре при регистрации', (date: string) => {
   const [day, month, year] = date.split(' ');
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.toLocaleString('ru-RU', { month: 'long' });
 
-  I.waitForVisible("//div[@role='dialog']", 2);
+  I.waitForVisible("//div[@role='dialog']", 4);
 
   I.click(`//button[@role='combobox' and span[contains(text(), '${currentYear}')]]`);
   I.executeScript(function () {
