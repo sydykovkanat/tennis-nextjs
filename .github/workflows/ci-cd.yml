@@ -49,7 +49,7 @@ jobs:
       - name: Start backend tests with pm2
         run: |
           echo "### Starting backend tests with pm2... ###"
-          pm2 start 2
+          pm2 start 0
         working-directory: backend
 
       - name: Wait for backend to be ready
@@ -69,7 +69,7 @@ jobs:
       - name: Start frontend tests with pm2
         run: |
           echo "### Starting frontend tests with pm2... ###"
-          pm2 start 3
+          pm2 start 1
         working-directory: frontend
 
       - name: Wait for frontend to be ready
@@ -89,12 +89,12 @@ jobs:
       - name: Stop test processes
         run: |
           echo "### Stop test pm2 process... ###"
-          pm2 stop 2 3
+          pm2 stop 0 1
 
       - name: Restart backend and frontend
         run: |
           echo "### Restart backend... ###"
-          pm2 restart 0
+          pm2 restart 2
         working-directory: backend
 
       - name: Wait for backend to be ready
@@ -114,7 +114,7 @@ jobs:
       - name: Restart frontend
         run: |
           echo "### Restart frontend... ###"
-          pm2 restart 1
+          pm2 restart 6
         working-directory: frontend
 
       - name: Wait for frontend to be ready
