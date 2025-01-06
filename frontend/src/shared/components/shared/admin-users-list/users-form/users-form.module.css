@@ -7,7 +7,7 @@
 }
 
 .dialogDescription {
-  @apply text-sm text-muted-foreground;
+  @apply pb-3;
 }
 
 .blockForm {
@@ -15,7 +15,7 @@
 }
 
 .inputField {
-  @apply h-10 focus-visible:border-[#80BC41];
+  @apply h-10 focus-visible:border-[#80BC41] !important;
 }
 
 .errorMessage {
@@ -27,12 +27,13 @@
 }
 
 .selectTrigger {
-  @apply h-10 focus:border-[#80BC41];
+  @apply h-10 focus:border-[#80BC41] !important;
 }
+
 .buttonSubmit {
-  @apply w-full h-8 sm:h-10 bg-[#232A2E] px-10 font-bold mb-2.5 dark:bg-blue-50;
+  @apply w-full h-8 sm:h-10 px-10 font-bold mb-2.5 dark:bg-white !important;
 }
 
 .buttonCancel {
-  @apply w-full h-8 sm:h-10;
+  @apply w-full h-8 sm:h-10 !important;
 }

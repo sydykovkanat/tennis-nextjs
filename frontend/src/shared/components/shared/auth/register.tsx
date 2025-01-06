@@ -143,16 +143,16 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         </Label>
         <Select onValueChange={(v) => validateAndSetField('gender', v)} value={registerMutation.gender}>
           <SelectTrigger
-            className={cn(styles.selectTrigger, formErrors.gender && 'border-red-600 focus:ring-red-600 focus:ring-0')}
+            className={cn(styles.selectTrigger, formErrors.gender && styles.errorSelect)}
             id='gender'
             onBlur={() => handleBlur('gender')}
           >
             <SelectValue placeholder='Выберите ваш пол' />
           </SelectTrigger>
-          <SelectContent className={'dark:bg-gray-900'}>
-            <SelectGroup className={'dark:bg-gray-900'}>
+          <SelectContent>
+            <SelectGroup>
               {['male', 'female'].map((item) => (
-                <SelectItem className={'hover:dark:bg-gray-800  focus:dark:bg-gray-800'} key={item} value={item}>
+                <SelectItem key={item} value={item}>
                   {item === 'male' ? 'Муж.' : 'Жен.'}
                 </SelectItem>
               ))}
@@ -168,19 +168,16 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         </Label>
         <Select onValueChange={(v) => validateAndSetField('category', v)} value={registerMutation.category}>
           <SelectTrigger
-            className={cn(
-              styles.selectTrigger,
-              formErrors.category && 'border-red-600 focus:ring-red-600 focus:ring-0',
-            )}
+            className={cn(styles.selectTrigger, formErrors.category && styles.errorSelect)}
             id='category'
             onBlur={() => handleBlur('category')}
           >
             <SelectValue placeholder='Выберите вашу категорию' />
           </SelectTrigger>
-          <SelectContent className={'dark:bg-gray-900'}>
-            <SelectGroup className={'dark:bg-gray-900'}>
+          <SelectContent>
+            <SelectGroup>
               {categories.map((item) => (
-                <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={item._id} value={item._id}>
+                <SelectItem key={item._id} value={item._id}>
                   {item.name}
                 </SelectItem>
               ))}

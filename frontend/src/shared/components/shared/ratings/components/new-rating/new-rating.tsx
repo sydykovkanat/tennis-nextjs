@@ -33,7 +33,7 @@ export const NewRating: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Новый рейтинг</DialogTitle>
           <DialogDescription className={'pb-2'}>

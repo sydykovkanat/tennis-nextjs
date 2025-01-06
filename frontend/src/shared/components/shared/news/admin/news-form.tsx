@@ -89,7 +89,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild />
-      <DialogContent className={cn(styles.content, 'dark:bg-[#1F2937]')}>
+      <DialogContent className={cn(styles.content)}>
         <DialogHeader>
           <DialogTitle className={cn(styles.title)}>
             {isEdit ? 'Редактировать новость' : 'Добавить новость'}

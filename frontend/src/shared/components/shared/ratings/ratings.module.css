@@ -5,3 +5,7 @@
 .ratings {
   @apply space-y-4;
 }
+
+.dialogDescription {
+  @apply pb-2;
+}

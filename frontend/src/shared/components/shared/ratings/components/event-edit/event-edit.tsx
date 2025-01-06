@@ -46,7 +46,7 @@ export const EventEdit: React.FC<Props> = ({ id, ratings, children }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Редактирование события</DialogTitle>
 

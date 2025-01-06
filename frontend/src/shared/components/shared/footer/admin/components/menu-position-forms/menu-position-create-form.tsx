@@ -26,10 +26,10 @@ export const MenuPositionCreateForm: React.FC<PropsWithChildren> = ({ children }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Добавить пункт в меню положения</DialogTitle>
-          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
+          <DialogDescription className={styles.dialogDescription}>Заполните форму перед добавлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               {isBlocked && (

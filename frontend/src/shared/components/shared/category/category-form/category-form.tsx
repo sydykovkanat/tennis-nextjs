@@ -79,10 +79,10 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{isEdit ? 'Редактировать категорию' : 'Добавить категорию'}</DialogTitle>
-          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
+          <DialogDescription className={styles.dialogDescription}>Заполните форму перед добавлением</DialogDescription>
 
           {isEdit && categoryFetching ? (
             <Loader />
@@ -102,7 +102,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
               </div>
 
               <div className={cn(styles.buttonBlock)}>
-                <Button disabled={categoryCreating || category.length === 0 || isBlocked} size={'sm'}>
+                <Button disabled={categoryCreating || category.length === 0 || isBlocked}>
                   {isEdit ? 'Редактировать' : 'Добавить'}
                   {(categoryCreating || categoryUpdating) && <Loader size={'sm'} theme={'light'} />}
                 </Button>

@@ -6,6 +6,10 @@
   @apply flex items-center space-x-2;
 }
 
+.dialogDescription {
+  @apply pb-3;
+}
+
 .input {
   @apply w-[250px] md:w-full sm:w-[250px];
 }
