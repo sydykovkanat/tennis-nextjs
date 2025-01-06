@@ -1,7 +1,6 @@
 export { Container } from './container/container';
 export { MainTitles } from './main-titles/main-titles';
 export { Loader } from './loader/loader';
-export { ErrorMessage } from './error-message/error-message';
 export { WarningMessage } from './warning-message/warning-message';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
@@ -67,7 +66,6 @@ export { UsersList } from './admin-users-list/users-list/users-list';
 export { UsersForm } from './admin-users-list/users-form/users-form';
 export { useUsersForm } from './admin-users-list/hooks/use-users-form';
 export { UsersInput } from './admin-users-list/users-input/users-input';
-export { UsersDatePicker } from './admin-users-list/users-date-picker/users-date-picker';
 export { useAdminUsersList } from './admin-users-list/hooks/use-admin-users-list';
 export { useUsersList } from './admin-users-list/hooks/use-users-list';
 export { UserSearch } from './admin-users-list/user-search/user-search';
@@ -85,3 +83,4 @@ export { EventForm } from './ratings/components/event-form/event-form';
 export { EventCard } from './ratings/components/event-card/event-card';
 
 export { AdminRatings } from './ratings/admin/admin-rating';
+export { CustomDatepicker } from './custom-datepicker/custom-datepicker';

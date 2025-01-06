@@ -5,5 +5,4 @@ export { TournamentRegistration } from './tournament-card/tournament-card-regist
 export { TournamentAccordion } from './tournament-accordion/tournament-accordion';
 export { RankFilter } from './rank-filter/rank-filter';
 export { TournamentForm } from './tournament-form/tournament-form';
-export { TournamentDatePicker } from './tournament-datepicker/tournament-datepicker';
 export { AdminCalendar } from './admin-calendar/admin-calendar';

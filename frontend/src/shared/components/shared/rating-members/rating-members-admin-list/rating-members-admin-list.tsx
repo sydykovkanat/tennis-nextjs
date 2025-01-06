@@ -13,6 +13,7 @@ interface Props {
   category: string;
   hasDuplicatePlaces: boolean;
   className?: string;
+  fewMembersWarning: boolean;
 }
 
 export const RatingMembersAdminList: React.FC<Props> = ({
@@ -22,6 +23,7 @@ export const RatingMembersAdminList: React.FC<Props> = ({
   category,
   hasDuplicatePlaces,
   className,
+  fewMembersWarning,
 }) => {
   return (
     <section className={className}>
@@ -29,12 +31,14 @@ export const RatingMembersAdminList: React.FC<Props> = ({
         <h3 className={styles.mainTitle}>{title} рейтинга</h3>
         <h4 className={styles.categoryTitle}>{category}</h4>
       </header>
-      {hasDuplicatePlaces && (
-        <WarningMessage
-          message={`Обнаружены дублирующиеся места в ${title} рейтинга. Проверьте данные.`}
-          className='mt-2'
-        />
-      )}
+      <div className={styles.warningMessagesContainer}>
+        {hasDuplicatePlaces && (
+          <WarningMessage message={`Обнаружены дублирующиеся места в ${title} рейтинга. Проверьте данные.`} />
+        )}
+        {fewMembersWarning && (
+          <WarningMessage message={`В ${title} рейтинга недостаточно участников!`} variant='error' />
+        )}
+      </div>
       <div className={styles.contentContainer}>
         {ratingMembers.length > 0 ? (
           ratingMembers.map((ratingMember) => (

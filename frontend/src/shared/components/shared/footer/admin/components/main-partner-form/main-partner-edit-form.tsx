@@ -29,14 +29,14 @@ export const MainPartnerEditForm: React.FC<PropsWithChildren> = ({ children }) =
       <DialogContent className='dark:bg-[#1F2937]'>
         <DialogHeader>
           <DialogTitle>Редактировать изображение</DialogTitle>
-          <DialogDescription>Заполните форму перед обновлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               <Label htmlFor={'image'}>Изображение партнера</Label>
               <Input id='image' accept='image/*' type='file' name='image' onChange={onChangeFileInput} />
             </div>
             <div className={styles.formActions}>
-              <Button disabled={mainPartner.image === null} size={'sm'}>
+              <Button disabled={mainPartner.image === null}>
                 Сохранить {mainPartnerUpdating && <Loader size={'sm'} theme={'light'} />}
               </Button>
               <DialogClose ref={closeRef} asChild>

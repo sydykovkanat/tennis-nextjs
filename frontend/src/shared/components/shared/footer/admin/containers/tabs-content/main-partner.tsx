@@ -28,7 +28,7 @@ export const MainPartner = () => {
 
           {(!mainPartnerFetching && mainPartnerData.length === 0) ||
           (mainPartnerData.length > 0 && mainPartnerData[0].mainPartnerImage === '') ? (
-            <small className={styles.mainPartnerNoImageMessage}>Изображение ген.партнера не найдено.</small>
+            <small className={styles.mainPartnerNoImageMessage}>Изображение ген.партнера не найдено</small>
           ) : (
             <div className={styles.mainPartnerCardContainer}>
               {mainPartnerData.length > 0 && <MainPartnerCard image={mainPartnerData[0].mainPartnerImage} />}

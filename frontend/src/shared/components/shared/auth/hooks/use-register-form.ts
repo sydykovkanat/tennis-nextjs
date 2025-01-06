@@ -1,10 +1,10 @@
 'use client';
 
-import { formatTelephone } from '@/shared/lib';
+import { formatTelephone, validateUserForm } from '@/shared/lib';
 import { RegisterMutation } from '@/shared/types/auth.types';
+import { format } from 'date-fns';
 
 import { ChangeEvent, useState } from 'react';
-import { DateValue } from 'react-aria-components';
 
 export const useRegisterForm = (initialState: RegisterMutation) => {
   const [registerMutation, setRegisterMutation] = useState<RegisterMutation>(initialState);
@@ -12,40 +12,82 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
     rules: false,
     personalData: false,
   });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isTouched, setIsTouched] = useState<Record<string, boolean>>({});
 
-  const handleAgree = (type: 'rules' | 'personalData') => {
-    setIsAgree((prev) => ({
+  const validateAndSetField = (id: string, value: string) => {
+    const error = validateUserForm(id, value);
+
+    setFormErrors((prev) => ({
       ...prev,
-      [type]: !prev[type],
+      [id]: error,
     }));
-  };
 
-  const handleSelectChange = (id: string, value: string) => {
     setRegisterMutation((prev) => ({
       ...prev,
       [id]: value,
     }));
   };
 
-  const dateChange = (date: DateValue | null) => {
-    if (!date) return;
-    setRegisterMutation((prev) => ({
+  const handleAgree = (type: 'rules' | 'personalData') => {
+    const newValue = !isAgree[type];
+
+    setIsAgree((prev) => ({
       ...prev,
-      dateOfBirth: date.toString(),
+      [type]: newValue,
+    }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [type]: validateUserForm(type, newValue),
     }));
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { id } = event.target;
-    let { value } = event.target;
+    const { id, value } = event.target;
 
-    if (id === 'telephone') {
-      value = formatTelephone(value);
-    }
+    const formattedValue =
+      id === 'telephone'
+        ? formatTelephone(value.trim())
+        : id === 'fullName'
+          ? value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '')
+          : value.trim();
 
     setRegisterMutation((prev) => ({
       ...prev,
-      [id]: value,
+      [id]: formattedValue,
+    }));
+
+    if (isTouched[id]) {
+      validateAndSetField(id, formattedValue);
+    }
+  };
+
+  const handleBlur = (id: string) => {
+    setIsTouched((prev) => ({
+      ...prev,
+      [id]: true,
+    }));
+
+    const error = validateUserForm(id, registerMutation[id as keyof RegisterMutation] || '');
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [id]: error,
+    }));
+  };
+
+  const handleDateChange = (date: Date | undefined) => {
+    const formattedDate = date ? format(date, 'yyyy-MM-dd') : '';
+
+    setRegisterMutation((prev) => ({
+      ...prev,
+      dateOfBirth: formattedDate,
+    }));
+
+    setFormErrors((prev) => ({
+      ...prev,
+      dateOfBirth: validateUserForm('dateOfBirth', formattedDate),
     }));
   };
 
@@ -58,16 +100,19 @@ export const useRegisterForm = (initialState: RegisterMutation) => {
       registerMutation.fullName &&
       registerMutation.gender &&
       registerMutation.category &&
-      registerMutation.dateOfBirth,
+      registerMutation.dateOfBirth &&
+      !Object.values(formErrors).some((error) => error),
   );
 
   return {
     registerMutation,
-    handleChange,
     isFormValid,
-    dateChange,
-    handleSelectChange,
-    handleAgree,
     isAgree,
+    handleChange,
+    handleBlur,
+    handleAgree,
+    handleDateChange,
+    validateAndSetField,
+    formErrors,
   };
 };

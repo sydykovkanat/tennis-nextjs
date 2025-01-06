@@ -28,7 +28,7 @@ export const PublicOffer = () => {
 
           {(!publicOfferFetching && publicOfferData.length === 0) ||
           (publicOfferData.length > 0 && publicOfferData[0].publicOffer === '') ? (
-            <small className={styles.publicOfferNoDataMessage}>Публичная оферта не найдена.</small>
+            <small className={styles.publicOfferNoDataMessage}>Публичная оферта не найдена</small>
           ) : (
             <div className={styles.publicOfferCardContainer}>
               {publicOfferData.length > 0 && <PublicOfferCard publicOfferText={publicOfferData[0]?.publicOffer} />}

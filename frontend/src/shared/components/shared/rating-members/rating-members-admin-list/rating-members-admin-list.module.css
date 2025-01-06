@@ -10,6 +10,10 @@
   @apply text-lg text-tn-green font-semibold mt-1 sm:mt-3;
 }
 
+.warningMessagesContainer {
+  @apply flex flex-col gap-1 mt-3 xl:w-4/6 mx-auto;
+}
+
 .contentContainer {
   @apply flex flex-col items-center gap-y-3 mt-5 sm:mt-8;
 }

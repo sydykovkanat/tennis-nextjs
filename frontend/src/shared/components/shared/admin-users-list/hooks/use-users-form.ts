@@ -12,8 +12,7 @@ import {
   selectUpdatingError,
 } from '@/shared/lib/features/users/users-slice';
 import { addUser, fetchUsers, updateCurrentUserInfo } from '@/shared/lib/features/users/users-thunks';
-import { UserMutation } from '@/shared/types/user.types';
-import { ValidationError } from '@/shared/types/user.types';
+import { UserMutation, ValidationError } from '@/shared/types/user.types';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
@@ -46,7 +45,7 @@ export const useUsersForm = () => {
 
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
-      const formattedDate = format(date, 'dd.MM.yyyy');
+      const formattedDate = format(date, 'yyyy-MM-dd');
       updateRegisterField('dateOfBirth', formattedDate);
     }
   };
