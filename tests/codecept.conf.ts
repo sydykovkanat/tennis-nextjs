@@ -20,8 +20,7 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    // features: './features/*.feature',
-    features: './features/rating.feature',
+    features: './features/*.feature',
     steps: [
       './step_definitions/steps.ts',
       './step_definitions/auth.steps.ts',
