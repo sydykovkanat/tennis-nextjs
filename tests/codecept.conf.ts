@@ -3,7 +3,7 @@ exports.config = {
   helpers: {
     Puppeteer: {
       url: 'http://localhost:5183',
-      show: false,
+      show: true,
       windowSize: '1200x900',
       headless: process.env.CI === 'true',
       chrome: {
@@ -32,6 +32,7 @@ exports.config = {
       './step_definitions/users.steps.ts',
       './step_definitions/categories.steps.ts',
       './step_definitions/footers.steps.ts',
+      './step_definitions/logo.steps.ts',
     ],
   },
   plugins: {
