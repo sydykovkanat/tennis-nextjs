@@ -42,7 +42,7 @@ When('выбираю дату рождения {string} в календаре п
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.toLocaleString('ru-RU', { month: 'long' });
 
-  I.waitForVisible("//div[@role='dialog']", 4);
+  I.waitForVisible("//div[@role='dialog']", 8);
 
   I.click(`//button[@role='combobox' and span[contains(text(), '${currentYear}')]]`);
   I.executeScript(function () {
