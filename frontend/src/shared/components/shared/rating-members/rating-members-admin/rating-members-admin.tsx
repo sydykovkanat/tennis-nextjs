@@ -20,6 +20,7 @@ export const RatingMembersAdmin = () => {
     ratingMenMembersTop3,
     ratingWomenMembers,
     duplicatePlaces,
+    fewMembersWarning,
   } = useRatingMembers();
 
   return (
@@ -37,11 +38,13 @@ export const RatingMembersAdmin = () => {
             ratingMenMembersTop8={ratingMenMembersTop8}
             ratingMenMembersTop3={ratingMenMembersTop3}
             duplicatePlaces={duplicatePlaces}
+            fewMembersWarning={fewMembersWarning}
           />
           <FemaleRatingSection
             ratingMembers={ratingMembers}
             ratingWomenMembers={ratingWomenMembers}
             duplicatePlaces={duplicatePlaces}
+            fewMembersWarning={fewMembersWarning}
           />
         </>
       )}

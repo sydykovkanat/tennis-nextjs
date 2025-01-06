@@ -53,7 +53,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-4'} size={'sm'}>
+      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-7'}>
         Добавить {ratingsCreating && <Loader theme={'light'} />}
       </Button>
     </form>

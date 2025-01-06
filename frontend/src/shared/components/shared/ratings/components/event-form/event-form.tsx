@@ -62,7 +62,7 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
         <Input id='link' placeholder='Введите ссылку' type='url' onChange={handleChange} value={eventMutation.link} />
       </div>
 
-      <Button disabled={!isFormValid || eventFetching} className='mt-3 w-full' type='submit'>
+      <Button disabled={!isFormValid || eventFetching} className='mt-7 w-full' type='submit'>
         {eventFetching ? 'Загрузка…' : 'Сохранить'}
       </Button>
     </form>

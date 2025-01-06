@@ -35,3 +35,28 @@ Then('я должен быть перенаправлен на главную с
   I.see('Авторизация');
   I.wait(3);
 });
+
+When('выбираю дату рождения {string} в календаре при регистрации', (date: string) => {
+  const [day, month, year] = date.split(' ');
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.toLocaleString('ru-RU', { month: 'long' });
+
+  I.waitForVisible("//div[@role='dialog']", 8);
+
+  I.click(`//button[@role='combobox' and span[contains(text(), '${currentYear}')]]`);
+  I.executeScript(function () {
+    const element = document.querySelector("div[role='listbox']");
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+  I.click(`//div[@role='listbox']//span[text()='${year}']`);
+
+  I.click(`//button[@role='combobox' and span[contains(text(), '${currentMonth}')]]`);
+  I.executeScript(function () {
+    const element = document.querySelector("div[role='listbox']");
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+  I.click(`//div[@role='listbox']//span[text()='${month}']`);
+
+  I.click(`//button[@role='gridcell' and text()='${day}']`);
+});

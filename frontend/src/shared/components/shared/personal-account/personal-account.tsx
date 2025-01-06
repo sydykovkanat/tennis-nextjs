@@ -4,7 +4,7 @@ import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/compo
 import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
 import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import { useAppSelector } from '@/shared/hooks/hooks';
-import { cn } from '@/shared/lib';
+import { cn, formatDateToDisplay } from '@/shared/lib';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { Pencil } from 'lucide-react';
 
@@ -26,8 +26,8 @@ const PersonalAccount = () => {
             className={cn(styles.accountWrapper, 'dark:bg-[#1F2937]')}
             style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
           >
-            <div className={cn(styles.accountHeader, 'border-b-gray-700')}>
-              <div>
+            <div className={cn(styles.accountHeader, 'border-b-gray-400')}>
+              <div className={styles.headerTitleContainer}>
                 <h1>Личный кабинет</h1>
                 <small>Ваша персональная информация и управление данными</small>
               </div>
@@ -55,7 +55,7 @@ const PersonalAccount = () => {
 
                 <div className={styles.textWrapper}>
                   <h3 className={styles.title}>Дата рождения</h3>
-                  <span className={styles.subtitle}>{currentUser.dateOfBirth}</span>
+                  <span className={styles.subtitle}>{formatDateToDisplay(currentUser.dateOfBirth)}</span>
                 </div>
 
                 <div className={styles.textWrapper}>
