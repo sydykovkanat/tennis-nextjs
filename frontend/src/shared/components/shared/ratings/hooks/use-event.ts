@@ -36,7 +36,7 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setEventMutation((prev) => ({ ...prev, [id]: value }));
+    setEventMutation((prev) => ({ ...prev, [id]: value.trim() }));
   };
 
   const handleSelectChange = (value: string, id: string) => {
