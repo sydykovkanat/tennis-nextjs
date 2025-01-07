@@ -23,7 +23,7 @@ export const useRatingForm = (onSubmit: (rating: RatingMutation) => void) => {
 
     setRatingMutation((prev) => ({
       ...prev,
-      year: value,
+      year: value.trim(),
     }));
   };
 
