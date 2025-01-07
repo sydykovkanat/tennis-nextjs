@@ -54,7 +54,7 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
 
                           {loading ? (
                               <Loader/>
-                          ) :  <Button type='submit' className='mt-0'>
+                          ) :  <Button type='submit' className='mt-0' data-test-id='add-logo-header'>
                               Добавить лого
                               <PaperAirplaneIcon/>
                           </Button>}

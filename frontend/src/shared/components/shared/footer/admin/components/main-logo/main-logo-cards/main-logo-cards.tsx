@@ -29,7 +29,7 @@ export const MainLogoCards = () => {
 
                     <Confirm onOk={() => handleDeleteLogo(logo._id)}>
                         <div className={cn(styles.btnDelete)}>
-                            <Button> <Trash/> </Button>
+                            <Button  data-test-id='delete-logo-header'> <Trash/> </Button>
                         </div>
                     </Confirm>
 
