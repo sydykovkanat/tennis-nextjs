@@ -15,8 +15,8 @@ Then('нажимаю на кнопку удалить у события', () => 
   I.wait(1);
 });
 
-Given('я вижу карточку с месяцом {string}', (month: string) => {
-  I.seeElement(`[data-testid="${month}"]`);
+Given('я вижу карточку с годом {string}', (year: string) => {
+  I.seeElement(`[data-testid="${year}"]`);
 });
 
 Then('нажимаю на кнопку удалить у рейтинга', () => {
