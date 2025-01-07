@@ -20,7 +20,7 @@ export const MainLogoCards = () => {
                 <Loader/>
             ) :  logos?.map((logo) => (
                 <div key={logo._id} className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]',)}>
-                    <div onClick={() => handleLogoClick(logo._id, logo.logo)}>
+                    <div onClick={() => handleLogoClick(logo._id)}>
                         <img className={cn(styles.image, activeLogoId === logo._id && 'border-2 dark:bg-[#1F2937]')}
                              src={API_URL + '/' + logo.logo}
                              alt={logo._id}

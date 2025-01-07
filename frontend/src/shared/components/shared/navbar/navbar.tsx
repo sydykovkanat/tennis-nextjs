@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
 } from '@/shared/components/ui';
 import {API_URL, NAVIGATION_ITEMS} from '@/shared/constants';
-import {cn, useAppDispatch, useAppSelector} from '@/shared/lib';
+import {cn, useAppSelector} from '@/shared/lib';
 import { selectUser, selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { useTheme } from 'next-themes';
@@ -19,12 +19,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import styles from './navbar.module.css';
-import {
-    useMainLogoCards
-} from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-cards/use-main-logo-cards';
-import {selectCurrentLogo} from '@/shared/lib/features/footer/footers-slice';
 import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
-import {fetchCurrentLogo} from '@/shared/lib/features/footer/footers-thunks';
 interface Props {
   dataItems: FooterElementsData[];
 }
@@ -35,28 +30,8 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
   const user = useAppSelector(selectUser);
   const pathname = usePathname();
   const userPermission = useAppSelector(selectUserPermission);
-  const { setCurrentLogo, currentLogo } = useNavbarLogo();
-  const { logos } = useMainLogoCards();
-  const logoId = useAppSelector(selectCurrentLogo);
-  const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        dispatch(fetchCurrentLogo());
-    }, [dispatch]);
-
-    useEffect(() => {
-        try {
-            if (logoId) {
-                const logoObject = logos.find((logo) => logo._id === logoId);
-                setCurrentLogo(logoObject ? logoObject.logo : '/kslt.svg');
-            }else {
-                setCurrentLogo('/kslt.svg');
-            }
-        } catch (error) {
-            console.error('Ошибка загрузки логотипа:', error);
-            setCurrentLogo('/kslt.svg');
-        }
-    }, [logoId, logos, dispatch, setCurrentLogo]);
+  const { currentLogo } = useNavbarLogo();
 
   useEffect(() => {
     setIsHydrated(true);

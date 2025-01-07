@@ -8,7 +8,7 @@ import {
     getFooterItems,
     postCurrentLogo
 } from '@/shared/lib/features/footer/footers-thunks';
-import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
+
 import {toast} from 'sonner';
 
 
@@ -19,7 +19,6 @@ export const useMainLogoCards = () => {
     const logoError = useAppSelector(selectErrorLogo);
     const [activeLogoId, setActiveLogoId] = useState<string | null>(null);
     const [logos, setLogos] = useState<MainLogo[]>([]);
-    const { setCurrentLogo } = useNavbarLogo();
 
 
 
@@ -27,10 +26,9 @@ export const useMainLogoCards = () => {
         setLogos(itemData[0]?.mainLogo || []);
     }, [itemData]);
 
-    const handleLogoClick = async (id: string, logo:string) => {
+    const handleLogoClick = async (id: string) => {
         try {
             setActiveLogoId(id);
-            setCurrentLogo(logo);
            await dispatch(postCurrentLogo(id)).unwrap();
            await dispatch(fetchCurrentLogo());
            toast.success(' Логотип успешно заменен ');
