@@ -72,7 +72,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
     } catch (error) {
       console.error(error);
       const { toast } = await import('sonner');
-      toast.error(isEdit ? 'Ошибка при редактировании категории.' : 'Ошибка при добавлении категории.');
+      toast.error(isEdit ? 'Ошибка при редактировании категории' : 'Ошибка при добавлении категории');
     }
   };
 
@@ -82,7 +82,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>{isEdit ? 'Редактировать категорию' : 'Добавить категорию'}</DialogTitle>
-          <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
 
           {isEdit && categoryFetching ? (
             <Loader />
@@ -91,7 +91,7 @@ export const CategoryForm: React.FC<Props> = ({ open, setOpen, categoryId, isEdi
               <div className={cn(styles.mainBlock)}>
                 <div className={cn(styles.inputBlock)}>
                   <Label htmlFor={'category'}>Название</Label>
-                  {isBlocked && <small className={cn(styles.error)}>Категория {category} уже существует.</small>}
+                  {isBlocked && <small className={cn(styles.error)}>Категория {category} уже существует</small>}
                 </div>
                 <Input
                   placeholder={'Введите название категории'}

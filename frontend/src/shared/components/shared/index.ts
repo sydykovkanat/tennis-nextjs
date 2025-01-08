@@ -1,7 +1,6 @@
 export { Container } from './container/container';
 export { MainTitles } from './main-titles/main-titles';
 export { Loader } from './loader/loader';
-export { ErrorMessage } from './error-message/error-message';
 export { WarningMessage } from './warning-message/warning-message';
 export { Partners } from './partners/partners';
 export { PartnerCard } from './partners/partner-card';
@@ -39,7 +38,7 @@ export { SocialNetwork } from './footer/admin/containers/tabs-content/social-net
 export { PublicOffer } from './footer/admin/containers/tabs-content/public-offer';
 export { MenuPosition } from './footer/admin/containers/tabs-content/menu-position';
 export { MainPartner } from './footer/admin/containers/tabs-content/main-partner';
-export { AdminPanelBlockFooter } from './footer/admin/containers/admin-panel-block-footer';
+export { AdminPanelBlockFooter } from './footer/admin/containers/tabs-footer/admin-panel-block-footer';
 export { MainPartnerEditForm } from './footer/admin/components/main-partner-form/main-partner-edit-form';
 export { MainPartnerCard } from './footer/admin/components/cards/main-partner-card';
 export { MenuPositionCreateForm } from './footer/admin/components/menu-position-forms/menu-position-create-form';
@@ -67,7 +66,6 @@ export { UsersList } from './admin-users-list/users-list/users-list';
 export { UsersForm } from './admin-users-list/users-form/users-form';
 export { useUsersForm } from './admin-users-list/hooks/use-users-form';
 export { UsersInput } from './admin-users-list/users-input/users-input';
-export { UsersDatePicker } from './admin-users-list/users-date-picker/users-date-picker';
 export { useAdminUsersList } from './admin-users-list/hooks/use-admin-users-list';
 export { useUsersList } from './admin-users-list/hooks/use-users-list';
 export { UserSearch } from './admin-users-list/user-search/user-search';
@@ -96,3 +94,4 @@ export { EventForm } from './ratings/components/event-form/event-form';
 export { EventCard } from './ratings/components/event-card/event-card';
 
 export { AdminRatings } from './ratings/admin/admin-rating';
+export { CustomDatepicker } from './custom-datepicker/custom-datepicker';

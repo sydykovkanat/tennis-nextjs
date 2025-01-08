@@ -18,6 +18,7 @@ import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectOneNews } from '@/shared/lib/features/news/news-slice';
 import { createNews, fetchOneNews, updateNews } from '@/shared/lib/features/news/news-thunks';
 import { XIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import React, { FormEvent, useEffect } from 'react';
 
@@ -45,6 +46,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
   } = useNewsForm();
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectOneNews);
+  const router = useRouter();
 
   useEffect(() => {
     if (newsId) {
@@ -70,9 +72,11 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
       if (isEdit && newsId) {
         await dispatch(updateNews({ newsId, newsMutation: news })).unwrap();
         toast.success('Новость успешно обновлена!');
+        router.refresh();
       } else {
         await dispatch(createNews(news)).unwrap();
         toast.success('Новость успешно добавлена!');
+        router.refresh();
       }
 
       setOpen(false);

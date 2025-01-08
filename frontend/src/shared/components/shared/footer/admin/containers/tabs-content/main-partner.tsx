@@ -2,15 +2,13 @@
 
 import { Loader, MainPartnerCard, MainPartnerEditForm } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
-import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
 import { Pencil } from 'lucide-react';
 
 import styles from './tab-content.module.css';
+import { useTabsContent } from './use-tabs-content';
 
 export const MainPartner = () => {
-  const mainPartnerData = useAppSelector(selectItemsData);
-  const mainPartnerFetching = useAppSelector(selectItemsFetching);
+  const { mainPartnerData, mainPartnerFetching } = useTabsContent();
 
   return (
     <div className={styles.mainPartnerContainer}>
@@ -30,7 +28,7 @@ export const MainPartner = () => {
 
           {(!mainPartnerFetching && mainPartnerData.length === 0) ||
           (mainPartnerData.length > 0 && mainPartnerData[0].mainPartnerImage === '') ? (
-            <small className={styles.mainPartnerNoImageMessage}>Изображение ген.партнера не найдено.</small>
+            <small className={styles.mainPartnerNoImageMessage}>Изображение ген.партнера не найдено</small>
           ) : (
             <div className={styles.mainPartnerCardContainer}>
               {mainPartnerData.length > 0 && <MainPartnerCard image={mainPartnerData[0].mainPartnerImage} />}

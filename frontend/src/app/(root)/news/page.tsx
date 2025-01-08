@@ -1,9 +1,12 @@
 import { fetchNews } from '@/actions/news';
 import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
+import Loading from '@/app/(root)/news/loading';
 import { Container, NewsTitle } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { NewsResponse } from '@/shared/types/news.types';
 import type { Metadata } from 'next';
+
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Свежие новости — Главные события мира тенниса в Кыргызстане',
@@ -23,15 +26,14 @@ interface Props {
   searchParams?: { [key: string]: string | null };
 }
 
+export const revalidate = 10;
+
 const NewsPage = async ({ searchParams }: Props) => {
-  let queryObj;
-  if (searchParams) {
-    queryObj = {
-      page: searchParams.page || 1,
-      startDate: searchParams.startDate || '',
-      endDate: searchParams.endDate || '',
-    };
-  }
+  const queryObj = {
+    page: searchParams?.page || '1',
+    startDate: searchParams?.startDate || '',
+    endDate: searchParams?.endDate || '',
+  };
 
   const validateQuery = queryObj && deleteEmptyQueryStrings(queryObj);
   const data = { query: validateQuery };
@@ -39,11 +41,15 @@ const NewsPage = async ({ searchParams }: Props) => {
   const news = newsResponse.data;
 
   return (
-    <Container>
-      <NewsTitle />
-      {renderNewsContent({ news: news, pages: newsResponse.pages })}
-    </Container>
+    <Suspense fallback={<Loading />}>
+      <Container>
+        <NewsTitle />
+        {renderNewsContent({ news: news, pages: newsResponse.pages })}
+      </Container>
+    </Suspense>
   );
 };
+
+export const dynamic = 'force-dynamic';
 
 export default NewsPage;

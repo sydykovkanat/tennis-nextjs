@@ -7,7 +7,7 @@
 }
 
 .title {
-  @apply text-3xl text-center xs:text-start font-medium leading-none mb-6
+  @apply text-3xl text-center xs:text-start font-medium leading-none mb-6;
 }
 
 .tabsList {

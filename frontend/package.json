@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next start -p 5183",
+    "start:test": "cross-env DIST_DIR=build-test NEXT_PUBLIC_API_URL=http://209.145.52.153:8010 next start -p 5183",
+    "start:test:localhost": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next dev -p 5183",
     "dev": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8000 next dev -p 3000",
-    "build": "next build",
-    "build:test": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next build",
-    "start": "cross-env NEXT_PUBLIC_API_URL=http://178.62.238.165:8000 next start",
+    "build": "cross-env next build",
+    "build:test": "cross-env DIST_DIR=build-test NEXT_PUBLIC_API_URL=http://209.145.52.153:8010 next build",
+    "start": "cross-env NEXT_PUBLIC_API_URL=http://209.145.52.153:8000 next start",
     "lint": "next lint",
     "format": "prettier --write ."
   },
@@ -47,6 +48,7 @@
     "react-redux": "^9.1.2",
     "react-social-icons": "^6.18.0",
     "redux-persist": "^6.0.0",
+    "sharp": "^0.33.5",
     "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"

@@ -51,6 +51,10 @@ export interface ValidationError {
 
 export interface GlobalError {
   error: string;
+  messageIsActive?: string;
+  messageTelephone?: string;
+  messageMatching?: string;
+  messagePassword?: string;
 }
 
 export interface UsersResponse {
@@ -67,6 +71,14 @@ export interface UsersFilter {
   fullName?: string;
   page: number;
   role?: string;
+}
+
+export interface UserUpdateInfo {
+  telephone: string;
+  fullName: string;
+  gender: string;
+  email: string;
+  dateOfBirth: string;
 }
 
 export type RegisterMutationWithoutCoupleFields = Omit<RegisterMutation, 'password' | 'category'>;

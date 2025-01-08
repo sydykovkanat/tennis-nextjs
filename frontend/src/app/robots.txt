@@ -6,3 +6,4 @@ Disallow: /500/
 Disallow: /login/
 Disallow: /register/
 Disallow: /forgot-password/
+Disallow: /reset-password/

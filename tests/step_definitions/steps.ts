@@ -1,7 +1,21 @@
 export const { I } = inject();
 
+const pageMap: Record<string, string> = {
+  register: '/register',
+  login: '/login',
+  calendar: '/calendar',
+  rating: '/rating',
+  news: '/news',
+};
+
+//переход по страницам
+Given('я нахожусь на странице {string}', (page: string) => {
+  I.amOnPage(pageMap[page]);
+});
+
 //клик на кнопку
 When('нажимаю на кнопку {string}', (btn: string) => {
+  I.wait(3);
   I.click(btn);
 });
 
@@ -10,7 +24,7 @@ When('ввожу в поле {string} значение {string}', (field: string
   I.fillField(field, value);
 });
 
-//выбрать что то из селекта
+//выбрать что-то из селекта
 When('в поле {string} выбираю {string}', (select: string, value: string) => {
   I.selectOption(`//*[contains(text(), '${select}')]/following-sibling::select`, value);
 });
@@ -29,6 +43,7 @@ When('я должен быть на главной странице', () => {
 //логинка
 Given('я авторизован на сайте', () => {
   I.amOnPage('/login');
+  I.wait(2);
   I.fillField('Телефон', '0555555555');
   I.fillField('Пароль', '123qwe');
   I.click('Войти');
@@ -37,6 +52,7 @@ Given('я авторизован на сайте', () => {
 
 //вход в админку
 Given('я должен быть в административной панели', () => {
+  I.wait(3);
   I.click('button[aria-haspopup="menu"]');
   I.seeElement('#admin');
   I.click('#admin');
@@ -44,5 +60,11 @@ Given('я должен быть в административной панели
 
 //проверка на успешность теста в админке если у тебя тост уведомление
 When('если я вижу текст {string} то тест успешно завершен', (Msg: string) => {
+  I.wait(1);
   I.see(Msg);
+});
+
+When('если я не вижу текст {string} то тест успешно завершен', (Msg: string) => {
+  I.wait(1);
+  I.dontSee(Msg);
 });

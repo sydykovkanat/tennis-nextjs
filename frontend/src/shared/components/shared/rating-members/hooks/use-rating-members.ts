@@ -28,10 +28,20 @@ export const useRatingMembers = () => {
     return uniquePlaces.size !== placeCounts.length;
   };
 
+  const hasFewMembers = (members: typeof ratingMembers, requiredCount: number): boolean => {
+    return members.length < requiredCount;
+  };
+
   const duplicatePlaces = {
     mensTop8: hasDuplicatePlaces(ratingMenMembersTop8),
     mensTop3: hasDuplicatePlaces(ratingMenMembersTop3),
     womensTop3: hasDuplicatePlaces(ratingWomenMembers),
+  };
+
+  const fewMembersWarning = {
+    mensTop8: hasFewMembers(ratingMenMembersTop8, 8),
+    mensTop3: hasFewMembers(ratingMenMembersTop3, 3),
+    womensTop3: hasFewMembers(ratingWomenMembers, 3),
   };
 
   useEffect(() => {
@@ -45,5 +55,6 @@ export const useRatingMembers = () => {
     ratingMenMembersTop3,
     ratingWomenMembers,
     duplicatePlaces,
+    fewMembersWarning,
   };
 };

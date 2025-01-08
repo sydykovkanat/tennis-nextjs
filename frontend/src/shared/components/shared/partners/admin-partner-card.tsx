@@ -20,7 +20,7 @@ export const AdminPartnerCard: React.FC<Props> = ({ className, partner }) => {
   const { partnersDeleting, handleDelete } = usePartners();
 
   return (
-    <Card className={cn(styles.card, 'dark:bg-[#1F2937]', className)}>
+    <Card className={cn(styles.card, 'dark:bg-[#1F2937]', className)} data-testid={`${partner.name}`}>
       <div className={styles.cardInner}>
         <div className={styles.cardBlock}>
           <Image src={`${API_URL}/${partner.image}`} alt={`${partner.name} logo`} width={70} height={70} />
@@ -29,10 +29,10 @@ export const AdminPartnerCard: React.FC<Props> = ({ className, partner }) => {
 
         <div className={styles.cardBlock}>
           <AdminPartnerEdit id={partner._id}>
-            <Button size='icon' icon={Pencil} />
+            <Button size='icon' icon={Pencil} data-testid={'edit'} />
           </AdminPartnerEdit>
           <Confirm onOk={() => handleDelete(partner._id)}>
-            <Button size='icon' icon={Trash} loading={partnersDeleting === partner._id} />
+            <Button size='icon' icon={Trash} loading={partnersDeleting === partner._id} data-testid='delete' />
           </Confirm>
         </div>
       </div>

@@ -70,6 +70,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
           <Button
             className={isAddMode ? styles.dialogTriggerButton : 'font-normal'}
             size={isAddMode ? 'default' : 'icon'}
+            data-testid='edit'
           >
             {isAddMode ? (
               <>
@@ -84,8 +85,8 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
         <DialogContent className={cn(styles.dialogContent, 'dark:bg-[#1F2937]')}>
           <DialogHeader>
             <DialogTitle>{isAddMode ? 'Создание аккаунта' : 'Редактирование профиля'}</DialogTitle>
-            <DialogDescription>
-              {isAddMode ? 'Заполните форму для создания аккаунта.' : 'Заполните форму для редактирования профиля'}
+            <DialogDescription className={'pb-3'}>
+              {isAddMode ? 'Заполните форму для создания аккаунта' : 'Заполните форму для редактирования профиля'}
             </DialogDescription>
             {isAddMode ? (
               <Form userPermission={userPermission} isAdd />

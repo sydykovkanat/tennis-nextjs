@@ -11,6 +11,8 @@ import {
 
 import React from 'react';
 
+export const revalidate = 10;
+
 export default async function HomePage() {
   return (
     <div className='overflow-x-hidden'>
@@ -18,7 +20,7 @@ export default async function HomePage() {
         <GradientCircle key={id} {...circle} />
       ))}
       <Container>
-        <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым!'} />
+        <MainTitles title={'Кыргызстанское сообщество любителей тенниса'} subtitle={'Искусство становиться первым'} />
         <Carousel />
       </Container>
       <Partners />

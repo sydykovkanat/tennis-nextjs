@@ -13,54 +13,15 @@ import {
   Input,
   Label,
 } from '@/shared/components/ui';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemUpdating, selectItemsData } from '@/shared/lib/features/footer/footers-slice';
-import { getFooterItems, updatePublicOffer } from '@/shared/lib/features/footer/footers-thunks';
-import { toast } from 'sonner';
 
-import React, { type FormEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import styles from './public-offer-form.module.css';
+import { usePublicOffer } from './use-public-offer';
 
 export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) => {
-  const dispatch = useAppDispatch();
-  const publicOfferData = useAppSelector(selectItemsData);
-  const publicOfferUpdating = useAppSelector(selectItemUpdating);
-  const [publicOffer, setPublicOffer] = useState<string>('');
-  const [open, setOpen] = useState(false);
-  const closeRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    if (open && publicOfferData) {
-      setPublicOffer(publicOfferData[0].publicOffer);
-    }
-  }, [open, publicOfferData]);
-
-  useEffect(() => {
-    if (!open) {
-      setPublicOffer('');
-    }
-  }, [open]);
-
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPublicOffer(event.target.value);
-  };
-
-  const handleSubmit = async (event: FormEvent) => {
-    try {
-      event.preventDefault();
-      if (publicOffer.trim().length !== 0) {
-        closeRef.current?.click();
-        await dispatch(updatePublicOffer({ publicOfferLink: publicOffer })).unwrap();
-        await dispatch(getFooterItems()).unwrap();
-        setPublicOffer('');
-        toast.success('Публичная оферта успешно обновлена.');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('Ошибка при обновление публичной оферты.');
-    }
-  };
+  const { publicOfferUpdating, publicOffer, open, setOpen, closeRef, inputChangeHandler, handleSubmit } =
+    usePublicOffer();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -68,7 +29,7 @@ export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) =
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Редактировать публичную оферту</DialogTitle>
-          <DialogDescription>Заполните форму перед обновлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               <Label htmlFor={'public-offer'}>Ссылка на оферту</Label>
@@ -82,7 +43,7 @@ export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) =
               />
             </div>
             <div className={styles.formActions}>
-              <Button disabled={publicOffer.trim().length === 0} size={'sm'}>
+              <Button disabled={publicOffer.trim().length === 0}>
                 Сохранить {publicOfferUpdating && <Loader size={'sm'} theme={'light'} />}
               </Button>
               <DialogClose ref={closeRef} asChild>

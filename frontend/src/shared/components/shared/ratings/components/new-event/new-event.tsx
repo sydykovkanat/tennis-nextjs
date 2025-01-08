@@ -42,7 +42,7 @@ export const NewEvent: React.FC<Props> = ({ ratings, children }) => {
       <DialogContent className={'pb-2 dark:bg-[#1F2937]'}>
         <DialogHeader>
           <DialogTitle>Новое событие</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className={'pb-2'}>
             Введите данные для создания нового события. После создания, событие будет доступно для просмотра на странице
             Рейтинг
           </DialogDescription>

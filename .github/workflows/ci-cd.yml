@@ -1,113 +1,130 @@
-name: "CI/CD"
-
+name: "CI-CD"
 on:
   push:
     branches:
       - main
 
 jobs:
-  run-tests:
-    name: Run Tests
+  Setup:
+    name: CI/CD Pipeline
     runs-on: self-hosted
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.18.0'
+          node-version: '22.12.0'
 
-      - name: Kill all test processes
-        run: pm2 kill
+      - name: Install pm2
+        run: |
+          echo "### Installing pm2... ###"
+          npm install pm2 -g
 
       - name: Install backend dependencies
-        run: npm ci
+        run: |
+          echo "### Installing backend dependencies... ###"
+          npm ci
         working-directory: backend
 
       - name: Install frontend dependencies
-        run: npm ci
+        run: |
+          echo "### Installing frontend dependencies... ###"
+          npm ci
         working-directory: frontend
 
       - name: Install tests dependencies
-        run: npm ci
+        run: |
+          echo "### Installing test dependencies... ###"
+          npm ci
         working-directory: tests
 
-      - name: Run backend fixtures
-        run: npm run seed:test
+      - name: Seed test database
+        run: |
+          echo "### Start seed test database... ###"
+          npm run seed:test
         working-directory: backend
 
-      - name: Start backend in test mode
-        run: pm2 start "npm run start:test" --name="API-tests"
+      - name: Start backend tests with pm2
+        run: |
+          echo "### Starting backend tests with pm2... ###"
+          pm2 start 0
         working-directory: backend
-
-      - name: Build frontend
-        run: npm run build:test
-        working-directory: frontend
-
-      - name: Start frontend in test mode
-        run: pm2 start "npm run start:test" --name="Frontend-tests"
-        working-directory: frontend
 
       - name: Wait for backend to be ready
         run: |
-          while ! nc -z localhost 5183; do
-            sleep 0.1
+          echo "### Waiting for backend to be ready... ###"
+          while ! nc -z localhost 8010; do
+            echo "Backend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
           done
-        shell: bash
+
+      - name: Build frontend for tests
+        run: |
+          echo "### Build test frontend"
+          npm run build:test
+        working-directory: frontend
+
+      - name: Start frontend tests with pm2
+        run: |
+          echo "### Starting frontend tests with pm2... ###"
+          pm2 start 1
+        working-directory: frontend
+
+      - name: Wait for frontend to be ready
+        run: |
+          echo "### Waiting for frontend to be ready... ###"
+          while ! nc -z localhost 5183; do
+            echo "Frontend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
 
       - name: Run tests
-        run: npx codeceptjs run --steps "$@"
+        run: |
+          echo "### Start tests... ###"
+          npx codeceptjs run --steps
         working-directory: tests
 
-      - name: Kill all test processes
-        run: pm2 kill
+      - name: Stop test processes
+        run: |
+          echo "### Stop test pm2 process... ###"
+          pm2 stop 0 1
 
-  build-frontend-backend:
-    name: Build Frontend and Backend
-    needs: run-tests
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.18.0'
-
-      - name: Install backend dependencies
-        run: npm ci
+      - name: Restart backend and frontend
+        run: |
+          echo "### Restart backend... ###"
+          pm2 restart 2
         working-directory: backend
 
-      - name: Format backend
-        run: npm run format
-        working-directory: backend
-
-      - name: Seed database
-        run: npm run seed
-        working-directory: backend
-
-      - name: Start backend
-        run: pm2 start "ts-node index.ts" --name="Backend"
-        working-directory: backend
-
-      - name: Install frontend dependencies
-        run: npm ci
-        working-directory: frontend
-
-      - name: Format frontend
-        run: npm run format
-        working-directory: frontend
-
-      - name: Lint frontend
-        run: npm run lint
-        working-directory: frontend
+      - name: Wait for backend to be ready
+        run: |
+          echo "### Waiting for backend to be ready... ###"
+          while ! nc -z localhost 8000; do
+            echo "Backend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
 
       - name: Build frontend
-        run: npm run build
+        run: |
+          echo "### Build frontend... ###"
+          npm run build
         working-directory: frontend
 
-      - name: Start frontend
-        run: pm2 start "npm run start" --name="Frontend"
+      - name: Restart frontend
+        run: |
+          echo "### Restart frontend... ###"
+          pm2 restart 3
         working-directory: frontend
+
+      - name: Wait for frontend to be ready
+        run: |
+          echo "### Waiting for frontend to be ready... ###"
+          while ! nc -z localhost 3000; do
+            echo "Frontend is not ready yet. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+      - name: Finish♥️♥️♥️
+        run: |
+          echo "♥️♥️♥️ Поздравляю тебя милый мой! У тебя все получилось ♥️♥️♥️"

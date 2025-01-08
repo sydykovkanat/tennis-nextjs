@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: 'build',
+  distDir: process.env.DIST_DIR || 'build',
   images: {
     remotePatterns: [
       {

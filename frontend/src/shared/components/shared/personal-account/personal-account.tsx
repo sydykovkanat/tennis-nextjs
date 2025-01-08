@@ -11,8 +11,6 @@ import {
 import { ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 
-import React from 'react';
-
 import styles from './personal-account.module.css';
 
 const PersonalAccount = () => {

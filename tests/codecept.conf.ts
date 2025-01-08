@@ -21,7 +21,18 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: './features/*.feature',
-    steps: ['./step_definitions/steps.ts', './step_definitions/auth.steps.ts'],
+    steps: [
+      './step_definitions/steps.ts',
+      './step_definitions/auth.steps.ts',
+      './step_definitions/partner.steps.ts',
+      './step_definitions/top-ratings.steps.ts',
+      './step_definitions/tournaments.steps.ts',
+      './step_definitions/carousel.steps.ts',
+      './step_definitions/rating.steps.ts',
+      './step_definitions/users.steps.ts',
+      './step_definitions/categories.steps.ts',
+      './step_definitions/footers.steps.ts',
+    ],
   },
   plugins: {
     screenshotOnFail: {

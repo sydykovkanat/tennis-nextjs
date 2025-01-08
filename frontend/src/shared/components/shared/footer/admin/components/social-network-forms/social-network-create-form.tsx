@@ -12,75 +12,32 @@ import {
   DialogTrigger,
   Input,
   Label,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@/shared/components/ui';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemCreating, selectItemsData } from '@/shared/lib/features/footer/footers-slice';
-import { createSocialNetwork, getFooterItems } from '@/shared/lib/features/footer/footers-thunks';
-import { LinkDataMutation, SocialNetworkIconsValue } from '@/shared/types/footer.types';
-import { toast } from 'sonner';
 
-import React, { type FormEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { SocialIcon } from 'react-social-icons';
 
+import { SocialNetworkIcons } from '../../constants';
 import styles from './social-network-forms.module.css';
-
-const SocialNetworkIcons: SocialNetworkIconsValue[] = [
-  { name: 'instagram' },
-  { name: 'telegram' },
-  { name: 'facebook' },
-  { name: 'email' },
-  { name: 'whatsapp' },
-];
+import { useSocialNetwork } from './use-social-network';
 
 export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children }) => {
-  const dispatch = useAppDispatch();
-  const socialNetworkData = useAppSelector(selectItemsData);
-  const socialNetworkCreating = useAppSelector(selectItemCreating);
-  const [socialNetwork, setSocialNetwork] = useState<LinkDataMutation>({
-    name: '',
-    value: '',
-  });
-  const [open, setOpen] = useState(false);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const blockedSocial = socialNetworkData?.[0]?.socialNetwork?.map((item) => item.name.toLowerCase()) ?? [];
-  const isBlocked = blockedSocial.includes(socialNetwork.name.toLowerCase());
-
-  useEffect(() => {
-    if (!open) {
-      setSocialNetwork({
-        name: '',
-        value: '',
-      });
-    }
-  }, [open]);
-
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setSocialNetwork((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event: FormEvent) => {
-    try {
-      event.preventDefault();
-      if (socialNetwork.name.trim().length !== 0 && socialNetwork.value.trim().length !== 0 && !isBlocked) {
-        closeRef.current?.click();
-        await dispatch(createSocialNetwork(socialNetwork)).unwrap();
-        await dispatch(getFooterItems()).unwrap();
-        setSocialNetwork({
-          name: '',
-          value: '',
-        });
-        toast.success('Социальная сеть успешно добавлена.');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('Ошибка при добавлении социальной сети.');
-    }
-  };
+  const {
+    setSocialNetwork,
+    socialNetwork,
+    closeRef,
+    isBlocked,
+    inputChangeHandler,
+    setOpen,
+    open,
+    socialNetworkCreating,
+    handleSubmit,
+  } = useSocialNetwork();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -90,11 +47,11 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Добавить электронную почту' : 'Добавить социальную сеть'}
           </DialogTitle>
-          <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
+          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               {isBlocked && (
-                <small className={styles.errorMessage}>Социальная сеть {socialNetwork.name} уже существует.</small>
+                <small className={styles.errorMessage}>Социальная сеть {socialNetwork.name} уже существует</small>
               )}
               <Select
                 value={socialNetwork.name}
@@ -140,7 +97,6 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
                 disabled={
                   socialNetwork.name.trim().length === 0 || socialNetwork.value.trim().length === 0 || isBlocked
                 }
-                size={'sm'}
               >
                 Добавить {socialNetworkCreating && <Loader size={'sm'} theme={'light'} />}
               </Button>

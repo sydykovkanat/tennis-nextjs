@@ -2,6 +2,7 @@
 
 import { CustomPagination, InfoTip, UserSearch, UsersForm, useUsersList } from '@/shared/components/shared';
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui';
+import { formatDateToDisplay } from '@/shared/lib';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import React from 'react';
@@ -38,13 +39,13 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
           </TableHeader>
           <TableBody>
             {users.map((user) => (
-              <TableRow className={'hover:dark:bg-gray-800'} key={user._id}>
+              <TableRow className={'hover:dark:bg-gray-800'} key={user._id} data-testid={`${user.fullName}`}>
                 <TableCell className={styles.tableCell}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.fullName}</TableCell>
                 <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
                 <TableCell className={styles.tableCell}>{user.email}</TableCell>
                 <TableCell className={styles.tableCell}>{user.gender === 'male' ? 'Муж.' : 'Жен.'}</TableCell>
-                <TableCell className={styles.tableCell}>{user.dateOfBirth}</TableCell>
+                <TableCell className={styles.tableCell}>{formatDateToDisplay(user.dateOfBirth)}</TableCell>
                 <TableCell className={styles.tableCell}>{user.category.name}</TableCell>
                 <TableCell className={styles.actionButtons}>
                   <UsersForm mode={'edit'} id={user._id} />
@@ -56,13 +57,19 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                           className={styles.deactivateButton}
                           variant='destructive'
                           onClick={() => toggleActive(user._id)}
+                          data-testid='deactivate'
                         >
                           <XMarkIcon className={'size-4'} />
                         </Button>
                       </InfoTip>
                     ) : (
                       <InfoTip text={'Активировать'} className={styles.infoTipBorder} delay={300}>
-                        <Button size={'icon'} className={styles.activateButton} onClick={() => toggleActive(user._id)}>
+                        <Button
+                          size={'icon'}
+                          className={styles.activateButton}
+                          onClick={() => toggleActive(user._id)}
+                          data-testid='activate'
+                        >
                           <CheckIcon className={'size-4'} />
                         </Button>
                       </InfoTip>

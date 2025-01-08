@@ -2,15 +2,13 @@
 
 import { Loader, MenuPositionCard, MenuPositionCreateForm } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
-import { useAppSelector } from '@/shared/hooks/hooks';
-import { selectItemsData, selectItemsFetching } from '@/shared/lib/features/footer/footers-slice';
 import { Grid2X2PlusIcon } from 'lucide-react';
 
 import styles from './tab-content.module.css';
+import { useTabsContent } from './use-tabs-content';
 
 export const MenuPosition = () => {
-  const menuPositionData = useAppSelector(selectItemsData);
-  const menuPositionFetching = useAppSelector(selectItemsFetching);
+  const { menuPositionData, menuPositionFetching } = useTabsContent();
 
   return (
     <div className={styles.menuPositionContainer}>
@@ -32,15 +30,15 @@ export const MenuPosition = () => {
           {(!menuPositionFetching && menuPositionData.length === 0) ||
           (menuPositionData.length > 0 && menuPositionData[0].menuPosition.length === 0) ? (
             <small className={styles.menuPositionNoItemsMessage}>
-              Пунктов в меню не найдено.
+              Пунктов в меню не найдено
               <MenuPositionCreateForm>
-                <button className={styles.menuPositionAddButton}>Добавить пункт в меню.</button>
+                <button className={styles.menuPositionAddButton}>Добавить пункт в меню</button>
               </MenuPositionCreateForm>
             </small>
           ) : (
             <div className={styles.menuPositionCardContainer}>
               {menuPositionData.length > 0 &&
-                menuPositionData[0].menuPosition.map((item) => <MenuPositionCard key={item._id} item={item} />)}
+                menuPositionData[0].menuPosition.map((item) => <MenuPositionCard key={item._id} menuItem={item} />)}
             </div>
           )}
         </>

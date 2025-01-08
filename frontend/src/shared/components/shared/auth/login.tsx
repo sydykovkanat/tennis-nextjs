@@ -4,10 +4,10 @@ import { useLogin, useLoginForm, useLoginSelectors } from '@/shared/components/s
 import { Button, Input } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { LoginMutation } from '@/shared/types/auth.types';
-import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './login.module.css';
 
@@ -21,7 +21,7 @@ const initialState: LoginMutation = {
 };
 
 const Login: React.FC<Props> = ({ className }) => {
-  const { loginMutation, handleChange, isFormValid } = useLoginForm(initialState);
+  const { loginMutation, handleChange, isFormValid, handleBlur, formErrors } = useLoginForm(initialState);
   const { loginError, loginLoading } = useLoginSelectors();
   const { handleLogin } = useLogin();
 
@@ -30,23 +30,30 @@ const Login: React.FC<Props> = ({ className }) => {
     await handleLogin(loginMutation);
   };
 
+  useEffect(() => {
+    if (loginError?.messageIsActive) {
+      toast.error(loginError.messageIsActive);
+    }
+  }, [loginError]);
+
   return (
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Добро пожаловать</h1>
 
-      <p className={styles.subtitle}>Введите свой логин и пароль для входа в личный кабинет</p>
+      <p className={cn(styles.subtitle, 'dark:text-white')}>Введите свой логин и пароль для входа</p>
 
       <Input
-        error={loginError?.error}
+        error={loginError?.messageTelephone || formErrors.telephone}
         label={'Телефон'}
         id={'telephone'}
         placeholder={'0555 555 555'}
         value={loginMutation.telephone}
         onChange={handleChange}
+        onBlur={() => handleBlur('telephone')}
       />
 
       <Input
-        error={loginError?.error}
+        error={loginError?.messagePassword || loginError?.messageMatching || formErrors.password}
         label={'Пароль'}
         id={'password'}
         type={'password'}
@@ -54,14 +61,10 @@ const Login: React.FC<Props> = ({ className }) => {
         placeholder={'Введите пароль'}
         value={loginMutation.password}
         onChange={handleChange}
+        onBlur={() => handleBlur('password')}
       />
 
-      <Button
-        loading={loginLoading}
-        icon={ArrowRightIcon}
-        className={cn(styles.loginBtn)}
-        disabled={!isFormValid || loginLoading}
-      >
+      <Button loading={loginLoading} className={cn(styles.loginBtn)} disabled={!isFormValid || loginLoading}>
         Войти
       </Button>
 

@@ -75,10 +75,21 @@ export const fetchUsers = createAsyncThunk<UsersResponse, UsersFilter>('users/fe
   return response;
 });
 
-export const getPermissionForUser = createAsyncThunk<number, string>('users/get-permission', async (id) => {
-  const { data: response } = await axiosApi.get<UserPermissionLevel>(`/users/${id}/permission`);
-  return response.permissionLevel;
-});
+export const getPermissionForUser = createAsyncThunk<number, string, { state: RootState }>(
+  'users/get-permission',
+  async (id, { getState, dispatch }) => {
+    const { data: response } = await axiosApi.get<UserPermissionLevel>(`/users/${id}/permission`);
+
+    if (response.permissionLevel === 0) {
+      const token = getState().users.user?.token;
+      await axiosApi.delete('/users/sessions', { headers: { Authorization: `Bearer ${token}` } });
+      dispatch(unsetUser());
+
+      toast.error('Ваш аккаунт заблокирован.');
+    }
+    return response.permissionLevel;
+  },
+);
 
 export const addUser = createAsyncThunk<void, UserMutation, { rejectValue: ValidationError }>(
   'users/add-user',
@@ -138,3 +149,33 @@ export const updateCurrentUserInfo = createAsyncThunk<User, UserMutation, { reje
 export const updateIsActive = createAsyncThunk<void, string>('users/toggle-active', async (id: string) => {
   await axiosApi.patch(`/users/${id}/toggleActive`);
 });
+
+export const forgotPassword = createAsyncThunk<void, string, { rejectValue: GlobalError }>(
+  'users/forgotPassword',
+  async (email, { rejectWithValue }) => {
+    try {
+      await axiosApi.post('/users/forgot-password', { email });
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        return rejectWithValue(error.response.data);
+      }
+
+      throw error;
+    }
+  },
+);
+
+export const resetPassword = createAsyncThunk<void, { password: string; token: string }, { rejectValue: GlobalError }>(
+  'users/resetPassword',
+  async ({ password, token }, { rejectWithValue }) => {
+    try {
+      await axiosApi.post(`/users/reset-password/${token}`, { password });
+    } catch (error) {
+      if (isAxiosError(error) && error.response && error.response.status === 400) {
+        return rejectWithValue(error.response.data);
+      }
+
+      throw error;
+    }
+  },
+);
