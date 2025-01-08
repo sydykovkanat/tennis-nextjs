@@ -8,6 +8,7 @@ export const createEvent = async (req: Request, res: Response, next: NextFunctio
     const event = await Event.create({
       rating: req.body.rating,
       category: req.body.category,
+      rank: req.body.rank,
       gender: req.body.gender,
       link: req.body.link,
     });
@@ -49,6 +50,7 @@ export const editEvent = async (req: Request, res: Response, next: NextFunction)
     const newEvent = await Event.findByIdAndUpdate(req.params.id, {
       rating: req.body.rating,
       category: req.body.category,
+      rank: req.body.rank,
       gender: req.body.gender,
       link: req.body.link,
     });

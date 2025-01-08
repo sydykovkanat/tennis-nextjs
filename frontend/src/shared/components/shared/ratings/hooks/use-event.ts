@@ -1,6 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectCategories, selectCategoriesFetching } from '@/shared/lib/features/categories/category-slice';
-import { fetchCategories } from '@/shared/lib/features/categories/category-thunks';
+import { useAppSelector } from '@/shared/lib';
 import { selectEventFetching } from '@/shared/lib/features/rating/rating-slice';
 import { Event, EventMutation } from '@/shared/types/event.types';
 
@@ -14,13 +12,11 @@ interface UseEventProps {
 const initialState: EventMutation = {
   rating: '',
   category: '',
+  rank: '',
   link: '',
 };
 
 export const useEvent = ({ event, onSubmit }: UseEventProps) => {
-  const dispatch = useAppDispatch();
-  const categories = useAppSelector(selectCategories);
-  const categoriesFetching = useAppSelector(selectCategoriesFetching);
   const eventFetching = useAppSelector(selectEventFetching);
 
   const [eventMutation, setEventMutation] = React.useState<EventMutation>(initialState);
@@ -29,7 +25,8 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
     if (event) {
       setEventMutation({
         rating: event.rating._id,
-        category: event.category._id,
+        category: event.category,
+        rank: event.rank,
         link: event.link,
       });
     } else {
@@ -37,13 +34,9 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
     }
   }, [event]);
 
-  React.useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setEventMutation((prev) => ({ ...prev, [id]: value }));
+    setEventMutation((prev) => ({ ...prev, [id]: value.trim() }));
   };
 
   const handleSelectChange = (value: string, id: string) => {
@@ -56,12 +49,12 @@ export const useEvent = ({ event, onSubmit }: UseEventProps) => {
     setEventMutation(initialState);
   };
 
-  const isFormValid = Boolean(eventMutation.rating && eventMutation.category && eventMutation.link);
+  const isFormValid = Boolean(
+    eventMutation.rating && eventMutation.category && eventMutation.link && eventMutation.rank,
+  );
 
   return {
     eventMutation,
-    categories,
-    categoriesFetching,
     eventFetching,
     handleChange,
     handleSelectChange,

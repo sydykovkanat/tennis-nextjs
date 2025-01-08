@@ -1,41 +1,19 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { getMonth } from '../lib/getMonth';
 import { Rating } from '../model/Rating';
 
 export const fetchRatings = async (_req: Request, res: Response, next: NextFunction) => {
   try {
-    const monthMap: Record<string, number> = {
-      january: 1,
-      february: 2,
-      march: 3,
-      april: 4,
-      may: 5,
-      june: 6,
-      july: 7,
-      august: 8,
-      september: 9,
-      october: 10,
-      november: 11,
-      december: 12,
-    };
-
     const ratings = await Rating.find()
       .populate({
         path: 'events',
-        populate: {
-          path: 'category',
-        },
       })
       .lean()
       .exec();
 
     const sortedRatings = ratings.sort((a, b) => {
-      if (a.year !== b.year) {
-        return b.year - a.year;
-      }
-
-      return monthMap[a.month.toLowerCase()] - monthMap[b.month.toLowerCase()];
+      return b.year - a.year;
     });
 
     return res.send(sortedRatings);
@@ -48,7 +26,6 @@ export const createRating = async (req: Request, res: Response, next: NextFuncti
   try {
     const rating = await Rating.create({
       chapter: req.body.chapter,
-      month: req.body.month,
       year: req.body.year,
     });
 
