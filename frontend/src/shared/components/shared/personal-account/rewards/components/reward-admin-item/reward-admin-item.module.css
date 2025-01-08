@@ -1,0 +1,12 @@
+.cardContent {
+  @apply flex flex-wrap flex-col items-center xs:flex-row justify-between gap-3 p-4;
+}
+
+.textContent {
+  @apply flex-1 flex flex-col mb-2.5 xs:mb-0 text-start;
+  word-wrap: anywhere;
+}
+
+.cardActions {
+  @apply flex xs:flex-col gap-3;
+}
