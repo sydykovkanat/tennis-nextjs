@@ -5,11 +5,11 @@ export interface RewardFields {
   createdAt: Date;
   updatedAt: Date;
   tournament: string;
-  place: number;
+  place?: number;
   nomination?: string;
   icon: 'cup' | 'medal' | 'racket';
 }
 
 export interface Reward extends RewardFields {
-  _id: Types.ObjectId
+  _id: Types.ObjectId;
 }

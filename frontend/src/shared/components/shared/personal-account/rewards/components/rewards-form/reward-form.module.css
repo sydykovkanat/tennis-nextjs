@@ -1,58 +1,27 @@
-
 .title {
-    @apply mb-2;
+  @apply mb-2;
 }
 
 .form {
-    @apply flex flex-col gap-2;
+  @apply flex flex-col gap-2;
 }
 
 .inputBlock {
-    @apply flex flex-col;
-}
-
-.placeBlock {
-    @apply flex xs:justify-between xs:gap-3 xs:items-center sm:items-baseline flex-wrap xs:flex-nowrap;
+  @apply flex flex-col;
 }
 
 .label {
-    @apply text-base text-start mb-1;
+  @apply text-base text-start mb-1;
 }
 
 .input {
-    @apply h-12;
-}
-
-.placeTrigger {
-    @apply mb-2 xs:mb-0 xs:w-2/5;
-}
-
-.placeSelectContent {
-    @apply w-[100px] ml-auto;
+  @apply h-12;
 }
 
 .iconsContainer {
-    @apply grid grid-cols-5;
+  @apply grid grid-cols-5;
 }
 
 .iconSelect {
-    @apply w-12 h-12 cursor-pointer;
-}
-
-.orText {
-    @apply hidden;
-}
-
-@media screen and (min-width: 345px) {
-    .orText {
-        @apply inline-block;
-    }
-
-    .placeInput {
-        @apply ml-3;
-    }
-}
-
-.placeInput {
-    @apply xs:ml-0;
+  @apply w-12 h-12 cursor-pointer;
 }

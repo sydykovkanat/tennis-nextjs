@@ -4,6 +4,7 @@ import { Loader, UsersDatePicker, UsersInput, useUsersForm } from '@/shared/comp
 import styles from '@/shared/components/shared/admin-users-list/users-form/users-form.module.css';
 import {
   Button,
+  DialogClose,
   Label,
   Select,
   SelectContent,
@@ -15,7 +16,10 @@ import {
 import { cn } from '@/shared/lib';
 import { validateEmail } from '@/shared/lib/helpers/validateEmail';
 
+
+
 import React, { useEffect } from 'react';
+
 
 interface Props {
   isAdd?: boolean;
@@ -199,6 +203,11 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
       >
         {isAdd ? <> Добавить {loading && <Loader />}</> : <> Сохранить {loadingUpdateUser && <Loader />}</>}
       </Button>
+      <DialogClose asChild>
+        <Button type={'button'} variant={'outline'}>
+          Отменить
+        </Button>
+      </DialogClose>
     </form>
   );
 };

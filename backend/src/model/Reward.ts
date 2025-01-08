@@ -24,12 +24,11 @@ const RewardSchema = new Schema<RewardFields>(
     },
     place: {
       type: Number,
-      required: [true, 'Введите место!'],
     },
     icon: {
       type: String,
       enum: ['cup', 'medal'],
-      default: 'cup'
+      default: 'cup',
     },
   },
   { timestamps: true }

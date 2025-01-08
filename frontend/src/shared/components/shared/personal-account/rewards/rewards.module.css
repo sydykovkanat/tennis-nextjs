@@ -1,8 +1,8 @@
 .title {
-    @apply text-2xl font-semibold mb-6;
+  @apply text-2xl font-semibold mb-6;
 }
 
 .container {
-    @apply grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lmd:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-y-3;
-    grid-auto-rows: minmax(auto, max-content);
+  @apply grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lmd:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-y-3;
+  grid-auto-rows: minmax(155px, max-content);
 }

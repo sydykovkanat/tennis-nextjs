@@ -3,7 +3,11 @@
 import { Cup, Medal } from '@/shared/components/shared';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { cn, deleteEmptyQueryStrings } from '@/shared/lib';
-import { selectRewards, selectRewardsFetching } from '@/shared/lib/features/rewards/rewards-slice';
+import {
+  selectRewardFetchError,
+  selectRewards,
+  selectRewardsFetching,
+} from '@/shared/lib/features/rewards/rewards-slice';
 import { fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { Filters, Query } from '@/shared/types/root.types';
@@ -17,6 +21,7 @@ interface Props {
 export const useRewards = ({ id }: Props = {}) => {
   const dispatch = useAppDispatch();
   const rewards = useAppSelector(selectRewards);
+  const fetchError = useAppSelector(selectRewardFetchError);
   const rewardsFetching = useAppSelector(selectRewardsFetching);
   const currentUser = useAppSelector(selectCurrentUser);
   const iconVariants: { [key: string]: FC<{ className?: string }> } = {
@@ -39,5 +44,5 @@ export const useRewards = ({ id }: Props = {}) => {
 
   const getIconClass = (place: number) => cn(place > 1 ? 'text-[#F9DD54]' : 'text-[#F9AC2F]', 'cursor-pointer');
 
-  return { rewards, rewardsFetching, getIconClass, iconVariants };
+  return { rewards, fetchError, rewardsFetching, getIconClass, iconVariants };
 };

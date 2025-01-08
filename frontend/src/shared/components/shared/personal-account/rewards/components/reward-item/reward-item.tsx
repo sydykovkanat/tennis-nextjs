@@ -18,8 +18,8 @@ export const RewardItem: React.FC<Props> = ({ reward }) => {
     <Popover>
       <PopoverTrigger className={cn(styles.popoverTrigger)}>
         <div className={cn(styles.reward)}>
-          <IconComponent name={reward.icon} place={reward.place} />
-          <p className={cn(styles.place)}>{reward.place.toString()} место</p>
+          <IconComponent name={reward.icon} place={reward.place || 1} />
+          <p className={cn(styles.info)}>{reward.place ? `${reward.place.toString()} место` : reward.nomination}</p>
         </div>
       </PopoverTrigger>
 

@@ -1,4 +1,13 @@
-import { Loader, RewardForm, useRewardForm, useRewards } from '@/shared/components/shared';
+'use client';
+
+import {
+  CustomPagination,
+  Loader,
+  RewardAdminItem,
+  RewardForm,
+  useRewardForm,
+  useRewards,
+} from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 import { Grid2X2PlusIcon } from 'lucide-react';
@@ -10,19 +19,30 @@ interface Props {
 }
 
 export const Rewards: React.FC<Props> = ({ id }) => {
-  const { rewards, rewardsFetching } = useRewards({ id });
+  const { rewards, fetchError, rewardsFetching } = useRewards({ id });
   const { open, setOpen } = useRewardForm();
 
   return (
     <>
-      <div className={'flex'}>
+      <div className={'flex mb-5'}>
         <Button icon={Grid2X2PlusIcon} className={'ml-auto'} onClick={() => setOpen(true)}>
           Добавить награду
         </Button>
         {open && <RewardForm open={open} setOpen={setOpen} userId={id} />}
       </div>
 
-      {rewardsFetching ? <Loader /> : <div className={cn()}></div>}
+      {rewardsFetching ? (
+        <Loader />
+      ) : rewards.length ? (
+        <div className={cn('grid grid-cols-1 gap-y-2.5')}>
+          {rewards.map((reward) => (
+            <RewardAdminItem key={reward._id} reward={reward} />
+          ))}
+          <CustomPagination total={5} />
+        </div>
+      ) : (
+        <p>{fetchError?.error}</p>
+      )}
     </>
   );
 };

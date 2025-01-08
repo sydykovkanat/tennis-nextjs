@@ -3,7 +3,7 @@ import { Base } from '@/shared/types/root.types';
 export interface Reward extends Base {
   user: string;
   tournament: string;
-  place: number;
+  place?: number;
   nomination?: string;
   icon: string;
 }
@@ -19,7 +19,7 @@ export interface RewardResponse {
 export interface RewardMutation {
   user: string;
   tournament: string;
-  place: number;
+  place: number | undefined;
   nomination: string;
   icon: string;
 }

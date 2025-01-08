@@ -19,11 +19,11 @@ import {
   SelectValue,
 } from '@/shared/components/ui';
 import { cn, useAppDispatch } from '@/shared/lib';
+import { createReward } from '@/shared/lib/features/rewards/rewards-thunks';
 
 import React, { FormEvent, PropsWithChildren } from 'react';
 
 import styles from './reward-form.module.css';
-import { createReward } from '@/shared/lib/features/rewards/rewards-thunks';
 
 interface Props {
   userId: string;
@@ -32,7 +32,9 @@ interface Props {
 }
 
 export const RewardForm: React.FC<PropsWithChildren & Props> = ({ userId, open, setOpen, children }) => {
-  const { reward, setReward, handleChange, handlePlaceChange, handleIconChange, initialState } = useRewardForm({ userId });
+  const { reward, setReward, handleChange, handleIconChange, initialState } = useRewardForm({
+    userId,
+  });
   const { iconVariants, getIconClass } = useRewards();
   const dispatch = useAppDispatch();
 
@@ -97,40 +99,25 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({ userId, open, 
               <Label htmlFor='place' className={cn(styles.label)}>
                 Место
               </Label>
-              <div className={cn(styles.placeBlock)}>
-                <Select onValueChange={handlePlaceChange}>
-                  <SelectTrigger className={cn(styles.placeTrigger)}>
-                    <SelectValue placeholder='Выберете место' />
-                  </SelectTrigger>
-                  <SelectContent className={cn(styles.placeSelectContent)}>
-                    <SelectGroup>
-                      {Array.from({ length: 25 }, (_, i) => (
-                        <SelectItem key={i + 1} value={String(i + 1)}>
-                          {i + 1}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <span className={cn(styles.orText)}>или</span>
-                <Input
-                  name='place'
-                  autoComplete={'off'}
-                  value={reward.place === 0 ? '' : reward.place}
-                  onChange={(e) =>
-                    setReward((prev) => ({
-                      ...prev,
-                      place: Number(e.target.value),
-                    }))
-                  }
-                  placeholder={'Введите свое место'}
-                  className={cn(styles.placeInput)}
-                />
-              </div>
+              <Input
+                name='place'
+                autoComplete={'off'}
+                value={reward.place}
+                onChange={(e) =>
+                  setReward((prev) => ({
+                    ...prev,
+                    place: Number(e.target.value),
+                  }))
+                }
+                placeholder={'Введите место'}
+                className={cn(styles.placeInput)}
+              />
             </div>
 
             <div className={cn(styles.inputBlock)}>
-              <Label htmlFor='icon' className={cn(styles.label)}>Иконка</Label>
+              <Label htmlFor='icon' className={cn(styles.label)}>
+                Иконка
+              </Label>
               <Select value={reward.icon} onValueChange={handleIconChange}>
                 <SelectTrigger className={cn(styles.input)}>
                   <SelectValue placeholder='Укажите иконку' />
@@ -139,7 +126,7 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({ userId, open, 
                   <SelectGroup className={cn(styles.iconsContainer)}>
                     {Object.entries(iconVariants).map(([key, Icon]) => (
                       <SelectItem key={key} value={key}>
-                        <Icon className={cn(getIconClass(reward.place), styles.iconSelect)} />
+                        <Icon className={cn(getIconClass(reward.place ? reward.place : 1), styles.iconSelect)} />
                       </SelectItem>
                     ))}
                   </SelectGroup>

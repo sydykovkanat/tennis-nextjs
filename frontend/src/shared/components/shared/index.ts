@@ -84,6 +84,7 @@ export { RewardItem } from './personal-account/rewards/components/reward-item/re
 export { useTabsWithRewards } from './personal-account/hooks/use-tabs-with-rewards';
 export { RewardForm } from './personal-account/rewards/components/rewards-form/reward-form';
 export { useRewardForm } from './personal-account/hooks/use-reward-form';
+export { RewardAdminItem } from './personal-account/rewards/components/reward-admin-item/reward-admin-item';
 
 export { InfoTip } from './info-tip/info-tip';
 

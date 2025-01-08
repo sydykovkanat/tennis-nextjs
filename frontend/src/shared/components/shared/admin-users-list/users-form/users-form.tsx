@@ -6,7 +6,6 @@ import { Form } from '@/shared/components/shared/admin-users-list/users-form/for
 import {
   Button,
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -112,12 +111,6 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                 </div>
               </Tabs>
             )}
-
-            <DialogClose asChild>
-              <Button className={styles.buttonCancel} type={'button'} variant={'outline'}>
-                Отменить
-              </Button>
-            </DialogClose>
           </DialogHeader>
         </DialogContent>
       </Dialog>
