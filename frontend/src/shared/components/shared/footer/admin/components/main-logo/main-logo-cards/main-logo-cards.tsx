@@ -12,23 +12,28 @@ import {Button} from '@/shared/components/ui';
 import {Trash} from 'lucide-react';
 
 export const MainLogoCards = () => {
-    const { logos, itemsLoading, handleLogoClick, activeLogoId, handleDeleteLogo } = useMainLogoCards();
+    const { logos, itemsLoading, handleLogoClick, handleDeleteLogo } = useMainLogoCards();
 
     return (
         <div className={cn(styles.containerMainLogoItem)}>
             {itemsLoading ? (
                 <Loader/>
             ) :  logos?.map((logo) => (
-                <div key={logo._id} className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]',)}>
-                    <div onClick={() => handleLogoClick(logo._id)}>
-                        <img className={cn(styles.image, activeLogoId === logo._id && 'border-2 dark:bg-[#1F2937]')}
+                <div key={logo._id}
+                     className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]',)}
+                     onClick={() => handleLogoClick(logo._id)}
+                >
+                    <div>
+                        <img className={cn(styles.image)}
                              src={API_URL + '/' + logo.logo}
                              alt={logo._id}
                         />
                     </div>
 
                     <Confirm onOk={() => handleDeleteLogo(logo._id)}>
-                        <div className={cn(styles.btnDelete)}>
+                        <div className={cn(styles.btnDelete)} onClick={(e) => {
+                            e.stopPropagation();
+                        }}>
                             <Button  data-test-id='delete-logo-header'> <Trash/> </Button>
                         </div>
                     </Confirm>

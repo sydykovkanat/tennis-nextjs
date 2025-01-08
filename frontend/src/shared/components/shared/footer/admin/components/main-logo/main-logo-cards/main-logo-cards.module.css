@@ -3,15 +3,15 @@
 }
 
 .image {
-    @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px] cursor-pointer transition-all duration-300 ease-in-out;
-}
-
-.image:hover {
-    @apply shadow-lg ring-2 dark:bg-[#1F2937] scale-105;
+    @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px];
 }
 
 .cardMainLogo {
-    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full bg-white shadow-md transition-all duration-300 ease-in-out;
+    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full  cursor-pointer bg-white shadow-md transition-all duration-300 ease-in-out;
+}
+
+.cardMainLogo:hover {
+    @apply shadow-lg scale-105 dark:bg-[#1F2937] border-yellow-500 border-2;
 }
 
 .btnDelete {

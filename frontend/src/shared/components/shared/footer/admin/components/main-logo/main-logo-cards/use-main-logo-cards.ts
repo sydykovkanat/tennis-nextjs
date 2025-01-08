@@ -17,7 +17,6 @@ export const useMainLogoCards = () => {
     const itemData = useAppSelector(selectItemsData);
     const itemsLoading = useAppSelector(selectItemsFetching);
     const logoError = useAppSelector(selectErrorLogo);
-    const [activeLogoId, setActiveLogoId] = useState<string | null>(null);
     const [logos, setLogos] = useState<MainLogo[]>([]);
 
 
@@ -28,7 +27,6 @@ export const useMainLogoCards = () => {
 
     const handleLogoClick = async (id: string) => {
         try {
-            setActiveLogoId(id);
            await dispatch(postCurrentLogo(id)).unwrap();
            await dispatch(fetchCurrentLogo());
            toast.success(' Логотип успешно заменен ');
@@ -56,8 +54,6 @@ export const useMainLogoCards = () => {
         itemsLoading,
         handleLogoClick,
         setLogos,
-        activeLogoId,
-        setActiveLogoId,
         handleDeleteLogo,
     };
 };
