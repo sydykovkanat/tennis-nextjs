@@ -22,6 +22,7 @@ export const MainLogoCards = () => {
                 <div key={logo._id}
                      className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]',)}
                      onClick={() => handleLogoClick(logo._id)}
+                     data-test-id='update-logo-header'
                 >
                     <div>
                         <img className={cn(styles.image)}
