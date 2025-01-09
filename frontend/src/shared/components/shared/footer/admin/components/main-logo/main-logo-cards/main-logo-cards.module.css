@@ -2,6 +2,10 @@
     @apply grid md:grid-cols-2 lg:grid-cols-3 gap-3;
 }
 
+.containerMainLogoItemNoText {
+    @apply flex items-center justify-center;
+}
+
 .image {
     @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px];
 }
@@ -16,4 +20,8 @@
 
 .btnDelete {
     @apply ms-auto items-center me-4;
+}
+
+.noLogoText {
+    @apply mt-[30px];
 }
