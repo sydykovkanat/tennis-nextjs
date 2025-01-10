@@ -9,8 +9,11 @@ const rootPath = __dirname;
 const corsWhitelist = [
   'http://localhost:3000',
   'http://localhost:5183',
-  'http://178.62.238.165:3000',
-  'http://178.62.238.165:5183',
+  'http://209.145.52.153:3000',
+  'http://209.145.52.153:5183',
+  'https://tennis.kg',
+  'https://tennis.kg:3000',
+  'https://tennis.kg:5183',
 ];
 
 const corsOptions: CorsOptions = {
