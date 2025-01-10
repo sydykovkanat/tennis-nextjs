@@ -1,6 +1,6 @@
 import { NavigationItemsTypes } from '@/shared/types/footer.types';
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://209.145.52.153:8000';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://tennis.kg:8000';
 
 export const CURRENT_YEAR_FULL = new Date().getFullYear();
 export const NEXT_YEAR = CURRENT_YEAR_FULL + 1;
