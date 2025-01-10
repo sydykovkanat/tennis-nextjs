@@ -10,6 +10,11 @@ const nextConfig = {
         pathname: '/**',
       },
       {
+        protocol: 'https',
+        hostname: 'tennis.kg',
+        pathname: '/backend/**',
+      },
+      {
         protocol: 'http',
         hostname: '209.145.52.153',
         port: '8010',
