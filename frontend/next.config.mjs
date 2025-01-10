@@ -5,8 +5,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '178.62.238.165',
+        hostname: '209.145.52.153',
         port: '8000',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tennis.kg',
+        pathname: '/backend/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '209.145.52.153',
+        port: '8010',
         pathname: '/**',
       },
       {

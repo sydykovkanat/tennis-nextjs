@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
-import { getMonth } from '@/shared/lib/helpers/get-month';
 import { Event, EventMutation } from '@/shared/types/event.types';
 import { Rating } from '@/shared/types/rating.types';
 
@@ -22,39 +21,20 @@ interface Props {
 }
 
 export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
-  const {
-    eventMutation,
-    categories,
-    categoriesFetching,
-    eventFetching,
-    handleChange,
-    handleSelectChange,
-    handleSubmit,
-    isFormValid,
-  } = useEvent({ event, onSubmit });
+  const { eventMutation, eventFetching, handleChange, handleSelectChange, handleSubmit, isFormValid } = useEvent({
+    event,
+    onSubmit,
+  });
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <Label htmlFor='category'>Категория</Label>
-        <Select value={eventMutation.category} onValueChange={(v) => handleSelectChange(v, 'category')}>
-          <SelectTrigger id='category'>
-            <SelectValue placeholder='Выберите категорию' />
-          </SelectTrigger>
-          <SelectContent>
-            {categoriesFetching ? (
-              <SelectItem value='null' disabled>
-                Загрузка…
-              </SelectItem>
-            ) : (
-              categories.map((category) => (
-                <SelectItem key={category._id} value={category._id}>
-                  {category.name}
-                </SelectItem>
-              ))
-            )}
-          </SelectContent>
-        </Select>
+        <Input id='category' placeholder={'Введите Категорию'} onChange={handleChange} value={eventMutation.category} />
+      </div>
+      <div>
+        <Label htmlFor='category'>Разряд</Label>
+        <Input id='rank' placeholder={'Введите Разряд'} onChange={handleChange} value={eventMutation.rank} />
       </div>
 
       <div>
@@ -65,8 +45,11 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
           </SelectTrigger>
           <SelectContent>
             {ratings.map((rating) => (
-              <SelectItem key={rating._id} value={rating._id}>
-                {getMonth(rating.month)} {rating.year}
+              <SelectItem
+                key={rating._id}
+                value={rating._id}
+              >
+                {rating.year}
               </SelectItem>
             ))}
           </SelectContent>
