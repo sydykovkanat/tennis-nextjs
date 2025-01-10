@@ -91,10 +91,10 @@ jobs:
       #    echo "### Stop test pm2 process... ###"
       #    pm2 stop 0 1
 
-      - name: Restart backend and frontend
+      - name: Restart backend
         run: |
           echo "### Restart backend... ###"
-          pm2 restart 2
+          pm2 restart 0
         working-directory: backend
 
       - name: Wait for backend to be ready
@@ -114,7 +114,7 @@ jobs:
       - name: Restart frontend
         run: |
           echo "### Restart frontend... ###"
-          pm2 restart 3
+          pm2 restart 1
         working-directory: frontend
 
       - name: Wait for frontend to be ready
