@@ -31,6 +31,7 @@ jobs:
       - name: Install frontend dependencies
         run: |
           echo "### Installing frontend dependencies... ###"
+          ls -1
           npm ci
         working-directory: frontend
 
