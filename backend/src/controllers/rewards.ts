@@ -1,6 +1,6 @@
+import { format } from 'date-fns';
 import { NextFunction, Request, Response } from 'express';
 import { Error, Types } from 'mongoose';
-import { format } from 'date-fns';
 import { Reward } from '../model/Reward';
 
 export const createReward = async (req: Request, res: Response, next: NextFunction) => {
@@ -52,6 +52,22 @@ export const getRewards = async (req: Request, res: Response, next: NextFunction
     const pages = limit > 0 ? Math.ceil(total / limit) : null;
 
     return res.send({ page, limit, total, pages, data: formattedRewards });
+  } catch (e) {
+    return next(e);
+  }
+};
+
+export const getById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    if (!Types.ObjectId.isValid(id)) return res.status(404).send({ error: 'Неправильный тип id!' });
+
+    const rewardId = new Types.ObjectId(id);
+    const reward = await Reward.findById(rewardId).lean();
+
+    if (!reward) return res.status(404).send({ error: 'Награда не найдена!' });
+
+    return res.send(reward);
   } catch (e) {
     return next(e);
   }

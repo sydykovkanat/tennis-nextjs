@@ -1,10 +1,10 @@
 'use client';
 
-import { Loader, UsersDatePicker, UsersInput, useUsersForm } from '@/shared/components/shared';
+import { CustomDatepicker, Loader, useUsersForm } from '@/shared/components/shared';
 import styles from '@/shared/components/shared/admin-users-list/users-form/users-form.module.css';
 import {
   Button,
-  DialogClose,
+  Input,
   Label,
   Select,
   SelectContent,
@@ -13,13 +13,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
-import { cn } from '@/shared/lib';
-import { validateEmail } from '@/shared/lib/helpers/validateEmail';
-
-
+import { CURRENT_YEAR_FULL } from '@/shared/constants';
+import { cn, validateEmail } from '@/shared/lib';
 
 import React, { useEffect } from 'react';
-
 
 interface Props {
   isAdd?: boolean;
@@ -69,7 +66,7 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.blockForm}>
-        <UsersInput
+        <Input
           id='fullName'
           value={newUser.fullName}
           onChange={handleChange}
@@ -79,7 +76,7 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
           className={styles.inputField}
         />
 
-        <UsersInput
+        <Input
           id='telephone'
           value={newUser.telephone}
           onChange={handleChange}
@@ -90,7 +87,7 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
           error={error ? `${error.errors.telephone.message}` : ''}
         />
 
-        <UsersInput
+        <Input
           id='email'
           value={newUser.email}
           onChange={handleChange}
@@ -101,30 +98,32 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
         />
 
         {isAdd && (
-          <UsersInput
-            id='password'
-            value={newUser.password}
-            onChange={handleChange}
-            label='Пароль'
-            placeholder='Введите пароль'
-            type='password'
-            autoComplete={'new-password'}
-            className={styles.inputField}
-          />
+          <>
+            <Input
+              id='password'
+              value={newUser.password}
+              onChange={handleChange}
+              label='Пароль'
+              placeholder='Введите пароль'
+              type='password'
+              autoComplete={'new-password'}
+              className={styles.inputField}
+            />
+          </>
         )}
 
-        <UsersDatePicker
+        <CustomDatepicker
+          mode={'users'}
           value={newUser.dateOfBirth}
           onChange={(date) => handleDateChange(date)}
           label={'Дата рождения'}
-          className={styles.inputField}
-          addUserAdmin={true}
+          fromYear={1930}
+          toYear={CURRENT_YEAR_FULL}
+          buttonClassName={'py-5'}
         />
 
-        <div className='pt-5'>
-          <Label htmlFor='gender' className={styles.label}>
-            Пол
-          </Label>
+        <div>
+          <Label htmlFor='gender'>Пол</Label>
           <Select value={newUser.gender} onValueChange={(value) => handleSelectChange(value, 'gender')}>
             <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='gender'>
               <SelectValue placeholder='Укажите пол' />
@@ -143,9 +142,7 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
         </div>
 
         <div>
-          <Label htmlFor='category' className={styles.label}>
-            Категория
-          </Label>
+          <Label htmlFor='category'>Категория</Label>
           <Select
             disabled={categoriesLoading || categories.length === 0}
             value={newUser.category}
@@ -172,9 +169,7 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
 
         {userPermission === 3 ? (
           <div>
-            <Label htmlFor='role' className={styles.label}>
-              Роль
-            </Label>
+            <Label htmlFor='role'>Роль</Label>
             <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
               <SelectTrigger className={styles.selectTrigger} id='role'>
                 <SelectValue placeholder='Выберите роль' />
@@ -198,16 +193,11 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
 
       <Button
         type='submit'
-        className={cn(styles.buttonSubmit)}
+        className={cn(styles.buttonSubmit, 'dark:bg-white')}
         disabled={isAdd ? !isFormValidAdmin() || !validateEmail(newUser.email) : !validateEmail(newUser.email)}
       >
         {isAdd ? <> Добавить {loading && <Loader />}</> : <> Сохранить {loadingUpdateUser && <Loader />}</>}
       </Button>
-      <DialogClose asChild>
-        <Button type={'button'} variant={'outline'}>
-          Отменить
-        </Button>
-      </DialogClose>
     </form>
   );
 };

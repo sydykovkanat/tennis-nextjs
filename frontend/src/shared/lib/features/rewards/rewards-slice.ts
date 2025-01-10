@@ -1,5 +1,10 @@
-import { removeNews } from '@/shared/lib/features/news/news-thunks';
-import { createReward, fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
+import {
+  createReward,
+  fetchOneReward,
+  fetchRewards,
+  removeReward,
+  updateReward,
+} from '@/shared/lib/features/rewards/rewards-thunks';
 import { Reward } from '@/shared/types/reward.types';
 import { GlobalError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
@@ -61,23 +66,50 @@ export const rewardsSlice = createSlice({
       });
 
     builder
-      .addCase(removeNews.pending, (state, { meta }) => {
-        state.removeRewardLoading = meta.arg;
+      .addCase(fetchOneReward.pending, (state) => {
+        state.fetchOneRewardLoading = true;
+        state.item = null;
       })
-      .addCase(removeNews.fulfilled, (state) => {
+      .addCase(fetchOneReward.fulfilled, (state, { payload: oneNews }) => {
+        state.fetchOneRewardLoading = false;
+        state.item = oneNews;
+      })
+      .addCase(fetchOneReward.rejected, (state) => {
+        state.fetchOneRewardLoading = false;
+      });
+
+    builder
+      .addCase(updateReward.pending, (state) => {
+        state.updateRewardLoading = true;
+      })
+      .addCase(updateReward.fulfilled, (state) => {
+        state.updateRewardLoading = false;
+      })
+      .addCase(updateReward.rejected, (state) => {
+        state.updateRewardLoading = false;
+      });
+
+    builder
+      .addCase(removeReward.pending, (state, { meta }) => {
+        state.removeRewardLoading = meta.arg.rewardId;
+      })
+      .addCase(removeReward.fulfilled, (state) => {
         state.removeRewardLoading = false;
       })
-      .addCase(removeNews.rejected, (state) => {
+      .addCase(removeReward.rejected, (state) => {
         state.removeRewardLoading = false;
       });
   },
   selectors: {
     selectRewards: (state) => state.items,
+    selectReward: (state) => state.item,
     selectRewardsPages: (state) => state.pages,
     selectRewardsCreating: (state) => state.createRewardLoading,
     selectRewardsFetching: (state) => state.fetchRewardsLoading,
+    selectRewardFetching: (state) => state.fetchOneRewardLoading,
     selectRewardFetchError: (state) => state.fetchError,
-    selectRewardRemoving: (state) => state.removeRewardLoading
+    selectRewardUpdating: (state) => state.updateRewardLoading,
+    selectRewardRemoving: (state) => state.removeRewardLoading,
   },
 });
 
@@ -85,9 +117,12 @@ export const rewardsReducer = rewardsSlice.reducer;
 
 export const {
   selectRewards,
+  selectReward,
   selectRewardsPages,
   selectRewardsCreating,
   selectRewardsFetching,
+  selectRewardFetching,
   selectRewardFetchError,
-  selectRewardRemoving
+  selectRewardUpdating,
+  selectRewardRemoving,
 } = rewardsSlice.selectors;

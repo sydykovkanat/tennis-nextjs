@@ -1,9 +1,9 @@
+import { format, isValid, parseISO } from 'date-fns';
 import { NextFunction, Request, Response } from 'express';
 import { Error, Types } from 'mongoose';
-import { format, isValid, parseISO } from 'date-fns';
 import { News } from '../model/News';
-import { processImages } from '../utils/processNewsImages';
 import { clearImages } from '../utils/multer';
+import { processImages } from '../utils/processNewsImages';
 
 export const createNewPost = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -150,7 +150,7 @@ export const updateNews = async (req: Request, res: Response, next: NextFunction
     };
 
     const updatedNews = await News.findByIdAndUpdate(id, newsData, { new: true, runValidators: true });
-    if (!updatedNews) return res.status(404).send({ error: 'Новость не найдена или ошибка при сохранении!'});
+    if (!updatedNews) return res.status(404).send({ error: 'Новость не найдена или ошибка при сохранении!' });
 
     return res.send(updatedNews);
   } catch (e) {

@@ -1,5 +1,9 @@
+.card {
+  @apply p-1 xs:p-4;
+}
+
 .cardContent {
-  @apply flex flex-wrap flex-col items-center xs:flex-row justify-between gap-3 p-4;
+  @apply p-0 flex flex-wrap flex-col items-center xs:flex-row justify-between gap-3;
 }
 
 .textContent {

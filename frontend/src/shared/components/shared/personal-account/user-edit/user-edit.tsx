@@ -25,9 +25,10 @@ import {
 import { CURRENT_YEAR_FULL } from '@/shared/constants';
 import { validateEmail } from '@/shared/lib';
 import { User } from '@/shared/types/user.types';
-import styles from './edit.module.css';
 
 import React, { PropsWithChildren } from 'react';
+
+import styles from './edit.module.css';
 
 interface Props {
   user: User;
@@ -37,8 +38,14 @@ interface Props {
 
 export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user, open, setOpen }) => {
   const {
-    userInfo, handleChange, handleDateChange, handleSubmit, isFormValid, formErrors,
-    handleBlur, validateAndSetField
+    userInfo,
+    handleChange,
+    handleDateChange,
+    handleSubmit,
+    isFormValid,
+    formErrors,
+    handleBlur,
+    validateAndSetField,
   } = useUserForm({
     user,
     closeDialog: () => setOpen(false),
@@ -100,7 +107,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user, 
             />
 
             <div>
-              <Label htmlFor="gender">Пол</Label>
+              <Label htmlFor='gender'>Пол</Label>
               <Select value={userInfo.gender} onValueChange={(value) => validateAndSetField('gender', value)}>
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />

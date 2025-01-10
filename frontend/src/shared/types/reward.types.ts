@@ -19,7 +19,7 @@ export interface RewardResponse {
 export interface RewardMutation {
   user: string;
   tournament: string;
-  place: number | undefined;
-  nomination: string;
+  place?: number;
+  nomination?: string;
   icon: string;
 }

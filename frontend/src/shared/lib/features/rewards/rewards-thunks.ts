@@ -1,6 +1,6 @@
 import { axiosApi, toQueryParams } from '@/shared/lib';
 import { AppDispatch } from '@/shared/lib/store';
-import { RewardMutation, RewardResponse } from '@/shared/types/reward.types';
+import { Reward, RewardMutation, RewardResponse } from '@/shared/types/reward.types';
 import { Filters } from '@/shared/types/root.types';
 import { GlobalError } from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -42,6 +42,25 @@ export const fetchRewards = createAsyncThunk<RewardResponse, Filters | undefined
     }
   },
 );
+
+export const fetchOneReward = createAsyncThunk<Reward, string>('rewards/fetchOneReward', async (id) => {
+  const { data: oneReward } = await axiosApi.get<Reward>(`/rewards/${id}`);
+  return oneReward;
+});
+
+export const updateReward = createAsyncThunk<
+  Reward | null,
+  { rewardId: string; userId: string; rewardMutation: RewardMutation },
+  { dispatch: AppDispatch }
+>('rewards/updateReward', async ({ rewardId, userId, rewardMutation }, thunkAPI) => {
+  const { data: response } = await axiosApi.put<Reward>(`/rewards/${rewardId}`, rewardMutation);
+
+  if (userId) {
+    const filter: Filters = { query: { userId } };
+    await thunkAPI.dispatch(fetchRewards(filter));
+  }
+  return response;
+});
 
 export const removeReward = createAsyncThunk<void, { rewardId: string; userId: string }, { dispatch: AppDispatch }>(
   'rewards/remove',

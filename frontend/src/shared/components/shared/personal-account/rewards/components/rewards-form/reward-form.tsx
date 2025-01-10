@@ -19,24 +19,37 @@ import {
   SelectValue,
 } from '@/shared/components/ui';
 import { cn, useAppDispatch } from '@/shared/lib';
-import { createReward } from '@/shared/lib/features/rewards/rewards-thunks';
+import { createReward, updateReward } from '@/shared/lib/features/rewards/rewards-thunks';
+import { useRouter } from 'next/navigation';
 
 import React, { FormEvent, PropsWithChildren } from 'react';
 
 import styles from './reward-form.module.css';
 
 interface Props {
+  isEdit?: boolean;
   userId: string;
+  rewardId?: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const RewardForm: React.FC<PropsWithChildren & Props> = ({ userId, open, setOpen, children }) => {
+export const RewardForm: React.FC<PropsWithChildren & Props> = ({
+  isEdit = false,
+  userId,
+  rewardId,
+  open,
+  setOpen,
+  children,
+}) => {
   const { reward, setReward, handleChange, handleIconChange, initialState } = useRewardForm({
     userId,
+    rewardId,
+    isEdit: isEdit,
   });
   const { iconVariants, getIconClass } = useRewards();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,13 +60,19 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({ userId, open, 
     }
 
     try {
-      await dispatch(createReward(reward)).unwrap();
-      setReward(initialState);
-      toast.success('Награда успешно добавлена!');
+      if (isEdit && rewardId) {
+        await dispatch(updateReward({ rewardId, userId, rewardMutation: reward })).unwrap();
+        toast.success('Награда успешно обновлена!');
+      } else {
+        await dispatch(createReward(reward)).unwrap();
+        setReward(initialState);
+        toast.success('Награда успешно добавлена!');
+      }
     } catch (error) {
       console.error(error);
       toast.error('Ошибка при создании/обновлении награды!');
     } finally {
+      router.refresh();
       setOpen(false);
     }
   };
@@ -63,7 +82,9 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({ userId, open, 
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
-          <DialogTitle className={cn(styles.title)}>Добавить награду</DialogTitle>
+          <DialogTitle className={cn(styles.title)}>
+            {isEdit ? 'Редактировать награду' : 'Добавить награду'}
+          </DialogTitle>
 
           <form onSubmit={handleSubmit} className={cn(styles.form)}>
             <div className={cn(styles.inputBlock)}>

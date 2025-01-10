@@ -103,13 +103,11 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     <TabsTrigger value='rewards'>Награды</TabsTrigger>
                   </TabsList>
                 </ScrollArea>
-                <div className={cn(styles.box, 'dark:bg-[#1F2937]')}>
-                  <TabsContent value={'personalData'}>
-                    <Form userPermission={userPermission} id={id} />
-                  </TabsContent>
+                <TabsContent value={'personalData'}>
+                  <Form userPermission={userPermission} id={id} />
+                </TabsContent>
 
-                  <TabsContent value={'rewards'}>{currentUser && <Rewards id={currentUser._id} />}</TabsContent>
-                </div>
+                <TabsContent value={'rewards'}>{currentUser && <Rewards id={currentUser._id} />}</TabsContent>
               </Tabs>
             )}
           </DialogHeader>
