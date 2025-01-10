@@ -1,6 +1,6 @@
 'use client';
 
-import { Cup, Medal } from '@/shared/components/shared';
+import { Cup, Medal, Racket } from '@/shared/components/shared';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { cn, deleteEmptyQueryStrings } from '@/shared/lib';
 import {
@@ -14,11 +14,11 @@ import { Filters, Query } from '@/shared/types/root.types';
 
 import { FC, useEffect } from 'react';
 
-interface Props {
-  id?: string;
-}
-
-export const useRewards = ({ id }: Props = {}) => {
+// interface Props {
+//   id?: string;
+// }
+// { id }: Props = {}
+export const useRewards = () => {
   const dispatch = useAppDispatch();
   const rewards = useAppSelector(selectRewards);
   const fetchError = useAppSelector(selectRewardFetchError);
@@ -27,20 +27,21 @@ export const useRewards = ({ id }: Props = {}) => {
   const iconVariants: { [key: string]: FC<{ className?: string }> } = {
     medal: Medal,
     cup: Cup,
+    racket: Racket,
   };
 
   useEffect(() => {
-    const userId = id ? id : !id && currentUser ? currentUser?._id : undefined;
+    const userId = currentUser?._id;
 
-    if (Array.isArray(rewards) && !rewards.length) {
-      const queryObj: Query | undefined = userId ? { userId } : undefined;
+    if (userId && Array.isArray(rewards) && !rewards.length) {
+      const queryObj: Query | undefined = { userId };
 
       const validatedQuery = queryObj && deleteEmptyQueryStrings(queryObj);
       const data: Filters = { query: validatedQuery };
 
       dispatch(fetchRewards(data));
     }
-  }, [dispatch, rewards, currentUser, id]);
+  }, [dispatch, rewards, currentUser]);
 
   const getIconClass = (place: number) => cn(place > 1 ? 'text-[#F9DD54]' : 'text-[#F9AC2F]', 'cursor-pointer');
 

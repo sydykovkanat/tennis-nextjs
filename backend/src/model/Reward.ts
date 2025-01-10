@@ -27,7 +27,7 @@ const RewardSchema = new Schema<RewardFields>(
     },
     icon: {
       type: String,
-      enum: ['cup', 'medal'],
+      enum: ['cup', 'medal', 'racket'],
       default: 'cup',
     },
   },

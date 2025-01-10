@@ -77,6 +77,7 @@ export { Rewards } from './personal-account/rewards/rewards';
 export { useRewards } from './personal-account/hooks/use-rewards';
 export { Cup } from './personal-account/rewards/components/icons/Cup';
 export { Medal } from './personal-account/rewards/components/icons/Medal';
+export { Racket } from './personal-account/rewards/components/icons/Racket';
 export { IconComponent } from './personal-account/rewards/components/icons/icon-component';
 export { RewardItem } from './personal-account/rewards/components/reward-item/reward-item';
 export { useTabsWithRewards } from './personal-account/hooks/use-tabs-with-rewards';

@@ -1,21 +1,21 @@
-import mongoose from 'mongoose';
 import { randomUUID } from 'crypto';
+import mongoose from 'mongoose';
 import config from './config';
+import { Carousel } from './src/model/Carousel';
+import { Category } from './src/model/Category';
+import { Event } from './src/model/Event';
+import Footer from './src/model/Footer';
 import { News } from './src/model/News';
 import { Partner } from './src/model/Partner';
-import { Category } from './src/model/Category';
 import { Rating } from './src/model/Rating';
-import { User } from './src/model/User';
-import { Event } from './src/model/Event';
-import { Carousel } from './src/model/Carousel';
-import { newsFixtures } from './src/utils/fixtures/newsFixtures';
 import { RatingMember } from './src/model/RatingMember';
-import Footer from './src/model/Footer';
-import { Tournament } from './src/model/Tournament';
-import { tournamentsFixtures } from './src/utils/fixtures/tournamentsFixtures';
-import { mainRatingsFixtures } from './src/utils/fixtures/mainRatingsFixtures';
-import { generateUsers } from './src/utils/fixtures/generateUsers';
 import { Reward } from './src/model/Reward';
+import { Tournament } from './src/model/Tournament';
+import { User } from './src/model/User';
+import { generateUsers } from './src/utils/fixtures/generateUsers';
+import { mainRatingsFixtures } from './src/utils/fixtures/mainRatingsFixtures';
+import { newsFixtures } from './src/utils/fixtures/newsFixtures';
+import { tournamentsFixtures } from './src/utils/fixtures/tournamentsFixtures';
 
 const run = async () => {
   await mongoose.connect(config.database);
@@ -144,7 +144,7 @@ const run = async () => {
       tournament: 'Autumn Platinum Series',
       place: 1,
       nomination: 'Лучшая стратегия',
-      icon: 'cup',
+      icon: 'racket',
     },
     {
       user: john,
@@ -153,7 +153,7 @@ const run = async () => {
       tournament: 'Winter Gold Cup',
       place: 3,
       nomination: 'Лучший лидер',
-      icon: 'cup',
+      icon: 'racket',
     },
     {
       user: alice,
@@ -184,55 +184,55 @@ const run = async () => {
     }
   );
 
-  for (let i = 0; i < 5; i++) {
-    await Reward.create(
-      {
-        user: john,
-        createdAt: '2024-12-02T16:15:36.700+00:00',
-        updatedAt: '2024-12-03T16:15:36.700+00:00',
-        tournament: 'Winter Gold Cup',
-        place: 1,
-        nomination: 'Лучшая техника',
-        icon: 'cup',
-      },
-      {
-        user: john,
-        createdAt: '2024-12-01T16:15:36.700+00:00',
-        updatedAt: '2024-12-02T16:15:36.700+00:00',
-        tournament: 'Spring Silver League',
-        place: 2,
-        nomination: 'Лучший игрок',
-        icon: 'medal',
-      },
-      {
-        user: john,
-        createdAt: '2024-11-30T16:15:36.700+00:00',
-        updatedAt: '2024-12-01T16:15:36.700+00:00',
-        tournament: 'Summer Bronze Cup',
-        place: 3,
-        nomination: 'Лучший тренер',
-        icon: 'cup',
-      },
-      {
-        user: john,
-        createdAt: '2024-11-29T16:15:36.700+00:00',
-        updatedAt: '2024-11-30T16:15:36.700+00:00',
-        tournament: 'Autumn Platinum Series',
-        place: 1,
-        nomination: 'Лучшая стратегия',
-        icon: 'cup',
-      },
-      {
-        user: john,
-        createdAt: '2024-11-28T16:15:36.700+00:00',
-        updatedAt: '2024-11-29T16:15:36.700+00:00',
-        tournament: 'Winter Gold Cup',
-        place: 3,
-        nomination: 'Лучший лидер',
-        icon: 'cup',
-      }
-    );
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   await Reward.create(
+  //     {
+  //       user: john,
+  //       createdAt: '2024-12-02T16:15:36.700+00:00',
+  //       updatedAt: '2024-12-03T16:15:36.700+00:00',
+  //       tournament: 'Winter Gold Cup',
+  //       place: 1,
+  //       nomination: 'Лучшая техника',
+  //       icon: 'cup',
+  //     },
+  //     {
+  //       user: john,
+  //       createdAt: '2024-12-01T16:15:36.700+00:00',
+  //       updatedAt: '2024-12-02T16:15:36.700+00:00',
+  //       tournament: 'Spring Silver League',
+  //       place: 2,
+  //       nomination: 'Лучший игрок',
+  //       icon: 'medal',
+  //     },
+  //     {
+  //       user: john,
+  //       createdAt: '2024-11-30T16:15:36.700+00:00',
+  //       updatedAt: '2024-12-01T16:15:36.700+00:00',
+  //       tournament: 'Summer Bronze Cup',
+  //       place: 3,
+  //       nomination: 'Лучший тренер',
+  //       icon: 'cup',
+  //     },
+  //     {
+  //       user: john,
+  //       createdAt: '2024-11-29T16:15:36.700+00:00',
+  //       updatedAt: '2024-11-30T16:15:36.700+00:00',
+  //       tournament: 'Autumn Platinum Series',
+  //       place: 1,
+  //       nomination: 'Лучшая стратегия',
+  //       icon: 'cup',
+  //     },
+  //     {
+  //       user: john,
+  //       createdAt: '2024-11-28T16:15:36.700+00:00',
+  //       updatedAt: '2024-11-29T16:15:36.700+00:00',
+  //       tournament: 'Winter Gold Cup',
+  //       place: 3,
+  //       nomination: 'Лучший лидер',
+  //       icon: 'cup',
+  //     }
+  //   );
+  // }
 
   await RatingMember.create(mainRatingsFixtures);
 

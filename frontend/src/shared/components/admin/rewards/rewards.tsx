@@ -19,7 +19,7 @@ interface Props {
 }
 
 export const Rewards: React.FC<Props> = ({ id }) => {
-  const { rewards, fetchError, rewardsFetching } = useRewards({ id });
+  const { rewards, fetchError, rewardsFetching } = useRewards();
   const { open, setOpen } = useRewardForm();
 
   return (
