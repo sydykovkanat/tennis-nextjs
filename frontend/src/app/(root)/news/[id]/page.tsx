@@ -13,8 +13,6 @@ import React from 'react';
 import carouselStyles from './carousel.module.css';
 import styles from './one-news.module.css';
 
-export const revalidate = 10;
-
 export default function Page() {
   const { emblaRef, oneNews, initialIndex, setInitialIndex, news } = useOneNews();
   const { open, toggleOpen } = useDialogState();
@@ -28,9 +26,7 @@ export default function Page() {
   return (
     <>
       {!oneNews ? (
-        <Container className={'d-flex'}>
-          <Loader className={'mx-auto'} />
-        </Container>
+        <Loader className={'mx-auto'} absolute />
       ) : (
         <Container>
           <div className={cn(styles.titleBlock)}>
