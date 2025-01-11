@@ -5,7 +5,7 @@ export const ListTabsName: { name: string; value: string }[] = [
   { name: 'Меню положение', value: 'menu-position' },
   { name: 'Публичная оферта', value: 'public-offer' },
   { name: 'Ген.партнер', value: 'main-partner' },
-  { name: 'Главное лого', value: 'main-logo' },
+  { name: 'Главный логотип', value: 'main-logo' },
 ];
 
 export const SocialNetworkIcons: SocialNetworkIconsValue[] = [
