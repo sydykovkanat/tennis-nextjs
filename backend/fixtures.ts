@@ -179,7 +179,7 @@ const run = async () => {
       ],
       mainLogo: [
         {
-          logo:'fixtures/footer/test-logo.png',
+          logo:'logo/Knauf.svg',
         }
       ]
     },
