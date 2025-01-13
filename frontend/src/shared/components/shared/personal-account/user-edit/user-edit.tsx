@@ -23,7 +23,7 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
 import { CURRENT_YEAR_FULL } from '@/shared/constants';
-import { validateEmail } from '@/shared/lib';
+import { cn, validateEmail } from '@/shared/lib';
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';
@@ -60,41 +60,53 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user, 
           <DialogDescription className={'pb-3'}>Заполните форму для редактирования профиля</DialogDescription>
 
           <form onSubmit={handleSubmit} className={styles.formWrapper}>
-            <Input
-              id='fullName'
-              value={userInfo.fullName}
-              onChange={handleChange}
-              label='ФИО'
-              placeholder='Введите ваше полное ФИО'
-              autoComplete='name'
-              className={styles.inputField}
-              onBlur={() => handleBlur('fullName')}
-              error={formErrors.fullName}
-            />
+            <div className={styles.inputBlock}>
+              <Label htmlFor='fullname' className={cn(styles.label)}>
+                ФИО
+              </Label>
+              <Input
+                id='fullName'
+                value={userInfo.fullName}
+                onChange={handleChange}
+                placeholder='Введите ваше полное ФИО'
+                autoComplete='name'
+                className={styles.inputField}
+                onBlur={() => handleBlur('fullName')}
+                error={formErrors.fullName}
+              />
+            </div>
 
-            <Input
-              id='email'
-              value={userInfo.email}
-              onChange={handleChange}
-              label='Почта'
-              placeholder={'example@gmail.com'}
-              autoComplete={'email'}
-              className={styles.inputField}
-              onBlur={() => handleBlur('email')}
-              error={formErrors.email}
-            />
+            <div className={styles.inputBlock}>
+              <Label htmlFor='email' className={cn(styles.label)}>
+                Почта
+              </Label>
+              <Input
+                id='email'
+                value={userInfo.email}
+                onChange={handleChange}
+                placeholder={'example@gmail.com'}
+                autoComplete={'email'}
+                className={styles.inputField}
+                onBlur={() => handleBlur('email')}
+                error={formErrors.email}
+              />
+            </div>
 
-            <Input
-              id='telephone'
-              value={userInfo.telephone}
-              onChange={handleChange}
-              label='Телефон'
-              placeholder={'0555 555 555'}
-              autoComplete={'tel'}
-              className={styles.inputField}
-              onBlur={() => handleBlur('telephone')}
-              error={formErrors.telephone}
-            />
+            <div className={styles.inputBlock}>
+              <Label htmlFor='telephone' className={cn(styles.label)}>
+                Телефон
+              </Label>
+              <Input
+                id='telephone'
+                value={userInfo.telephone}
+                onChange={handleChange}
+                placeholder={'0555 555 555'}
+                autoComplete={'tel'}
+                className={styles.inputField}
+                onBlur={() => handleBlur('telephone')}
+                error={formErrors.telephone}
+              />
+            </div>
 
             <CustomDatepicker
               mode={'users'}
@@ -106,8 +118,10 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user, 
               buttonClassName={'py-6'}
             />
 
-            <div>
-              <Label htmlFor='gender'>Пол</Label>
+            <div className='flex flex-col'>
+              <Label htmlFor='gender' className={cn(styles.label)}>
+                Пол
+              </Label>
               <Select value={userInfo.gender} onValueChange={(value) => validateAndSetField('gender', value)}>
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />

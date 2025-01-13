@@ -13,9 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { RatingMutation } from '@/shared/types/rating.types';
 
 import React from 'react';
+
+import styles from '../../rating-form.module.css';
 
 interface Props {
   onSubmit: (rating: RatingMutation) => void;
@@ -27,12 +30,16 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Label htmlFor={'year'}>Год</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor={'year'} className={cn(styles.label)}>
+          Год
+        </Label>
         <Input id={'year'} placeholder={'Введите год (2024)'} onChange={handleYearChange} value={ratingMutation.year} />
       </div>
-      <div>
-        <Label htmlFor={'chapter'}>Раздел</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor={'chapter'} className={cn(styles.label)}>
+          Раздел
+        </Label>
         <Select value={ratingMutation.chapter} onValueChange={(v) => handleSelectChange(v, 'chapter')}>
           <SelectTrigger id={'chapter'} className={'capitalize'}>
             <SelectValue placeholder={'Выберите раздел'} />
@@ -41,7 +48,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
             <SelectGroup>
               {['male', 'female', 'mixed'].map((chapter) => (
                 <SelectItem
-                  className={'capitalize hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                  className={cn('capitalize hover:dark:bg-gray-800 focus:dark:bg-gray-800')}
                   key={chapter}
                   value={chapter}
                 >
@@ -53,7 +60,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-7'}>
+      <Button disabled={!isFormValid || ratingsCreating} className={cn(styles.addButton)}>
         Добавить {ratingsCreating && <Loader theme={'light'} />}
       </Button>
     </form>

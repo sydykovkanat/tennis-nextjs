@@ -66,49 +66,65 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.blockForm}>
-        <Input
-          id='fullName'
-          value={newUser.fullName}
-          onChange={handleChange}
-          label='ФИО'
-          placeholder='Введите ваше полное ФИО'
-          autoComplete={'name'}
-          className={styles.inputField}
-        />
+        <div className={cn(styles.inputGroup)}>
+          <Label htmlFor='fullname' className={cn(styles.label)}>
+            ФИО
+          </Label>
+          <Input
+            id='fullName'
+            value={newUser.fullName}
+            onChange={handleChange}
+            placeholder='Введите ваше полное ФИО'
+            autoComplete={'name'}
+            className={styles.inputField}
+          />
+        </div>
 
-        <Input
-          id='telephone'
-          value={newUser.telephone}
-          onChange={handleChange}
-          label='Номер телефона'
-          placeholder={'0500 000 000'}
-          autoComplete={'tel'}
-          className={styles.inputField}
-          error={error ? `${error.errors.telephone.message}` : ''}
-        />
+        <div className={cn(styles.inputGroup)}>
+          <Label htmlFor='telephone' className={cn(styles.label)}>
+            Номер телефона
+          </Label>
+          <Input
+            id='telephone'
+            value={newUser.telephone}
+            onChange={handleChange}
+            placeholder={'0500 000 000'}
+            autoComplete={'tel'}
+            className={styles.inputField}
+            error={error ? `${error.errors.telephone.message}` : ''}
+          />
+        </div>
 
-        <Input
-          id='email'
-          value={newUser.email}
-          onChange={handleChange}
-          label='Почта'
-          placeholder={'example@gmail.com'}
-          autoComplete={'email'}
-          className={styles.inputField}
-        />
+        <div className={cn(styles.inputGroup)}>
+          <Label htmlFor='email' className={cn(styles.label)}>
+            Почта
+          </Label>
+          <Input
+            id='email'
+            value={newUser.email}
+            onChange={handleChange}
+            placeholder={'example@gmail.com'}
+            autoComplete={'email'}
+            className={styles.inputField}
+          />
+        </div>
 
         {isAdd && (
           <>
-            <Input
-              id='password'
-              value={newUser.password}
-              onChange={handleChange}
-              label='Пароль'
-              placeholder='Введите пароль'
-              type='password'
-              autoComplete={'new-password'}
-              className={styles.inputField}
-            />
+            <div className={cn(styles.inputGroup)}>
+              <Label htmlFor='password' className={cn(styles.label)}>
+                Пароль
+              </Label>
+              <Input
+                id='password'
+                value={newUser.password}
+                onChange={handleChange}
+                placeholder='Введите пароль'
+                type='password'
+                autoComplete={'new-password'}
+                className={styles.inputField}
+              />
+            </div>
           </>
         )}
 
@@ -122,10 +138,12 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
           buttonClassName={'py-5'}
         />
 
-        <div>
-          <Label htmlFor='gender'>Пол</Label>
+        <div className={cn(styles.inputGroup)}>
+          <Label htmlFor='gender' className={cn(styles.label)}>
+            Пол
+          </Label>
           <Select value={newUser.gender} onValueChange={(value) => handleSelectChange(value, 'gender')}>
-            <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='gender'>
+            <SelectTrigger className={cn(styles.selectTrigger)} id='gender'>
               <SelectValue placeholder='Укажите пол' />
             </SelectTrigger>
             <SelectContent className={'dark:bg-gray-900'}>
@@ -141,8 +159,10 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
           </Select>
         </div>
 
-        <div>
-          <Label htmlFor='category'>Категория</Label>
+        <div className={cn(styles.inputGroup)}>
+          <Label htmlFor='category' className={cn(styles.label)}>
+            Категория
+          </Label>
           <Select
             disabled={categoriesLoading || categories.length === 0}
             value={newUser.category}
@@ -168,8 +188,10 @@ export const Form: React.FC<Props> = ({ isAdd = false, userPermission, id }) => 
         </div>
 
         {userPermission === 3 ? (
-          <div>
-            <Label htmlFor='role'>Роль</Label>
+          <div className={cn(styles.inputGroup)}>
+            <Label htmlFor='role' className={cn(styles.label)}>
+              Роль
+            </Label>
             <Select value={newUser.role} onValueChange={(value) => handleSelectChange(value, 'role')}>
               <SelectTrigger className={styles.selectTrigger} id='role'>
                 <SelectValue placeholder='Выберите роль' />

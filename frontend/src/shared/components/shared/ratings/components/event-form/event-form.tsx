@@ -9,10 +9,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { Event, EventMutation } from '@/shared/types/event.types';
 import { Rating } from '@/shared/types/rating.types';
 
 import React from 'react';
+
+import styles from '../../rating-form.module.css';
 
 interface Props {
   ratings: Rating[];
@@ -28,17 +31,23 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Label htmlFor='category'>Категория</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor='category' className={cn(styles.label)}>
+          Категория
+        </Label>
         <Input id='category' placeholder={'Введите Категорию'} onChange={handleChange} value={eventMutation.category} />
       </div>
-      <div>
-        <Label htmlFor='category'>Разряд</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor='category' className={cn(styles.label)}>
+          Разряд
+        </Label>
         <Input id='rank' placeholder={'Введите Разряд'} onChange={handleChange} value={eventMutation.rank} />
       </div>
 
-      <div>
-        <Label htmlFor='rating'>Рейтинг</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor='rating' className={cn(styles.label)}>
+          Рейтинг
+        </Label>
         <Select value={eventMutation.rating} onValueChange={(v) => handleSelectChange(v, 'rating')}>
           <SelectTrigger id='rating'>
             <SelectValue placeholder='Выберите рейтинг' />
@@ -48,7 +57,7 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
               <SelectItem
                 key={rating._id}
                 value={rating._id}
-                className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
+                className={cn('hover:dark:bg-gray-800 focus:dark:bg-gray-800')}
               >
                 {rating.year}
               </SelectItem>
@@ -57,12 +66,14 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
         </Select>
       </div>
 
-      <div>
-        <Label htmlFor='link'>Ссылка</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor='link' className={cn(styles.label)}>
+          Ссылка
+        </Label>
         <Input id='link' placeholder='Введите ссылку' type='url' onChange={handleChange} value={eventMutation.link} />
       </div>
 
-      <Button disabled={!isFormValid || eventFetching} className='mt-7 w-full' type='submit'>
+      <Button disabled={!isFormValid || eventFetching} className={cn(styles.addButton)} type='submit'>
         {eventFetching ? 'Загрузка…' : 'Сохранить'}
       </Button>
     </form>

@@ -71,10 +71,10 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
       }
     } catch (error) {
       console.log(error);
-      toast.error('Ошибка при добавлении/редактировании награды');
-    } finally {
       console.log(createError);
       console.log(updateError);
+      toast.error('Ошибка при добавлении/редактировании награды');
+    } finally {
       router.refresh();
       setOpen(false);
     }
