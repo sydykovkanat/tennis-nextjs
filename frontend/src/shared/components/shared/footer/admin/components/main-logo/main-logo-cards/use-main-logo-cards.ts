@@ -1,5 +1,9 @@
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/hooks';
-import {selectErrorLogo, selectItemsData, selectItemsFetching} from '@/shared/lib/features/footer/footers-slice';
+import {
+    selectErrorLogo,
+    selectItemsData,
+    selectItemsFetching,
+} from '@/shared/lib/features/footer/footers-slice';
 import {useEffect, useState} from 'react';
 import {MainLogo} from '@/shared/types/footer.types';
 import {
@@ -18,6 +22,7 @@ export const useMainLogoCards = () => {
     const itemsLoading = useAppSelector(selectItemsFetching);
     const logoError = useAppSelector(selectErrorLogo);
     const [logos, setLogos] = useState<MainLogo[]>([]);
+
 
 
 

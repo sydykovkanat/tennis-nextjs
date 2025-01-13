@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/hooks';
-import {selectCurrentLogo} from '@/shared/lib/features/footer/footers-slice';
+import {selectCurrentLogo, selectMainLogoLoading} from '@/shared/lib/features/footer/footers-slice';
 import {
     useMainLogoCards
 } from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-cards/use-main-logo-cards';
@@ -12,6 +12,7 @@ export const useNavbarLogo = () => {
     const logoId = useAppSelector(selectCurrentLogo);
     const dispatch = useAppDispatch();
     const { logos } = useMainLogoCards();
+    const loading = useAppSelector(selectMainLogoLoading);
 
     useEffect(() => {
         dispatch(fetchCurrentLogo());
@@ -35,5 +36,6 @@ export const useNavbarLogo = () => {
     return {
         setCurrentLogo,
         currentLogo,
+        loading,
     };
 };

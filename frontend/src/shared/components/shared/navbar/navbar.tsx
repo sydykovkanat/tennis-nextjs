@@ -31,7 +31,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
   const pathname = usePathname();
   const userPermission = useAppSelector(selectUserPermission);
 
-  const { currentLogo } = useNavbarLogo();
+  const { currentLogo, loading } = useNavbarLogo();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -42,7 +42,15 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
       <div className={styles.container}>
         <div className={styles.headerInner}>
           <Link prefetch={true} href='/' className={styles.logoWrapper}>
-            <img className={styles.logo} src={API_URL + '/' + (currentLogo || '/kslt.svg')} alt='КСЛТ' />
+              {loading ? (
+                  <Loader size={'md'}/>
+              ) : (
+                  <img
+                      className={styles.logo}
+                      src={API_URL + '/' + (currentLogo || 'kslt.svg')}
+                      alt='КСЛТ'
+                  />
+              )}
           </Link>
 
           <div className={styles.navBarMobile}>
