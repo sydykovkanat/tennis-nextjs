@@ -30,15 +30,15 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
                       className={cn(className)}
                       onClick={() => setAddModalOpen(true)}
                   >
-                      Добавить лого
+                      Добавить логотип
                       <Grid2X2PlusIcon />
                   </Button>
               </DialogTrigger>
 
               <DialogContent className={'dark:bg-[#1F2937]'}>
                   <DialogHeader>
-                      <DialogTitle> Добавить лого </DialogTitle>
-                      <DialogDescription>Заполните форму перед добавлением.</DialogDescription>
+                      <DialogTitle> Добавить логотип </DialogTitle>
+                      <DialogDescription>Заполните форму перед добавлением</DialogDescription>
                       <form
                           onSubmit={(e) => (handleImageUpload(e))}
                           className={cn(styles.form)}
@@ -56,7 +56,7 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
                           {loading ? (
                               <Loader/>
                           ) :  <Button type='submit' className={cn(styles.btnAddDialog)} data-test-id='add-logo-header'>
-                              Добавить лого
+                              Добавить логотип
                               <PaperAirplaneIcon/>
                           </Button>}
                       </form>

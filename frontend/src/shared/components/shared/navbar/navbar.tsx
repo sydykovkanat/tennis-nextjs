@@ -43,7 +43,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
         <div className={styles.headerInner}>
           <Link prefetch={true} href='/' className={styles.logoWrapper}>
               {loading ? (
-                  <Loader size={'md'}/>
+                  <Loader/>
               ) : (
                   <img
                       className={styles.logo}

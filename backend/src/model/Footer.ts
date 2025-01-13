@@ -31,6 +31,7 @@ const MainLogo = new mongoose.Schema<LogoFields>({
   logo: {
     type: String,
     required: [true, 'Поле обязательно!'],
+    default: 'kslt.svg',
   },
 });
 

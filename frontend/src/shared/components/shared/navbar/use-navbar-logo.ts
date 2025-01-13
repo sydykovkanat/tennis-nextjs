@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/hooks';
-import {selectCurrentLogo, selectMainLogoLoading} from '@/shared/lib/features/footer/footers-slice';
+import {selectCurrentLogo} from '@/shared/lib/features/footer/footers-slice';
 import {
     useMainLogoCards
 } from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-cards/use-main-logo-cards';
@@ -12,7 +12,7 @@ export const useNavbarLogo = () => {
     const logoId = useAppSelector(selectCurrentLogo);
     const dispatch = useAppDispatch();
     const { logos } = useMainLogoCards();
-    const loading = useAppSelector(selectMainLogoLoading);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         dispatch(fetchCurrentLogo());
@@ -22,13 +22,14 @@ export const useNavbarLogo = () => {
         try {
             if (logoId) {
                 const logoObject = logos.find((logo) => logo._id === logoId);
-                setCurrentLogo(logoObject ? logoObject.logo : '/kslt.svg');
+                setCurrentLogo(logoObject ? logoObject.logo : 'kslt.svg');
+                setLoading(false);
             }else {
-                setCurrentLogo('/kslt.svg');
+                setCurrentLogo('kslt.svg');
             }
         } catch (error) {
             console.error('Ошибка загрузки логотипа:', error);
-            setCurrentLogo('/kslt.svg');
+            setCurrentLogo('kslt.svg');
         }
     }, [logoId, logos, dispatch, setCurrentLogo]);
 

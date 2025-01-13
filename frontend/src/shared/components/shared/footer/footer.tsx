@@ -30,7 +30,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
           <div className={styles.logoWrapper}>
             <Link prefetch={true} href='/' className={styles.logo}>
               {loading ? (
-                  <Loader size={'md'}/>
+                  <Loader />
               ) : (
                   <img
                       className={styles.logo}

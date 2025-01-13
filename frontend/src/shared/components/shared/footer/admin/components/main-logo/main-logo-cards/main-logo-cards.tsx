@@ -29,7 +29,7 @@ export const MainLogoCards = () => {
                         className={cn(
                             styles.cardMainLogo,
                             'dark:bg-[#1F2937]',
-                            logo._id === logoId && 'border-2 border-blue-500'
+                            logo._id === logoId && 'border-gray-300 shadow-md'
                         )}
                         onClick={() => handleLogoClick(logo._id)}
                         data-test-id='update-logo-header'

@@ -15,7 +15,7 @@
 }
 
 .cardMainLogo {
-    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full  cursor-pointer bg-white shadow-md transition-all duration-300 ease-in-out;
+    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full border cursor-pointer transition-all duration-300 ease-in-out;
 }
 
 .cardMainLogo:hover {
