@@ -27,16 +27,16 @@ export const TournamentAccordion: React.FC<Props> = ({
   return (
     <Accordion type='multiple' className={cn(className)}>
       {Object.entries(tournaments).map(([month, tournamentList]) => (
-        <AccordionItem key={month} value={month} className={cn(styles.accordionItem, 'border-0')}>
-          <AccordionTrigger className={cn(styles.accordionTrigger, 'py-3 hover:no-underline')}>
+        <AccordionItem key={month} value={month} className={cn(styles.accordionItem)}>
+          <AccordionTrigger className={cn(styles.accordionTrigger)}>
             <div className={cn(styles.monthName, 'dark:text-[#D9EAD3]')}>
               <span>{MONTH_NAMES[Number(month) - 1]}</span>
             </div>
           </AccordionTrigger>
-          <AccordionContent className={cn(styles.accordionContent, 'py-1')}>
+          <AccordionContent className={cn(styles.accordionContent)}>
             <div className={styles.contentWrapper}>
               {isFetching ? (
-                <Loader className='my-3 mx-auto' />
+                <Loader className={styles.accordionContentLoader} />
               ) : tournamentList.length > 0 ? (
                 tournamentList.map((tournament) => (
                   <TournamentCard

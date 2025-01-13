@@ -59,7 +59,7 @@
 }
 
 .registerBtn {
-  @apply  w-full h-12 mb-5 mt-8 !important;
+  @apply  w-full h-12 mb-5 mt-6 !important;
 }
 
 .isAlreadyRegistered {

@@ -11,11 +11,11 @@
 }
 
 .loginBtn {
-  @apply w-full h-12 mb-2.5 mt-5 !important;
+  @apply w-full h-12 mb-2.5 mt-4 !important;
 }
 
 .forgotBtn {
-  @apply text-tn-dark-green block text-right mb-6;
+  @apply text-tn-dark-green block text-right mb-5;
 }
 
 .createBtn {
