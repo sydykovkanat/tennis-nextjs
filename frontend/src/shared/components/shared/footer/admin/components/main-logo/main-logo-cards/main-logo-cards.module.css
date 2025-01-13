@@ -6,8 +6,12 @@
     @apply flex items-center justify-center;
 }
 
+.blockImage {
+    @apply h-[75px] w-[75px] flex items-center rounded-lg;
+}
+
 .image {
-    @apply rounded-lg object-cover h-[75px] w-[75px] m-[5px];
+    @apply h-full w-full m-[5px] rounded-lg;
 }
 
 .cardMainLogo {

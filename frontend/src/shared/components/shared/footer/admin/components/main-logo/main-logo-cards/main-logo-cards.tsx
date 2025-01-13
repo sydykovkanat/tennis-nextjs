@@ -30,7 +30,7 @@ export const MainLogoCards = () => {
                         onClick={() => handleLogoClick(logo._id)}
                         data-test-id='update-logo-header'
                     >
-                        <div>
+                        <div className={cn(styles.blockImage)}>
                             <img
                                 className={cn(styles.image)}
                                 src={API_URL + '/' + logo.logo}

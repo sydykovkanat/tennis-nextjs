@@ -12,7 +12,7 @@ import {
 } from '@/shared/components/ui';
 import {cn} from '@/shared/lib';
 import {useMainLogoForm} from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-form/use-main-logo-form';
-import {Pencil} from 'lucide-react';
+import {Grid2X2PlusIcon} from 'lucide-react';
 import styles from './main-logo.module.css';
 import {PaperAirplaneIcon} from '@heroicons/react/24/outline';
 import {Loader} from '@/shared/components/shared';
@@ -31,7 +31,7 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
                       onClick={() => setAddModalOpen(true)}
                   >
                       Добавить лого
-                      <Pencil />
+                      <Grid2X2PlusIcon />
                   </Button>
               </DialogTrigger>
 
