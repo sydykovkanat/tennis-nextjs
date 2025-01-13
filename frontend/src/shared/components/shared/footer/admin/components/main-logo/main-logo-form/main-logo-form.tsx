@@ -13,7 +13,7 @@ import {
 import {cn} from '@/shared/lib';
 import {useMainLogoForm} from '@/shared/components/shared/footer/admin/components/main-logo/main-logo-form/use-main-logo-form';
 import {Pencil} from 'lucide-react';
-import styles from '@/shared/components/shared/carousel/admin/admin-carousel-dialog/admin-carousel-dialog.module.css';
+import styles from './main-logo.module.css';
 import {PaperAirplaneIcon} from '@heroicons/react/24/outline';
 import {Loader} from '@/shared/components/shared';
 interface AdminMainLogoDialogProps {
@@ -43,18 +43,19 @@ export const MainLogoForm:React.FC<AdminMainLogoDialogProps> = (className) => {
                           onSubmit={(e) => (handleImageUpload(e))}
                           className={cn(styles.form)}
                       >
-                          <Input
-                              className={cn(styles.input)}
-                              id='logo'
-                              type='file'
-                              name='logo'
-                              onChange={onChangeFileInputLogo}
-                              accept='image/*'
-                          />
+                          <div className={cn(styles.input)}>
+                              <Input
+                                  id='logo'
+                                  type='file'
+                                  name='logo'
+                                  onChange={onChangeFileInputLogo}
+                                  accept='image/*'
+                              />
+                          </div>
 
                           {loading ? (
                               <Loader/>
-                          ) :  <Button type='submit' className='mt-0' data-test-id='add-logo-header'>
+                          ) :  <Button type='submit' className={cn(styles.btnAddDialog)} data-test-id='add-logo-header'>
                               Добавить лого
                               <PaperAirplaneIcon/>
                           </Button>}
