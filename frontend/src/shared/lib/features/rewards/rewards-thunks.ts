@@ -2,26 +2,31 @@ import { axiosApi, toQueryParams } from '@/shared/lib';
 import { AppDispatch } from '@/shared/lib/store';
 import { Reward, RewardMutation, RewardResponse } from '@/shared/types/reward.types';
 import { Filters } from '@/shared/types/root.types';
-import { GlobalError } from '@/shared/types/user.types';
+import { GlobalError, ValidationError } from '@/shared/types/user.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { isAxiosError } from 'axios';
 
-export const createReward = createAsyncThunk<void, RewardMutation, { dispatch: AppDispatch }>(
-  'rewards/createReward',
-  async (rewardMutation, thunkAPI) => {
-    try {
-      const response = await axiosApi.post('/rewards', rewardMutation);
-      if (rewardMutation.user) {
-        const filter: Filters = { query: { userId: rewardMutation.user } };
-        await thunkAPI.dispatch(fetchRewards(filter));
-      }
-
-      return response.data;
-    } catch (e) {
-      throw e;
+export const createReward = createAsyncThunk<
+  void,
+  RewardMutation,
+  { dispatch: AppDispatch; rejectValue: GlobalError | ValidationError }
+>('rewards/createReward', async (rewardMutation, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await axiosApi.post('/rewards', rewardMutation);
+    if (rewardMutation.user) {
+      const filter: Filters = { query: { userId: rewardMutation.user } };
+      await dispatch(fetchRewards(filter));
     }
-  },
-);
+
+    return response.data;
+  } catch (e) {
+    if (isAxiosError(e) && e.response && (e.response.status === 400 || e.response.status === 422)) {
+      return rejectWithValue(e.response.data);
+    }
+
+    throw e;
+  }
+});
 
 export const fetchRewards = createAsyncThunk<RewardResponse, Filters | undefined, { rejectValue: GlobalError }>(
   'rewards/fetchRewards',
@@ -51,15 +56,23 @@ export const fetchOneReward = createAsyncThunk<Reward, string>('rewards/fetchOne
 export const updateReward = createAsyncThunk<
   Reward | null,
   { rewardId: string; userId: string; rewardMutation: RewardMutation },
-  { dispatch: AppDispatch }
->('rewards/updateReward', async ({ rewardId, userId, rewardMutation }, thunkAPI) => {
-  const { data: response } = await axiosApi.put<Reward>(`/rewards/${rewardId}`, rewardMutation);
+  { dispatch: AppDispatch; rejectValue: GlobalError | ValidationError }
+>('rewards/updateReward', async ({ rewardId, userId, rewardMutation }, { dispatch, rejectWithValue }) => {
+  try {
+    const { data: response } = await axiosApi.put<Reward>(`/rewards/${rewardId}`, rewardMutation);
 
-  if (userId) {
-    const filter: Filters = { query: { userId } };
-    await thunkAPI.dispatch(fetchRewards(filter));
+    if (userId) {
+      const filter: Filters = { query: { userId } };
+      await dispatch(fetchRewards(filter));
+    }
+    return response;
+  } catch (e) {
+    if (isAxiosError(e) && e.response && (e.response.status === 400 || e.response.status === 422)) {
+      return rejectWithValue(e.response.data);
+    }
+
+    throw e;
   }
-  return response;
 });
 
 export const removeReward = createAsyncThunk<void, { rewardId: string; userId: string }, { dispatch: AppDispatch }>(

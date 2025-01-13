@@ -7,6 +7,10 @@ export const createReward = async (req: Request, res: Response, next: NextFuncti
   try {
     const { user, tournament, nomination, place, icon } = req.body;
 
+    if (nomination === undefined && place === undefined) {
+      return res.status(400).send({ error: 'Хотя бы одно поле номинации должно быть заполнено!' });
+    }
+
     const reward = await Reward.create({
       user,
       tournament,
@@ -96,8 +100,12 @@ export const updateReward = async (req: Request, res: Response, next: NextFuncti
     if (!updatedReward) return res.status(404).send({ error: 'Награда не найдена или ошибка при сохранении!' });
 
     return res.send(updatedReward);
-  } catch (error) {
-    return next(error);
+  } catch (e) {
+    if (e instanceof Error.ValidationError) {
+      return res.status(422).send(e);
+    }
+
+    return next(e);
   }
 };
 

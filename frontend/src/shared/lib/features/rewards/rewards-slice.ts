@@ -6,7 +6,7 @@ import {
   updateReward,
 } from '@/shared/lib/features/rewards/rewards-thunks';
 import { Reward } from '@/shared/types/reward.types';
-import { GlobalError } from '@/shared/types/user.types';
+import { GlobalError, ValidationError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface RewardsState {
@@ -15,6 +15,8 @@ interface RewardsState {
   item: Reward | null;
   createRewardLoading: boolean;
   fetchRewardsLoading: boolean;
+  createError: ValidationError | GlobalError | null;
+  updateError: ValidationError | GlobalError | null;
   fetchError: GlobalError | null;
   fetchOneRewardLoading: boolean;
   updateRewardLoading: boolean;
@@ -27,6 +29,8 @@ const initialState: RewardsState = {
   item: null,
   createRewardLoading: false,
   fetchRewardsLoading: false,
+  createError: null,
+  updateError: null,
   fetchError: null,
   fetchOneRewardLoading: false,
   updateRewardLoading: false,
@@ -41,12 +45,15 @@ export const rewardsSlice = createSlice({
     builder
       .addCase(createReward.pending, (state) => {
         state.createRewardLoading = true;
+        state.createError = null;
       })
       .addCase(createReward.fulfilled, (state) => {
         state.createRewardLoading = false;
+        state.createError = null;
       })
-      .addCase(createReward.rejected, (state) => {
+      .addCase(createReward.rejected, (state, { payload: error }) => {
         state.createRewardLoading = false;
+        state.createError = error || null;
       });
 
     builder
@@ -81,12 +88,15 @@ export const rewardsSlice = createSlice({
     builder
       .addCase(updateReward.pending, (state) => {
         state.updateRewardLoading = true;
+        state.updateError = null;
       })
       .addCase(updateReward.fulfilled, (state) => {
         state.updateRewardLoading = false;
+        state.updateError = null;
       })
-      .addCase(updateReward.rejected, (state) => {
+      .addCase(updateReward.rejected, (state, { payload: error }) => {
         state.updateRewardLoading = false;
+        state.updateError = error || null;
       });
 
     builder
@@ -107,6 +117,8 @@ export const rewardsSlice = createSlice({
     selectRewardsCreating: (state) => state.createRewardLoading,
     selectRewardsFetching: (state) => state.fetchRewardsLoading,
     selectRewardFetching: (state) => state.fetchOneRewardLoading,
+    selectRewardCreateError: (state) => state.createError,
+    selectRewardUpdateError: (state) => state.updateError,
     selectRewardFetchError: (state) => state.fetchError,
     selectRewardUpdating: (state) => state.updateRewardLoading,
     selectRewardRemoving: (state) => state.removeRewardLoading,
@@ -122,6 +134,8 @@ export const {
   selectRewardsCreating,
   selectRewardsFetching,
   selectRewardFetching,
+  selectRewardCreateError,
+  selectRewardUpdateError,
   selectRewardFetchError,
   selectRewardUpdating,
   selectRewardRemoving,

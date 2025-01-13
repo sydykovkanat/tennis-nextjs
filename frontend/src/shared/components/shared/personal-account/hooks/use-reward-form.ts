@@ -1,7 +1,12 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { selectReward, selectRewardRemoving } from '@/shared/lib/features/rewards/rewards-slice';
+import {
+  selectReward,
+  selectRewardCreateError,
+  selectRewardRemoving,
+  selectRewardUpdateError,
+} from '@/shared/lib/features/rewards/rewards-slice';
 import { fetchOneReward, removeReward } from '@/shared/lib/features/rewards/rewards-thunks';
 import { RewardMutation } from '@/shared/types/reward.types';
 
@@ -18,13 +23,15 @@ export const useRewardForm = ({ userId, rewardId, isEdit }: Props = {}) => {
     user: userId ? userId : '',
     tournament: '',
     place: undefined,
-    nomination: '',
+    nomination: undefined,
     icon: '',
   };
 
   const [reward, setReward] = useState<RewardMutation>(initialState);
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+  const createError = useAppSelector(selectRewardCreateError);
+  const updateError = useAppSelector(selectRewardUpdateError);
   const fetchedReward = useAppSelector(selectReward);
   const rewardRemoving = useAppSelector(selectRewardRemoving);
 
@@ -78,5 +85,7 @@ export const useRewardForm = ({ userId, rewardId, isEdit }: Props = {}) => {
     initialState,
     handleRemove,
     rewardRemoving,
+    createError,
+    updateError,
   };
 };

@@ -10,6 +10,14 @@
   @apply text-sm text-muted-foreground;
 }
 
+.scroll {
+  @apply max-w-max;
+}
+
+.tabsList {
+  @apply flex items-center gap-1 bg-zinc-200/30 border;
+}
+
 .blockForm {
   @apply space-y-2 mb-7;
 }

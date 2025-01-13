@@ -97,8 +97,8 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                 defaultValue={currentTab}
                 onValueChange={handleTabChange}
               >
-                <ScrollArea>
-                  <TabsList>
+                <ScrollArea className={cn(styles.scroll)}>
+                  <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
                     <TabsTrigger value='personalData'>Персональные данные</TabsTrigger>
                     <TabsTrigger value='rewards'>Награды</TabsTrigger>
                   </TabsList>

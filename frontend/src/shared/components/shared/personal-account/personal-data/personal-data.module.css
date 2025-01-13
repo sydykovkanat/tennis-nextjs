@@ -14,24 +14,24 @@
   @apply text-cr-green-700;
 }
 
-.title {
-  @apply font-medium w-full sm:w-1/3;
+.mainWrapper {
+  @apply flex flex-col xs:flex-row justify-between;
 }
 
 .divWrapper {
-  @apply space-y-2 flex flex-col mb-5;
-}
-
-.mainWrapper {
-  @apply flex flex-col max-w-2xl;
+  @apply space-y-2 flex flex-col mb-5 w-full xs:mb-0;
 }
 
 .textWrapper {
-  @apply flex flex-wrap;
+  @apply flex flex-wrap break-all;
+}
+
+.title {
+  @apply font-medium sm:w-1/3 lg:w-1/5;
 }
 
 .subtitle {
-  @apply text-muted-foreground w-full sm:w-2/3 break-words;
+  @apply text-muted-foreground w-full sm:w-2/3 break-all;
 }
 
 .actionsWrapper {

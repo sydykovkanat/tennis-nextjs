@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Racket: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    width='111'
+    width='110'
     height='110'
     version='1.1'
     xmlns='http://www.w3.org/2000/svg'

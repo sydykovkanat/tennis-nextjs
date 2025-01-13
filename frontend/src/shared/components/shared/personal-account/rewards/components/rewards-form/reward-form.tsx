@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -21,6 +22,7 @@ import {
 import { cn, useAppDispatch } from '@/shared/lib';
 import { createReward, updateReward } from '@/shared/lib/features/rewards/rewards-thunks';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import React, { FormEvent, PropsWithChildren } from 'react';
 
@@ -42,7 +44,7 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
   setOpen,
   children,
 }) => {
-  const { reward, setReward, handleChange, handleIconChange, initialState } = useRewardForm({
+  const { reward, setReward, handleChange, handleIconChange, initialState, createError, updateError } = useRewardForm({
     userId,
     rewardId,
     isEdit: isEdit,
@@ -53,7 +55,6 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { toast } = await import('sonner');
 
     if (!reward.tournament.trim()) {
       return toast.error('Заполните поле турнира!');
@@ -69,9 +70,11 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
         toast.success('Награда успешно добавлена!');
       }
     } catch (error) {
-      console.error(error);
-      toast.error('Ошибка при создании/обновлении награды!');
+      console.log(error);
+      toast.error('Ошибка при добавлении/редактировании награды');
     } finally {
+      console.log(createError);
+      console.log(updateError);
       router.refresh();
       setOpen(false);
     }
@@ -79,6 +82,7 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
+      <DialogDescription>Заполните форму перед добавлением</DialogDescription>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className={'dark:bg-[#1F2937]'}>
         <DialogHeader>
@@ -131,7 +135,7 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
                   }))
                 }
                 placeholder={'Введите место'}
-                className={cn(styles.placeInput)}
+                className={cn(styles.input)}
               />
             </div>
 

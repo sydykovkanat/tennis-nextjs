@@ -115,9 +115,9 @@ const run = async () => {
       createdAt: '2024-12-02T16:15:36.700+00:00',
       updatedAt: '2024-12-03T16:15:36.700+00:00',
       tournament: 'Winter Gold Cup',
-      place: 1,
+      place: undefined,
       nomination: 'Лучшая техника',
-      icon: 'cup',
+      icon: 'racket',
     },
     {
       user: john,
@@ -144,7 +144,7 @@ const run = async () => {
       tournament: 'Autumn Platinum Series',
       place: 1,
       nomination: 'Лучшая стратегия',
-      icon: 'racket',
+      icon: 'cup',
     },
     {
       user: john,
