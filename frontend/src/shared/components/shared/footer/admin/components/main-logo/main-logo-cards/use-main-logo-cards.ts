@@ -1,5 +1,6 @@
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/hooks';
 import {
+    selectCurrentLogo,
     selectErrorLogo,
     selectItemsData,
     selectItemsFetching,
@@ -18,6 +19,7 @@ import {toast} from 'sonner';
 
 export const useMainLogoCards = () => {
     const dispatch = useAppDispatch();
+    const logoId = useAppSelector(selectCurrentLogo);
     const itemData = useAppSelector(selectItemsData);
     const itemsLoading = useAppSelector(selectItemsFetching);
     const logoError = useAppSelector(selectErrorLogo);
@@ -60,5 +62,6 @@ export const useMainLogoCards = () => {
         handleLogoClick,
         setLogos,
         handleDeleteLogo,
+        logoId,
     };
 };

@@ -13,6 +13,7 @@ import { SocialIcon } from 'react-social-icons';
 
 import styles from './footer.module.css';
 import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
+import {Loader} from '@/shared/components/shared';
 
 interface Props {
   dataItems: FooterElementsData[];
@@ -20,7 +21,7 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ dataItems }) => {
   const userPermission = useAppSelector(selectUserPermission);
-  const { currentLogo } = useNavbarLogo();
+  const { currentLogo, loading } = useNavbarLogo();
 
   return (
     <div className={cn(styles.footer, 'dark:bg-gray-900')}>
@@ -28,7 +29,15 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
         <div className={styles.footerColumn}>
           <div className={styles.logoWrapper}>
             <Link prefetch={true} href='/' className={styles.logo}>
-              <img className={styles.logo} src={API_URL + '/' + (currentLogo || '/kslt.svg')} alt='КСЛТ'/>
+              {loading ? (
+                  <Loader size={'md'}/>
+              ) : (
+                  <img
+                      className={styles.logo}
+                      src={API_URL + '/' + (currentLogo || 'kslt.svg')}
+                      alt='КСЛТ'
+                  />
+              )}
             </Link>
           </div>
           <div className={styles.copyright}>

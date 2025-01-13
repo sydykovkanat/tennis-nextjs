@@ -12,7 +12,7 @@ import {Button} from '@/shared/components/ui';
 import {Trash} from 'lucide-react';
 
 export const MainLogoCards = () => {
-    const { logos, itemsLoading, handleLogoClick, handleDeleteLogo } = useMainLogoCards();
+    const { logos, itemsLoading, handleLogoClick, handleDeleteLogo, logoId } = useMainLogoCards();
 
     return (
         <div className={cn(logos.length === 0 ? styles.containerMainLogoItemNoText : styles.containerMainLogoItem)}>
@@ -26,7 +26,11 @@ export const MainLogoCards = () => {
                 logos.map((logo) => (
                     <div
                         key={logo._id}
-                        className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]')}
+                        className={cn(
+                            styles.cardMainLogo,
+                            'dark:bg-[#1F2937]',
+                            logo._id === logoId && 'border-2 border-blue-500'
+                        )}
                         onClick={() => handleLogoClick(logo._id)}
                         data-test-id='update-logo-header'
                     >

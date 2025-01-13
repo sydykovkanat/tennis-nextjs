@@ -19,7 +19,7 @@
 }
 
 .cardMainLogo:hover {
-    @apply shadow-lg scale-105 dark:bg-[#1F2937] border-yellow-500 border-2;
+    @apply shadow-lg scale-105 dark:bg-[#1F2937];
 }
 
 .btnDelete {
