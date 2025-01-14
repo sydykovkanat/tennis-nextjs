@@ -25,6 +25,7 @@ export const useNavbarLogo = () => {
                 setCurrentLogo(logoObject ? logoObject.logo : 'kslt.svg');
                 setLoading(false);
             }else {
+                setLoading(false);
                 setCurrentLogo('kslt.svg');
             }
         } catch (error) {
