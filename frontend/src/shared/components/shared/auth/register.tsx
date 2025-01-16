@@ -79,7 +79,9 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Создать аккаунт</h1>
 
-      <p className={cn(styles.subtitle, 'dark:text-white')}>Пожалуйста, заполните все данные для создания аккаунта</p>
+      <p className={cn(styles.subtitle, 'dark:text-gray-400')}>
+        Пожалуйста, заполните все данные для создания аккаунта
+      </p>
 
       <Input
         label={'Телефон'}
@@ -191,22 +193,22 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           checked={isAgree.rules}
           onCheckedChange={() => handleAgree('rules')}
           id={'rules'}
-          className={cn(styles.checkbox, formErrors.rules && 'border-red-600')}
+          className={cn(styles.checkbox, formErrors.rules && styles.errorCheckbox)}
         />
         <Label htmlFor='rules'>Ознакомился с правилами КСЛТ</Label>
       </div>
-      {formErrors.rules && <small className={cn(styles.error, 'mb-2')}>{formErrors.rules}</small>}
+      {formErrors.rules && <small className={cn(styles.error)}>{formErrors.rules}</small>}
 
       <div className={styles.checkboxContainer}>
         <Checkbox
           checked={isAgree.personalData}
           onCheckedChange={() => handleAgree('personalData')}
           id={'personalData'}
-          className={cn(styles.checkbox, formErrors.personalData && 'border-red-600')}
+          className={cn(styles.checkbox, formErrors.personalData && styles.errorCheckbox)}
         />
         <Label htmlFor='personalData'>Даю согласие на обработку персональных данных</Label>
       </div>
-      {formErrors.personalData && <small className={cn(styles.error, 'mb-2')}>{formErrors.personalData}</small>}
+      {formErrors.personalData && <small className={cn(styles.error)}>{formErrors.personalData}</small>}
 
       <Button className={cn(styles.registerBtn)} disabled={!isFormValid || registerLoading}>
         Зарегистрироваться

@@ -19,7 +19,7 @@
 }
 
 .createBtn {
-  @apply bg-[#D9EBC6] text-tn-dark-green shadow-none h-12 w-full hover:bg-tn-green-secondary hover:dark:bg-[#c2f092] !important;
+  @apply h-12 text-tn-dark-green shadow-none w-full !important;
 }
 
 .title {

@@ -58,6 +58,10 @@
   @apply size-5;
 }
 
+.errorCheckbox {
+  @apply border-red-600 !important;
+}
+
 .registerBtn {
   @apply w-full h-12 mb-5 mt-6 !important;
 }
@@ -71,5 +75,5 @@
 }
 
 .error {
-  @apply text-red-600;
+  @apply text-red-600 mb-2;
 }
