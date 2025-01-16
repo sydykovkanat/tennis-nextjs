@@ -1,0 +1,27 @@
+.title {
+  @apply mb-2;
+}
+
+.form {
+  @apply flex flex-col gap-2;
+}
+
+.inputBlock {
+  @apply flex flex-col;
+}
+
+.label {
+  @apply text-base text-start mb-1;
+}
+
+.input {
+  @apply h-12;
+}
+
+.iconsContainer {
+  @apply grid grid-cols-5;
+}
+
+.iconSelect {
+  @apply w-12 h-12 cursor-pointer;
+}

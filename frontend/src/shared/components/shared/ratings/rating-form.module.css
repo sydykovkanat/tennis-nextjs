@@ -1,0 +1,11 @@
+.addButton {
+  @apply w-full mt-4;
+}
+
+.inputGroup {
+  @apply flex flex-col mb-3;
+}
+
+.label {
+  @apply mb-1;
+}

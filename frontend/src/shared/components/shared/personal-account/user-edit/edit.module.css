@@ -1,0 +1,21 @@
+.inputField,
+.selectTrigger {
+  @apply h-12 w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm;
+  @apply focus:outline-none focus:border-[#64B32C] focus:ring-[#80BC41];
+}
+
+.formWrapper {
+  @apply flex flex-col gap-1.5;
+}
+
+.buttonWrapper {
+  @apply flex flex-col gap-1 mt-1;
+}
+
+.inputBlock {
+  @apply flex flex-col;
+}
+
+.label {
+  @apply mb-1;
+}

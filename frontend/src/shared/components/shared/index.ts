@@ -72,6 +72,18 @@ export { UserSearch } from './admin-users-list/user-search/user-search';
 export { useUserSearch } from './admin-users-list/hooks/use-user-search';
 export { UserEdit } from './personal-account/user-edit/user-edit';
 export { ThemeSwitcher } from './theme-switcher/theme-switcher';
+export { PersonalData } from './personal-account/personal-data/personal-data';
+export { Rewards } from './personal-account/rewards/rewards';
+export { useRewards } from './personal-account/hooks/use-rewards';
+export { Cup } from './personal-account/rewards/components/icons/Cup';
+export { Medal } from './personal-account/rewards/components/icons/Medal';
+export { Racket } from './personal-account/rewards/components/icons/Racket';
+export { IconComponent } from './personal-account/rewards/components/icons/icon-component';
+export { RewardItem } from './personal-account/rewards/components/reward-item/reward-item';
+export { useTabsWithRewards } from './personal-account/hooks/use-tabs-with-rewards';
+export { RewardForm } from './personal-account/rewards/components/rewards-form/reward-form';
+export { useRewardForm } from './personal-account/hooks/use-reward-form';
+export { RewardAdminItem } from './personal-account/rewards/components/reward-admin-item/reward-admin-item';
 
 export { InfoTip } from './info-tip/info-tip';
 

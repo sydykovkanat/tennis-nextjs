@@ -7,3 +7,4 @@ export { Users } from './users/users';
 export { Top } from './top/top';
 export { Partners } from './partners/partners';
 export { Category } from './category/category';
+export { Rewards } from './rewards/rewards';
