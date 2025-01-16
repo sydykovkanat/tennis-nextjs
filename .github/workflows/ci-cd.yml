@@ -77,8 +77,8 @@ jobs:
         run: |
           echo "### Waiting for frontend to be ready... ###"
           while ! nc -z localhost 5183; do
-            echo "Frontend is not ready yet. Retrying in 5 seconds..."
-            sleep 5
+          echo "Frontend is not ready yet. Retrying in 5 seconds..."
+          sleep 5
           done
 
       - name: Run tests
@@ -129,3 +129,4 @@ jobs:
       - name: Finish♥️♥️♥️
         run: |
           echo "♥️♥️♥️ Поздравляю тебя милый мой! У тебя все получилось ♥️♥️♥️"
+          
