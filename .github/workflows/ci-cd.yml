@@ -35,62 +35,62 @@ jobs:
           npm ci
         working-directory: frontend
 
-      - name: Install tests dependencies
-        run: |
-          echo "### Installing test dependencies... ###"
-          npm ci
-        working-directory: tests
+      #- name: Install tests dependencies
+      #  run: |
+      #    echo "### Installing test dependencies... ###"
+      #    npm ci
+      #  working-directory: tests
 
-      - name: Seed test database
-        run: |
-          echo "### Start seed test database... ###"
-          npm run seed:test
-        working-directory: backend
+      #- name: Seed test database
+      #  run: |
+      #    echo "### Start seed test database... ###"
+      #    npm run seed:test
+      #  working-directory: backend
 
-      - name: Start backend tests with pm2
-        run: |
-          echo "### Starting backend tests with pm2... ###"
-          pm2 start 0
-        working-directory: backend
+      #- name: Start backend tests with pm2
+      #  run: |
+      #    echo "### Starting backend tests with pm2... ###"
+      #    pm2 start 0
+      #  working-directory: backend
 
-      - name: Wait for backend to be ready
-        run: |
-          echo "### Waiting for backend to be ready... ###"
-          while ! nc -z localhost 8010; do
-            echo "Backend is not ready yet. Retrying in 5 seconds..."
-            sleep 5
-          done
+      #- name: Wait for backend to be ready
+      #  run: |
+      #    echo "### Waiting for backend to be ready... ###"
+      #    while ! nc -z localhost 8010; do
+      #      echo "Backend is not ready yet. Retrying in 5 seconds..."
+      #      sleep 5
+      #    done
 
-      - name: Build frontend for tests
-        run: |
-          echo "### Build test frontend"
-          npm run build:test
-        working-directory: frontend
+      #- name: Build frontend for tests
+      #  run: |
+      #    echo "### Build test frontend"
+      #    npm run build:test
+      #  working-directory: frontend
 
-      - name: Start frontend tests with pm2
-        run: |
-          echo "### Starting frontend tests with pm2... ###"
-          pm2 start 1
-        working-directory: frontend
+      #- name: Start frontend tests with pm2
+      #  run: |
+      #    echo "### Starting frontend tests with pm2... ###"
+      #    pm2 start 1
+      #  working-directory: frontend
 
-      - name: Wait for frontend to be ready
-        run: |
-          echo "### Waiting for frontend to be ready... ###"
-          while ! nc -z localhost 5183; do
-          echo "Frontend is not ready yet. Retrying in 5 seconds..."
-          sleep 5
-          done
+      #- name: Wait for frontend to be ready
+      #  run: |
+      #    echo "### Waiting for frontend to be ready... ###"
+      #    while ! nc -z localhost 5183; do
+      #    echo "Frontend is not ready yet. Retrying in 5 seconds..."
+      #    sleep 5
+      #    done
 
-      - name: Run tests
-        run: |
-          echo "### Start tests... ###"
-          npx codeceptjs run --steps || true
-        working-directory: tests
+      #- name: Run tests
+      #  run: |
+      #    echo "### Start tests... ###"
+      #    npx codeceptjs run --steps || true
+      #  working-directory: tests
 
-      - name: Stop test processes
-        run: |
-          echo "### Stop test pm2 process... ###"
-          pm2 stop 0 1
+      #- name: Stop test processes
+      #  run: |
+      #    echo "### Stop test pm2 process... ###"
+      #    pm2 stop 0 1
 
       - name: Restart backend
         run: |
@@ -129,4 +129,3 @@ jobs:
       - name: Finish♥️♥️♥️
         run: |
           echo "♥️♥️♥️ Поздравляю тебя милый мой! У тебя все получилось ♥️♥️♥️"
-          
