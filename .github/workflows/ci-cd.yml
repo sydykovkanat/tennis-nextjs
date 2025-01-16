@@ -26,6 +26,7 @@ jobs:
         run: |
           echo "### Installing backend dependencies... ###"
           npm ci
+          npm run seed
         working-directory: backend
 
       - name: Install frontend dependencies
