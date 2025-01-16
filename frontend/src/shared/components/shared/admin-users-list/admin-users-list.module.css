@@ -17,3 +17,7 @@
 .scrollArea {
   @apply max-w-max pb-3 mx-auto;
 }
+
+.loadingText {
+  @apply text-center;
+}

@@ -52,7 +52,7 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
 
   return (
     <>
-      <div className={cn(styles.container, showResetButton ? styles.withResetButton : 'md:grid-cols-3')}>
+      <div className={cn(styles.container, showResetButton ? styles.withResetButton : styles.filters)}>
         <Input
           placeholder={'Поиск по ФИО…'}
           value={currentFilters.fullName}
@@ -96,11 +96,7 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
         </Select>
 
         {showResetButton && (
-          <Button
-            variant={'outline'}
-            onClick={handleResetFilters}
-            className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
-          >
+          <Button variant={'outline'} onClick={handleResetFilters} className={cn(styles.buttonReset)}>
             Сбросить
             <XIcon />
           </Button>

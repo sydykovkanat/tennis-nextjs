@@ -26,7 +26,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
       ) : (
         <Table>
           <TableHeader>
-            <TableRow className={'hover:dark:bg-gray-800'}>
+            <TableRow>
               <TableHead>Статус</TableHead>
               <TableHead>ФИО</TableHead>
               <TableHead>Номер телефона</TableHead>
@@ -39,7 +39,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
           </TableHeader>
           <TableBody>
             {users.map((user) => (
-              <TableRow className={'hover:dark:bg-gray-800'} key={user._id} data-testid={`${user.fullName}`}>
+              <TableRow key={user._id} data-testid={`${user.fullName}`}>
                 <TableCell className={styles.tableCell}>{user.isActive ? 'Активен' : 'Неактивен'}</TableCell>
                 <TableCell className={styles.tableCell}>{user.fullName}</TableCell>
                 <TableCell className={styles.tableCell}>{user.telephone}</TableCell>
@@ -59,7 +59,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                           onClick={() => toggleActive(user._id)}
                           data-testid='deactivate'
                         >
-                          <XMarkIcon className={'size-4'} />
+                          <XMarkIcon className={styles.icon} />
                         </Button>
                       </InfoTip>
                     ) : (
@@ -70,7 +70,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
                           onClick={() => toggleActive(user._id)}
                           data-testid='activate'
                         >
-                          <CheckIcon className={'size-4'} />
+                          <CheckIcon className={styles.icon} />
                         </Button>
                       </InfoTip>
                     )
