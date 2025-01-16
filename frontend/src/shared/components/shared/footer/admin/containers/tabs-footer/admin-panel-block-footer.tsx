@@ -1,6 +1,6 @@
 'use client';
 
-import {MainLogo, MainPartner, MenuPosition, PublicOffer, SocialNetwork} from '@/shared/components/shared';
+import { MainLogo, MainPartner, MenuPosition, PublicOffer, SocialNetwork } from '@/shared/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 

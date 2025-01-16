@@ -239,7 +239,6 @@ export const updateMainPartnerImage = async (req: Request, res: Response, next: 
   }
 };
 
-
 export const createMainLogo = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const logo = req.file ? req.file.filename : null;
@@ -248,11 +247,7 @@ export const createMainLogo = async (req: Request, res: Response, next: NextFunc
       return res.status(400).send({ error: 'Field logo is required!' });
     }
 
-    const mainLogo = await Footer.findOneAndUpdate(
-        {},
-        { $push: { mainLogo: { logo } } },
-        { new: true, upsert: true }
-    );
+    const mainLogo = await Footer.findOneAndUpdate({}, { $push: { mainLogo: { logo } } }, { new: true, upsert: true });
 
     return res.send(mainLogo);
   } catch (error) {
@@ -284,9 +279,9 @@ export const setCurrentLogo = async (req: Request, res: Response) => {
     }
 
     const updatedFooter = await Footer.findOneAndUpdate(
-        {},
-        { $set: { currentLogo: logoId } },
-        { new: true, upsert: true }
+      {},
+      { $set: { currentLogo: logoId } },
+      { new: true, upsert: true }
     );
 
     return res.send(updatedFooter.currentLogo);
@@ -304,12 +299,7 @@ export const deleteLogo = async (req: Request, res: Response) => {
       return res.status(400).send({ error: 'ID логотипа не указан' });
     }
 
-
-    const updatedFooter = await Footer.findOneAndUpdate(
-        {},
-        { $pull: { mainLogo: { _id: id } } },
-        { new: true }
-    );
+    const updatedFooter = await Footer.findOneAndUpdate({}, { $pull: { mainLogo: { _id: id } } }, { new: true });
 
     if (!updatedFooter) {
       return res.status(404).send({ error: 'Логотип или запись Footer не найдены' });

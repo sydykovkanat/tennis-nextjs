@@ -1,15 +1,15 @@
 .btnAddLogo {
-    @apply w-full xs:w-max;
+  @apply w-full xs:w-max;
 }
 
 .form {
-    @apply flex flex-col items-center;
+  @apply flex flex-col items-center;
 }
 
 .input {
-    @apply w-full mt-2;
+  @apply w-full mt-2;
 }
 
 .btnAddDialog {
-    @apply w-full mt-2;
+  @apply w-full mt-2;
 }

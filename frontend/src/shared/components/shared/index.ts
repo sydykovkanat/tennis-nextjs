@@ -84,6 +84,6 @@ export { EventCard } from './ratings/components/event-card/event-card';
 
 export { AdminRatings } from './ratings/admin/admin-rating';
 export { MainLogo } from './footer/admin/containers/tabs-content/main-logo';
-export  { MainLogoForm } from './footer/admin/components/main-logo/main-logo-form/main-logo-form';
+export { MainLogoForm } from './footer/admin/components/main-logo/main-logo-form/main-logo-form';
 export { MainLogoCards } from './footer/admin/components/main-logo/main-logo-cards/main-logo-cards';
 export { CustomDatepicker } from './custom-datepicker/custom-datepicker';

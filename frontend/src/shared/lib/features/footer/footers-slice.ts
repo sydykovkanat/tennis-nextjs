@@ -3,7 +3,9 @@ import {
   createMenuPosition,
   createSocialNetwork,
   deleteMenuPosition,
-  deleteOneSocialNetwork, fetchCurrentLogo, fetchDeleteLogo,
+  deleteOneSocialNetwork,
+  fetchCurrentLogo,
+  fetchDeleteLogo,
   getFooterItems,
   getOneMenuPosition,
   getOneSocialNetwork,
@@ -12,9 +14,9 @@ import {
   updatePublicOffer,
   updateSocialNetwork,
 } from '@/shared/lib/features/footer/footers-thunks';
-import {FooterElementsData, MainLogo, MenuOnePositionField, SocialOneNetworkField} from '@/shared/types/footer.types';
+import { FooterElementsData, MainLogo, MenuOnePositionField, SocialOneNetworkField } from '@/shared/types/footer.types';
+import { GlobalError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
-import {GlobalError} from '@/shared/types/user.types';
 
 interface FootersState {
   itemsData: FooterElementsData[];
@@ -26,8 +28,8 @@ interface FootersState {
   itemDeleting: string | null;
   itemUpdating: boolean;
   logo: MainLogo | null;
-  logoLoading:boolean
-  logoError:GlobalError | null;
+  logoLoading: boolean;
+  logoError: GlobalError | null;
   currentLogo: string | null;
 }
 
@@ -191,17 +193,17 @@ export const footersSlice = createSlice({
       state.logoError = null;
     });
 
-    builder.addCase(fetchDeleteLogo.pending,(state) => {
+    builder.addCase(fetchDeleteLogo.pending, (state) => {
       state.logoLoading = true;
       state.logoError = null;
     });
-    builder.addCase(fetchDeleteLogo.fulfilled,(state) => {
+    builder.addCase(fetchDeleteLogo.fulfilled, (state) => {
       state.logoLoading = false;
       state.logoError = null;
     });
-    builder.addCase(fetchDeleteLogo.rejected,(state,{ payload: error}) => {
+    builder.addCase(fetchDeleteLogo.rejected, (state, { payload: error }) => {
       state.logoLoading = false;
-      state.logoError =  error || null;
+      state.logoError = error || null;
     });
   },
   selectors: {

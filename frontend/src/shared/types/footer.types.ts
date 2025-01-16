@@ -50,7 +50,7 @@ export interface MenuOnePositionField {
 }
 
 export interface MainLogo {
-  _id:string
+  _id: string;
   logo: string;
 }
 

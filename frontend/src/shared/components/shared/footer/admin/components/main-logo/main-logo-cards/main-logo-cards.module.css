@@ -1,31 +1,31 @@
 .containerMainLogoItem {
-    @apply grid md:grid-cols-2 lg:grid-cols-3 gap-3;
+  @apply grid md:grid-cols-2 lg:grid-cols-3 gap-3;
 }
 
 .containerMainLogoItemNoText {
-    @apply flex items-center justify-center;
+  @apply flex items-center justify-center;
 }
 
 .blockImage {
-    @apply h-[75px] w-[75px] flex items-center rounded-lg;
+  @apply h-[75px] w-[75px] flex items-center rounded-lg;
 }
 
 .image {
-    @apply h-full w-full m-[5px] rounded-lg;
+  @apply h-full w-full rounded-lg;
 }
 
 .cardMainLogo {
-    @apply flex justify-start items-center rounded-lg object-cover h-[100px] w-full border cursor-pointer transition-all duration-300 ease-in-out;
+  @apply flex justify-start items-center rounded-lg object-cover p-[0.75rem] h-[86px] w-full border cursor-pointer transition-all duration-300 ease-in-out;
 }
 
 .cardMainLogo:hover {
-    @apply shadow-lg scale-105 dark:bg-[#1F2937];
+  @apply shadow-md dark:bg-[#1F2937];
 }
 
 .btnDelete {
-    @apply ms-auto items-center me-4;
+  @apply ms-auto items-center;
 }
 
 .noLogoText {
-    @apply mt-[30px];
+  @apply mt-[30px];
 }

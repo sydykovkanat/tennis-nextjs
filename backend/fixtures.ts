@@ -179,9 +179,9 @@ const run = async () => {
       ],
       mainLogo: [
         {
-          logo:'logo/Knauf.svg',
-        }
-      ]
+          logo: 'logo/t-club.svg',
+        },
+      ],
     },
   ]);
 

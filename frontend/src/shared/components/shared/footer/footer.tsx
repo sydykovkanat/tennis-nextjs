@@ -1,8 +1,10 @@
 'use client';
 
+import { Loader } from '@/shared/components/shared';
+import { useNavbarLogo } from '@/shared/components/shared/navbar/use-navbar-logo';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/shared/components/ui';
 import { API_URL, CURRENT_YEAR_FULL, NAVIGATION_ITEMS } from '@/shared/constants';
-import {cn, useAppSelector} from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { ChevronUpIcon } from '@radix-ui/react-icons';
@@ -12,8 +14,6 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 import styles from './footer.module.css';
-import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
-import {Loader} from '@/shared/components/shared';
 
 interface Props {
   dataItems: FooterElementsData[];
@@ -30,13 +30,9 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
           <div className={styles.logoWrapper}>
             <Link prefetch={true} href='/' className={styles.logo}>
               {loading ? (
-                  <Loader />
+                <Loader />
               ) : (
-                  <img
-                      className={styles.logo}
-                      src={API_URL + '/' + (currentLogo || 'kslt.svg')}
-                      alt='КСЛТ'
-                  />
+                <img className={styles.logo} src={API_URL + '/' + (currentLogo || 'kslt.svg')} alt='КСЛТ' />
               )}
             </Link>
           </div>

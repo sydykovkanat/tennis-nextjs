@@ -2,6 +2,7 @@
 
 import { Loader, NavbarMobile, ThemeSwitcher } from '@/shared/components/shared';
 import NavBarDropDown from '@/shared/components/shared/navbar/nav-bar-drop-down';
+import { useNavbarLogo } from '@/shared/components/shared/navbar/use-navbar-logo';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,16 +11,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/shared/components/ui';
-import {API_URL, NAVIGATION_ITEMS} from '@/shared/constants';
-import {cn, useAppSelector} from '@/shared/lib';
+import { API_URL, NAVIGATION_ITEMS } from '@/shared/constants';
+import { cn, useAppSelector } from '@/shared/lib';
 import { selectUser, selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { FooterElementsData } from '@/shared/types/footer.types';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 import React, { useEffect, useState } from 'react';
+
 import styles from './navbar.module.css';
-import {useNavbarLogo} from '@/shared/components/shared/navbar/use-navbar-logo';
+
 interface Props {
   dataItems: FooterElementsData[];
 }
@@ -42,15 +45,11 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
       <div className={styles.container}>
         <div className={styles.headerInner}>
           <Link prefetch={true} href='/' className={styles.logoWrapper}>
-              {loading ? (
-                  <Loader/>
-              ) : (
-                  <img
-                      className={styles.logo}
-                      src={API_URL + '/' + (currentLogo || 'kslt.svg')}
-                      alt='КСЛТ'
-                  />
-              )}
+            {loading ? (
+              <Loader />
+            ) : (
+              <img className={styles.logo} src={API_URL + '/' + (currentLogo || 'kslt.svg')} alt='КСЛТ' />
+            )}
           </Link>
 
           <div className={styles.navBarMobile}>

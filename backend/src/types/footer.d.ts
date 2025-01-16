@@ -5,7 +5,7 @@ export interface LinksMediaFields {
 }
 
 export interface LogoFields {
- logo: string;
+  logo: string;
 }
 
 export interface FooterFields {
