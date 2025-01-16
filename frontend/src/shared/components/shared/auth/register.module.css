@@ -55,7 +55,7 @@
 }
 
 .registerBtn {
-  @apply  w-full h-12 mb-5 mt-8;
+  @apply w-full h-12 mb-5 mt-8;
 }
 
 .isAlreadyRegistered {

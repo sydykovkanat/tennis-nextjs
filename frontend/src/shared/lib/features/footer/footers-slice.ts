@@ -1,8 +1,11 @@
 import {
+  createMainLogo,
   createMenuPosition,
   createSocialNetwork,
   deleteMenuPosition,
   deleteOneSocialNetwork,
+  fetchCurrentLogo,
+  fetchDeleteLogo,
   getFooterItems,
   getOneMenuPosition,
   getOneSocialNetwork,
@@ -11,7 +14,8 @@ import {
   updatePublicOffer,
   updateSocialNetwork,
 } from '@/shared/lib/features/footer/footers-thunks';
-import { FooterElementsData, MenuOnePositionField, SocialOneNetworkField } from '@/shared/types/footer.types';
+import { FooterElementsData, MainLogo, MenuOnePositionField, SocialOneNetworkField } from '@/shared/types/footer.types';
+import { GlobalError } from '@/shared/types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface FootersState {
@@ -23,6 +27,10 @@ interface FootersState {
   itemCreating: boolean;
   itemDeleting: string | null;
   itemUpdating: boolean;
+  logo: MainLogo | null;
+  logoLoading: boolean;
+  logoError: GlobalError | null;
+  currentLogo: string | null;
 }
 
 const initialState: FootersState = {
@@ -34,6 +42,10 @@ const initialState: FootersState = {
   itemCreating: false,
   itemDeleting: null,
   itemUpdating: false,
+  logo: null,
+  logoLoading: false,
+  logoError: null,
+  currentLogo: null,
 };
 
 export const footersSlice = createSlice({
@@ -155,6 +167,44 @@ export const footersSlice = createSlice({
     builder.addCase(updateMainPartnerImage.rejected, (state) => {
       state.itemUpdating = false;
     });
+
+    builder.addCase(createMainLogo.pending, (state) => {
+      state.logoLoading = true;
+      state.logoError = null;
+    });
+    builder.addCase(createMainLogo.fulfilled, (state) => {
+      state.logoLoading = false;
+    });
+    builder.addCase(createMainLogo.rejected, (state) => {
+      state.logoLoading = false;
+      state.logoError = null;
+    });
+
+    builder.addCase(fetchCurrentLogo.pending, (state) => {
+      state.logoLoading = true;
+      state.logoError = null;
+    });
+    builder.addCase(fetchCurrentLogo.fulfilled, (state, { payload: logoId }) => {
+      state.logoLoading = false;
+      state.currentLogo = logoId;
+    });
+    builder.addCase(fetchCurrentLogo.rejected, (state) => {
+      state.logoLoading = false;
+      state.logoError = null;
+    });
+
+    builder.addCase(fetchDeleteLogo.pending, (state) => {
+      state.logoLoading = true;
+      state.logoError = null;
+    });
+    builder.addCase(fetchDeleteLogo.fulfilled, (state) => {
+      state.logoLoading = false;
+      state.logoError = null;
+    });
+    builder.addCase(fetchDeleteLogo.rejected, (state, { payload: error }) => {
+      state.logoLoading = false;
+      state.logoError = error || null;
+    });
   },
   selectors: {
     selectItemsData: (state) => state.itemsData,
@@ -164,6 +214,9 @@ export const footersSlice = createSlice({
     selectItemCreating: (state) => state.itemCreating,
     selectItemDeleting: (state) => state.itemDeleting,
     selectItemUpdating: (state) => state.itemUpdating,
+    selectMainLogoLoading: (state) => state.logoLoading,
+    selectCurrentLogo: (state) => state.currentLogo,
+    selectErrorLogo: (state) => state.logoError,
   },
 });
 
@@ -176,4 +229,7 @@ export const {
   selectItemCreating,
   selectItemDeleting,
   selectItemUpdating,
+  selectMainLogoLoading,
+  selectCurrentLogo,
+  selectErrorLogo,
 } = footersSlice.selectors;

@@ -177,6 +177,11 @@ const run = async () => {
           value: 'https://t.me/+OAAcVaEu2oozNGZi',
         },
       ],
+      mainLogo: [
+        {
+          logo: 'logo/t-club.svg',
+        },
+      ],
     },
   ]);
 
