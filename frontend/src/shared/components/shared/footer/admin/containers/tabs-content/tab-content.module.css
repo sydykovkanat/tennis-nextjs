@@ -101,3 +101,11 @@
 .socialNetworkCardContainer {
   @apply flex items-center gap-2 mt-3 flex-wrap;
 }
+
+.containerForHeader {
+  @apply flex justify-end flex-col;
+}
+
+.headerMainLogoContainer {
+  @apply flex mb-4 xs:items-center justify-end gap-2 flex-col xs:flex-row;
+}

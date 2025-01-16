@@ -238,3 +238,76 @@ export const updateMainPartnerImage = async (req: Request, res: Response, next: 
     return next(error);
   }
 };
+
+export const createMainLogo = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const logo = req.file ? req.file.filename : null;
+
+    if (!logo) {
+      return res.status(400).send({ error: 'Field logo is required!' });
+    }
+
+    const mainLogo = await Footer.findOneAndUpdate({}, { $push: { mainLogo: { logo } } }, { new: true, upsert: true });
+
+    return res.send(mainLogo);
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      return res.status(400).send(error);
+    }
+    return next(error);
+  }
+};
+
+export const getCurrentLogo = async (req: Request, res: Response) => {
+  try {
+    const footer = await Footer.findOne({});
+    if (!footer || !footer.currentLogo) {
+      return res.status(404).send({ error: 'Текущий логотип не найден' });
+    }
+    return res.send(footer.currentLogo);
+  } catch (error) {
+    console.error('Ошибка получения логотипа:', error);
+    return res.status(500).send({ error: 'Ошибка получения текущего логотипа' });
+  }
+};
+
+export const setCurrentLogo = async (req: Request, res: Response) => {
+  try {
+    const { logoId } = req.body;
+    if (!logoId) {
+      return res.status(400).send({ error: 'Логотип не указан' });
+    }
+
+    const updatedFooter = await Footer.findOneAndUpdate(
+      {},
+      { $set: { currentLogo: logoId } },
+      { new: true, upsert: true }
+    );
+
+    return res.send(updatedFooter.currentLogo);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ error: 'Ошибка обновления логотипа' });
+  }
+};
+
+export const deleteLogo = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).send({ error: 'ID логотипа не указан' });
+    }
+
+    const updatedFooter = await Footer.findOneAndUpdate({}, { $pull: { mainLogo: { _id: id } } }, { new: true });
+
+    if (!updatedFooter) {
+      return res.status(404).send({ error: 'Логотип или запись Footer не найдены' });
+    }
+
+    return res.send({ message: 'Логотип успешно удален', updatedFooter });
+  } catch (error) {
+    console.error('Ошибка удаления логотипа:', error);
+    return res.status(500).send({ error: 'Ошибка удаления логотипа' });
+  }
+};

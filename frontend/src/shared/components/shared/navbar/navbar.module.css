@@ -20,7 +20,7 @@
 }
 
 .logoWrapper {
-  @apply w-[76px] h-[28px] md:w-[98px] md:h-[36px];
+  @apply w-[76px] h-[28px] md:w-[98px] md:h-[36px] flex items-center;
 }
 
 .logo {

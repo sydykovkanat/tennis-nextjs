@@ -4,6 +4,7 @@ export interface FooterElementsData {
   menuPosition: MenuPositionFields[];
   publicOffer: string;
   socialNetwork: SocialNetworkFields[];
+  mainLogo: MainLogo[];
 }
 
 export interface SocialNetworkFields {
@@ -48,6 +49,11 @@ export interface MenuOnePositionField {
   ];
 }
 
+export interface MainLogo {
+  _id: string;
+  logo: string;
+}
+
 export interface LinkDataMutation {
   name: string;
   value: string;
@@ -55,4 +61,8 @@ export interface LinkDataMutation {
 
 export interface SocialNetworkIconsValue {
   name: string;
+}
+
+export interface MainLogoMutation {
+  logo: string | null;
 }

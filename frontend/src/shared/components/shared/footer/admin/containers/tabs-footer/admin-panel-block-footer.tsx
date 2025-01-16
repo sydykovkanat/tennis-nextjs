@@ -1,6 +1,6 @@
 'use client';
 
-import { MainPartner, MenuPosition, PublicOffer, SocialNetwork } from '@/shared/components/shared';
+import { MainLogo, MainPartner, MenuPosition, PublicOffer, SocialNetwork } from '@/shared/components/shared';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
 import { cn } from '@/shared/lib';
 
@@ -20,7 +20,7 @@ export const AdminPanelBlockFooter = () => {
         </div>
       </div>
       <Tabs defaultValue='social-network' value={footerTab} onValueChange={handleFooterTabChange}>
-        <TabsList className={cn(styles.tabsList)}>
+        <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
           {ListTabsName.map((item, id) => (
             <TabsTrigger key={id} className={styles.tabsTrigger} value={item.value}>
               {item.name}
@@ -38,6 +38,9 @@ export const AdminPanelBlockFooter = () => {
         </TabsContent>
         <TabsContent value='main-partner'>
           <MainPartner />
+        </TabsContent>
+        <TabsContent value='main-logo'>
+          <MainLogo />
         </TabsContent>
       </Tabs>
     </>
