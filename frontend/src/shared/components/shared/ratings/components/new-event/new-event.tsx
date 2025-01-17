@@ -1,6 +1,7 @@
 'use client';
 
 import { EventForm } from '@/shared/components/shared/ratings/components/event-form/event-form';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Dialog,
   DialogClose,
@@ -39,10 +40,10 @@ export const NewEvent: React.FC<Props> = ({ ratings, children }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'pb-2'}>
+      <DialogContent className={styles.dialogContent}>
         <DialogHeader>
           <DialogTitle>Новое событие</DialogTitle>
-          <DialogDescription className={'pb-2'}>
+          <DialogDescription className={styles.dialogContent}>
             Введите данные для создания нового события. После создания, событие будет доступно для просмотра на странице
             Рейтинг
           </DialogDescription>

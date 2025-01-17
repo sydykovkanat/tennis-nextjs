@@ -23,7 +23,7 @@ export const DatePicker: React.FC = () => {
             {selectedDates.startDate ? (
               format(selectedDates.startDate, 'PPP', { locale: ru })
             ) : (
-              <span className='text-tn-default-black dark:text-white'>Начало даты</span>
+              <span className={cn(styles.buttonText, 'dark:text-white')}>Начало даты</span>
             )}
             <ChevronDownIcon
               className='relative ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180'
@@ -48,7 +48,7 @@ export const DatePicker: React.FC = () => {
             {selectedDates.endDate ? (
               format(selectedDates.endDate, 'PPP', { locale: ru })
             ) : (
-              <span className='text-tn-default-black dark:text-white'>Конец даты</span>
+              <span className={cn(styles.buttonText, 'dark:text-white')}>Конец даты</span>
             )}
             <ChevronDownIcon
               className='relative ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180'

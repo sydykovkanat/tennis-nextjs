@@ -1,4 +1,5 @@
 import { useEvent } from '@/shared/components/shared/ratings/hooks/use-event';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Button,
   Input,
@@ -45,10 +46,7 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
           </SelectTrigger>
           <SelectContent>
             {ratings.map((rating) => (
-              <SelectItem
-                key={rating._id}
-                value={rating._id}
-              >
+              <SelectItem key={rating._id} value={rating._id}>
                 {rating.year}
               </SelectItem>
             ))}
@@ -61,7 +59,7 @@ export const EventForm: React.FC<Props> = ({ ratings, event, onSubmit }) => {
         <Input id='link' placeholder='Введите ссылку' type='url' onChange={handleChange} value={eventMutation.link} />
       </div>
 
-      <Button disabled={!isFormValid || eventFetching} className='mt-7 w-full' type='submit'>
+      <Button disabled={!isFormValid || eventFetching} className={styles.eventFormButton} type='submit'>
         {eventFetching ? 'Загрузка…' : 'Сохранить'}
       </Button>
     </form>

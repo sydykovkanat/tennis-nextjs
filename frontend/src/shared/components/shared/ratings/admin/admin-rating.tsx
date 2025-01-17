@@ -5,25 +5,27 @@ import { CalendarPlusIcon, Grid2X2PlusIcon } from 'lucide-react';
 
 import React from 'react';
 
+import styles from './admin-rating.module.css';
+
 export const AdminRatings: React.FC = () => {
   const { maleRatings, ratings, ratingsFetching, femaleRatings, mixedRatings } = useRating();
 
   return (
     <>
-      <header className={'flex md:items-center justify-between gap-2 flex-col md:flex-row border-b pb-1.5'}>
+      <header className={styles.adminRatingHeader}>
         <div>
           <h2 className={'text-2xl font-medium leading-none'}>Рейтинги</h2>
-          <small className={'text-muted-foreground text-base'}>Список всех рейтингов и управление рейтингами</small>
+          <small className={styles.adminRatingSubTitle}>Список всех рейтингов и управление рейтингами</small>
         </div>
 
-        <div className={'flex flex-col justify-stretch xs:flex-row items-center gap-2'}>
+        <div className={styles.adminRatingButtonsContainer}>
           <NewRating>
-            <Button className={'w-full'} icon={Grid2X2PlusIcon}>
+            <Button className={styles.adminRatingButton} icon={Grid2X2PlusIcon}>
               Добавить рейтинг
             </Button>
           </NewRating>
           <NewEvent ratings={ratings}>
-            <Button className={'w-full'} icon={CalendarPlusIcon}>
+            <Button className={styles.adminRatingButton} icon={CalendarPlusIcon}>
               Добавить событие
             </Button>
           </NewEvent>
@@ -32,34 +34,32 @@ export const AdminRatings: React.FC = () => {
 
       <section>
         {ratingsFetching ? (
-          <div className={'grid grid-cols-4 gap-2 mt-4'}>
+          <div className={styles.ratingSkeletonContainer}>
             {Array.from({ length: 12 }).map((_, index) => (
-              <Skeleton key={index} className={'h-24 flex-1'} />
+              <Skeleton key={index} className={styles.ratingSkeleton} />
             ))}
           </div>
         ) : !ratingsFetching && ratings.length === 0 ? (
-          <span className={'text-muted-foreground mt-10 block text-center'}>
-            Список рейтингов пуст. Пожалуйста, добавьте рейтинг.
-          </span>
+          <span className={styles.noRatingText}>Список рейтингов пуст. Пожалуйста, добавьте рейтинг.</span>
         ) : (
-          <div className={'mt-4 space-y-10'}>
+          <div className={styles.adminRatingsContainer}>
             {maleRatings.length > 0 && (
               <div>
-                <h3 className={'font-bold text-center text-xl mb-3'}>Мужской рейтинг</h3>
+                <h3 className={styles.adminRatingTitle}>Мужской рейтинг</h3>
                 <RatingBlock ratings={maleRatings} />
               </div>
             )}
 
             {femaleRatings.length > 0 && (
               <div>
-                <h3 className={'font-bold text-center text-xl mb-3'}>Женский рейтинг</h3>
+                <h3 className={styles.adminRatingTitle}>Женский рейтинг</h3>
                 <RatingBlock ratings={femaleRatings} />
               </div>
             )}
 
             {mixedRatings.length > 0 && (
               <div>
-                <h3 className={'font-bold text-center text-xl mb-3'}>Смешанный рейтинг</h3>
+                <h3 className={styles.adminRatingTitle}>Смешанный рейтинг</h3>
                 <RatingBlock ratings={mixedRatings} />
               </div>
             )}

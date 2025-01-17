@@ -1,3 +1,7 @@
+.newsCardImage {
+  @apply h-[300px] max-h-[300px] object-cover w-full mb-6 rounded-lg;
+}
+
 .newsCard {
   @apply h-full w-full flex flex-col border-none shadow-none bg-transparent !important;
 }
@@ -10,26 +14,22 @@
   @apply flex flex-wrap mt-auto items-start p-0 !important;
 }
 
+.newsCardContentInner {
+  @apply w-full flex justify-between items-start gap-3;
+}
+
 .newsCardFooter {
   @apply flex flex-wrap justify-between items-center border-t pt-2 !important;
 }
 
 .newsCardSubtitle {
-  @apply text-tn-default-black text-[16px] dark:text-white leading-none truncate !important;
+  @apply text-tn-default-black text-[16px] leading-none truncate;
 }
 
 .newsCardTitle {
-  @apply text-cr-black font-semibold dark:text-white text-lg !important;
+  @apply text-cr-black font-semibold text-lg;
 }
 
 .newsCardCreatedAt {
-  @apply text-cr-green-900 text-sm dark:text-[#64B32C] !important;
-}
-
-.newsCardTitle {
-  @apply text-cr-black font-semibold text-lg !important;
-}
-
-.newsCardCreatedAt {
-  @apply text-cr-green-900 text-sm !important;
+  @apply text-cr-green-900 text-sm;
 }

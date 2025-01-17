@@ -2,6 +2,7 @@
 
 import { Loader } from '@/shared/components/shared';
 import { useRatingForm } from '@/shared/components/shared/ratings/hooks/use-rating-form';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Button,
   Input,
@@ -49,7 +50,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-7'}>
+      <Button disabled={!isFormValid || ratingsCreating} className={styles.eventFormButton}>
         Добавить {ratingsCreating && <Loader theme={'light'} />}
       </Button>
     </form>

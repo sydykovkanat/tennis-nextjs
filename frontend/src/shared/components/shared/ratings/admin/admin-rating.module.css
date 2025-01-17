@@ -1,0 +1,39 @@
+.adminRatingHeader {
+  @apply flex md:items-center justify-between gap-2 flex-col md:flex-row border-b pb-1.5;
+}
+
+.adminRatingTitle {
+  @apply text-2xl font-medium leading-none;
+}
+
+.adminRatingSubTitle {
+  @apply text-muted-foreground text-base;
+}
+
+.adminRatingButtonsContainer {
+  @apply flex flex-col justify-stretch xs:flex-row items-center gap-2;
+}
+
+.adminRatingButton {
+  @apply w-full;
+}
+
+.ratingSkeletonContainer {
+  @apply grid grid-cols-4 gap-2 mt-4;
+}
+
+.ratingSkeleton {
+  @apply h-24 flex-1;
+}
+
+.noRatingText {
+  @apply text-muted-foreground mt-10 block text-center;
+}
+
+.adminRatingsContainer {
+  @apply mt-4 space-y-10;
+}
+
+.adminRatingTitle {
+  @apply font-bold text-center text-xl mb-3;
+}
