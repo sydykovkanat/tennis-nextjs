@@ -1,5 +1,5 @@
 .underlineAccent {
-  @apply relative text-white;
+  @apply relative;
 }
 
 .underlineAccent::before {
@@ -169,7 +169,7 @@
 }
 
 .mobileMenuLiActionsText {
-  @apply font-bold text-white;
+  @apply font-bold;
 }
 
 .mobileMenuExit {

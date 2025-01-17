@@ -3,7 +3,7 @@
 }
 
 .contentBlock {
-  @apply flex items-start gap-2 p-0 justify-between flex-col xs:flex-row lg:items-center flex-wrap;
+  @apply flex items-start gap-2 p-0 justify-between flex-col xs:flex-row lg:items-center flex-wrap !important;
 }
 
 .text {
