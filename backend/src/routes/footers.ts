@@ -56,5 +56,5 @@ footersRouter.post(
   createMainLogo
 );
 footersRouter.post('/set-current-logo', auth, permit('admin', 'moderator'), setCurrentLogo);
-footersRouter.get('/get-current-logo', auth, permit('admin', 'moderator'), getCurrentLogo);
+footersRouter.get('/get-current-logo', getCurrentLogo);
 footersRouter.delete('/delete-logo/:id', auth, permit('admin', 'moderator'), deleteLogo);
