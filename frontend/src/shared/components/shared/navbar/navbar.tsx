@@ -112,7 +112,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                 {user ? (
                   <NavBarDropDown />
                 ) : (
-                  <Link prefetch={true} className={cn(styles.underlineAccent)} href='/login'>
+                  <Link prefetch={true} className={cn(styles.underlineAccent, 'text-white')} href='/login'>
                     Авторизация
                   </Link>
                 )}

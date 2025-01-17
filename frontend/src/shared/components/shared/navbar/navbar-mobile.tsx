@@ -145,7 +145,7 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
           )}
           {user && (
             <li className={styles.mobileMenuExit} onClick={handleLogout}>
-              <span className={cn(styles.underlineAccent, styles.mobileMenuLiActionsText)}>Выйти</span>
+              <span className={cn(styles.underlineAccent, styles.mobileMenuLiActionsText, 'text-white')}>Выйти</span>
             </li>
           )}
           <li className={styles.themeSwitcherElement}>
