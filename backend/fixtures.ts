@@ -104,7 +104,29 @@ const run = async () => {
       password: '123qwe',
       email: 'alice@gmail.com',
       token: randomUUID(),
-    }
+    },
+     {
+      category: masters._id,
+      fullName: 'Test User',
+      telephone: '0111 111 111',
+      dateOfBirth: '2007-10-15',
+      gender: 'male',
+      role: 'admin',
+      password: '123qwe',
+      email: 'test1@gmail.com',
+      token: randomUUID(),
+    },
+     {
+      category: masters._id,
+      fullName: 'Test User',
+      telephone: '0222 222 222',
+      dateOfBirth: '2007-10-15',
+      gender: 'male',
+      role: 'admin',
+      password: '123qwe',
+      email: 'test2@gmail.com',
+      token: randomUUID(),
+    },
   );
 
   await RatingMember.create(mainRatingsFixtures);
