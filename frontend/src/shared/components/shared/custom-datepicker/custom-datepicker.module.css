@@ -7,11 +7,15 @@
 }
 
 .button {
-  @apply w-full font-normal justify-start hover:bg-transparent bg-transparent !important;
+  @apply w-full font-normal justify-start hover:bg-transparent bg-transparent focus:border-tn-green !important;
+}
+
+.buttonError {
+  @apply border-red-600;
 }
 
 .popoverContent {
-  @apply w-full p-0;
+  @apply w-full p-0 !important;
 }
 
 .datepickerPlaceholder {

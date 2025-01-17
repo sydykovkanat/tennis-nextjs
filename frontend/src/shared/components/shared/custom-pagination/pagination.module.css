@@ -1,7 +1,16 @@
+.pagination {
+  @apply py-6;
+}
+
 .paginationItem {
-  @apply hidden min-[380px]:list-item;
+  @apply hidden min-[380px]:list-item border rounded-lg;
 }
 
 .selectTrigger {
   @apply flex justify-between items-center w-11 h-9;
 }
+
+.paginationButton {
+  @apply hover:bg-tn-green-secondary !important;
+}
+

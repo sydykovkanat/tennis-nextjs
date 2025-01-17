@@ -43,17 +43,7 @@ export const CustomDatepicker: React.FC<Props> = ({
       </Label>
       <Popover>
         <PopoverTrigger asChild>
-          <Button
-            variant='outline'
-            className={cn(
-              styles.button,
-              'dark:bg-transparent',
-              'dark:border-gray-300',
-              'focus:dark:border-gray-300',
-              buttonClassName,
-              error && 'border-red-600',
-            )}
-          >
+          <Button variant='outline' className={cn(styles.button, buttonClassName, error && styles.buttonError)}>
             {value ? (
               format(parseDate(value) || new Date(), 'PPP', { locale: ru })
             ) : (
