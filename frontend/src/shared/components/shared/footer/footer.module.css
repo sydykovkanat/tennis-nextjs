@@ -1,5 +1,5 @@
 .footer {
-  @apply bg-cr-shark pt-8 pb-4 dark:bg-gray-900;
+  @apply bg-cr-shark pt-8 pb-4;
 }
 
 .footerWrapper {
@@ -43,7 +43,7 @@
 }
 
 .headingMainPartner {
-  @apply pb-[34px] text-lg xs:text-xl;
+  @apply pb-[34px] text-lg xs:text-xl text-center;
 }
 
 .linksList {

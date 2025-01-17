@@ -75,7 +75,9 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                   <NavigationMenu>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className={styles.navigationMenuTrigger}>
+                          Положение
+                        </NavigationMenuTrigger>
                         <NavigationMenuContent>
                           <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
                             {dataItems.length > 0 &&
@@ -110,7 +112,7 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                 {user ? (
                   <NavBarDropDown />
                 ) : (
-                  <Link prefetch={true} className={cn(styles.underlineAccent, 'text-white')} href='/login'>
+                  <Link prefetch={true} className={cn(styles.underlineAccent)} href='/login'>
                     Авторизация
                   </Link>
                 )}

@@ -1,5 +1,5 @@
 .underlineAccent {
-  @apply relative;
+  @apply relative text-white;
 }
 
 .underlineAccent::before {
@@ -59,6 +59,10 @@
   @apply block p-[25px];
 }
 
+.navigationMenuTrigger {
+  @apply text-white !important;
+}
+
 .navigationMenu {
   @apply hidden md:flex items-center gap-10;
 }
@@ -74,6 +78,10 @@
 
 .iconMenuDropDown {
   @apply w-[15px] h-[15px];
+}
+
+.mobileNavbarSheet {
+  @apply w-full border-0 p-[20px] xs:max-w-[400px] !important;
 }
 
 .mobileMenuIconBurger {
@@ -161,7 +169,7 @@
 }
 
 .mobileMenuLiActionsText {
-  @apply font-bold;
+  @apply font-bold text-white;
 }
 
 .mobileMenuExit {

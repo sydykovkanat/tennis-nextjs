@@ -79,7 +79,7 @@
 }
 
 .mainPartnerCardTooltipContent {
-  @apply w-[155px] h-[144px] border drop-shadow-2xl;
+  @apply w-[155px] h-[144px] border drop-shadow-2xl bg-muted;
 }
 
 .mainPartnerCardTooltipImage {
