@@ -22,7 +22,7 @@ export const AdminUsersList = () => {
   }, [setCurrentTab, updatedRoleUser]);
 
   if (!isClient) {
-    return <div className='text-center'>Loading...</div>;
+    return <div className={styles.loadingText}>Loading...</div>;
   }
 
   return (
@@ -37,13 +37,13 @@ export const AdminUsersList = () => {
       <Tabs value={currentTab} onValueChange={handleTabChange} orientation={'vertical'}>
         <ScrollArea className={styles.scrollArea}>
           {userPermission === 2 && (
-            <TabsList className={cn(styles.tabsListModerators, 'dark:bg-[#1F2937]')}>
+            <TabsList className={'dark:bg-[#1F2937]'}>
               <TabsTrigger value='users'>Список пользователей</TabsTrigger>
             </TabsList>
           )}
 
           {userPermission === 3 && (
-            <TabsList className={styles.tabsList}>
+            <TabsList className={cn(styles.tabsList, 'dark:bg-[#1F2937]')}>
               <TabsTrigger value='users'>Пользователи</TabsTrigger>
               <TabsTrigger key='moderators' value='moderators'>
                 Модераторы

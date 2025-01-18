@@ -17,16 +17,9 @@ export const RankFilter: React.FC<Props> = ({ className }) => {
 
   return (
     <Tabs value={selectedRank} onValueChange={updateRank} className={className}>
-      <TabsList className={cn(styles.tabsList, 'flex justify-between bg-transparent rounded-none text-black px-0')}>
+      <TabsList className={cn(styles.tabsList)}>
         {RANK_TABS.map(({ value, label }) => (
-          <TabsTrigger
-            key={value}
-            value={value}
-            className={cn(
-              styles.tabsTriggers,
-              'hover:bg-transparent dark:text-white leading-7 data-[state=active]:shadow-none data-[state=active]:text-tn-green dark:data-[state=active]:text-tn-green rounded-none',
-            )}
-          >
+          <TabsTrigger key={value} value={value} className={cn(styles.tabsTriggers, 'dark:text-white text-black')}>
             {label}
           </TabsTrigger>
         ))}

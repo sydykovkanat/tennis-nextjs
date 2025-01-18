@@ -43,7 +43,7 @@ export const AdminPartnerEdit: React.FC<Props> = ({ id, className, children }) =
     <div className={cn(className)}>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className='dark:bg-[#1F2937]'>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Редактировать партнера</DialogTitle>
             <DialogDescription className={'pb-3'}>Заполните форму для редактирования партнера</DialogDescription>

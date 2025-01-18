@@ -20,7 +20,7 @@ export const NewsCardMain: React.FC<Props> = ({ news, classname }) => {
   return (
     <Card className={cn(styles.newsCardMain)} style={{ backgroundImage: `url(${API_URL}/${newsCover})` }}>
       <Link href={`/news/${_id}`} className={cn(styles.newsLink, classname)}>
-        <CardContent className='flex flex-col h-full'>
+        <CardContent className={styles.newsCardContent}>
           <div className='mt-auto'>
             <p className={cn(styles.cardText)}>{subtitle}</p>
             <h3 className={cn(styles.cardText, 'font-bold')}>{title}</h3>

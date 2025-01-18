@@ -1,5 +1,5 @@
 .content {
-  @apply max-h-svh overflow-y-auto max-w-7xl;
+  @apply max-h-[90dvh] overflow-y-auto max-w-7xl !important;
 }
 
 .form {

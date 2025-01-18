@@ -52,7 +52,7 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
 
   return (
     <>
-      <div className={cn(styles.container, showResetButton ? styles.withResetButton : 'md:grid-cols-3')}>
+      <div className={cn(styles.container, showResetButton ? styles.withResetButton : styles.filters)}>
         <Input
           placeholder={'Поиск по ФИО…'}
           value={currentFilters.fullName}
@@ -72,27 +72,21 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
           <SelectTrigger className={styles.selectTrigger} data-testid={'category-filter'}>
             <SelectValue placeholder={'Выберите категорию…'} />
           </SelectTrigger>
-          <SelectContent className={'dark:bg-gray-900'}>
+          <SelectContent>
             {categoriesFetching ? (
-              <SelectItem className={'hover:dark:bg-gray-800'} disabled value={'null'}>
+              <SelectItem disabled value={'null'}>
                 Загрузка…
               </SelectItem>
             ) : !categoriesFetching && categories.length === 0 ? (
-              <SelectItem className={'hover:dark:bg-gray-800'} disabled value={'null'}>
+              <SelectItem disabled value={'null'}>
                 Список категорий пуст
               </SelectItem>
             ) : (
               <>
-                <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'all'}>
-                  Все
-                </SelectItem>
+                <SelectItem value={'all'}>Все</SelectItem>
 
                 {categories.map((category) => (
-                  <SelectItem
-                    className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
-                    key={category._id}
-                    value={category._id}
-                  >
+                  <SelectItem key={category._id} value={category._id}>
                     {category.name}
                   </SelectItem>
                 ))}
@@ -102,11 +96,7 @@ export const UserSearch: React.FC<UserSearchProps> = ({ role, onFiltersChange })
         </Select>
 
         {showResetButton && (
-          <Button
-            variant={'outline'}
-            onClick={handleResetFilters}
-            className={cn(styles.buttonReset, 'hover:dark:bg-[#1F2937] ')}
-          >
+          <Button variant={'outline'} onClick={handleResetFilters} className={cn(styles.buttonReset)}>
             Сбросить
             <XIcon />
           </Button>

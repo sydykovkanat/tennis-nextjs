@@ -3,7 +3,7 @@
 }
 
 .card {
-  @apply flex flex-col bg-[white] dark:bg-[#aec9a5] rounded-[19px];
+  @apply flex flex-col bg-[white] rounded-[19px];
 }
 
 .cardInfo {
@@ -19,23 +19,23 @@
 }
 
 .cardActionLink {
-  @apply hover:text-[#4d4d4d] dark:hover:text-black mt-1 text-[#8c8c8c] dark:text-[#4d4d4d] underline underline-offset-2;
+  @apply hover:text-gray-600 mt-1 text-[#8c8c8c] underline underline-offset-2 cursor-pointer;
 }
 
 .cardPopover {
-  @apply bg-gray-100 text-xs;
+  @apply bg-gray-100 text-xs dark:text-white;
 }
 
 .cardActionsWrapper {
-  @apply flex flex-col text-[13px] mt-3 sm:mt-0;
+  @apply flex flex-col text-[13px] mt-3 sm:mt-0  !important;
 }
 
 .tournamentName {
-  @apply flex items-center gap-2 font-bold text-sm md:text-base dark:text-black;
+  @apply flex items-center gap-2 font-bold text-sm md:text-base;
 }
 
 .tournamentCategory {
-  @apply text-tn-green italic dark:text-[#478c16];
+  @apply text-tn-green italic;
 }
 
 .cardInfoWrapper {
@@ -51,11 +51,11 @@
 }
 
 .tournamentOver {
-  @apply bg-gray-100 text-xs;
+  @apply bg-gray-100 text-xs dark:text-white;
 }
 
 .tournamentOverText {
-  @apply text-gray-400 italic text-sm dark:text-gray-600;
+  @apply text-gray-400 italic text-sm;
 }
 
 .registerIcon {

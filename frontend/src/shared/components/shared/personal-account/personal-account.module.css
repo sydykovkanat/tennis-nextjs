@@ -1,9 +1,10 @@
 .accountWrapper {
   @apply bg-white p-[25px] sm:p-[40px] rounded-lg;
+  box-shadow: 2px 0 89px 0 rgba(0, 0, 0, 0.1);
 }
 
 .accountHeader {
-  @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5;
+  @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 border-b-gray-400;
 }
 
 .accountHeader h1 {
@@ -54,8 +55,12 @@
 
 .inputField,
 .selectTrigger {
-  @apply h-12 w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm;
+  @apply h-12 w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm !important;
   @apply focus:outline-none focus:border-[#64B32C] focus:ring-[#80BC41];
+}
+
+.dialogDescription {
+  @apply pb-3;
 }
 
 .formWrapper {
@@ -65,10 +70,11 @@
     @apply text-base font-medium;
   }
 }
+
 .buttonWrapper {
   @apply flex flex-col gap-2 mt-5;
 
   & button {
-    @apply h-12;
+    @apply h-12 !important;
   }
 }

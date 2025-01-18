@@ -42,13 +42,13 @@ export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
   };
 
   return (
-    <Pagination className='py-6'>
+    <Pagination className={styles.pagination}>
       <PaginationContent>
         <PaginationItem className={cn(styles.paginationItem)}>
           <Button
             variant='outline'
             size='icon'
-            className='hover:bg-[#64B32C63]'
+            className={styles.paginationButton}
             style={disableButton(1)}
             onClick={() => {
               setPageToFirst();
@@ -62,7 +62,7 @@ export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
           <Button
             variant='outline'
             size='icon'
-            className='hover:bg-[#64B32C63]'
+            className={styles.paginationButton}
             style={disableButton(1)}
             onClick={() => {
               setPageToPrevious();
@@ -74,13 +74,12 @@ export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
         </PaginationItem>
 
         {pageNumbers.map((pageNumber) => (
-          <PaginationItem
-            key={pageNumber}
-            className={pageNumber !== page ? cn(styles.paginationItem, 'border rounded-lg') : ''}
-          >
+          <PaginationItem key={pageNumber} className={pageNumber !== page ? cn(styles.paginationItem) : ''}>
             <PaginationLink
               isActive={page === pageNumber}
-              className={'cursor-pointer hover:bg-[#64B32C63] ' + (page === pageNumber ? 'bg-[#64B32C63]' : '')}
+              className={
+                'cursor-pointer hover:bg-tn-green-secondary ' + (page === pageNumber ? 'bg-tn-green-secondary' : '')
+              }
               onClick={() => {
                 setPage(pageNumber);
                 updatePageInUrl(pageNumber);
@@ -95,7 +94,7 @@ export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
           <Button
             variant='outline'
             size='icon'
-            className='hover:bg-[#64B32C63]'
+            className={styles.paginationButton}
             style={disableButton(total)}
             onClick={() => {
               setPageToNext();
@@ -109,7 +108,7 @@ export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
           <Button
             variant='outline'
             size='icon'
-            className='hover:bg-[#64B32C63]'
+            className={styles.paginationButton}
             style={disableButton(total)}
             onClick={() => {
               setPageToLast();

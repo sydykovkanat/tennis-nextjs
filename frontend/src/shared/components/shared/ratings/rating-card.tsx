@@ -26,7 +26,7 @@ export const RatingCard: React.FC<Props> = ({ className, rating }) => {
           <div className={styles.events}>
             {rating.events.map((event) => (
               <Card className={styles.eventCard} key={event._id}>
-                <CardHeader className={'p-4 md:p-5 lg:p-6'}>
+                <CardHeader className={styles.eventCardHeader}>
                   <CardTitle className={styles.eventTitle}>
                     Категория - <span className={styles.eventCategory}>{event.category}</span>
                   </CardTitle>

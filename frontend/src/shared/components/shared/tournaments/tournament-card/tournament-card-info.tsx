@@ -9,7 +9,7 @@ export const TournamentCardInfo = ({ tournament }: { tournament: Tournament }) =
 
   return (
     <div>
-      <h6 className={styles.tournamentName}>
+      <h6 className={cn(styles.tournamentName, 'dark:text-black')}>
         Турнир “{tournament.name}”
         <span className={cn(styles.tournamentCategory, 'dark:text-[#478C16]')}>{tournament.category}</span>
       </h6>

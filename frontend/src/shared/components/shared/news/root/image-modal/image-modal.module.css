@@ -3,7 +3,7 @@
 }
 
 .closeButton {
-  @apply absolute z-30 rounded-xl top-3 right-3 bg-transparent border-rose-600 text-rose-600 hover:text-white hover:bg-rose-600 transition duration-300;
+  @apply absolute z-30 rounded-xl top-3 right-3 bg-transparent border-rose-600 text-rose-600 hover:text-white hover:bg-rose-600 transition duration-300 !important;
 }
 
 .carouselItem {
@@ -15,5 +15,5 @@
 }
 
 .actionButton {
-  @apply hidden sm:inline-flex absolute top-1/2 h-12 w-12 bg-transparent text-white z-10 hover:bg-[#64B32C] hover:text-white hover:border-transparent;
+  @apply hidden sm:inline-flex absolute top-1/2 h-12 w-12 bg-transparent text-white z-10 hover:bg-[#64B32C] hover:text-white hover:border-transparent !important;
 }

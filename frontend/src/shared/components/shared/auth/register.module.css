@@ -23,7 +23,7 @@
 }
 
 .datepickerButton {
-  @apply py-6 mt-1;
+  @apply py-6 mt-1 !important;
 }
 
 .dateInput {
@@ -35,11 +35,15 @@
 }
 
 .selectTrigger {
-  @apply h-12 focus:ring-[#80BC41];
+  @apply h-12 focus:ring-[#80BC41] !important;
 }
 
 .selectContainer {
   @apply mb-5;
+}
+
+.errorSelect {
+  @apply border-red-600 dark:border-red-700 focus:ring-red-600 focus:dark:ring-red-700 focus:ring-0 focus:dark:ring-0 !important;
 }
 
 .checkboxContainer {
@@ -54,8 +58,12 @@
   @apply size-5;
 }
 
+.errorCheckbox {
+  @apply border-red-600 !important;
+}
+
 .registerBtn {
-  @apply w-full h-12 mb-5 mt-8;
+  @apply w-full h-12 mb-5 mt-6 !important;
 }
 
 .isAlreadyRegistered {
@@ -67,5 +75,5 @@
 }
 
 .error {
-  @apply text-red-600;
+  @apply text-red-600 mb-2;
 }

@@ -75,7 +75,9 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                   <NavigationMenu>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className={styles.navigationMenuTrigger}>
+                          Положение
+                        </NavigationMenuTrigger>
                         <NavigationMenuContent>
                           <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
                             {dataItems.length > 0 &&

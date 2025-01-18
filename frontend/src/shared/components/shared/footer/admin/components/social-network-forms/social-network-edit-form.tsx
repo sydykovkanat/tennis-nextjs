@@ -63,12 +63,12 @@ export const SocialNetworkEditForm: React.FC<Props> = ({ id }) => {
           <Pencil />
         </Button>
       </DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Редактировать электронную почту' : 'Редактировать социальную сеть'}
           </DialogTitle>
-          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
+          <DialogDescription className={styles.dialogDescription}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <Label htmlFor={'social-network'}>

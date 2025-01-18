@@ -14,13 +14,10 @@ const ResetPassword: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <section
-        className={cn(styles.SectionWrapper, 'dark:bg-gray-900')}
-        style={{ boxShadow: '0px 4px 100px 0px #00000017' }}
-      >
-        <div className='mb-5'>
+      <section className={cn(styles.SectionWrapper, 'dark:bg-gray-900')}>
+        <div>
           <h1 className={styles.BoldText}>Сброс пароля</h1>
-          <p className={cn(styles.Text, 'dark:text-white')}>Пожалуйста, введите ваш новый пароль для сброса</p>
+          <p className={cn(styles.Text, 'dark:text-gray-400')}>Пожалуйста, введите ваш новый пароль для сброса</p>
         </div>
 
         <div className={styles.DivWrapper}>
@@ -50,10 +47,10 @@ const ResetPassword: React.FC = () => {
         <Button
           disabled={passwordMatch || !passwords.password || resetPasswordLoading}
           type={'submit'}
-          className={cn(styles.Button, 'dark:bg-white')}
+          className={cn(styles.Button)}
         >
           Сбросить
-          {resetPasswordLoading && <Loader className={'text-muted'} />}
+          {resetPasswordLoading && <Loader className={styles.loader} />}
         </Button>
       </section>
     </form>

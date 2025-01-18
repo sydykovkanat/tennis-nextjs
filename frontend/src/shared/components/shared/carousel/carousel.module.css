@@ -6,6 +6,10 @@
   @apply rounded-lg;
 }
 
+.carouselSkeleton {
+  @apply h-64 w-full rounded-md;
+}
+
 .carouselItem {
   @apply overflow-hidden rounded-lg;
 }

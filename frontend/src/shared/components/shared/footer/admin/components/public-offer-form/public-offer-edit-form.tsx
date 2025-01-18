@@ -26,10 +26,10 @@ export const PublicOfferEditForm: React.FC<PropsWithChildren> = ({ children }) =
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Редактировать публичную оферту</DialogTitle>
-          <DialogDescription className={'pb-3'}>Заполните форму перед обновлением</DialogDescription>
+          <DialogDescription className={styles.dialogDescription}>Заполните форму перед обновлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formContainer}>
               <Label htmlFor={'public-offer'}>Ссылка на оферту</Label>

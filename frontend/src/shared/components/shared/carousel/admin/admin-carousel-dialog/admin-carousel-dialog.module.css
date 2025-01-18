@@ -6,6 +6,10 @@
   @apply flex flex-col items-center;
 }
 
+.dialogDescription {
+  @apply pb-3;
+}
+
 .input {
   @apply w-full mt-2;
 }

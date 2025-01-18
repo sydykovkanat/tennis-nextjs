@@ -6,6 +6,10 @@
   @apply no-underline h-full w-full;
 }
 
+.newsCardContent {
+  @apply flex flex-col h-full;
+}
+
 .cardText {
   @apply text-white text-[18px];
 }

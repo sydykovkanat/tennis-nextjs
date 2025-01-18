@@ -1,3 +1,7 @@
+.dialogDescription {
+  @apply pb-3;
+}
+
 .formGroup {
   @apply flex flex-col justify-between gap-2 mb-3;
 }

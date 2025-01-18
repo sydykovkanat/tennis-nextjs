@@ -1,6 +1,7 @@
 'use client';
 
 import { EventForm } from '@/shared/components/shared';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Dialog,
   DialogContent,
@@ -46,11 +47,11 @@ export const EventEdit: React.FC<Props> = ({ id, ratings, children }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Редактирование события</DialogTitle>
 
-          <DialogDescription className={'pb-2'}>
+          <DialogDescription className={styles.dialogContent}>
             Введите данные для редактирования события. После редактирования, событие будет доступно для просмотра на
             странице Рейтинг
           </DialogDescription>

@@ -124,10 +124,10 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
             )}
           </Button>
         </DialogTrigger>
-        <DialogContent className={cn(styles.dialogContent, 'dark:bg-[#1F2937]')}>
+        <DialogContent className={cn(styles.dialogContent)}>
           <DialogHeader>
             <DialogTitle>{isAddMode ? 'Создание аккаунта' : 'Редактирование профиля'}</DialogTitle>
-            <DialogDescription className={'pb-3'}>
+            <DialogDescription className={styles.dialogDescription}>
               {isAddMode ? 'Заполните форму для создания аккаунта' : 'Заполните форму для редактирования профиля'}
             </DialogDescription>
             <form onSubmit={isAddMode ? addUserAdmin : handleSubmit}>
@@ -185,23 +185,20 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                   label={'Дата рождения'}
                   fromYear={1930}
                   toYear={CURRENT_YEAR_FULL}
+                  className={'mt-1.5'}
                   buttonClassName={'py-5'}
                 />
 
                 <div>
                   <Label htmlFor='gender'>Пол</Label>
                   <Select value={newUser.gender} onValueChange={(value) => handleSelectChange(value, 'gender')}>
-                    <SelectTrigger className={'h-10 focus:border-[#80BC41]'} id='gender'>
+                    <SelectTrigger className={styles.selectTrigger} id='gender'>
                       <SelectValue placeholder='Укажите пол' />
                     </SelectTrigger>
-                    <SelectContent className={'dark:bg-gray-900'}>
-                      <SelectGroup className={'dark:bg-gray-900'}>
-                        <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='male'>
-                          Мужской
-                        </SelectItem>
-                        <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value='female'>
-                          Женский
-                        </SelectItem>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value='male'>Мужской</SelectItem>
+                        <SelectItem value='female'>Женский</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -217,14 +214,10 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                     <SelectTrigger className={styles.selectTrigger} id='category'>
                       <SelectValue placeholder='Выберите категорию' />
                     </SelectTrigger>
-                    <SelectContent className={'dark:bg-gray-900'}>
-                      <SelectGroup className={'dark:bg-gray-900'}>
+                    <SelectContent>
+                      <SelectGroup>
                         {categories.map((item) => (
-                          <SelectItem
-                            className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
-                            key={item._id}
-                            value={item._id}
-                          >
+                          <SelectItem key={item._id} value={item._id}>
                             {item.name}
                           </SelectItem>
                         ))}
@@ -240,14 +233,10 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
                       <SelectTrigger className={styles.selectTrigger} id='role'>
                         <SelectValue placeholder='Выберите роль' />
                       </SelectTrigger>
-                      <SelectContent className={'dark:bg-gray-900'}>
-                        <SelectGroup className={'dark:bg-gray-900'}>
-                          <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} value={'user'}>
-                            Пользователь
-                          </SelectItem>
-                          <SelectItem className={'hover:dark:bg-gray-800 '} value={'moderator'}>
-                            Модератор
-                          </SelectItem>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value={'user'}>Пользователь</SelectItem>
+                          <SelectItem value={'moderator'}>Модератор</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -259,7 +248,7 @@ export const UsersForm: React.FC<UsersFromProps> = ({ mode, id }) => {
 
               <Button
                 type='submit'
-                className={cn(styles.buttonSubmit, 'dark:bg-white')}
+                className={cn(styles.buttonSubmit)}
                 disabled={
                   isAddMode ? !isFormValidAdmin() || !validateEmail(newUser.email) : !validateEmail(newUser.email)
                 }

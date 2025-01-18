@@ -42,12 +42,12 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>
             {socialNetwork.name === 'email' ? 'Добавить электронную почту' : 'Добавить социальную сеть'}
           </DialogTitle>
-          <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
+          <DialogDescription className={styles.dialogDescription}>Заполните форму перед добавлением</DialogDescription>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               {isBlocked && (
@@ -60,13 +60,9 @@ export const SocialNetworkCreateForm: React.FC<PropsWithChildren> = ({ children 
                 <SelectTrigger className={'dark:border-gray-300 focus:dark:border-transparent'}>
                   <SelectValue placeholder='Выберите социальную сеть' />
                 </SelectTrigger>
-                <SelectContent className={'dark:bg-gray-900'}>
+                <SelectContent>
                   {SocialNetworkIcons.map((icon) => (
-                    <SelectItem
-                      className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
-                      key={icon.name}
-                      value={icon.name}
-                    >
+                    <SelectItem key={icon.name} value={icon.name}>
                       <SocialIcon
                         network={icon.name}
                         bgColor='#393F43'

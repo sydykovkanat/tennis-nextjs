@@ -2,7 +2,6 @@
 
 import { Container, GradientCircle, UserEdit, userCircles } from '@/shared/components/shared';
 import { useFetchUser } from '@/shared/components/shared/personal-account/hooks';
-import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { cn, formatDateToDisplay } from '@/shared/lib';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
@@ -11,6 +10,7 @@ import { Pencil } from 'lucide-react';
 import React from 'react';
 
 import { Button } from '../../ui/button';
+import styles from './personal-account.module.css';
 
 const PersonalAccount = () => {
   useFetchUser();
@@ -22,14 +22,11 @@ const PersonalAccount = () => {
           {userCircles.map((circle, id) => (
             <GradientCircle key={id} {...circle} />
           ))}
-          <div
-            className={cn(styles.accountWrapper, 'dark:bg-[#1F2937]')}
-            style={{ boxShadow: '2px 0 89px 0 rgba(0, 0, 0, 0.1)' }}
-          >
-            <div className={cn(styles.accountHeader, 'border-b-gray-400')}>
+          <div className={cn(styles.accountWrapper, 'dark:bg-[#1F2937]')}>
+            <div className={cn(styles.accountHeader)}>
               <div className={styles.headerTitleContainer}>
                 <h1>Личный кабинет</h1>
-                <small>Ваша персональная информация и управление данными</small>
+                <small className={'dark:text-gray-400'}>Ваша персональная информация и управление данными</small>
               </div>
               <UserEdit user={currentUser}>
                 <Button icon={Pencil}>Редактировать</Button>

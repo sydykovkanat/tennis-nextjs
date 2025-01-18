@@ -108,7 +108,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
           </div>
 
           <div className={styles.partnerColumn}>
-            <h1 className={cn(styles.headingMainPartner, 'text-center')}>Генеральный партнер</h1>
+            <h1 className={cn(styles.headingMainPartner)}>Генеральный партнер</h1>
             <img
               src={
                 dataItems.length > 0 && dataItems[0].mainPartnerImage

@@ -3,11 +3,15 @@
 }
 
 .datePopoverContent {
-  @apply w-auto p-0;
+  @apply w-auto p-0 !important;
 }
 
 .filterSetDate {
   @apply w-full xs:w-[135px] sm:w-[180px] md:w-[200px] text-left font-medium flex justify-center items-center;
+}
+
+.buttonText {
+  @apply text-tn-default-black;
 }
 
 .resetButton {

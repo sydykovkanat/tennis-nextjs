@@ -2,6 +2,7 @@
 
 import { Loader } from '@/shared/components/shared';
 import { useRatingForm } from '@/shared/components/shared/ratings/hooks/use-rating-form';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Button,
   Input,
@@ -34,17 +35,13 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
       <div>
         <Label htmlFor={'chapter'}>Раздел</Label>
         <Select value={ratingMutation.chapter} onValueChange={(v) => handleSelectChange(v, 'chapter')}>
-          <SelectTrigger id={'chapter'} className={'capitalize'}>
+          <SelectTrigger id={'chapter'}>
             <SelectValue placeholder={'Выберите раздел'} />
           </SelectTrigger>
-          <SelectContent className={'dark:bg-gray-900'}>
+          <SelectContent>
             <SelectGroup>
               {['male', 'female', 'mixed'].map((chapter) => (
-                <SelectItem
-                  className={'capitalize hover:dark:bg-gray-800 focus:dark:bg-gray-800'}
-                  key={chapter}
-                  value={chapter}
-                >
+                <SelectItem key={chapter} value={chapter}>
                   {chapter === 'mixed' ? 'Смешанный' : chapter === 'male' ? 'Мужской' : 'Женский'}
                 </SelectItem>
               ))}
@@ -53,7 +50,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <Button disabled={!isFormValid || ratingsCreating} className={'w-full mt-7'}>
+      <Button disabled={!isFormValid || ratingsCreating} className={styles.eventFormButton}>
         Добавить {ratingsCreating && <Loader theme={'light'} />}
       </Button>
     </form>

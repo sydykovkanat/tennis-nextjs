@@ -26,7 +26,7 @@ export const MainLogoCards = () => {
         logos.map((logo) => (
           <div
             key={logo._id}
-            className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]', logo._id === logoId && 'border-gray-300 shadow-md')}
+            className={cn(styles.cardMainLogo, 'dark:bg-[#1F2937]', logo._id === logoId && styles.selectedLogo)}
             onClick={() => handleLogoClick(logo._id)}
             data-test-id='update-logo-header'
           >

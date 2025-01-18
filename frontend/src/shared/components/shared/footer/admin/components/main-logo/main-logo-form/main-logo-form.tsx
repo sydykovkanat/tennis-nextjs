@@ -36,7 +36,7 @@ export const MainLogoForm: React.FC<AdminMainLogoDialogProps> = (className) => {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className={'dark:bg-[#1F2937]'}>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle> Добавить логотип </DialogTitle>
             <DialogDescription>Заполните форму перед добавлением</DialogDescription>

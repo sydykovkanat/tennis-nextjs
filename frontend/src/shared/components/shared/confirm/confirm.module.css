@@ -1,0 +1,15 @@
+.confirmPopoverContent {
+  @apply max-w-max space-x-1 p-2 !important;
+}
+
+.confirmText {
+  @apply block text-center mb-1;
+}
+
+.confirmPopoverContainer {
+  @apply flex gap-2;
+}
+
+.confirmButton {
+  @apply flex-1;
+}

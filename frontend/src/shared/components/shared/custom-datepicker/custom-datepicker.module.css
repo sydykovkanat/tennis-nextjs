@@ -1,5 +1,5 @@
 .label {
-  @apply justify-between flex items-center text-sm font-medium;
+  @apply justify-between flex items-center text-sm font-medium mb-1;
 }
 
 .error {
@@ -7,11 +7,15 @@
 }
 
 .button {
-  @apply w-full font-normal justify-start hover:bg-transparent bg-transparent;
+  @apply w-full font-normal justify-start hover:bg-transparent bg-transparent focus:border-tn-green !important;
+}
+
+.buttonError {
+  @apply border-red-600;
 }
 
 .popoverContent {
-  @apply w-full p-0;
+  @apply w-full p-0 !important;
 }
 
 .datepickerPlaceholder {
