@@ -7,7 +7,7 @@
 }
 
 .filterSetDate {
-  @apply w-full xs:w-[135px] sm:w-[180px] md:w-[200px] text-left font-medium flex justify-center items-center;
+  @apply w-full xs:w-min xs:min-w-[135px] sm:w-[180px] md:w-[200px] text-left font-medium flex justify-center items-center;
 }
 
 .buttonText {

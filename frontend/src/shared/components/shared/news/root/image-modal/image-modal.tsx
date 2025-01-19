@@ -23,8 +23,8 @@ export const ImageModal: React.FC<Props> = ({ images, open, onClose, initialInde
   const { handleClose, handleSetApi } = useImagesModal(initialIndex, onClose);
 
   return open ? (
-    <div className={cn(styles.modal)}>
-      <Button onClick={handleClose} className={cn(styles.closeButton)} variant='outline' size='icon'>
+    <div className={cn(styles.modal)} aria-label={'news-images-modal'}>
+      <Button onClick={handleClose} className={cn(styles.closeButton)} variant='outline' size='icon' aria-label={'close-modal'}>
         <XIcon />
       </Button>
       <Carousel onClick={(e) => e.stopPropagation()} setApi={handleSetApi}>

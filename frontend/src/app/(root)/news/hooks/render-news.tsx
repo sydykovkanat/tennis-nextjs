@@ -1,5 +1,5 @@
 import styles from '@/app/(root)/news/news.module.css';
-import { CustomPagination, DatePicker, NewsCard } from '@/shared/components/shared';
+import { CustomPagination, NewsCard } from '@/shared/components/shared';
 import { cn } from '@/shared/lib';
 import { News } from '@/shared/types/news.types';
 
@@ -16,7 +16,6 @@ export const renderNewsContent = ({ news, pages, isAdmin }: Props) => {
 
   return (
     <>
-      <DatePicker />
       <div className={cn(styles.newsContainer)}>
         {news.map((newsItem) => (
           <NewsCard key={newsItem._id} news={newsItem} isAdmin={isAdmin} />

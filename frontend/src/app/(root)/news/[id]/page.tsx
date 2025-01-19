@@ -34,7 +34,10 @@ export default function Page() {
             <h2 className={cn(styles.subtitle)}>{oneNews?.subtitle}</h2>
           </div>
 
-          <section className={oneNews && oneNews.images.length > 0 ? cn(carouselStyles.embla) : 'hidden'}>
+          <section
+            className={oneNews && oneNews.images.length > 0 ? cn(carouselStyles.embla) : 'hidden'}
+            aria-label={'news-images'}
+          >
             <div className={cn(carouselStyles.emblaViewport)} ref={emblaRef}>
               <div className={cn(carouselStyles.emblaContainer)}>
                 {oneNews?.images?.map((imageUrl, index) => (
@@ -56,10 +59,11 @@ export default function Page() {
             <section
               className={cn(styles.content, 'dark:text-white')}
               dangerouslySetInnerHTML={{ __html: sanitize(oneNews.content) }}
+              aria-label={'news-content'}
             />
           )}
 
-          <section>
+          <section aria-label={'another-news'}>
             <h3 className={cn(styles.sectionTitle)}>Другие новости</h3>
             <div className={cn(styles.cardContainer)}>
               {news.map((newsItem) => (
