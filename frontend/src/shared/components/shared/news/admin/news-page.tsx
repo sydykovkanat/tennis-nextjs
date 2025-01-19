@@ -1,6 +1,7 @@
 'use client';
 
 import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
+import { DatePicker } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings, useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectNews, selectNewsPages } from '@/shared/lib/features/news/news-slice';
 import { fetchNews } from '@/shared/lib/features/news/news-thunks';
@@ -8,6 +9,7 @@ import { Filters, Query } from '@/shared/types/root.types';
 import { useSearchParams } from 'next/navigation';
 
 import { useEffect, useRef } from 'react';
+
 
 export const AdminNewsPage = () => {
   const dispatch = useAppDispatch();
@@ -38,5 +40,10 @@ export const AdminNewsPage = () => {
     }
   }, [dispatch, validatedQuery, data]);
 
-  return <>{renderNewsContent({ news, pages, isAdmin: true })}</>;
+  return (
+    <>
+      <DatePicker />
+      {renderNewsContent({ news, pages, isAdmin: true })}
+    </>
+  );
 };

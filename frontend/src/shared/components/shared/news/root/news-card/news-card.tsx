@@ -72,10 +72,10 @@ export const NewsCard: React.FC<Props> = React.memo(({ news, isAdmin }) => {
       {isAdmin && (
         <CardFooter className={cn(styles.newsCardFooter)}>
           <Confirm onOk={handleRemove}>
-            <Button size='lg' disabled={newsRemoving === _id} icon={Trash} />
+            <Button size="lg" disabled={newsRemoving === _id} icon={Trash} aria-label={'delete-news'} />
           </Confirm>
 
-          <Button size='lg' icon={Pencil} onClick={toggleOpen} />
+          <Button size="lg" icon={Pencil} onClick={toggleOpen} aria-label={'edit-news'} />
           {open && <NewsForm isEdit newsId={_id} open={open} setOpen={toggleOpen} />}
         </CardFooter>
       )}
