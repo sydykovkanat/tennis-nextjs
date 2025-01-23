@@ -18,7 +18,11 @@
 }
 
 .eventCard {
-  @apply shadow-none w-64;
+  @apply shadow-none w-64 dark:border-black;
+}
+
+.eventCardHeader {
+  @apply p-4 md:p-5 lg:p-6;
 }
 
 .eventTitle {
@@ -27,6 +31,10 @@
 
 .eventCategory {
   @apply text-tn-green font-medium;
+}
+
+.eventRank {
+  @apply mt-2;
 }
 
 .eventDescription {
@@ -41,6 +49,22 @@
   @apply size-4 transition-all;
 }
 
+.buttonsWrapper {
+  @apply flex justify-between;
+}
+
+.buttonsWrapperInner {
+  @apply flex gap-2 mt-2;
+}
+
 .scroll {
   @apply hidden;
+}
+
+.dialogContent {
+  @apply pb-2;
+}
+
+.eventFormButton {
+  @apply mt-7 w-full;
 }

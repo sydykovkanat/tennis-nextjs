@@ -11,15 +11,15 @@
 }
 
 .loginBtn {
-  @apply w-full h-12 mb-2.5 mt-5;
+  @apply w-full h-12 mb-2.5 mt-4 !important;
 }
 
 .forgotBtn {
-  @apply text-tn-dark-green block text-right mb-6;
+  @apply text-tn-dark-green block text-right mb-5;
 }
 
 .createBtn {
-  @apply bg-[#D9EBC6] text-tn-dark-green shadow-none h-12 w-full hover:bg-tn-green-secondary;
+  @apply h-12 text-tn-dark-green shadow-none w-full !important;
 }
 
 .title {

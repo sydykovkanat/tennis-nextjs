@@ -1,6 +1,7 @@
 'use client';
 
 import { RatingForm } from '@/shared/components/shared/ratings/components/rating-form/rating-form';
+import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Dialog,
   DialogClose,
@@ -33,10 +34,10 @@ export const NewRating: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className={'dark:bg-[#1F2937]'}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Новый рейтинг</DialogTitle>
-          <DialogDescription className={'pb-2'}>
+          <DialogDescription className={styles.dialogContent}>
             Введите данные для создания нового рейтинга. После создания, рейтинг будет доступен для просмотра на
             странице Рейтинг
           </DialogDescription>

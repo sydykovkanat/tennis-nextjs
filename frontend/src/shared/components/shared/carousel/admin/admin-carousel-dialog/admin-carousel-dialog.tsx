@@ -55,40 +55,45 @@ export const AdminCarouselDialog: React.FC<AdminCarouselDialogProps> = ({ classN
             )}
           </Button>
         </DialogTrigger>
-        <DialogContent className={'dark:bg-[#1F2937]'}>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle> {isAddMode ? 'Добавить файл' : 'Добавить файл'} </DialogTitle>
-            <DialogDescription className={'pb-3'}>Заполните форму перед добавлением</DialogDescription>
+            <DialogDescription className={styles.dialogDescription}>
+              Заполните форму перед добавлением
+            </DialogDescription>
             <form
               onSubmit={(e) => (isAddMode ? handleImageUpload(e) : id && onUpdateImage(id, e))}
               className={cn(styles.form)}
             >
-              <Input
-                className={cn(styles.input)}
-                id='image'
-                type='file'
-                name='image'
-                onChange={fileInputChangeHandler}
-                accept='image/*, video/*'
-              />
+              <div className={cn(styles.input)}>
+                <Input
+                  id='image'
+                  type='file'
+                  name='image'
+                  onChange={fileInputChangeHandler}
+                  accept='image/*, video/*'
+                />
+              </div>
+
+              {previewUrl && (
+                <div className={cn(styles.filePreviews, 'dark:bg-gray-700')}>
+                  {newImage.image ? (
+                    <img src={previewUrl} alt='Preview' className={cn(styles.image)} />
+                  ) : (
+                    <video controls src={previewUrl} className={cn(styles.video)} />
+                  )}
+                </div>
+              )}
+
               <Button
                 type='submit'
-                className='mt-0'
+                className={cn(styles.btnAddDialog)}
                 data-test-id={isAddMode ? 'add-file-in-carousel' : 'update-file-in-carousel'}
               >
                 {isAddMode ? 'Добавить файл' : 'Обновить'}
                 <PaperAirplaneIcon />
               </Button>
             </form>
-            {previewUrl && (
-              <div className={cn(styles.filePreviews, 'dark:bg-gray-700')}>
-                {newImage.image ? (
-                  <img src={previewUrl} alt='Preview' className={cn(styles.image)} />
-                ) : (
-                  <video controls src={previewUrl} className={cn(styles.video)} />
-                )}
-              </div>
-            )}
           </DialogHeader>
         </DialogContent>
       </Dialog>

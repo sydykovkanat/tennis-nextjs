@@ -79,7 +79,9 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Создать аккаунт</h1>
 
-      <p className={cn(styles.subtitle, 'dark:text-white')}>Пожалуйста, заполните все данные для создания аккаунта</p>
+      <p className={cn(styles.subtitle, 'dark:text-gray-400')}>
+        Пожалуйста, заполните все данные для создания аккаунта
+      </p>
 
       <Input
         label={'Телефон'}
@@ -143,16 +145,16 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         </Label>
         <Select onValueChange={(v) => validateAndSetField('gender', v)} value={registerMutation.gender}>
           <SelectTrigger
-            className={cn(styles.selectTrigger, formErrors.gender && 'border-red-600 focus:ring-red-600 focus:ring-0')}
+            className={cn(styles.selectTrigger, formErrors.gender && styles.errorSelect)}
             id='gender'
             onBlur={() => handleBlur('gender')}
           >
             <SelectValue placeholder='Выберите ваш пол' />
           </SelectTrigger>
-          <SelectContent className={'dark:bg-gray-900'}>
-            <SelectGroup className={'dark:bg-gray-900'}>
+          <SelectContent>
+            <SelectGroup>
               {['male', 'female'].map((item) => (
-                <SelectItem className={'hover:dark:bg-gray-800  focus:dark:bg-gray-800'} key={item} value={item}>
+                <SelectItem key={item} value={item}>
                   {item === 'male' ? 'Муж.' : 'Жен.'}
                 </SelectItem>
               ))}
@@ -168,19 +170,16 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
         </Label>
         <Select onValueChange={(v) => validateAndSetField('category', v)} value={registerMutation.category}>
           <SelectTrigger
-            className={cn(
-              styles.selectTrigger,
-              formErrors.category && 'border-red-600 focus:ring-red-600 focus:ring-0',
-            )}
+            className={cn(styles.selectTrigger, formErrors.category && styles.errorSelect)}
             id='category'
             onBlur={() => handleBlur('category')}
           >
             <SelectValue placeholder='Выберите вашу категорию' />
           </SelectTrigger>
-          <SelectContent className={'dark:bg-gray-900'}>
-            <SelectGroup className={'dark:bg-gray-900'}>
+          <SelectContent>
+            <SelectGroup>
               {categories.map((item) => (
-                <SelectItem className={'hover:dark:bg-gray-800 focus:dark:bg-gray-800'} key={item._id} value={item._id}>
+                <SelectItem key={item._id} value={item._id}>
                   {item.name}
                 </SelectItem>
               ))}
@@ -194,22 +193,22 @@ export const Register: React.FC<Props> = ({ className, categories }) => {
           checked={isAgree.rules}
           onCheckedChange={() => handleAgree('rules')}
           id={'rules'}
-          className={cn(styles.checkbox, formErrors.rules && 'border-red-600')}
+          className={cn(styles.checkbox, formErrors.rules && styles.errorCheckbox)}
         />
         <Label htmlFor='rules'>Ознакомился с правилами КСЛТ</Label>
       </div>
-      {formErrors.rules && <small className={cn(styles.error, 'mb-2')}>{formErrors.rules}</small>}
+      {formErrors.rules && <small className={cn(styles.error)}>{formErrors.rules}</small>}
 
       <div className={styles.checkboxContainer}>
         <Checkbox
           checked={isAgree.personalData}
           onCheckedChange={() => handleAgree('personalData')}
           id={'personalData'}
-          className={cn(styles.checkbox, formErrors.personalData && 'border-red-600')}
+          className={cn(styles.checkbox, formErrors.personalData && styles.errorCheckbox)}
         />
         <Label htmlFor='personalData'>Даю согласие на обработку персональных данных</Label>
       </div>
-      {formErrors.personalData && <small className={cn(styles.error, 'mb-2')}>{formErrors.personalData}</small>}
+      {formErrors.personalData && <small className={cn(styles.error)}>{formErrors.personalData}</small>}
 
       <Button className={cn(styles.registerBtn)} disabled={!isFormValid || registerLoading}>
         Зарегистрироваться

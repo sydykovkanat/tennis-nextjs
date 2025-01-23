@@ -1,12 +1,15 @@
 import { fetchNews } from '@/actions/news';
 import { renderNewsContent } from '@/app/(root)/news/hooks/render-news';
 import Loading from '@/app/(root)/news/loading';
-import { Container, NewsTitle } from '@/shared/components/shared';
+import { Container, DatePicker, NewsTitle } from '@/shared/components/shared';
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { NewsResponse } from '@/shared/types/news.types';
 import type { Metadata } from 'next';
 
+
+
 import { Suspense } from 'react';
+
 
 export const metadata: Metadata = {
   title: 'Свежие новости — Главные события мира тенниса в Кыргызстане',
@@ -44,6 +47,7 @@ const NewsPage = async ({ searchParams }: Props) => {
     <Suspense fallback={<Loading />}>
       <Container>
         <NewsTitle />
+        <DatePicker />
         {renderNewsContent({ news: news, pages: newsResponse.pages })}
       </Container>
     </Suspense>

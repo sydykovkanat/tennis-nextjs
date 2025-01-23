@@ -39,7 +39,7 @@ export const TournamentRegistration: React.FC<Props> = ({ tournament, className 
             <ArrowRightIcon className={styles.registerIcon} />
           </span>
         </PopoverTrigger>
-        <PopoverContent className={cn(styles.tournamentOver, 'dark:bg-gray-900', 'dark:text-white')}>
+        <PopoverContent className={cn(styles.tournamentOver, 'dark:bg-gray-900')}>
           Запись на турнир завершена
         </PopoverContent>
       </Popover>

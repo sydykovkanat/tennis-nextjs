@@ -40,7 +40,7 @@ const Login: React.FC<Props> = ({ className }) => {
     <form onSubmit={handleSubmit} className={cn(styles.form, 'dark:bg-gray-900', className)}>
       <h1 className={styles.title}>Добро пожаловать</h1>
 
-      <p className={cn(styles.subtitle, 'dark:text-white')}>Введите свой логин и пароль для входа</p>
+      <p className={cn(styles.subtitle, 'dark:text-gray-400')}>Введите свой логин и пароль для входа</p>
 
       <Input
         error={loginError?.messageTelephone || formErrors.telephone}
@@ -73,7 +73,14 @@ const Login: React.FC<Props> = ({ className }) => {
       </Link>
 
       <Link href={'/register'}>
-        <Button className={cn(styles.createBtn, 'hover:dark:bg-[#caeaa8]')}>Создать аккаунт</Button>
+        <Button
+          className={cn(
+            styles.createBtn,
+            'bg-[#D9EBC6] hover:bg-tn-green-secondary dark:hover:bg-[#a2c77a] dark:bg-[#caeaa8]',
+          )}
+        >
+          Создать аккаунт
+        </Button>
       </Link>
     </form>
   );

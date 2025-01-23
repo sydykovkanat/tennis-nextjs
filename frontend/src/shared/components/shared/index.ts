@@ -97,3 +97,6 @@ export { RatingBlock } from './ratings/components/rating-block/rating-block';
 
 export { CustomDatepicker } from './custom-datepicker/custom-datepicker';
 export { AdminRatings } from './ratings/admin/admin-rating';
+export { MainLogo } from './footer/admin/containers/tabs-content/main-logo';
+export { MainLogoForm } from './footer/admin/components/main-logo/main-logo-form/main-logo-form';
+export { MainLogoCards } from './footer/admin/components/main-logo/main-logo-cards/main-logo-cards';

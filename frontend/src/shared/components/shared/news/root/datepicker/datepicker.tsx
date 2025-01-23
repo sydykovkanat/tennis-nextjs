@@ -19,11 +19,15 @@ export const DatePicker: React.FC = () => {
     <div className={cn(styles.datePickerBlock)}>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant={'outline'} className={cn(styles.filterSetDate, 'dark:hover:bg-[#1f2937]', 'h-12 group')}>
+          <Button
+            variant={'outline'}
+            className={cn(styles.filterSetDate, 'dark:hover:bg-[#1f2937]', 'h-12 group')}
+            aria-label={'news-start-date'}
+          >
             {selectedDates.startDate ? (
               format(selectedDates.startDate, 'PPP', { locale: ru })
             ) : (
-              <span className='text-tn-default-black dark:text-white'>Начало даты</span>
+              <span className={cn(styles.buttonText, 'dark:text-white')}>Начало даты</span>
             )}
             <ChevronDownIcon
               className='relative ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180'
@@ -44,11 +48,15 @@ export const DatePicker: React.FC = () => {
 
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant={'outline'} className={cn(styles.filterSetDate, 'dark:hover:bg-[#1f2937]', 'h-12 group')}>
+          <Button
+            variant={'outline'}
+            className={cn(styles.filterSetDate, 'dark:hover:bg-[#1f2937]', 'h-12 group')}
+            aria-label={'news-end-date'}
+          >
             {selectedDates.endDate ? (
               format(selectedDates.endDate, 'PPP', { locale: ru })
             ) : (
-              <span className='text-tn-default-black dark:text-white'>Конец даты</span>
+              <span className={cn(styles.buttonText, 'dark:text-white')}>Конец даты</span>
             )}
             <ChevronDownIcon
               className='relative ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180'
@@ -71,6 +79,7 @@ export const DatePicker: React.FC = () => {
           variant={'outline'}
           onClick={handleResetDates}
           className={cn(styles.filterSetDate, styles.resetButton, 'dark:hover:bg-[#1f2937]', 'h-12')}
+          aria-label={'news-reset-date'}
         >
           Сбросить
           <XIcon />

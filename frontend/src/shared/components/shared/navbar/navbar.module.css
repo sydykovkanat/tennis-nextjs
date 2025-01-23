@@ -20,7 +20,7 @@
 }
 
 .logoWrapper {
-  @apply w-[76px] h-[28px] md:w-[98px] md:h-[36px];
+  @apply w-[76px] h-[28px] md:w-[98px] md:h-[36px] flex items-center;
 }
 
 .logo {
@@ -59,6 +59,10 @@
   @apply block p-[25px];
 }
 
+.navigationMenuTrigger {
+  @apply text-white !important;
+}
+
 .navigationMenu {
   @apply hidden md:flex items-center gap-10;
 }
@@ -74,6 +78,10 @@
 
 .iconMenuDropDown {
   @apply w-[15px] h-[15px];
+}
+
+.mobileNavbarSheet {
+  @apply w-full border-0 p-[20px] xs:max-w-[400px] !important;
 }
 
 .mobileMenuIconBurger {

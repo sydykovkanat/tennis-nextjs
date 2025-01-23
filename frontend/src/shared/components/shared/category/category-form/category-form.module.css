@@ -10,6 +10,10 @@
   @apply flex flex-col gap-2 mt-6;
 }
 
+.dialogDescription {
+  @apply pb-3;
+}
+
 .error {
   @apply text-red-600 leading-tight;
 }

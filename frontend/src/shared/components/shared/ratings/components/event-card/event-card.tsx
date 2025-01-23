@@ -32,12 +32,12 @@ export const EventCard: React.FC<Props> = ({ event, ratings }) => {
   };
 
   return (
-    <Card id={'eventItem'} className={cn(styles.eventCard, 'dark:border-black')}>
+    <Card id={'eventItem'} className={cn(styles.eventCard)}>
       <CardHeader>
         <CardTitle className={styles.eventTitle}>
           Категория - <span className={styles.eventCategory}>{event.category}</span>
         </CardTitle>
-        <div className={'mt-2'}>
+        <div className={styles.eventRank}>
           <span className={cn(styles.eventCategory)}>{event.rank}</span> - разряд
         </div>
         <CardDescription className={cn(styles.eventDescription, 'group')}>
@@ -51,8 +51,8 @@ export const EventCard: React.FC<Props> = ({ event, ratings }) => {
             <ArrowRight className={cn(styles.eventArrowRight, 'group-hover:translate-x-1 group-hover:text-inherit ')} />
           </a>
         </CardDescription>
-        <div className={'flex justify-between'}>
-          <div className={'flex gap-2 mt-2'}>
+        <div className={styles.buttonsWrapper}>
+          <div className={styles.buttonsWrapperInner}>
             <Confirm onOk={handleDelete}>
               <Button aria-label={'delete-event'} size={'icon'} icon={Trash} />
             </Confirm>

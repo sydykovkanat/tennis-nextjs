@@ -30,7 +30,7 @@ export const BlockCarousel: React.FC<Props> = ({ className, files, error }) => {
     return (
       <div className={cn(styles.carouselContainer, className)}>
         {[...Array(3)].map((_, index) => (
-          <Skeleton key={index} className={cn(styles.carouselSkeleton, 'h-64 w-full rounded-md')} />
+          <Skeleton key={index} className={cn(styles.carouselSkeleton)} />
         ))}
       </div>
     );

@@ -3,11 +3,19 @@
 }
 
 .form {
-  @apply flex items-center space-x-2;
+  @apply flex flex-col items-center;
+}
+
+.dialogDescription {
+  @apply pb-3;
 }
 
 .input {
-  @apply w-[250px] md:w-full sm:w-[250px];
+  @apply w-full mt-2;
+}
+
+.btnAddDialog {
+  @apply w-full mt-2;
 }
 
 .filePreviews {

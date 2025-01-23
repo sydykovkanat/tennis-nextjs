@@ -1,3 +1,7 @@
+'use client';
+
+import { Loader } from '@/shared/components/shared';
+import { useNavbarLogo } from '@/shared/components/shared/navbar/use-navbar-logo';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/shared/components/ui';
 import { API_URL, CURRENT_YEAR_FULL, NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn, useAppSelector } from '@/shared/lib';
@@ -17,13 +21,19 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ dataItems }) => {
   const userPermission = useAppSelector(selectUserPermission);
+  const { currentLogo, loading } = useNavbarLogo();
+
   return (
     <div className={cn(styles.footer, 'dark:bg-gray-900')}>
       <div className={styles.footerWrapper}>
         <div className={styles.footerColumn}>
           <div className={styles.logoWrapper}>
             <Link prefetch={true} href='/' className={styles.logo}>
-              <img src='/kslt.svg' alt='КСЛТ' />
+              {loading ? (
+                <Loader />
+              ) : (
+                <img className={styles.logo} src={API_URL + '/' + (currentLogo || 'kslt.svg')} alt='КСЛТ' />
+              )}
             </Link>
           </div>
           <div className={styles.copyright}>
@@ -98,7 +108,7 @@ export const Footer: React.FC<Props> = ({ dataItems }) => {
           </div>
 
           <div className={styles.partnerColumn}>
-            <h1 className={cn(styles.headingMainPartner, 'text-center')}>Генеральный партнер</h1>
+            <h1 className={cn(styles.headingMainPartner)}>Генеральный партнер</h1>
             <img
               src={
                 dataItems.length > 0 && dataItems[0].mainPartnerImage

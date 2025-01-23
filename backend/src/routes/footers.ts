@@ -4,11 +4,15 @@ import { permit } from '../middleware/permit';
 import {
   createFooterMenuPosition,
   createFooterSocialNetwork,
+  createMainLogo,
+  deleteLogo,
   deleteOneFooterMenuPosition,
   deleteOneFooterSocialNetwork,
+  getCurrentLogo,
   getFooterItems,
   getOneFooterMenuPosition,
   getOneFooterSocialNetwork,
+  setCurrentLogo,
   updateFooterMenuPosition,
   updateFooterSocialNetwork,
   updateMainPartnerImage,
@@ -43,3 +47,14 @@ footersRouter.patch(
   imagesUpload.single('mainPartnerImage'),
   updateMainPartnerImage
 );
+
+footersRouter.post(
+  '/create-main-logo',
+  auth,
+  permit('admin', 'moderator'),
+  imagesUpload.single('logo'),
+  createMainLogo
+);
+footersRouter.post('/set-current-logo', auth, permit('admin', 'moderator'), setCurrentLogo);
+footersRouter.get('/get-current-logo', getCurrentLogo);
+footersRouter.delete('/delete-logo/:id', auth, permit('admin', 'moderator'), deleteLogo);

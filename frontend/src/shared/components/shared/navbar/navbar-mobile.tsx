@@ -58,7 +58,7 @@ export const NavbarMobile: React.FC<Props> = ({ footerItemsData }) => {
       <SheetTrigger>
         <Bars3Icon className={styles.mobileMenuIconBurger} />
       </SheetTrigger>
-      <SheetContent className='w-full bg-cr-shark dark:bg-gray-900 border-0 p-[20px] xs:max-w-[400px]'>
+      <SheetContent className={cn(styles.mobileNavbarSheet, 'bg-cr-shark dark:bg-gray-900')}>
         <SheetTitle className={styles.mobileMenuTitle}>Заголовок диалогового окна</SheetTitle>
         <SheetDescription className={styles.mobileMenuDescription}>Описание диалогового окна</SheetDescription>
         <SheetClose asChild>

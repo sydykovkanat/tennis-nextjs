@@ -1,11 +1,13 @@
 .tabsList {
-  @apply border-b-2;
+  @apply border-b-2 flex justify-between bg-transparent rounded-none px-0 !important;
 }
 
 .tabsTriggers {
-  @apply dark:text-white
+  @apply
   data-[state=active]:bg-transparent
   data-[state=active]:border-tn-green
   border-b-2 border-b-transparent bg-transparent
-  hover:text-tn-green dark:hover:text-tn-green;
+  hover:text-tn-green dark:hover:text-tn-green hover:bg-transparent
+  leading-7 data-[state=active]:shadow-none data-[state=active]:text-tn-green
+  dark:data-[state=active]:text-tn-green rounded-none !important;
 }

@@ -88,7 +88,7 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild />
-      <DialogContent className={cn(styles.content, 'dark:bg-[#1F2937]')}>
+      <DialogContent className={cn(styles.content)}>
         <DialogHeader>
           <DialogTitle className={cn(styles.title)}>
             {isEdit ? 'Редактировать новость' : 'Добавить новость'}
@@ -135,7 +135,13 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
               <Label htmlFor='newsCover' className={cn(styles.label)}>
                 Обложка новости
               </Label>
-              <Input required={!isEdit} type='file' name='newsCover' onChange={handleFileInputChange} />
+              <Input
+                required={!isEdit}
+                type='file'
+                name='newsCover'
+                onChange={handleFileInputChange}
+                aria-label='Обложка новости'
+              />
               {news.newsCover && (
                 <div className={cn(styles.newsCoverBlock)}>
                   <img
@@ -158,7 +164,13 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
               <Label htmlFor='images' className={cn(styles.label)}>
                 Изображения новости
               </Label>
-              <Input type='file' name='images' onChange={handleFileInputChange} multiple />
+              <Input
+                type='file'
+                name='images'
+                onChange={handleFileInputChange}
+                multiple
+                aria-label='Изображения новости'
+              />
               {news.images.length > 0 && (
                 <div className={cn(styles.imagesBlock)}>
                   {news.images.map((image, index) => (
@@ -169,7 +181,12 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
                         className={cn(styles.mediaInForm, 'max-h-[150px]')}
                       />
                       <Confirm onOk={() => handleRemoveMedia(index)}>
-                        <Button type='button' className={cn(styles.removeMediaButton)} icon={XIcon} />
+                        <Button
+                          type='button'
+                          className={cn(styles.removeMediaButton)}
+                          icon={XIcon}
+                          aria-label={`remove-carousel-image ${index + 1}`}
+                        />
                       </Confirm>
                     </div>
                   ))}

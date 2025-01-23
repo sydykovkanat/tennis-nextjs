@@ -2,6 +2,7 @@
 
 import { Loader, NavbarMobile, ThemeSwitcher } from '@/shared/components/shared';
 import NavBarDropDown from '@/shared/components/shared/navbar/nav-bar-drop-down';
+import { useNavbarLogo } from '@/shared/components/shared/navbar/use-navbar-logo';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,7 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/shared/components/ui';
-import { NAVIGATION_ITEMS } from '@/shared/constants';
+import { API_URL, NAVIGATION_ITEMS } from '@/shared/constants';
 import { cn, useAppSelector } from '@/shared/lib';
 import { selectUser, selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { FooterElementsData } from '@/shared/types/footer.types';
@@ -29,10 +30,11 @@ interface Props {
 export const Navbar: React.FC<Props> = ({ dataItems }) => {
   const [isHydrated, setIsHydrated] = useState(false);
   const { theme } = useTheme();
-
   const user = useAppSelector(selectUser);
   const pathname = usePathname();
   const userPermission = useAppSelector(selectUserPermission);
+
+  const { currentLogo, loading } = useNavbarLogo();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -43,7 +45,11 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
       <div className={styles.container}>
         <div className={styles.headerInner}>
           <Link prefetch={true} href='/' className={styles.logoWrapper}>
-            <img className={styles.logo} src='/kslt.svg' alt='КСЛТ' />
+            {loading ? (
+              <Loader />
+            ) : (
+              <img className={styles.logo} src={API_URL + '/' + (currentLogo || 'kslt.svg')} alt='КСЛТ' />
+            )}
           </Link>
 
           <div className={styles.navBarMobile}>
@@ -69,7 +75,9 @@ export const Navbar: React.FC<Props> = ({ dataItems }) => {
                   <NavigationMenu>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className='text-white'>Положение</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className={styles.navigationMenuTrigger}>
+                          Положение
+                        </NavigationMenuTrigger>
                         <NavigationMenuContent>
                           <ul className={cn(styles.navigationMenuContent, 'dark:bg-gray-900')}>
                             {dataItems.length > 0 &&

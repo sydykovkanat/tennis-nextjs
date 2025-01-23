@@ -5,7 +5,7 @@
   "scripts": {
     "start:test": "cross-env DIST_DIR=build-test NEXT_PUBLIC_API_URL=http://209.145.52.153:8010 next start -p 5183",
     "start:test:localhost": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8010 next dev -p 5183",
-    "dev": "next dev -p 3000",
+    "dev": "cross-env NEXT_PUBLIC_API_URL=http://localhost:8000 next dev -p 3000",
     "build": "cross-env next build",
     "build:test": "cross-env DIST_DIR=build-test NEXT_PUBLIC_API_URL=http://209.145.52.153:8010 next build",
     "start": "next start",

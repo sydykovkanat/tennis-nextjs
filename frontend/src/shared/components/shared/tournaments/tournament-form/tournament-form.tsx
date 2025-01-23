@@ -58,7 +58,7 @@ export const TournamentForm: React.FC<Props> = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent aria-describedby={undefined} className={cn(styles.tournamentDialog, 'dark:bg-[#1F2937]')}>
+      <DialogContent aria-describedby={undefined} className={cn(styles.tournamentDialog)}>
         <DialogHeader>
           <DialogTitle>{existingTournament ? 'Редактировать турнир' : 'Создать новый турнир'}</DialogTitle>
           <DialogDescription>Заполните форму перед созданием турнира</DialogDescription>
@@ -125,15 +125,15 @@ export const TournamentForm: React.FC<Props> = ({
                 <SelectTrigger id='rank'>
                   <SelectValue placeholder='Укажите разряд' />
                 </SelectTrigger>
-                <SelectContent className={'dark:bg-gray-900'}>
-                  <SelectGroup className={'dark:bg-gray-900'}>
-                    <SelectItem className={'focus:dark:bg-gray-800'} key='male' value='male'>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem key='male' value='male'>
                       Мужской
                     </SelectItem>
-                    <SelectItem className={'hover:dark:bg-gray-800'} key='female' value='female'>
+                    <SelectItem key='female' value='female'>
                       Женский
                     </SelectItem>
-                    <SelectItem className={'hover:dark:bg-gray-800'} key='mixed' value='mixed'>
+                    <SelectItem key='mixed' value='mixed'>
                       Микст
                     </SelectItem>
                   </SelectGroup>
@@ -184,7 +184,7 @@ export const TournamentForm: React.FC<Props> = ({
             <WarningMessage message='При создании турнира на следующий год, если есть турниры за прошлый год, они будут автоматически удалены. Это действие необратимо.' />
           )}
 
-          <div className={cn(styles.fieldWrapper, 'mt-1')}>
+          <div className={cn(styles.fieldWrapper)}>
             <Button type='submit' disabled={isFormInvalid}>
               {existingTournament ? 'Редактировать' : 'Сохранить'}
             </Button>

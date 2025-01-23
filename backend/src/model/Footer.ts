@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { FooterFields, LinksMediaFields } from '../types/footer';
+import { FooterFields, LinksMediaFields, LogoFields } from '../types/footer';
 
 const SocialNetworkSchema = new mongoose.Schema<LinksMediaFields>({
   name: {
@@ -27,6 +27,14 @@ const MenuPositionSchema = new mongoose.Schema<LinksMediaFields>({
   },
 });
 
+const MainLogo = new mongoose.Schema<LogoFields>({
+  logo: {
+    type: String,
+    required: [true, 'Поле обязательно!'],
+    default: 'kslt.svg',
+  },
+});
+
 const FooterSchema = new mongoose.Schema<FooterFields>({
   socialNetwork: {
     type: [SocialNetworkSchema],
@@ -43,6 +51,13 @@ const FooterSchema = new mongoose.Schema<FooterFields>({
     type: String,
     required: [true, 'Поле главный партнер обязательно!'],
     default: 'fixtures/footer/kslt.svg',
+  },
+  mainLogo: {
+    type: [MainLogo],
+  },
+  currentLogo: {
+    type: String,
+    default: null,
   },
 });
 

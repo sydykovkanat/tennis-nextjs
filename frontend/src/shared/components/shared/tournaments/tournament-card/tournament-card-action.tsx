@@ -21,7 +21,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
         href={link}
         target='_blank'
         rel='noopener noreferrer'
-        className={styles.cardActionLink}
+        className={cn(styles.cardActionLink, 'dark:text-gray-600 dark:hover:text-gray-700')}
         data-testid='tournament-actions-link'
       >
         {text}
@@ -29,11 +29,14 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
     ) : (
       <Popover>
         <PopoverTrigger asChild>
-          <span className={cn(styles.cardActionLink, 'cursor-pointer')} data-testid='tournament-actions-link'>
+          <span
+            className={cn(styles.cardActionLink, 'dark:text-gray-600 dark:hover:text-gray-700')}
+            data-testid='tournament-actions-link'
+          >
             {text}
           </span>
         </PopoverTrigger>
-        <PopoverContent className={cn(styles.cardPopover, 'dark:bg-gray-900', 'dark:text-white')}>
+        <PopoverContent className={cn(styles.cardPopover, 'dark:bg-gray-900')}>
           Этот функционал доступен только для зарегистрированных пользователей. Пожалуйста, войдите или
           зарегистрируйтесь, чтобы получить доступ.
         </PopoverContent>
@@ -42,7 +45,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
   };
 
   return (
-    <div className={cn(styles.cardActionsWrapper, 'dark:bg-text-[#4D4D4D]')}>
+    <div className={cn(styles.cardActionsWrapper)}>
       {renderActionItem(
         'Результаты Турнира',
         tournament.resultsLink && tournament.resultsLink !== '' ? tournament.resultsLink : null,
