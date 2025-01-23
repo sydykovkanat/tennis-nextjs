@@ -1,8 +1,7 @@
 'use client';
 
 import { CustomDatepicker } from '@/shared/components/shared';
-import { useDialog, useUserForm } from '@/shared/components/shared/personal-account/hooks';
-import styles from '@/shared/components/shared/personal-account/personal-account.module.css';
+import { useUserForm } from '@/shared/components/shared/personal-account/hooks';
 import {
   Button,
   Input,
@@ -24,41 +23,36 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
 import { CURRENT_YEAR_FULL } from '@/shared/constants';
-import { validateEmail } from '@/shared/lib';
+import { cn, validateEmail } from '@/shared/lib';
 import { User } from '@/shared/types/user.types';
 
 import React, { PropsWithChildren } from 'react';
 
+import styles from './edit.module.css';
+
 interface Props {
   user: User;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }) => {
-  const { isDialogOpen, setIsDialogOpen, closeRef, closeDialog } = useDialog();
+export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user, open, setOpen }) => {
   const {
     userInfo,
-    validateAndSetField,
     handleChange,
-    handleSubmit,
-    resetUserInfo,
     handleDateChange,
+    handleSubmit,
     isFormValid,
     formErrors,
     handleBlur,
+    validateAndSetField,
   } = useUserForm({
     user,
-    closeDialog,
+    closeDialog: () => setOpen(false),
   });
 
-  const handleDialogOpenChange = (open: boolean) => {
-    setIsDialogOpen(open);
-    if (open) {
-      resetUserInfo();
-    }
-  };
-
   return (
-    <Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -68,41 +62,53 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
           </DialogDescription>
 
           <form onSubmit={handleSubmit} className={styles.formWrapper}>
-            <Input
-              id='fullName'
-              value={userInfo.fullName}
-              onChange={handleChange}
-              label='ФИО'
-              placeholder='Введите ваше полное ФИО'
-              autoComplete='name'
-              className={styles.inputField}
-              onBlur={() => handleBlur('fullName')}
-              error={formErrors.fullName}
-            />
+            <div className={styles.inputBlock}>
+              <Label htmlFor='fullname' className={cn(styles.label)}>
+                ФИО
+              </Label>
+              <Input
+                id='fullName'
+                value={userInfo.fullName}
+                onChange={handleChange}
+                placeholder='Введите ваше полное ФИО'
+                autoComplete='name'
+                className={styles.inputField}
+                onBlur={() => handleBlur('fullName')}
+                error={formErrors.fullName}
+              />
+            </div>
 
-            <Input
-              id='email'
-              value={userInfo.email}
-              onChange={handleChange}
-              label='Почта'
-              placeholder={'example@gmail.com'}
-              autoComplete={'email'}
-              className={styles.inputField}
-              onBlur={() => handleBlur('email')}
-              error={formErrors.email}
-            />
+            <div className={styles.inputBlock}>
+              <Label htmlFor='email' className={cn(styles.label)}>
+                Почта
+              </Label>
+              <Input
+                id='email'
+                value={userInfo.email}
+                onChange={handleChange}
+                placeholder={'example@gmail.com'}
+                autoComplete={'email'}
+                className={styles.inputField}
+                onBlur={() => handleBlur('email')}
+                error={formErrors.email}
+              />
+            </div>
 
-            <Input
-              id='telephone'
-              value={userInfo.telephone}
-              onChange={handleChange}
-              label='Телефон'
-              placeholder={'0555 555 555'}
-              autoComplete={'tel'}
-              className={styles.inputField}
-              onBlur={() => handleBlur('telephone')}
-              error={formErrors.telephone}
-            />
+            <div className={styles.inputBlock}>
+              <Label htmlFor='telephone' className={cn(styles.label)}>
+                Телефон
+              </Label>
+              <Input
+                id='telephone'
+                value={userInfo.telephone}
+                onChange={handleChange}
+                placeholder={'0555 555 555'}
+                autoComplete={'tel'}
+                className={styles.inputField}
+                onBlur={() => handleBlur('telephone')}
+                error={formErrors.telephone}
+              />
+            </div>
 
             <CustomDatepicker
               mode={'users'}
@@ -114,8 +120,10 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               buttonClassName={'py-6'}
             />
 
-            <div>
-              <Label htmlFor='gender'>Пол</Label>
+            <div className='flex flex-col'>
+              <Label htmlFor='gender' className={cn(styles.label)}>
+                Пол
+              </Label>
               <Select value={userInfo.gender} onValueChange={(value) => validateAndSetField('gender', value)}>
                 <SelectTrigger className={styles.selectTrigger} id='gender'>
                   <SelectValue placeholder='Укажите ваш пол' />
@@ -135,7 +143,7 @@ export const UserEdit: React.FC<PropsWithChildren & Props> = ({ children, user }
               </Button>
 
               <DialogClose asChild>
-                <Button ref={closeRef} className={'w-full'} type={'button'} variant={'outline'}>
+                <Button className={'w-full'} type={'button'} variant={'outline'}>
                   Отменить
                 </Button>
               </DialogClose>

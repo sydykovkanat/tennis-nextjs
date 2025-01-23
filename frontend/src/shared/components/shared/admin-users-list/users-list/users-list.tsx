@@ -81,7 +81,7 @@ export const UsersList: React.FC<UsersListProps> = ({ role }) => {
           </TableBody>
         </Table>
       )}
-      <CustomPagination total={total} setPageUser={handlePageChange} />
+      {total > 1 && <CustomPagination total={total} setPageUser={handlePageChange} />}
     </>
   );
 };

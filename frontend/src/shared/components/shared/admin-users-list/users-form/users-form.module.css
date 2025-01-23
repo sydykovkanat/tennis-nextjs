@@ -3,37 +3,41 @@
 }
 
 .dialogContent {
-  @apply py-7 max-h-[90dvh] overflow-y-auto;
+  @apply rounded-lg py-7 px-3 xs:px-6 max-h-[80dvh] overflow-y-auto;
 }
 
 .dialogDescription {
-  @apply pb-3;
+  @apply text-sm text-muted-foreground;
+}
+
+.scroll {
+  @apply max-w-max;
+}
+
+.tabsList {
+  @apply flex items-center gap-1 bg-zinc-200/30 border;
 }
 
 .blockForm {
   @apply space-y-2 mb-7;
 }
 
-.inputField {
-  @apply h-10 focus-visible:border-[#80BC41] !important;
-}
-
 .errorMessage {
   @apply border-[#eb3434] focus-visible:border-[#eb3434];
 }
 
+.inputGroup {
+  @apply flex flex-col mb-1;
+}
+
 .label {
-  @apply text-base text-start font-medium block mt-1;
+  @apply mb-1;
 }
 
 .selectTrigger {
-  @apply h-10 focus:border-[#80BC41] !important;
+  @apply h-10 focus:border-[#80BC41];
 }
 
 .buttonSubmit {
-  @apply w-full h-8 sm:h-10 px-10 font-bold mb-2.5 dark:bg-white !important;
-}
-
-.buttonCancel {
-  @apply w-full h-8 sm:h-10 !important;
+  @apply w-full font-bold;
 }

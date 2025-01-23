@@ -1,80 +1,26 @@
-.accountWrapper {
-  @apply bg-white p-[25px] sm:p-[40px] rounded-lg;
+@tailwind components;
+@tailwind utilities;
+
+.box {
+  @apply bg-white p-6 sm:p-8 sm:pt-4 rounded-lg;
   box-shadow: 2px 0 89px 0 rgba(0, 0, 0, 0.1);
 }
 
-.accountHeader {
-  @apply flex xs:items-center justify-between gap-2 flex-col xs:flex-row border-b pb-1.5 border-b-gray-400;
-}
-
-.accountHeader h1 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.accountHeader small {
-  font-size: 1rem;
-  color: #6c757d;
-  line-height: 1.5;
-}
-
-.headerTitleContainer {
-  @apply flex flex-col gap-2;
-}
-
-.fullName {
-  @apply text-xl dark:text-black font-medium;
-}
-.fullNameDiv {
-  @apply mb-3 flex flex-col;
-}
-
-.greenText {
-  @apply text-[#64B32C];
-}
-
 .title {
-  @apply font-medium w-full dark:text-black  sm:w-1/3;
+  @apply text-3xl text-center xs:text-start font-medium leading-none mb-6;
 }
 
-.divWrapper {
-  @apply space-y-2 flex flex-col;
-}
-.mainWrapper {
-  @apply mt-3 flex flex-col max-w-2xl;
+.tabsList {
+  @apply flex items-center justify-around xs:justify-start xs:gap-5 bg-transparent text-black border-b rounded-none p-0;
 }
 
-.textWrapper {
-  @apply flex flex-wrap;
+.tabsScroll {
+  @apply xs:max-w-max pb-3;
 }
 
-.subtitle {
-  @apply text-muted-foreground w-full sm:w-2/3 break-words;
-}
-
-.inputField,
-.selectTrigger {
-  @apply h-12 w-full rounded-md border border-gray-300 px-3 py-2 text-base shadow-sm !important;
-  @apply focus:outline-none focus:border-[#64B32C] focus:ring-[#80BC41];
-}
-
-.dialogDescription {
-  @apply pb-3;
-}
-
-.formWrapper {
-  @apply flex flex-col gap-1.5;
-
-  & label {
-    @apply text-base font-medium;
-  }
-}
-
-.buttonWrapper {
-  @apply flex flex-col gap-2 mt-5;
-
-  & button {
-    @apply h-12 !important;
-  }
+.tabsTrigger {
+  @apply text-base border-b-2 border-transparent data-[state=active]:bg-transparent;
+  @apply data-[state=active]:shadow-none data-[state=active]:border-b-2;
+  @apply data-[state=active]:border-cr-green-700 data-[state=active]:text-cr-green-700;
+  @apply data-[state=active]:rounded-none;
 }

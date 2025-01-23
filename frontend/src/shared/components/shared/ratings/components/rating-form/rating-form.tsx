@@ -2,7 +2,6 @@
 
 import { Loader } from '@/shared/components/shared';
 import { useRatingForm } from '@/shared/components/shared/ratings/hooks/use-rating-form';
-import styles from '@/shared/components/shared/ratings/rating-card.module.css';
 import {
   Button,
   Input,
@@ -14,9 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui';
+import { cn } from '@/shared/lib';
 import { RatingMutation } from '@/shared/types/rating.types';
 
 import React from 'react';
+
+import styles from '../../rating-form.module.css';
 
 interface Props {
   onSubmit: (rating: RatingMutation) => void;
@@ -28,20 +30,28 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Label htmlFor={'year'}>Год</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor={'year'} className={cn(styles.label)}>
+          Год
+        </Label>
         <Input id={'year'} placeholder={'Введите год (2024)'} onChange={handleYearChange} value={ratingMutation.year} />
       </div>
-      <div>
-        <Label htmlFor={'chapter'}>Раздел</Label>
+      <div className={cn(styles.inputGroup)}>
+        <Label htmlFor={'chapter'} className={cn(styles.label)}>
+          Раздел
+        </Label>
         <Select value={ratingMutation.chapter} onValueChange={(v) => handleSelectChange(v, 'chapter')}>
-          <SelectTrigger id={'chapter'}>
+          <SelectTrigger id={'chapter'} className={'capitalize'}>
             <SelectValue placeholder={'Выберите раздел'} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={'dark:bg-gray-900'}>
             <SelectGroup>
               {['male', 'female', 'mixed'].map((chapter) => (
-                <SelectItem key={chapter} value={chapter}>
+                <SelectItem
+                  className={cn('capitalize hover:dark:bg-gray-800 focus:dark:bg-gray-800')}
+                  key={chapter}
+                  value={chapter}
+                >
                   {chapter === 'mixed' ? 'Смешанный' : chapter === 'male' ? 'Мужской' : 'Женский'}
                 </SelectItem>
               ))}
@@ -50,7 +60,7 @@ export const RatingForm: React.FC<Props> = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <Button disabled={!isFormValid || ratingsCreating} className={styles.eventFormButton}>
+      <Button disabled={!isFormValid || ratingsCreating} className={cn(styles.addButton)}>
         Добавить {ratingsCreating && <Loader theme={'light'} />}
       </Button>
     </form>

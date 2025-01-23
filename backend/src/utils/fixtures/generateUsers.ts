@@ -25,7 +25,7 @@ export const generateUsers = async (masters: Category, proMasters: Category, fut
       telephone: generateRandomPhoneNumber(),
       dateOfBirth: generateRandomDateOfBirth(),
       gender: ['male', 'female'][Math.floor(Math.random() * 2)],
-      password: `password${index + 1}`,
+      password: `1`,
       email: `user${index + 1}@example.com`,
       token: randomUUID(),
     };

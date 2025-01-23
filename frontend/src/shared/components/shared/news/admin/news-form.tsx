@@ -72,13 +72,12 @@ export const NewsForm: React.FC<Props> = ({ open, setOpen, newsId, isEdit = fals
       if (isEdit && newsId) {
         await dispatch(updateNews({ newsId, newsMutation: news })).unwrap();
         toast.success('Новость успешно обновлена!');
-        router.refresh();
       } else {
         await dispatch(createNews(news)).unwrap();
         toast.success('Новость успешно добавлена!');
-        router.refresh();
       }
 
+      router.refresh();
       setOpen(false);
     } catch (error) {
       console.error(error);

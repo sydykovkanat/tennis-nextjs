@@ -1,9 +1,10 @@
 import { CarouselReducer } from '@/shared/lib/features/carousel/carousel-slice';
 import { categoryReducer } from '@/shared/lib/features/categories/category-slice';
 import { footersReducer } from '@/shared/lib/features/footer/footers-slice';
-import { newsSlice } from '@/shared/lib/features/news/news-slice';
+import { newsReducer } from '@/shared/lib/features/news/news-slice';
 import { ratingMembersReducer } from '@/shared/lib/features/rating-members/rating-members-slice';
 import { ratingsReducer } from '@/shared/lib/features/rating/rating-slice';
+import { rewardsReducer } from '@/shared/lib/features/rewards/rewards-slice';
 import { tournamentsReducer } from '@/shared/lib/features/tournaments/tournamentsSlice';
 import { usersSlice } from '@/shared/lib/features/users/users-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -40,9 +41,10 @@ const rootReducer = combineReducers({
   carousel: CarouselReducer,
   ratingMembers: ratingMembersReducer,
   tournaments: tournamentsReducer,
-  news: newsSlice.reducer,
+  news: newsReducer,
   footers: footersReducer,
   ratings: ratingsReducer,
+  rewards: rewardsReducer,
 });
 
 export const store = configureStore({

@@ -1,0 +1,33 @@
+.reward {
+  @apply flex flex-col items-center justify-between min-h-[150px];
+}
+
+.info {
+  @apply font-medium;
+}
+
+.card {
+  @apply flex flex-col;
+}
+
+.popover {
+  @apply rounded-lg;
+}
+
+.popoverTrigger[data-state='open'] {
+  -webkit-box-shadow: inset 0 -20px 40px -50px hsla(var(--cr-green-700));
+  -moz-box-shadow: inset 0 -20px 40px -50px hsla(var(--cr-green-700));
+  box-shadow: inset 0 -20px 40px -50px hsla(var(--cr-green-700));
+}
+
+.popoverTrigger {
+  @apply data-[state=open]:text-cr-green-700 rounded-md;
+}
+
+.tournament {
+  @apply font-medium;
+}
+
+.createdAt {
+  @apply text-tn-secondary text-sm;
+}
