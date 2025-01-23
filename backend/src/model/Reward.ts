@@ -25,7 +25,7 @@ const RewardSchema = new Schema<RewardFields>(
     place: {
       type: Number,
       validate: {
-        validator: (value: number) => value === 0,
+        validator: (value: number) => value !== 0,
         message: 'Место не может быть нулевым!',
       },
     },

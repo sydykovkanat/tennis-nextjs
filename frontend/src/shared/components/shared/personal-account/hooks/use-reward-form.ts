@@ -9,6 +9,7 @@ import {
 } from '@/shared/lib/features/rewards/rewards-slice';
 import { fetchOneReward, removeReward } from '@/shared/lib/features/rewards/rewards-thunks';
 import { RewardMutation } from '@/shared/types/reward.types';
+import { toast } from 'sonner';
 
 import React, { useEffect, useState } from 'react';
 
@@ -22,7 +23,7 @@ export const useRewardForm = ({ userId, rewardId, isEdit }: Props = {}) => {
   const initialState: RewardMutation = {
     user: userId ? userId : '',
     tournament: '',
-    place: undefined,
+    place: '',
     nomination: undefined,
     icon: '',
   };
@@ -63,13 +64,11 @@ export const useRewardForm = ({ userId, rewardId, isEdit }: Props = {}) => {
 
   const handleRemove = async () => {
     try {
-      const { toast } = await import('sonner');
       if (rewardId && userId) {
         await dispatch(removeReward({ rewardId, userId })).unwrap();
       }
       toast.success('Награда успешно удалена!');
     } catch (e) {
-      const { toast } = await import('sonner');
       console.error(e);
       toast.error('Что-то пошло не так, попробуйте еще раз.');
     }

@@ -60,6 +60,7 @@ export const rewardsSlice = createSlice({
       .addCase(fetchRewards.pending, (state) => {
         state.fetchRewardsLoading = true;
         state.fetchError = null;
+        state.items = [];
       })
       .addCase(fetchRewards.fulfilled, (state, { payload }) => {
         state.items = payload.data;
@@ -70,6 +71,7 @@ export const rewardsSlice = createSlice({
       .addCase(fetchRewards.rejected, (state, { payload: error }) => {
         state.fetchRewardsLoading = false;
         state.fetchError = error || null;
+        state.items = [];
       });
 
     builder

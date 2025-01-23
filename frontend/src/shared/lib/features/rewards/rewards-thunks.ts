@@ -36,7 +36,7 @@ export const fetchRewards = createAsyncThunk<RewardResponse, Filters | undefined
       if (data?.query) {
         query = toQueryParams(data.query);
       }
-      const { data: rewards } = await axiosApi.get<RewardResponse>(`/rewards/${query}`);
+      const { data: rewards } = await axiosApi.get<RewardResponse>(`/rewards${query}`);
       return rewards;
     } catch (error) {
       if (isAxiosError(error) && error.response && error.response.status === 404) {

@@ -7,7 +7,7 @@ export const createReward = async (req: Request, res: Response, next: NextFuncti
   try {
     const { user, tournament, nomination, place, icon } = req.body;
 
-    if (nomination === undefined && place === undefined) {
+    if (nomination === undefined && (place === undefined || place === '')) {
       return res.status(400).send({ error: 'Хотя бы одно поле номинации должно быть заполнено!' });
     }
 

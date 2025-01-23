@@ -44,7 +44,7 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
   setOpen,
   children,
 }) => {
-  const { reward, setReward, handleChange, handleIconChange, initialState, createError, updateError } = useRewardForm({
+  const { reward, setReward, handleChange, handleIconChange, initialState } = useRewardForm({
     userId,
     rewardId,
     isEdit: isEdit,
@@ -71,8 +71,6 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
       }
     } catch (error) {
       console.log(error);
-      console.log(createError);
-      console.log(updateError);
       toast.error('Ошибка при добавлении/редактировании награды');
     } finally {
       router.refresh();
@@ -125,16 +123,17 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
                 Место
               </Label>
               <Input
+                type='number'
                 name='place'
-                autoComplete={'off'}
-                value={reward.place}
+                autoComplete='off'
+                value={reward.place || ''}
                 onChange={(e) =>
                   setReward((prev) => ({
                     ...prev,
-                    place: Number(e.target.value),
+                    place: e.target.value ? Number(e.target.value) : '',
                   }))
                 }
-                placeholder={'Введите место'}
+                placeholder='Введите место'
                 className={cn(styles.input)}
               />
             </div>

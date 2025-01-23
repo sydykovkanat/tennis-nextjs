@@ -5,22 +5,40 @@ import {
   Loader,
   RewardAdminItem,
   RewardForm,
+  getRewards,
   useRewardForm,
-  useRewards,
 } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
-import { cn } from '@/shared/lib';
+import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
+import {
+  selectRewardFetchError,
+  selectRewards,
+  selectRewardsFetching,
+  selectRewardsPages,
+} from '@/shared/lib/features/rewards/rewards-slice';
+import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { Grid2X2PlusIcon } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
   id: string;
 }
 
 export const Rewards: React.FC<Props> = ({ id }) => {
-  const { rewards, fetchError, rewardsFetching } = useRewards();
   const { open, setOpen } = useRewardForm();
+  const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
+  const rewards = useAppSelector(selectRewards);
+  const rewardsError = useAppSelector(selectRewardFetchError);
+  const pages = useAppSelector(selectRewardsPages);
+  const rewardsFetching = useAppSelector(selectRewardsFetching);
+  const currentUser = useAppSelector(selectCurrentUser);
+
+  useEffect(() => {
+    getRewards({ dispatch, userId: currentUser?._id, searchParams, limit: 6 });
+  }, [dispatch, currentUser, searchParams]);
 
   return (
     <>
@@ -33,16 +51,20 @@ export const Rewards: React.FC<Props> = ({ id }) => {
 
       {rewardsFetching ? (
         <Loader />
-      ) : rewards.length ? (
-        <div className={cn('grid grid-cols-1 gap-y-2.5')}>
-          {rewards.map((reward) => (
-            <RewardAdminItem key={reward._id} reward={reward} />
-          ))}
-          <CustomPagination total={5} />
-        </div>
       ) : (
-        <p>{fetchError?.error}</p>
+        <>
+          {!rewards.length ? (
+            <p>{rewardsError?.error}</p>
+          ) : (
+            <div className={cn('grid grid-cols-1 gap-y-2.5')}>
+              {rewards.map((reward) => (
+                <RewardAdminItem key={reward._id} reward={reward} />
+              ))}
+            </div>
+          )}
+        </>
       )}
+      {pages > 1 && <CustomPagination total={pages} />}
     </>
   );
 };

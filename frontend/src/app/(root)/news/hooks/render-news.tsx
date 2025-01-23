@@ -22,7 +22,7 @@ export const renderNewsContent = ({ news, pages, isAdmin }: Props) => {
           <NewsCard key={newsItem._id} news={newsItem} isAdmin={isAdmin} />
         ))}
       </div>
-      <CustomPagination total={pages} />
+      {pages > 1 && <CustomPagination total={pages} />}
     </>
   );
 };
