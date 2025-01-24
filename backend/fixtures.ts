@@ -107,7 +107,7 @@ const run = async () => {
       email: 'alice@gmail.com',
       token: randomUUID(),
     },
-     {
+    {
       category: masters._id,
       fullName: 'Test User',
       telephone: '0111 111 111',
@@ -118,7 +118,7 @@ const run = async () => {
       email: 'test1@gmail.com',
       token: randomUUID(),
     },
-     {
+    {
       category: masters._id,
       fullName: 'Test User',
       telephone: '0222 222 222',
@@ -128,7 +128,7 @@ const run = async () => {
       password: '123qwe',
       email: 'test2@gmail.com',
       token: randomUUID(),
-    },
+    }
   );
 
   await Reward.create(
@@ -209,7 +209,7 @@ const run = async () => {
   // for (let i = 0; i < 5; i++) {
   //   await Reward.create(
   //     {
-  //       user: john,
+  //       user: alice,
   //       createdAt: '2024-12-02T16:15:36.700+00:00',
   //       updatedAt: '2024-12-03T16:15:36.700+00:00',
   //       tournament: 'Winter Gold Cup',
@@ -218,7 +218,7 @@ const run = async () => {
   //       icon: 'cup',
   //     },
   //     {
-  //       user: john,
+  //       user: alice,
   //       createdAt: '2024-12-01T16:15:36.700+00:00',
   //       updatedAt: '2024-12-02T16:15:36.700+00:00',
   //       tournament: 'Spring Silver League',
@@ -227,7 +227,7 @@ const run = async () => {
   //       icon: 'medal',
   //     },
   //     {
-  //       user: john,
+  //       user: alice,
   //       createdAt: '2024-11-30T16:15:36.700+00:00',
   //       updatedAt: '2024-12-01T16:15:36.700+00:00',
   //       tournament: 'Summer Bronze Cup',
@@ -236,7 +236,7 @@ const run = async () => {
   //       icon: 'cup',
   //     },
   //     {
-  //       user: john,
+  //       user: alice,
   //       createdAt: '2024-11-29T16:15:36.700+00:00',
   //       updatedAt: '2024-11-30T16:15:36.700+00:00',
   //       tournament: 'Autumn Platinum Series',
@@ -245,7 +245,7 @@ const run = async () => {
   //       icon: 'cup',
   //     },
   //     {
-  //       user: john,
+  //       user: alice,
   //       createdAt: '2024-11-28T16:15:36.700+00:00',
   //       updatedAt: '2024-11-29T16:15:36.700+00:00',
   //       tournament: 'Winter Gold Cup',

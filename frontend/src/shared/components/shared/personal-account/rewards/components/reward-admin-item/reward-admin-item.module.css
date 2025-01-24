@@ -1,14 +1,14 @@
 .card {
-  @apply p-1 xs:p-4;
+  @apply p-1 xs:p-4 !important;
 }
 
 .cardContent {
-  @apply p-0 flex flex-wrap items-center xs:flex-row justify-between gap-3;
+  @apply p-0 flex flex-wrap items-center xs:flex-row justify-between gap-3 !important;
 }
 
 .textContent {
   @apply flex-1 flex flex-col mb-2.5 xs:mb-0 text-start;
-  word-wrap: anywhere;
+  word-wrap: anywhere !important;
 }
 
 .cardActions {

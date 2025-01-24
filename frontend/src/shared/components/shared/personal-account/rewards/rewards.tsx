@@ -46,7 +46,7 @@ export const Rewards = () => {
           )}
         </>
       )}
-      {pages > 1 && <CustomPagination total={pages} />}
+      {pages > 1 && <CustomPagination total={pages} entity='rewards' />}
     </div>
   );
 };

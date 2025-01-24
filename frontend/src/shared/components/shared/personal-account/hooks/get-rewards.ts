@@ -13,7 +13,7 @@ interface Props {
 export const getRewards = ({ dispatch, userId, searchParams, limit }: Props = {}) => {
   const queryObj: Query = {};
   if (userId) queryObj.userId = userId;
-  if (searchParams) queryObj.page = searchParams.get('page') || '1';
+  if (searchParams) queryObj.page = searchParams.get('rewardsPage') || '1';
   if (limit) queryObj.limit = limit;
 
   const validatedQuery = deleteEmptyQueryStrings(queryObj);

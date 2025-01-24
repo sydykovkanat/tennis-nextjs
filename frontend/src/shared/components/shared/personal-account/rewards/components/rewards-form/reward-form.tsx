@@ -60,6 +60,10 @@ export const RewardForm: React.FC<PropsWithChildren & Props> = ({
       return toast.error('Заполните поле турнира!');
     }
 
+    if (!reward.place && !reward.nomination?.trim()) {
+      return toast.error('Хотя бы одно поле номинации должно быть заполнено!');
+    }
+
     try {
       if (isEdit && rewardId) {
         await dispatch(updateReward({ rewardId, userId, rewardMutation: reward })).unwrap();

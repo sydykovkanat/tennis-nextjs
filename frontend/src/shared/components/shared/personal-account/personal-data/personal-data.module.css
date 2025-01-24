@@ -39,5 +39,6 @@
 }
 
 .editButton {
-  @apply text-inherit bg-transparent border border-black rounded-lg hover:text-white;
+  @apply text-inherit bg-transparent border rounded-lg !important;
+  @apply border-black;
 }
