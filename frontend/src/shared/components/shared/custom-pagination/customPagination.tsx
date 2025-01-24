@@ -24,9 +24,10 @@ import styles from './pagination.module.css';
 interface Props {
   total: number;
   setPageUser?: (page: number) => void;
+  entity?: string;
 }
 
-export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
+export const CustomPagination: React.FC<Props> = ({ total, setPageUser, entity }) => {
   const router = useRouter();
 
   const { page, pageNumbers, disableButton, setPageToFirst, setPageToLast, setPageToPrevious, setPageToNext, setPage } =
@@ -34,12 +35,34 @@ export const CustomPagination: React.FC<Props> = ({ total, setPageUser }) => {
 
   const updatePageInUrl = (pageNumber: number) => {
     const url = new URL(window.location.href);
-    url.searchParams.set('page', pageNumber.toString());
+    const pageParam = entity ? `${entity}Page` : 'page';
+    url.searchParams.set(pageParam, pageNumber.toString());
     router.push(url.toString());
     if (setPageUser) {
       setPageUser(pageNumber);
     }
   };
+
+  React.useEffect(() => {
+    const url = new URL(window.location.href);
+
+    if (!entity) {
+      url.searchParams.forEach((_, key) => {
+        if (key.endsWith('Page') || key === 'page') {
+          url.searchParams.delete(key);
+        }
+      });
+    } else {
+      const entityPageParam = `${entity}Page`;
+      url.searchParams.forEach((_, key) => {
+        if (key === entityPageParam) {
+          url.searchParams.delete(key);
+        }
+      });
+    }
+
+    router.replace(url.toString());
+  }, [entity, router]);
 
   return (
     <Pagination className={styles.pagination}>

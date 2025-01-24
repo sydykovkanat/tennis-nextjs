@@ -3,7 +3,7 @@
 }
 
 .dialogContent {
-  @apply rounded-lg py-7 px-3 xs:px-6 max-h-[80dvh] overflow-y-auto;
+  @apply rounded-lg py-7 px-3 xs:px-6 max-h-[80dvh] overflow-y-auto !important;
 }
 
 .dialogDescription {
@@ -35,9 +35,9 @@
 }
 
 .selectTrigger {
-  @apply h-10 focus:border-[#80BC41];
+  @apply h-10 focus:border-[#80BC41] !important;
 }
 
 .buttonSubmit {
-  @apply w-full font-bold;
+  @apply w-full font-bold !important;
 }

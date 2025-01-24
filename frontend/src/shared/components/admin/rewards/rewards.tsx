@@ -64,7 +64,7 @@ export const Rewards: React.FC<Props> = ({ id }) => {
           )}
         </>
       )}
-      {pages > 1 && <CustomPagination total={pages} />}
+      {pages > 1 && <CustomPagination total={pages} entity='rewards' />}
     </>
   );
 };

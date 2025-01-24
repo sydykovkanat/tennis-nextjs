@@ -49,7 +49,10 @@ export const PersonalData = () => {
           <Button
             icon={Pencil}
             onClick={() => setOpen(true)}
-            className={cn(styles.editButton, 'dark:text-white dark:border-white dark:hover:bg-inherit')}
+            className={cn(
+              styles.editButton,
+              'dark:text-white !important dark:border-white !important dark:hover:bg-inherit !important',
+            )}
           >
             Редактировать
           </Button>
