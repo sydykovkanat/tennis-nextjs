@@ -13,9 +13,11 @@ import { useSearchParams } from 'next/navigation';
 
 import { useEffect } from 'react';
 
+import { useFetchUser } from '../hooks';
 import styles from './rewards.module.css';
 
 export const Rewards = () => {
+  useFetchUser();
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
   const rewards = useAppSelector(selectRewards);
@@ -25,11 +27,13 @@ export const Rewards = () => {
   const currentUser = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
-    getRewards({ dispatch, userId: currentUser?._id, searchParams });
+    if (currentUser) {
+      getRewards({ dispatch, userId: currentUser?._id, searchParams });
+    }
   }, [dispatch, currentUser, searchParams]);
 
   return (
-    <div>
+    <>
       {rewardsFetching ? (
         <Loader />
       ) : (
@@ -47,6 +51,6 @@ export const Rewards = () => {
         </>
       )}
       {pages > 1 && <CustomPagination total={pages} entity='rewards' />}
-    </div>
+    </>
   );
 };

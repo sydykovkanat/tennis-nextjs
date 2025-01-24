@@ -11,6 +11,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
+import { tournamentHistoryReducer } from './features/tournament-history/tournament-history-slice';
+
 const createNoopStorage = () => {
   return {
     getItem() {
@@ -45,6 +47,7 @@ const rootReducer = combineReducers({
   footers: footersReducer,
   ratings: ratingsReducer,
   rewards: rewardsReducer,
+  tournamentHistory: tournamentHistoryReducer,
 });
 
 export const store = configureStore({

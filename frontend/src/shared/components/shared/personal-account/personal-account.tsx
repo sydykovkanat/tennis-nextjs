@@ -5,16 +5,19 @@ import {
   GradientCircle,
   PersonalData,
   Rewards,
+  SavedTournaments,
   useTabsWithRewards,
   userCircles,
 } from '@/shared/components/shared';
 import { ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui';
-import { cn } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
+import { selectUser } from '@/shared/lib/features/users/users-slice';
 
 import styles from './personal-account.module.css';
 
 const PersonalAccount = () => {
   const { currentTab, handleTabChange } = useTabsWithRewards();
+  const currentUser = useAppSelector(selectUser);
 
   return (
     <Container>
@@ -32,6 +35,9 @@ const PersonalAccount = () => {
             <TabsTrigger value='rewards' className={cn(styles.tabsTrigger, 'dark:text-white')}>
               Награды
             </TabsTrigger>
+            <TabsTrigger value='tournaments' className={cn(styles.tabsTrigger, 'dark:text-white')}>
+              Турниры
+            </TabsTrigger>
           </TabsList>
         </ScrollArea>
         <div className={cn(styles.box, 'dark:bg-[#1F2937]')}>
@@ -40,6 +46,9 @@ const PersonalAccount = () => {
           </TabsContent>
           <TabsContent value={'rewards'}>
             <Rewards />
+          </TabsContent>
+          <TabsContent value={'tournaments'}>
+            <SavedTournaments />
           </TabsContent>
         </div>
       </Tabs>

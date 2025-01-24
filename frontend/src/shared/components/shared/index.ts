@@ -71,6 +71,7 @@ export { UsersForm } from './admin-users-list/users-form/users-form';
 export { UsersInput } from './admin-users-list/users-input/users-input';
 export { UsersList } from './admin-users-list/users-list/users-list';
 export { getRewards } from './personal-account/hooks/get-rewards';
+export { getSavedTournaments } from './personal-account/hooks/get-saved-tournaments';
 export { useRewardForm } from './personal-account/hooks/use-reward-form';
 export { useRewards } from './personal-account/hooks/use-rewards';
 export { useTabsWithRewards } from './personal-account/hooks/use-tabs-with-rewards';
@@ -83,6 +84,7 @@ export { RewardAdminItem } from './personal-account/rewards/components/reward-ad
 export { RewardItem } from './personal-account/rewards/components/reward-item/reward-item';
 export { RewardForm } from './personal-account/rewards/components/rewards-form/reward-form';
 export { Rewards } from './personal-account/rewards/rewards';
+export { SavedTournaments } from './personal-account/saved-tournaments/saved-tournaments';
 export { UserEdit } from './personal-account/user-edit/user-edit';
 export { ThemeSwitcher } from './theme-switcher/theme-switcher';
 
