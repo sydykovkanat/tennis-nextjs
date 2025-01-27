@@ -44,7 +44,6 @@ export const PersonalData = () => {
             <span className={cn(styles.subtitle)}>{currentUser.gender === 'male' ? 'Мужской' : 'Женский'}</span>
           </div>
         </div>
-
         <div className={cn(styles.actionsWrapper)}>
           <Button
             icon={Pencil}
@@ -57,7 +56,6 @@ export const PersonalData = () => {
             Редактировать
           </Button>
         </div>
-
         {open && <UserEdit user={currentUser} open={open} setOpen={setOpen} />}
       </main>
     )

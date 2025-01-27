@@ -4,9 +4,12 @@ import { useAppSelector } from '@/shared/hooks/hooks';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import dynamic from 'next/dynamic';
 
-const UserCabinet = dynamic(() => import('@/shared/components/shared/personal-account/personal-account'), {
-  ssr: false,
-});
+const UserCabinet = dynamic(
+  () => import('@/shared/components/shared/personal-account/personal-account/personal-account'),
+  {
+    ssr: false,
+  },
+);
 
 const ProtectedRoute = dynamic(() => import('@/shared/components/shared/protected-route/protected-route'), {
   ssr: false,

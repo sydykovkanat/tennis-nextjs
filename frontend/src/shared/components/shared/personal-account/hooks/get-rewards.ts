@@ -1,3 +1,5 @@
+'use client';
+
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
 import { AppDispatch } from '@/shared/lib/store';

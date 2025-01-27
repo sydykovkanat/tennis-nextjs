@@ -33,9 +33,9 @@ export const getRewards = async (req: Request, res: Response, next: NextFunction
   try {
     const dateFormat = 'dd.MM.yyyy';
     const { userId } = req.query;
-    const page = parseInt(req.query.page as string, 10) || 1;
+    let page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 16;
-    const startIndex = (page - 1) * limit;
+    let startIndex = (page - 1) * limit;
 
     const rewards = await Reward.find()
       .where('user')
@@ -44,7 +44,34 @@ export const getRewards = async (req: Request, res: Response, next: NextFunction
       .skip(startIndex)
       .limit(limit)
       .lean();
-    if (rewards.length === 0) return res.status(404).send({ error: 'На данный момент у вас нету наград!' });
+
+    if (rewards.length === 0 && page > 1) {
+      page = 1;
+      startIndex = 0;
+
+      const firstPageRewards = await Reward.find()
+        .where('user')
+        .equals(userId)
+        .sort({ createdAt: -1 })
+        .skip(startIndex)
+        .limit(limit)
+        .lean();
+
+      if (firstPageRewards.length === 0) {
+        return res.status(404).send({ error: 'На данный момент у вас нету наград!' });
+      }
+
+      const formattedFirstPageRewards = firstPageRewards.map((item) => ({
+        ...item,
+        createdAt: format(item.createdAt, dateFormat),
+        updatedAt: format(item.updatedAt, dateFormat),
+      }));
+
+      const total = await Reward.countDocuments({ user: userId });
+      const pages = limit > 0 ? Math.ceil(total / limit) : null;
+
+      return res.send({ page, limit, total, pages, data: formattedFirstPageRewards });
+    }
 
     const formattedRewards = rewards.map((item) => ({
       ...item,

@@ -1,3 +1,5 @@
+'use client';
+
 import { deleteEmptyQueryStrings } from '@/shared/lib';
 import { fetchTournamentHistory } from '@/shared/lib/features/tournament-history/tournament-history-thunks';
 import { AppDispatch } from '@/shared/lib/store';

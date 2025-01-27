@@ -1,5 +1,6 @@
 'use client';
 
+import { CustomPagination, Loader, getSavedTournaments } from '@/shared/components/shared';
 import { cn, useAppDispatch, useAppSelector } from '@/shared/lib';
 import {
   selectSavedTournaments,
@@ -8,15 +9,17 @@ import {
   selectSavedTournamentsPages,
 } from '@/shared/lib/features/tournament-history/tournament-history-slice';
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
-import { Loader } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { TournamentCard } from '../../tournaments';
-import { getSavedTournaments } from '../hooks/get-saved-tournaments';
+import { useFetchUser } from '../hooks';
+import personalStyles from '../personal.module.css';
+import styles from './saved-tournaments.module.css';
 
 export const SavedTournaments = () => {
+  useFetchUser();
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
   const tournamentHistory = useAppSelector(selectSavedTournaments);
@@ -24,12 +27,19 @@ export const SavedTournaments = () => {
   const pages = useAppSelector(selectSavedTournamentsPages);
   const tournamentHistoryFetching = useAppSelector(selectSavedTournamentsFetching);
   const currentUser = useAppSelector(selectCurrentUser);
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     if (currentUser) {
-      getSavedTournaments({ dispatch, userId: currentUser?._id, searchParams });
+      setUserId(currentUser._id);
     }
-  }, [dispatch, currentUser, searchParams]);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (userId.length) {
+      getSavedTournaments({ dispatch, userId, searchParams });
+    }
+  }, [dispatch, userId, searchParams]);
 
   return (
     <>
@@ -37,11 +47,11 @@ export const SavedTournaments = () => {
         <Loader />
       ) : (
         <>
-          <h2>Турниры</h2>
+          <h2 className={cn(personalStyles.title, 'dark:text-white')}>Турниры</h2>
           {!tournamentHistory.length ? (
-            <p></p>
+            <p>{savedTournamentsError?.error}</p>
           ) : (
-            <div className={cn('flex flex-col gap-2')}>
+            <div className={cn(styles.container)}>
               {tournamentHistory.map((data) => (
                 <TournamentCard key={data.tournament._id} tournament={data.tournament} />
               ))}
@@ -49,6 +59,7 @@ export const SavedTournaments = () => {
           )}
         </>
       )}
+      {pages > 1 && <CustomPagination total={pages} entity='savedTournaments' />}
     </>
   );
 };

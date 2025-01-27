@@ -11,9 +11,10 @@ import {
 import { selectCurrentUser } from '@/shared/lib/features/users/users-slice';
 import { useSearchParams } from 'next/navigation';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useFetchUser } from '../hooks';
+import personalStyles from '../personal.module.css';
 import styles from './rewards.module.css';
 
 export const Rewards = () => {
@@ -25,12 +26,19 @@ export const Rewards = () => {
   const pages = useAppSelector(selectRewardsPages);
   const rewardsFetching = useAppSelector(selectRewardsFetching);
   const currentUser = useAppSelector(selectCurrentUser);
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     if (currentUser) {
-      getRewards({ dispatch, userId: currentUser?._id, searchParams });
+      setUserId(currentUser._id);
     }
-  }, [dispatch, currentUser, searchParams]);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (userId.length) {
+      getRewards({ dispatch, userId, searchParams });
+    }
+  }, [dispatch, userId, searchParams]);
 
   return (
     <>
@@ -38,7 +46,7 @@ export const Rewards = () => {
         <Loader />
       ) : (
         <>
-          <h2 className={cn(styles.title, 'dark:text-white')}>Награды</h2>
+          <h2 className={cn(personalStyles.title, 'dark:text-white')}>Награды</h2>
           {!rewards.length ? (
             <p>{rewardsError?.error}</p>
           ) : (

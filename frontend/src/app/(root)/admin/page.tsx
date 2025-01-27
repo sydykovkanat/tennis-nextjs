@@ -9,7 +9,7 @@ import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import styles from './admin.module.css';
 
