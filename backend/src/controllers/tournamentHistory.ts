@@ -45,6 +45,10 @@ export const getTournamentHistory = async (req: Request, res: Response, next: Ne
       })
       .lean();
 
+    if (tournamentHistory.length === 0) {
+      return res.status(404).send({ error: 'На данный момент у вас нету избранных турниров!' });
+    }
+
     if (tournamentHistory.length === 0 && page > 1) {
       page = 1;
       startIndex = 0;
