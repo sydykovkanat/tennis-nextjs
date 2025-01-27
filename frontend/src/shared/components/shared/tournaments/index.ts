@@ -1,8 +1,9 @@
-export { TournamentCard } from './tournament-card/tournament-card';
-export { TournamentCardInfo } from './tournament-card/tournament-card-info';
-export { TournamentActions } from './tournament-card/tournament-card-action';
-export { TournamentRegistration } from './tournament-card/tournament-card-registration';
-export { TournamentAccordion } from './tournament-accordion/tournament-accordion';
-export { RankFilter } from './rank-filter/rank-filter';
-export { TournamentForm } from './tournament-form/tournament-form';
 export { AdminCalendar } from './admin-calendar/admin-calendar';
+export { RankFilter } from './rank-filter/rank-filter';
+export { ToggleTournamentHistory } from './toggle-tournament-history/toggle-tournament-history';
+export { TournamentAccordion } from './tournament-accordion/tournament-accordion';
+export { TournamentCard } from './tournament-card/tournament-card';
+export { TournamentActions } from './tournament-card/tournament-card-action';
+export { TournamentCardInfo } from './tournament-card/tournament-card-info';
+export { TournamentRegistration } from './tournament-card/tournament-card-registration';
+export { TournamentForm } from './tournament-form/tournament-form';

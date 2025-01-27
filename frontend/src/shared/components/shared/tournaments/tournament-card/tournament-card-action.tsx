@@ -6,9 +6,16 @@ import { cn, useAppSelector } from '@/shared/lib';
 import { selectUserPermission } from '@/shared/lib/features/users/users-slice';
 import { Tournament } from '@/shared/types/tournament.types';
 
+import { ToggleTournamentHistory } from '../toggle-tournament-history/toggle-tournament-history';
 import styles from './tournament-card.module.css';
 
-export const TournamentActions = ({ tournament }: { tournament: Tournament }) => {
+export const TournamentActions = ({
+  tournament,
+  isHistory = false,
+}: {
+  tournament: Tournament;
+  isHistory?: boolean;
+}) => {
   const userPermission = useAppSelector(selectUserPermission);
 
   const renderActionItem = (text: string, link?: string | null) => {
@@ -46,6 +53,7 @@ export const TournamentActions = ({ tournament }: { tournament: Tournament }) =>
 
   return (
     <div className={cn(styles.cardActionsWrapper)}>
+      <ToggleTournamentHistory tournamentId={tournament._id} isHistory={isHistory} />
       {renderActionItem(
         'Результаты Турнира',
         tournament.resultsLink && tournament.resultsLink !== '' ? tournament.resultsLink : null,

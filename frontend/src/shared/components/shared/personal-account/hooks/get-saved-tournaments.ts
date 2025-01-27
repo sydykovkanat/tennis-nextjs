@@ -1,7 +1,7 @@
 'use client';
 
 import { deleteEmptyQueryStrings } from '@/shared/lib';
-import { fetchRewards } from '@/shared/lib/features/rewards/rewards-thunks';
+import { fetchTournamentHistory } from '@/shared/lib/features/tournament-history/tournament-history-thunks';
 import { AppDispatch } from '@/shared/lib/store';
 import { Filters, Query } from '@/shared/types/root.types';
 
@@ -9,16 +9,14 @@ interface Props {
   dispatch?: AppDispatch;
   userId?: string;
   searchParams?: URLSearchParams;
-  limit?: number;
 }
 
-export const getRewards = ({ dispatch, userId, searchParams, limit }: Props = {}) => {
+export const getSavedTournaments = ({ dispatch, userId, searchParams }: Props = {}) => {
   const queryObj: Query = {};
   if (userId) queryObj.userId = userId;
-  if (searchParams) queryObj.page = searchParams.get('rewardsPage') || '1';
-  if (limit) queryObj.limit = limit;
+  if (searchParams) queryObj.page = searchParams.get('savedTournamentsPage') || '1';
 
   const validatedQuery = deleteEmptyQueryStrings(queryObj);
   const data: Filters = { query: validatedQuery };
-  if (dispatch) dispatch(fetchRewards(data));
+  if (dispatch) dispatch(fetchTournamentHistory(data));
 };

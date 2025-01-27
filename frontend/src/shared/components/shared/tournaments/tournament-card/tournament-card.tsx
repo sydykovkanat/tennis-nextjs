@@ -11,16 +11,22 @@ interface Props {
   tournament: Tournament;
   isAdmin?: boolean;
   tournamentsLastYearExist?: boolean;
+  isHistory?: boolean;
 }
 
-export const TournamentCard: React.FC<Props> = ({ tournament, isAdmin, tournamentsLastYearExist }) => {
+export const TournamentCard: React.FC<Props> = ({
+  tournament,
+  isAdmin,
+  tournamentsLastYearExist,
+  isHistory = false,
+}) => {
   return (
     <div className={styles.cardBg} data-testid={`${tournament.name}`}>
       <div className={cn(styles.card, 'dark:bg-[#C3D9BD]')}>
         <div className={cn(styles.cardInfo)}>
           <TournamentCardInfo tournament={tournament} />
           <div className={styles.cardActions}>
-            <TournamentActions tournament={tournament} />
+            <TournamentActions tournament={tournament} isHistory={isHistory} />
             <TournamentRegistration tournament={tournament} className={styles.cardRegister} />
           </div>
         </div>

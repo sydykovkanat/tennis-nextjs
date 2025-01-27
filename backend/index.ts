@@ -5,14 +5,15 @@ import config from './config';
 import { carouselRouter } from './src/routes/carousel';
 import { categoriesRouter } from './src/routes/categories';
 import { eventsRouter } from './src/routes/events';
+import { footersRouter } from './src/routes/footers';
 import { newsRouter } from './src/routes/news';
 import { partnersRouter } from './src/routes/partners';
 import { ratingMembersRouter } from './src/routes/ratingMembers';
 import { ratingsRouter } from './src/routes/ratings';
-import { usersRouter } from './src/routes/users';
-import { footersRouter } from './src/routes/footers';
-import { tournamentsRouter } from './src/routes/tournament';
 import { rewardsRouter } from './src/routes/rewards';
+import { tournamentsRouter } from './src/routes/tournament';
+import { tournamentHistoryRouter } from './src/routes/tournamentHistory';
+import { usersRouter } from './src/routes/users';
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/ratings', ratingsRouter);
 app.use('/events', eventsRouter);
 app.use('/footers', footersRouter);
 app.use('/tournaments', tournamentsRouter);
+app.use('/tournamentHistory', tournamentHistoryRouter);
 
 const run = async () => {
   console.log('connecting to database...');
