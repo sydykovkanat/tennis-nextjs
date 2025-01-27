@@ -3,7 +3,6 @@ import { isAfter, parse } from 'date-fns';
 export const isTournamentUpcoming = (eventDate: string): 'upcoming' | 'today' | 'completed' => {
   const parsedDate = parse(eventDate, 'dd.MM.yy', new Date());
   const currentDate = new Date();
-
   if (parsedDate.toDateString() === currentDate.toDateString()) {
     return 'today';
   }
