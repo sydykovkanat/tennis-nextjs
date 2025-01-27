@@ -26,7 +26,7 @@ export const toggleAdd = async (req: Request, res: Response, next: NextFunction)
 };
 export const getTournamentHistory = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const dateFormat = 'dd.MM.yyyy';
+    const dateFormat = 'dd.MM.yy';
     const { userId } = req.query;
     let page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 4;
