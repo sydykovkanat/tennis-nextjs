@@ -53,7 +53,7 @@ export const TournamentActions = ({
 
   return (
     <div className={cn(styles.cardActionsWrapper)}>
-      <ToggleTournamentHistory tournamentId={tournament._id} isHistory={isHistory} />
+      {userPermission >= 1 && <ToggleTournamentHistory tournamentId={tournament._id} isHistory={isHistory} />}
       {renderActionItem(
         'Результаты Турнира',
         tournament.resultsLink && tournament.resultsLink !== '' ? tournament.resultsLink : null,
